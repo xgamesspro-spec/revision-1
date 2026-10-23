@@ -78,6 +78,19 @@ const app = require('../server');
     for (const q of s.quiz) assert.ok(q.choix[q.reponse] !== undefined, `${f} : ${q.q}`);
   }
 
+  // Réunions
+  r = await call('b', 'POST', '/api/meetings', { name: 'Révision VLAN' });
+  assert.equal(r.status, 200);
+  const mid = r.data.id;
+  r = await call('b', 'GET', '/api/meetings');
+  assert.equal(r.data[0].name, 'Révision VLAN');
+  r = await call('b', 'POST', `/api/meetings/${mid}/join`, { connId: 'faux' });
+  assert.equal(r.status, 400, 'connexion temps réel obligatoire pour rejoindre');
+  r = await call('anon', 'GET', '/api/meetings');
+  assert.equal(r.status, 401);
+  r = await call('a', 'DELETE', `/api/meetings/${mid}`);
+  assert.equal(r.status, 200, "l'admin peut terminer une réunion");
+
   r = await call('a', 'POST', '/api/admin/users/2', { banned: true });
   r = await call('b', 'GET', '/api/me');
   assert.equal(r.data.user, null, 'compte suspendu déconnecté');

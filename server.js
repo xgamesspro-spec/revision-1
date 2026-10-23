@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const db = require('./db');
 const { getNews } = require('./news');
+const setupMeetings = require('./meetings');
 
 const PORT = process.env.PORT || 3000;
 const CLASS_CODE = process.env.CLASS_CODE || ''; // code d'inscription permanent (optionnel)
@@ -20,7 +21,8 @@ app.use((req, res, next) => {
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'same-origin',
-    'Content-Security-Policy': "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; connect-src 'self'",
+    'Content-Security-Policy': "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; connect-src 'self'; media-src 'self' blob: mediastream:",
+    'Permissions-Policy': 'camera=(self), microphone=(self), display-capture=(self), fullscreen=(self)',
   });
   next();
 });
@@ -91,20 +93,32 @@ function tooMany(ip) {
 }
 
 // ---------- Temps réel (Server-Sent Events) ----------
-const clients = new Map(); // res -> user
+// Chaque onglet ouvert = une connexion avec un identifiant (connId), utilisé aussi pour les réunions.
+const conns = new Map(); // connId -> { res, user }
 function broadcast(event, data) {
   const payload = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
-  for (const res of clients.keys()) res.write(payload);
+  for (const c of conns.values()) c.res.write(payload);
 }
-function onlineIds() { return [...new Set([...clients.values()].map(u => u.id))]; }
+function sendTo(connId, event, data) {
+  const c = conns.get(connId);
+  if (c) c.res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
+}
+function onlineIds() { return [...new Set([...conns.values()].map(c => c.user.id))]; }
+const meetings = setupMeetings(app, { auth, conns, broadcast, sendTo, text, bad });
 app.get('/api/stream', auth, (req, res) => {
   res.set({ 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', Connection: 'keep-alive', 'X-Accel-Buffering': 'no' });
   res.flushHeaders();
-  res.write('retry: 3000\n\n');
-  clients.set(res, publicUser(req.user));
+  const connId = crypto.randomBytes(12).toString('hex');
+  conns.set(connId, { res, user: publicUser(req.user) });
+  res.write(`retry: 3000\n\nevent: hello\ndata: ${JSON.stringify({ connId })}\n\n`);
   broadcast('presence', onlineIds());
   const ping = setInterval(() => res.write(': ping\n\n'), 25000);
-  req.on('close', () => { clearInterval(ping); clients.delete(res); broadcast('presence', onlineIds()); });
+  req.on('close', () => {
+    clearInterval(ping);
+    conns.delete(connId);
+    meetings.onDisconnect(connId);
+    broadcast('presence', onlineIds());
+  });
 });
 
 // ---------- Comptes ----------

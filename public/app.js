@@ -50,7 +50,9 @@ function fmtDate(ts, withTime = true) {
   const date = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: d.getFullYear() !== today.getFullYear() ? 'numeric' : undefined });
   return withTime ? `${date} à ${time}` : date;
 }
-const linkify = s => s.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+// Les liens internes (réunions…) restent dans l'onglet, les liens externes s'ouvrent à part
+const linkify = s => s.replace(/(https?:\/\/[^\s<]+)/g, url =>
+  url.startsWith(location.origin + '/#/') ? `<a href="${url.slice(location.origin.length + 1)}">${url}</a>` : `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
 
 // Mini-Markdown (le texte est toujours échappé d'abord)
 function inline(s) {
@@ -110,6 +112,19 @@ function connectStream() {
   if (state.es) state.es.close();
   const es = new EventSource('/api/stream');
   state.es = es;
+  es.addEventListener('hello', e => {
+    const { connId } = JSON.parse(e.data);
+    const changed = state.connId && state.connId !== connId;
+    state.connId = connId;
+    if (changed && meet.room) meetingReconnect();
+  });
+  es.addEventListener('meetings', e => {
+    state.meetings = JSON.parse(e.data);
+    renderSidebar();
+    if (state.route?.name === 'reunions') renderMeetingList();
+  });
+  ['rtc_joined', 'rtc_left', 'rtc_signal', 'rtc_state', 'rtc_chat', 'rtc_react', 'rtc_closed']
+    .forEach(t => es.addEventListener(t, e => onMeetingEvent(t, JSON.parse(e.data))));
   es.addEventListener('presence', e => {
     state.online = new Set(JSON.parse(e.data));
     if (state.route?.name === 'salon') renderMembers();
@@ -166,6 +181,8 @@ function render() {
       </main>
     </div>`;
   api('GET', '/api/channels').then(c => { state.channels = c; renderSidebar(); });
+  api('GET', '/api/meetings').then(m => { state.meetings = m; renderSidebar(); }).catch(() => {});
+  api('GET', '/api/meetings/config').then(c => { state.meetConfig = c; }).catch(() => {});
   connectStream();
   route();
 }
@@ -173,13 +190,19 @@ function render() {
 function route() {
   if (!state.user) return;
   state.route = parseRoute();
+  if (state.route.name !== 'reunion' || state.route.id !== meet.room?.id) {
+    if (meet.room) leaveMeeting();
+  }
+  if (state.route.name !== 'reunion') stopPreview();
   if (state.route.name === 'salon') delete state.unread[state.route.id];
   renderSidebar();
   loadView();
 }
 
-function setTitle(title, sub = '') {
+function setTitle(title, sub = '', actionsHtml = '') {
   $('#topbar-title').innerHTML = `<h1>${title}</h1>${sub ? `<div class="sub">${sub}</div>` : ''}`;
+  $('#topbar-actions')?.remove();
+  if (actionsHtml) $('#topbar-title').insertAdjacentHTML('afterend', `<div id="topbar-actions" class="topbar-actions">${actionsHtml}</div>`);
 }
 function setContent(html, { full = false } = {}) {
   const c = $('#content');
@@ -203,6 +226,7 @@ function renderSidebar() {
     <div class="side-scroll">
       ${link('#/', '🏠', 'Accueil', r.name === 'accueil')}
       ${link('#/revisions', '📖', 'Révisions', r.name === 'revisions')}
+      ${link('#/reunions', '🎥', 'Réunions', r.name === 'reunions' || r.name === 'reunion', (state.meetings || []).filter(m => m.count).length ? `<span class="live">● ${(state.meetings || []).filter(m => m.count).length}</span>` : '')}
       ${link('#/actus', '📰', 'Actus', r.name === 'actus')}
       ${link('#/infos', '🎓', 'CFA & examens', r.name === 'infos')}
       ${isAdmin ? link('#/admin', '🛠️', 'Modération', r.name === 'admin') : ''}
@@ -229,7 +253,7 @@ document.addEventListener('click', async e => {
 });
 const actions = {
   menu: () => $('.shell').classList.toggle('nav-open'),
-  logout: async () => { await api('POST', '/api/logout'); state.user = null; location.hash = ''; render(); },
+  logout: async () => { await leaveMeeting({ silent: true }); await api('POST', '/api/logout'); state.user = null; location.hash = ''; render(); },
 };
 
 // ---------- Authentification ----------
@@ -275,7 +299,7 @@ async function renderAuth(mode = 'login') {
 // ---------- Vues ----------
 async function loadView() {
   const r = state.route;
-  const views = { accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
+  const views = { accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
   const fn = views[r.name] || viewHome;
   try { await fn(r); } catch (err) { setContent(`<div class="empty">${esc(err.message)}</div>`); }
 }
@@ -489,7 +513,14 @@ async function viewChannel(r) {
 }
 
 async function viewChat(ch) {
-  setTitle(`# ${esc(ch.name)}`, esc(ch.description));
+  setTitle(`# ${esc(ch.name)}`, esc(ch.description), '<button class="btn sm primary" id="start-meet">🎥 Lancer une réunion</button>');
+  $('#start-meet').onclick = async () => {
+    try {
+      const { id } = await api('POST', '/api/meetings', { name: `Réunion #${ch.name}` });
+      await api('POST', `/api/channels/${ch.id}/messages`, { content: `📹 ${state.user.display_name} a lancé une réunion, rejoins-nous : ${location.origin}/#/reunion/${id}` });
+      location.hash = `#/reunion/${id}`;
+    } catch (err) { toast(err.message); }
+  };
   state.view.messages = await api('GET', `/api/channels/${ch.id}/messages`);
   state.view.hasMore = state.view.messages.length === 50;
   setContent(`

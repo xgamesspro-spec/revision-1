@@ -1,0 +1,12 @@
+# HTTPS obligatoire pour la caméra, le micro et le partage d'écran.
+# SITE_ADDRESS : ton nom de domaine (ex. classe.mondomaine.fr) ou l'IP du serveur.
+{$SITE_ADDRESS:localhost} {
+	# Certificat interne (auto-signé) : marche avec une IP ou en réseau local.
+	# Si tu as un vrai nom de domaine pointant vers ce serveur, supprime cette ligne
+	# et Caddy obtiendra automatiquement un certificat Let's Encrypt.
+	tls internal
+
+	reverse_proxy classe:3000 {
+		flush_interval -1
+	}
+}

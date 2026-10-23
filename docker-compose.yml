@@ -8,8 +8,43 @@ services:
     environment:
       # Code d'inscription permanent pour toute la classe (optionnel, sinon générer des codes dans « Modération »)
       CLASS_CODE: ""
-      # Passe à "1" si tu mets la plateforme derrière un reverse proxy HTTPS
+      # Mets "1" aux deux lignes suivantes quand tu passes par le HTTPS (Caddy ci-dessous)
       COOKIE_SECURE: "0"
       TRUST_PROXY: "0"
+      # Réunions : nombre max de participants par réunion (connexion directe entre navigateurs)
+      MEETING_MAX: "10"
+      # Serveur TURN optionnel pour les réseaux qui bloquent la visio (voir README)
+      # TURN_URL: "turn:IP-DU-SERVEUR:3478"
+      # TURN_USER: "classe"
+      # TURN_PASS: "change-moi"
     volumes:
       - ./data:/data
+
+  # HTTPS : docker compose --profile https up -d
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["https"]
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_ADDRESS: "localhost" # remplace par ton domaine ou l'IP du serveur
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on: [classe]
+
+  # Relais TURN (optionnel) : docker compose --profile turn up -d
+  turn:
+    image: coturn/coturn:latest
+    profiles: ["turn"]
+    restart: unless-stopped
+    network_mode: host
+    command: >
+      -n --lt-cred-mech --fingerprint
+      --user=classe:change-moi --realm=classe-sio
+      --listening-port=3478 --min-port=49160 --max-port=49200
+
+volumes:
+  caddy_data:
