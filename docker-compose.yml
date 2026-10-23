@@ -1,0 +1,15 @@
+services:
+  classe:
+    build: .
+    container_name: classe-sio
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Code d'inscription permanent pour toute la classe (optionnel, sinon générer des codes dans « Modération »)
+      CLASS_CODE: ""
+      # Passe à "1" si tu mets la plateforme derrière un reverse proxy HTTPS
+      COOKIE_SECURE: "0"
+      TRUST_PROXY: "0"
+    volumes:
+      - ./data:/data

@@ -1,0 +1,9 @@
+[
+  { "name": "CERT-FR (ANSSI)", "category": "Cybersécurité", "url": "https://www.cert.ssi.gouv.fr/feed/" },
+  { "name": "IT-Connect", "category": "Systèmes & réseaux", "url": "https://www.it-connect.fr/feed/" },
+  { "name": "Le Monde Informatique", "category": "Systèmes & réseaux", "url": "https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml" },
+  { "name": "Korben", "category": "Tech", "url": "https://korben.info/feed" },
+  { "name": "CNIL", "category": "Droit & RGPD", "url": "https://www.cnil.fr/fr/rss.xml" },
+  { "name": "Guyane la 1ère", "category": "Guyane", "url": "https://la1ere.francetvinfo.fr/guyane/rss" },
+  { "name": "L'Étudiant", "category": "Études & BTS", "url": "https://www.letudiant.fr/rss.html" }
+]

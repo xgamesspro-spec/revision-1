@@ -1,0 +1,33 @@
+{
+  "nom": "Examens & portfolio",
+  "icone": "🎯",
+  "groupe": "Examens",
+  "ordre": 0,
+  "description": "Calendrier 2027, portfolio, réalisations professionnelles, préparation des oraux.",
+  "fiches": [
+    {
+      "titre": "Calendrier de la session 2027",
+      "contenu": "| Date | Épreuve |\n|---|---|\n| jusqu'au 12 nov. 2026 | inscriptions (selon le CNED, à vérifier pour l'académie de Guyane) |\n| 11 mai 2027 | Culture générale et expression |\n| 12 mai 2027 | CEJM |\n| 13 mai 2027 | Langue vivante |\n| 14 mai 2027 | Mathématiques |\n| 20–21 mai 2027 | Épreuves professionnelles écrites |\n| fin juin – mi-juillet 2027 | résultats |\n\nHoraires de métropole : en Guyane, ils sont décalés. Les dates des **oraux** sont fixées par l'académie au 1er trimestre 2027. Source : CNED."
+    },
+    {
+      "titre": "Réussir son portfolio et ses réalisations pro",
+      "contenu": "## Ce que le jury veut voir\n- Des **réalisations professionnelles** que **tu** as menées, pas celles d'un collègue.\n- La couverture des **compétences** du référentiel (tableau de synthèse). Une compétence souvent oubliée en SISR : **« Développer la présence en ligne »** — pense à la couvrir.\n- Un portfolio **accessible** au jury le jour J (lien testé, droits d'accès ouverts).\n\n## Pour chaque réalisation\n1. **Contexte** : l'organisation, le besoin, les contraintes.\n2. **Objectifs** et cahier des charges.\n3. **Solution** : choix techniques et **pourquoi** (comparaison d'alternatives).\n4. **Mise en œuvre** : étapes, captures, configurations.\n5. **Tests et validation**.\n6. **Bilan** : difficultés, améliorations, compétences mobilisées.\n\n## Données confidentielles\nN'utilise **jamais** de vraies données de l'entreprise : noms, IP, plans réseau, captures doivent être **fictifs ou anonymisés**. Ton tuteur doit être d'accord avec ce que tu montres.\n\n## Idées de réalisations en SISR\nSegmentation VLAN, outil de découverte/supervision réseau, extension Wi-Fi, déploiement d'un outil d'inventaire (GLPI, Snipe-IT), mise en place de sauvegardes, durcissement d'un serveur, VPN."
+    },
+    {
+      "titre": "Préparer un oral",
+      "contenu": "## Structure de présentation (10 min environ)\n1. Qui je suis, mon alternance (1 min)\n2. Le contexte de l'entreprise (1 min)\n3. Une ou deux réalisations, avec démonstration ou captures (6–7 min)\n4. Bilan et compétences acquises (1 min)\n\n## L'échange avec le jury\n- Réponds avec la méthode **Fait → Règle → Conclusion** : « J'ai fait X ; la bonne pratique est Y ; donc Z. »\n- Si tu ne sais pas : dis-le honnêtement et explique **comment tu chercherais** (doc constructeur, logs, test en labo).\n- Justifie toujours tes choix techniques.\n\n## S'entraîner\n- Fais au moins **2 oraux blancs** devant la classe (organise-les dans le forum *examens-2027*).\n- Chronomètre-toi.\n- Prépare une réponse à : « Pourquoi ce choix et pas un autre ? », « Que ferais-tu différemment ? », « Comment as-tu sécurisé ça ? »."
+    }
+  ],
+  "quiz": [
+    { "q": "Que faire avec les vraies données de l'entreprise dans ton portfolio ?", "choix": ["Les montrer telles quelles", "Les anonymiser ou utiliser des données fictives", "Les flouter un peu", "Demander au jury"], "reponse": 1, "explication": "Confidentialité et RGPD : données fictives ou anonymisées, validées par le tuteur." },
+    { "q": "Quand ont lieu les écrits communs du BTS 2027 ?", "choix": ["Décembre 2026", "Du 11 au 14 mai 2027", "Septembre 2027", "Juillet 2027"], "reponse": 1, "explication": "CGE le 11, CEJM le 12, langues le 13, maths le 14 mai 2027." },
+    { "q": "Une réalisation montée entièrement par un collègue peut-elle être présentée comme la tienne ?", "choix": ["Oui", "Non", "Oui si le collègue est d'accord", "Seulement à l'écrit"], "reponse": 1, "explication": "Le jury évalue ce que TU as fait. Présente ta part réelle, ou choisis une autre réalisation." },
+    { "q": "Quelle compétence est souvent oubliée en SISR ?", "choix": ["Gérer le patrimoine informatique", "Développer la présence en ligne", "Répondre aux incidents", "Travailler en mode projet"], "reponse": 1, "explication": "Elle doit être couverte volontairement (site, portfolio en ligne, page de service…)." }
+  ],
+  "cartes": [
+    { "recto": "Date de l'épreuve de CGE 2027", "verso": "11 mai 2027" },
+    { "recto": "6 étapes d'une fiche de réalisation", "verso": "Contexte, objectifs, solution, mise en œuvre, tests, bilan" },
+    { "recto": "Méthode de réponse à l'oral", "verso": "Fait → Règle → Conclusion" },
+    { "recto": "Je ne sais pas répondre au jury…", "verso": "Le dire honnêtement et expliquer comment je chercherais" }
+  ]
+}

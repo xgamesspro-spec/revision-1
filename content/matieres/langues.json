@@ -1,0 +1,34 @@
+{
+  "nom": "Sranan Tongo & Patwa",
+  "icone": "🌴",
+  "groupe": "Langues",
+  "ordre": 8,
+  "description": "Bases du sranan tongo (Suriname) et du patois jamaïcain.",
+  "fiches": [
+    {
+      "titre": "Sranan Tongo : premiers mots",
+      "contenu": "Langue créole à base lexicale anglaise, langue commune du **Suriname**.\n\n| Sranan | Français |\n|---|---|\n| Odi | Bonjour / salut |\n| Fa waka? | Comment ça va ? |\n| Mi de bun | Je vais bien |\n| Tangi | Merci |\n| Ai | Oui |\n| No | Non |\n| Mi | Je, moi |\n| Yu | Tu, toi |\n| A oso | La maison |\n| Watra | Eau |\n| Nyan | Manger |\n| Mi lobi yu | Je t'aime |\n\n## Grammaire de base\n- Le verbe ne se conjugue pas : on ajoute des petites particules.\n  - **e** = action en cours ou habituelle : *Mi e nyan* = je mange.\n  - **ben** = passé : *Mi ben nyan* = j'ai mangé / je mangeais.\n  - **o** = futur : *Mi o nyan* = je mangerai.\n- **a** = le/la (singulier), **den** = les (pluriel) : *den oso* = les maisons."
+    },
+    {
+      "titre": "Patwa jamaïcain : premiers mots",
+      "contenu": "Créole à base lexicale anglaise parlé en **Jamaïque**.\n\n| Patwa | Anglais | Français |\n|---|---|---|\n| Wah gwaan? | What's going on? | Quoi de neuf ? |\n| Mi deh yah | I'm here | Je suis là / ça va |\n| Irie | fine, good | bien, cool |\n| Likkle | little | petit |\n| Pickney | child | enfant |\n| Nyam | eat | manger |\n| Yaad | home | maison, chez soi |\n| Bredda | brother | frère, pote |\n| Mi nuh know | I don't know | je ne sais pas |\n| Soon come | coming soon | j'arrive bientôt |\n\n## Grammaire de base\n- **mi** = je / moi, **yu** = tu, **im** = il / elle, **wi** = nous, **unu** = vous (pluriel).\n- Négation avec **nuh** : *Mi nuh know*.\n- **fi** = pour / devoir : *Mi haffi go* (je dois partir).\n- Pluriel avec **dem** après le nom : *di pickney dem* = les enfants.\n- Passé avec **did** ou **en** : *Mi did nyam* = j'ai mangé."
+    }
+  ],
+  "quiz": [
+    { "q": "« Tangi » en sranan signifie…", "choix": ["Bonjour", "Merci", "Au revoir", "Eau"], "reponse": 1, "explication": "Tangi = merci." },
+    { "q": "En sranan, la particule du passé est…", "choix": ["e", "o", "ben", "den"], "reponse": 2, "explication": "ben = passé, e = en cours, o = futur." },
+    { "q": "« Wah gwaan? » veut dire…", "choix": ["Au revoir", "Quoi de neuf ?", "J'ai faim", "Viens ici"], "reponse": 1, "explication": "Salut courant en Jamaïque : What's going on?" },
+    { "q": "En patwa, « pickney » signifie…", "choix": ["Enfant", "Pique-nique", "Ami", "Maison"], "reponse": 0, "explication": "Pickney = child." },
+    { "q": "« Den oso » en sranan veut dire…", "choix": ["La maison", "Les maisons", "Ma maison", "Dans la maison"], "reponse": 1, "explication": "den marque le pluriel." }
+  ],
+  "cartes": [
+    { "recto": "Sranan : Comment ça va ?", "verso": "Fa waka?" },
+    { "recto": "Sranan : Je vais bien", "verso": "Mi de bun" },
+    { "recto": "Sranan : merci", "verso": "Tangi" },
+    { "recto": "Sranan : futur", "verso": "o (Mi o nyan = je mangerai)" },
+    { "recto": "Patwa : quoi de neuf ?", "verso": "Wah gwaan?" },
+    { "recto": "Patwa : maison", "verso": "Yaad" },
+    { "recto": "Patwa : vous (pluriel)", "verso": "Unu" },
+    { "recto": "Patwa : je ne sais pas", "verso": "Mi nuh know" }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "nom": "Mathématiques",
+  "icone": "🔢",
+  "groupe": "Enseignement général",
+  "ordre": 5,
+  "description": "Binaire en douceur, hexadécimal, logique, ensembles, matrices, graphes.",
+  "fiches": [
+    {
+      "titre": "Le binaire, en douceur",
+      "contenu": "## L'idée clé\nLe binaire marche **exactement comme le décimal**, mais avec 2 chiffres (0 et 1) au lieu de 10. C'est une question de **pratique**, pas de don.\n\nEn décimal : `253 = 2×100 + 5×10 + 3×1` (puissances de 10).\nEn binaire : chaque position vaut une **puissance de 2**.\n\n| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |\n|---|---|---|---|---|---|---|---|\n\n## Binaire → décimal\n`1011 0010` → on additionne les colonnes où il y a un 1 :\n128 + 32 + 16 + 2 = **178**\n\n## Décimal → binaire (méthode des soustractions)\n**200** : 128 rentre ? oui (reste 72) → 64 ? oui (reste 8) → 32 non, 16 non → 8 oui (reste 0) → 4, 2, 1 non\n→ `1100 1000`\n\n## Les valeurs de masque à connaître\n| Binaire | Décimal |\n|---|---|\n| 1000 0000 | 128 |\n| 1100 0000 | 192 |\n| 1110 0000 | 224 |\n| 1111 0000 | 240 |\n| 1111 1000 | 248 |\n| 1111 1100 | 252 |\n| 1111 1110 | 254 |\n| 1111 1111 | 255 |\n\n## Entraînement\n10 minutes par jour suffisent : convertis 5 nombres dans chaque sens."
+    },
+    {
+      "titre": "Hexadécimal",
+      "contenu": "Base 16 : chiffres 0 à 9 puis **A=10, B=11, C=12, D=13, E=14, F=15**.\n\n## L'astuce\n**1 chiffre hexa = 4 bits** (un quartet). Donc on découpe le binaire par 4.\n\n`1101 0111` → `1101` = 13 = **D**, `0111` = 7 → **0xD7**\n\n## Hexa → décimal\n`0x2F` = 2×16 + 15 = **47**\n`0xFF` = 15×16 + 15 = **255**\n\n## Où on le croise\n- Adresses **MAC** : `00:1A:2B:3C:4D:5E`\n- Adresses **IPv6** : `2001:db8::1`\n- Couleurs web : `#FF0000`"
+    },
+    {
+      "titre": "Logique et tables de vérité",
+      "contenu": "## Opérateurs\n| A | B | A ET B | A OU B | A OUX B |\n|---|---|---|---|---|\n| 0 | 0 | 0 | 0 | 0 |\n| 0 | 1 | 0 | 1 | 1 |\n| 1 | 0 | 0 | 1 | 1 |\n| 1 | 1 | 1 | 1 | 0 |\n\nNON A : inverse (0 ↔ 1).\n\n## Lois de De Morgan\n- NON(A ET B) = (NON A) OU (NON B)\n- NON(A OU B) = (NON A) ET (NON B)\n\n## Lien avec le réseau\nL'adresse réseau = **IP ET masque**, bit à bit.\n`192.168.1.100` ET `255.255.255.192` → dernier octet : `0110 0100` ET `1100 0000` = `0100 0000` = **64** → réseau `192.168.1.64`.\n\n## Ensembles\n- Intersection A ∩ B = éléments dans A **et** B\n- Union A ∪ B = dans A **ou** B\n- Complémentaire Ā = hors de A"
+    },
+    {
+      "titre": "Matrices et graphes",
+      "contenu": "## Matrices\nTableau de nombres à n lignes et p colonnes.\n- **Addition** : terme à terme (mêmes dimensions).\n- **Produit A×B** : possible si nb colonnes de A = nb lignes de B. Chaque case = ligne de A « fois » colonne de B (on multiplie terme à terme puis on additionne).\n- Le produit n'est **pas commutatif** : A×B ≠ B×A en général.\n\nExemple : `[1 2] × [3; 4] = 1×3 + 2×4 = 11`\n\n## Graphes\n- **Sommets** reliés par des **arêtes** (ou arcs si orientés).\n- **Degré** d'un sommet = nombre d'arêtes qui le touchent.\n- La somme des degrés = 2 × nombre d'arêtes.\n- **Matrice d'adjacence** : case (i, j) = 1 s'il existe une arête de i vers j.\n- Chemin le plus court : algorithme de **Dijkstra** (le même qu'OSPF !).\n\nUn réseau informatique est un graphe : les switchs/routeurs sont les sommets, les câbles les arêtes."
+    }
+  ],
+  "quiz": [
+    { "q": "1100 0000 en décimal ?", "choix": ["128", "192", "224", "160"], "reponse": 1, "explication": "128 + 64 = 192." },
+    { "q": "178 en binaire ?", "choix": ["1011 0010", "1010 1100", "1101 0010", "1011 0100"], "reponse": 0, "explication": "128 + 32 + 16 + 2 = 178." },
+    { "q": "0xFF en décimal ?", "choix": ["15", "155", "255", "256"], "reponse": 2, "explication": "15×16 + 15 = 255." },
+    { "q": "1101 0111 en hexadécimal ?", "choix": ["0xC7", "0xD7", "0xE7", "0xD8"], "reponse": 1, "explication": "1101 = D, 0111 = 7." },
+    { "q": "1 OUX 1 = ?", "choix": ["0", "1", "2", "Indéfini"], "reponse": 0, "explication": "Le OU exclusif vaut 1 seulement si les deux valeurs sont différentes." },
+    { "q": "NON(A ET B) est égal à…", "choix": ["NON A ET NON B", "NON A OU NON B", "A OU B", "A ET B"], "reponse": 1, "explication": "Loi de De Morgan." },
+    { "q": "Un graphe a 5 arêtes. Somme des degrés ?", "choix": ["5", "10", "25", "2,5"], "reponse": 1, "explication": "Chaque arête compte pour 2 extrémités : 2 × 5 = 10." },
+    { "q": "Le produit de matrices est-il commutatif ?", "choix": ["Toujours", "Jamais", "Pas en général", "Seulement pour les nombres pairs"], "reponse": 2, "explication": "A×B ≠ B×A dans la plupart des cas." },
+    { "q": "Combien de bits représente un chiffre hexadécimal ?", "choix": ["2", "4", "8", "16"], "reponse": 1, "explication": "16 = 2^4, donc 4 bits." }
+  ],
+  "cartes": [
+    { "recto": "Valeurs des positions d'un octet", "verso": "128 64 32 16 8 4 2 1" },
+    { "recto": "1110 0000", "verso": "224" },
+    { "recto": "1111 1100", "verso": "252" },
+    { "recto": "100 en binaire", "verso": "0110 0100 (64 + 32 + 4)" },
+    { "recto": "0x2F en décimal", "verso": "47" },
+    { "recto": "A, B, C, D, E, F en hexa", "verso": "10, 11, 12, 13, 14, 15" },
+    { "recto": "Adresse réseau = ?", "verso": "IP ET masque (bit à bit)" },
+    { "recto": "De Morgan (OU)", "verso": "NON(A OU B) = NON A ET NON B" },
+    { "recto": "Condition du produit A×B", "verso": "Colonnes de A = lignes de B" },
+    { "recto": "Somme des degrés d'un graphe", "verso": "2 × nombre d'arêtes" }
+  ]
+}

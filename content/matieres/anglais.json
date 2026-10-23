@@ -1,0 +1,38 @@
+{
+  "nom": "Anglais professionnel",
+  "icone": "🇬🇧",
+  "groupe": "Enseignement général",
+  "ordre": 7,
+  "description": "Vocabulaire IT, tickets, mails, phrases pour l'oral.",
+  "fiches": [
+    {
+      "titre": "Vocabulaire IT indispensable",
+      "contenu": "| Anglais | Français |\n|---|---|\n| network | réseau |\n| switch / router | commutateur / routeur |\n| firewall | pare-feu |\n| server / host | serveur / hôte |\n| outage | panne (coupure de service) |\n| troubleshoot | dépanner |\n| issue | problème |\n| to fix | réparer, corriger |\n| upgrade / update | mise à niveau / mise à jour |\n| backup / restore | sauvegarde / restauration |\n| password / credentials | mot de passe / identifiants |\n| user account | compte utilisateur |\n| to deploy | déployer |\n| bandwidth | bande passante |\n| wireless access point | borne Wi-Fi |\n| helpdesk / service desk | support |\n| ticket | ticket d'incident |\n| downtime | temps d'arrêt |\n| scheduled maintenance | maintenance planifiée |\n| threat / vulnerability | menace / vulnérabilité |\n| breach | violation, fuite |"
+    },
+    {
+      "titre": "Écrire un mail ou un ticket",
+      "contenu": "## Ouvrir\n- *Dear Mr Smith,* / *Hello team,*\n- *I am writing to inform you that…*\n- *Following our phone call, …*\n\n## Décrire un problème\n- *Users are unable to connect to the Wi-Fi in building B.*\n- *The issue started this morning at around 9 am.*\n- *We have already restarted the switch, but the problem persists.*\n\n## Proposer / informer\n- *We are currently investigating the issue.*\n- *A maintenance is scheduled for Saturday from 8 pm to 10 pm.*\n- *The service has been restored.*\n- *Please find attached the report.*\n\n## Fermer\n- *Do not hesitate to contact me if you need further information.*\n- *Best regards,* / *Kind regards,*"
+    },
+    {
+      "titre": "Se présenter à l'oral",
+      "contenu": "*Hello, my name is … I'm a second-year BTS student specialising in networks and infrastructure (SISR). I'm doing a work-study programme in the IT department of a hospital in French Guiana.*\n\n*My main tasks are network administration, configuring switches and VLANs, and providing IT support to users.*\n\n*One project I'm proud of is the deployment of a network discovery tool, which helped us map the network and find devices more quickly.*\n\n## Attention aux faux amis\n- *actually* = en fait (pas « actuellement » → *currently*)\n- *eventually* = finalement (pas « éventuellement » → *possibly*)\n- *library* = bibliothèque (pas « librairie » → *bookshop*)\n- *sensible* = raisonnable (pas « sensible » → *sensitive*)"
+    }
+  ],
+  "quiz": [
+    { "q": "« Outage » signifie…", "choix": ["Mise à jour", "Panne / coupure", "Sortie", "Stockage"], "reponse": 1, "explication": "An outage = interruption de service." },
+    { "q": "« Actually » se traduit par…", "choix": ["Actuellement", "En fait", "Activement", "Exactement"], "reponse": 1, "explication": "Faux ami : actuellement = currently." },
+    { "q": "Comment dire « le service est rétabli » ?", "choix": ["The service has been restored", "The service is restoring", "The service was restore", "The service restores"], "reponse": 0, "explication": "Present perfect passif : has been restored." },
+    { "q": "« Troubleshoot » veut dire…", "choix": ["Créer des problèmes", "Dépanner", "Supprimer", "Tirer"], "reponse": 1, "explication": "To troubleshoot = diagnostiquer et résoudre." },
+    { "q": "« Sensitive data » se traduit par…", "choix": ["Données raisonnables", "Données sensibles", "Données sensées", "Données sensorielles"], "reponse": 1, "explication": "Sensible en anglais = raisonnable ; sensitive = sensible." }
+  ],
+  "cartes": [
+    { "recto": "panne (coupure de service)", "verso": "outage / downtime" },
+    { "recto": "pare-feu", "verso": "firewall" },
+    { "recto": "borne Wi-Fi", "verso": "wireless access point" },
+    { "recto": "bande passante", "verso": "bandwidth" },
+    { "recto": "identifiants", "verso": "credentials" },
+    { "recto": "« éventuellement »", "verso": "possibly (eventually = finalement)" },
+    { "recto": "Formule de fin de mail", "verso": "Kind regards, / Best regards," },
+    { "recto": "« Nous enquêtons sur le problème »", "verso": "We are currently investigating the issue." }
+  ]
+}

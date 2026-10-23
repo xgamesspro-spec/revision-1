@@ -1,0 +1,38 @@
+{
+  "cfa": {
+    "nom": "CFA CEVEDOM",
+    "description": "Centre de formation d'apprentis rattaché à l'organisme de formation OF CEVEDOM, à Cayenne (Guyane). Domaines : comptabilité et gestion, commerce et vente, hygiène et propreté, numérique, transport et logistique, secrétariat et accueil.",
+    "sites": [
+      { "titre": "Site du CFA", "url": "https://cfa.cevedom.com" },
+      { "titre": "Être apprenti(e) au CFA", "url": "https://cfa.cevedom.com/etre-apprenti" },
+      { "titre": "Organisme de formation (OF CEVEDOM)", "url": "https://of.cevedom.com" }
+    ],
+    "horaires": [
+      "Lundi : 15h – 19h",
+      "Mardi, jeudi, vendredi : 9h – 13h et 15h – 19h",
+      "Mercredi et samedi : 9h – 13h"
+    ],
+    "rythme": "Cours au CFA le jeudi et le vendredi, entreprise du lundi au mercredi.",
+    "droits_apprenti": [
+      "Tu es salarié : contrat de 6 mois à 3 ans, 35 h/semaine maximum formation comprise.",
+      "2,5 jours de congés payés par mois.",
+      "Formation financée par l'OPCO de l'employeur : rien à payer pour l'apprenti.",
+      "Le CFA peut aider pour le logement, le matériel ou le permis, et propose de l'aide CV / entretiens."
+    ],
+    "source": "Infos relevées sur cfa.cevedom.com en octobre 2026 — vérifie auprès du CFA en cas de doute."
+  },
+  "examens": {
+    "session": "BTS 2027",
+    "debut": "2027-05-11",
+    "dates": [
+      { "date": "2026-11-12", "titre": "Fin des inscriptions à l'examen (vérifie la date exacte de l'académie de Guyane)" },
+      { "date": "2027-05-11", "titre": "Culture générale et expression (E1)" },
+      { "date": "2027-05-12", "titre": "CEJM" },
+      { "date": "2027-05-13", "titre": "Langue vivante (anglais)" },
+      { "date": "2027-05-14", "titre": "Mathématiques" },
+      { "date": "2027-05-20", "titre": "Épreuves professionnelles écrites (20–21 mai, selon le BTS)" }
+    ],
+    "note": "Dates nationales publiées pour la session 2027 (horaires de métropole). Les horaires en Guyane sont décalés : se référer à la convocation et au calendrier du rectorat. Les dates des oraux (portfolio, etc.) sont fixées par l'académie au 1er trimestre 2027.",
+    "source": { "titre": "CNED — calendrier BTS session 2027", "url": "https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027" }
+  }
+}

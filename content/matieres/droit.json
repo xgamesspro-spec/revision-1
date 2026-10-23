@@ -1,0 +1,47 @@
+{
+  "nom": "Droit, RGPD & CEJM",
+  "icone": "⚖️",
+  "groupe": "Informatique SISR",
+  "ordre": 4,
+  "description": "RGPD, CNIL, AIPD, données de santé, contrat d'apprentissage, propriété intellectuelle.",
+  "fiches": [
+    {
+      "titre": "RGPD : l'essentiel",
+      "contenu": "## Quoi ?\nRèglement européen sur la protection des **données personnelles**, applicable depuis le **25 mai 2018**. Donnée personnelle = toute info qui identifie une personne, directement ou indirectement (nom, mail, IP, numéro de dossier…).\n\n## Les 6 bases légales d'un traitement\n1. Consentement\n2. Exécution d'un contrat\n3. Obligation légale\n4. Sauvegarde des intérêts vitaux\n5. Mission d'intérêt public\n6. Intérêt légitime\n\n## Les grands principes\nFinalité déterminée, **minimisation** des données, exactitude, durée de conservation limitée, sécurité, responsabilité (*accountability* : pouvoir prouver qu'on est conforme).\n\n## Les droits des personnes\nAccès, rectification, effacement, limitation, **portabilité**, opposition.\n\n## Les acteurs\n- **Responsable de traitement** : décide du pourquoi et du comment.\n- **Sous-traitant** : traite pour le compte du responsable (ex. hébergeur).\n- **DPO** (délégué à la protection des données) : obligatoire pour les organismes publics et certains traitements à grande échelle.\n- **CNIL** : autorité de contrôle en France.\n\n## Sanctions\nJusqu'à **20 M€ ou 4 % du chiffre d'affaires mondial**.\n\n## Violation de données\nNotification à la CNIL **sous 72 heures** si risque pour les personnes ; information des personnes si risque élevé."
+    },
+    {
+      "titre": "Données de santé et AIPD",
+      "contenu": "## Données sensibles\nLes données de **santé** font partie des catégories particulières (article 9 du RGPD) : leur traitement est interdit par principe, sauf exceptions (soins, intérêt public dans le domaine de la santé…). Elles demandent des mesures de sécurité renforcées.\n\n## AIPD (ou PIA)\n**Analyse d'impact relative à la protection des données**. Obligatoire quand un traitement présente un **risque élevé** pour les personnes (données sensibles à grande échelle, surveillance systématique…).\nLa CNIL fournit un **logiciel PIA** gratuit pour la mener.\n\nÉtapes : décrire le traitement → vérifier les principes (finalité, minimisation…) → évaluer les risques (accès illégitime, modification, disparition) → plan d'action.\n\n## Hébergement\nEn France, héberger des données de santé pour le compte d'un tiers nécessite la certification **HDS** (Hébergeur de Données de Santé).\n\n## En présentation d'examen\nNe montre **aucune donnée réelle** de ton entreprise : utilise des noms, IP et captures **fictifs** ou anonymisés. C'est aussi une bonne démonstration de ta conscience RGPD."
+    },
+    {
+      "titre": "Contrat d'apprentissage et droit du travail",
+      "contenu": "## Le contrat d'apprentissage\n- Contrat de travail **en alternance** : CFA + entreprise.\n- Durée : de **6 mois à 3 ans** selon la formation.\n- Public : en général de 16 à 29 ans révolus (exceptions : travailleurs handicapés, créateurs d'entreprise…).\n- L'apprenti est **salarié** : salaire en % du SMIC selon l'âge et l'année, congés payés, protection sociale.\n- Un **maître d'apprentissage** (tuteur) l'accompagne.\n- Période d'essai : les **45 premiers jours** en entreprise (consécutifs ou non).\n\n## Notions de CEJM utiles\n- **Contrat** : accord de volontés créant des obligations. Conditions de validité : consentement, capacité, contenu licite et certain.\n- **Responsabilité civile contractuelle** : réparer le dommage causé par l'inexécution d'un contrat (ex. SLA non respecté).\n- **Lien de subordination** : ce qui caractérise un contrat de travail (l'employeur donne des ordres, contrôle, sanctionne)."
+    },
+    {
+      "titre": "Propriété intellectuelle et licences",
+      "contenu": "## Le logiciel\nEn France, le logiciel est protégé par le **droit d'auteur** (pas par un brevet en tant que tel). Le code créé par un salarié dans ses fonctions appartient en principe à l'**employeur**.\n\n## Licences\n- **Propriétaire** : usage encadré, code fermé, souvent payant (Windows Server : licences + CAL).\n- **Libre / open source** :\n  - **GPL** : copyleft, les versions modifiées et redistribuées doivent rester sous GPL.\n  - **MIT / BSD** : permissives, on peut réutiliser presque librement en gardant la mention de l'auteur.\n- Libre ne veut pas dire « sans conditions » : il faut respecter la licence.\n\n## Charte informatique\nDocument interne qui fixe les règles d'usage du SI (comptes, Internet, messagerie). Elle doit être portée à la connaissance des salariés pour être opposable."
+    }
+  ],
+  "quiz": [
+    { "q": "Depuis quand le RGPD s'applique-t-il ?", "choix": ["1er janvier 2016", "25 mai 2018", "14 avril 2020", "6 janvier 1978"], "reponse": 1, "explication": "Le RGPD s'applique depuis le 25 mai 2018. 1978 = loi Informatique et Libertés." },
+    { "q": "Délai de notification d'une violation à la CNIL ?", "choix": ["24 h", "48 h", "72 h", "1 mois"], "reponse": 2, "explication": "72 heures après en avoir pris connaissance." },
+    { "q": "Sanction maximale prévue par le RGPD ?", "choix": ["1 M€", "20 M€ ou 4 % du CA mondial", "10 % du CA", "Aucune"], "reponse": 1, "explication": "Le montant le plus élevé des deux s'applique." },
+    { "q": "Une adresse IP est-elle une donnée personnelle ?", "choix": ["Oui, elle peut identifier indirectement", "Non jamais", "Seulement en IPv6", "Seulement si publique"], "reponse": 0, "explication": "Une identification indirecte suffit." },
+    { "q": "Que signifie AIPD ?", "choix": ["Audit informatique de protection des domaines", "Analyse d'impact relative à la protection des données", "Accord interne de partage des données", "Agence internationale de protection des données"], "reponse": 1, "explication": "C'est l'équivalent français du PIA." },
+    { "q": "Héberger des données de santé pour un tiers nécessite la certification…", "choix": ["ISO 9001", "HDS", "PCI-DSS", "SecNumCloud uniquement"], "reponse": 1, "explication": "HDS = Hébergeur de Données de Santé." },
+    { "q": "La licence GPL est…", "choix": ["Propriétaire", "Libre avec copyleft", "Domaine public", "Réservée à l'État"], "reponse": 1, "explication": "Les œuvres dérivées redistribuées doivent rester sous GPL." },
+    { "q": "Le principe de minimisation signifie…", "choix": ["Collecter le moins de données possible, juste le nécessaire", "Réduire la taille des fichiers", "Supprimer toutes les données", "Chiffrer tout"], "reponse": 0, "explication": "Seules les données nécessaires à la finalité doivent être collectées." }
+  ],
+  "cartes": [
+    { "recto": "Date d'application du RGPD", "verso": "25 mai 2018" },
+    { "recto": "Les 6 bases légales", "verso": "Consentement, contrat, obligation légale, intérêts vitaux, mission d'intérêt public, intérêt légitime" },
+    { "recto": "Délai de notification d'une violation", "verso": "72 h à la CNIL" },
+    { "recto": "Sanction max RGPD", "verso": "20 M€ ou 4 % du CA mondial" },
+    { "recto": "DPO", "verso": "Délégué à la protection des données" },
+    { "recto": "AIPD / PIA", "verso": "Analyse d'impact obligatoire en cas de risque élevé" },
+    { "recto": "Données de santé (RGPD)", "verso": "Catégorie particulière, article 9 : interdites sauf exceptions" },
+    { "recto": "HDS", "verso": "Certification Hébergeur de Données de Santé" },
+    { "recto": "Durée d'un contrat d'apprentissage", "verso": "6 mois à 3 ans" },
+    { "recto": "Protection juridique du logiciel en France", "verso": "Droit d'auteur" }
+  ]
+}

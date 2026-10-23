@@ -1,0 +1,63 @@
+{
+  "nom": "Réseaux",
+  "icone": "🌐",
+  "groupe": "Informatique SISR",
+  "ordre": 1,
+  "description": "Modèle OSI, adressage IP, subnetting, VLAN, routage, ports.",
+  "fiches": [
+    {
+      "titre": "Le modèle OSI (et à quoi il sert vraiment)",
+      "contenu": "## Les 7 couches\n\n| N° | Couche | Unité (PDU) | Exemples |\n|---|---|---|---|\n| 7 | Application | Données | HTTP, DNS, SMTP |\n| 6 | Présentation | Données | TLS, encodage |\n| 5 | Session | Données | ouverture/fermeture de session |\n| 4 | Transport | Segment | TCP, UDP (ports) |\n| 3 | Réseau | Paquet | IP, ICMP, routeur |\n| 2 | Liaison | Trame | Ethernet, MAC, switch, VLAN |\n| 1 | Physique | Bits | câbles, fibre, Wi-Fi radio |\n\n**Moyen mnémo (de 1 à 7)** : *Pour Le Réseau Tout Se Passe Automatiquement*.\n\n## Pourquoi c'est utile\nC'est une **méthode de dépannage** : on part du bas.\n1. Câble branché ? LED du port ? (couche 1)\n2. Bon VLAN, adresse MAC apprise ? (couche 2)\n3. Bonne IP, passerelle, `ping` ? (couche 3)\n4. Port ouvert, pare-feu ? (couche 4)\n5. Le service répond ? (couche 7)\n\nLe modèle **TCP/IP** regroupe tout ça en 4 couches : Accès réseau, Internet, Transport, Application."
+    },
+    {
+      "titre": "Adressage IPv4 et subnetting sans prise de tête",
+      "contenu": "## Le principe\nUne IPv4 = 32 bits, écrite en 4 octets (ex. `192.168.10.25`). Le **masque** dit quelle partie est le réseau et quelle partie est l'hôte.\n\n`/24` = 24 bits à 1 = `255.255.255.0`\n\n## La formule\n- Nombre d'adresses = **2^(32 − n)**\n- Hôtes utilisables = **2^(32 − n) − 2** (on retire l'adresse réseau et le broadcast)\n\n| Masque | Notation | Adresses | Hôtes |\n|---|---|---|---|\n| /24 | 255.255.255.0 | 256 | 254 |\n| /25 | 255.255.255.128 | 128 | 126 |\n| /26 | 255.255.255.192 | 64 | 62 |\n| /27 | 255.255.255.224 | 32 | 30 |\n| /28 | 255.255.255.240 | 16 | 14 |\n| /30 | 255.255.255.252 | 4 | 2 |\n\n## Méthode rapide (le « nombre magique »)\n1. Repère l'octet où le masque n'est pas 255 (ex. 192).\n2. Nombre magique = 256 − 192 = **64**.\n3. Les réseaux avancent de 64 en 64 : .0, .64, .128, .192.\n\n**Exemple** : `192.168.1.100/26` → magique 64 → réseau `192.168.1.64`, broadcast `192.168.1.127`, hôtes `.65` à `.126`.\n\n## Plages privées (RFC 1918)\n- `10.0.0.0/8`\n- `172.16.0.0/12` (172.16 à 172.31)\n- `192.168.0.0/16`\n\n`169.254.x.x` = APIPA : le poste n'a pas eu de réponse DHCP."
+    },
+    {
+      "titre": "VLAN, trunk et routage inter-VLAN",
+      "contenu": "## Un VLAN, c'est quoi ?\nUn réseau local **virtuel** : on découpe un switch physique en plusieurs réseaux séparés. Chaque VLAN = un domaine de broadcast = en général un sous-réseau IP.\n\nExemple en entreprise : VLAN 10 Administratif, VLAN 20 Médical, VLAN 30 Wi-Fi invités, VLAN 99 Management.\n\n## Port access vs trunk\n- **Access** : un seul VLAN, pour un PC ou une imprimante.\n- **Trunk** : plusieurs VLAN sur le même lien (entre switchs, vers un routeur ou une borne Wi-Fi). Les trames sont **taguées** selon la norme **IEEE 802.1Q** (tag de 4 octets, VLAN ID sur 12 bits → VLAN 1 à 4094 utilisables).\n- Sur Comware (HPE/H3C) il existe aussi le mode **hybrid**.\n\n## Exemple Comware\n```\nvlan 20\n name MEDICAL\ninterface GigabitEthernet1/0/5\n port link-type access\n port access vlan 20\ninterface GigabitEthernet1/0/48\n port link-type trunk\n port trunk permit vlan 10 20 30\n```\n\n## Faire communiquer les VLAN\nIl faut passer par la **couche 3** :\n- un **switch de niveau 3** avec une interface IP par VLAN (`interface Vlan-interface20` sur Comware, *SVI* chez Cisco) ;\n- ou un **routeur « on a stick »** avec des sous-interfaces sur un trunk.\n\n## Pourquoi segmenter ?\nSécurité (isoler le Wi-Fi invités), performance (moins de broadcast), organisation, application de règles de filtrage (ACL) entre VLAN."
+    },
+    {
+      "titre": "Routage : statique, dynamique et passerelle",
+      "contenu": "## Passerelle par défaut\nL'adresse du routeur vers lequel un poste envoie tout ce qui n'est **pas dans son réseau**. Mauvaise passerelle = le poste parle à son réseau local mais pas au reste.\n\n## Routage statique\nOn écrit les routes à la main. Simple, prévisible, mais ne s'adapte pas aux pannes.\n- Route par défaut : `0.0.0.0/0` → « tout le reste ».\n- Comware : `ip route-static 0.0.0.0 0 10.0.0.1`\n\n## Routage dynamique\nLes routeurs s'échangent les routes automatiquement.\n- **RIP** : à vecteur de distance, métrique = nombre de sauts (max 15). Distance administrative 120. Vieux, rare.\n- **OSPF** : à état de liens, algorithme de Dijkstra, découpage en *aires* (aire 0 = backbone). Distance administrative 110. Le classique en entreprise.\n- **BGP** : routage entre opérateurs / Internet.\n\n## Distance administrative\nSi deux sources donnent une route vers le même réseau, le routeur choisit celle de **plus petite distance administrative** (connectée 0, statique 1, OSPF 110, RIP 120 — valeurs Cisco)."
+    },
+    {
+      "titre": "Ports à connaître par cœur",
+      "contenu": "| Port | Protocole | Usage |\n|---|---|---|\n| 20/21 | FTP | transfert de fichiers |\n| 22 | SSH | accès distant sécurisé |\n| 23 | Telnet | accès distant **non chiffré** (à éviter) |\n| 25 | SMTP | envoi de mails |\n| 53 | DNS | résolution de noms (UDP et TCP) |\n| 67/68 | DHCP | attribution d'adresses (UDP) |\n| 80 | HTTP | web |\n| 88 | Kerberos | authentification Active Directory |\n| 110 | POP3 | récupération mails |\n| 123 | NTP | synchronisation de l'heure |\n| 143 | IMAP | mails |\n| 161/162 | SNMP | supervision (162 = traps) |\n| 389 / 636 | LDAP / LDAPS | annuaire |\n| 443 | HTTPS | web chiffré |\n| 445 | SMB | partages Windows |\n| 514 | Syslog | journaux |\n| 3389 | RDP | bureau à distance |\n\n**TCP** = connexion, fiable, accusés de réception (poignée de main SYN, SYN-ACK, ACK).\n**UDP** = sans connexion, rapide, pas de garantie (DNS, DHCP, VoIP, streaming)."
+    },
+    {
+      "titre": "Switching : STP, agrégation, Wi-Fi",
+      "contenu": "## STP (Spanning Tree)\nQuand on relie des switchs en boucle pour la redondance, les trames tourneraient à l'infini (**tempête de broadcast**). STP (IEEE 802.1D) bloque des ports pour casser les boucles. **RSTP** (802.1w) converge beaucoup plus vite. **MSTP** gère des instances par groupe de VLAN.\n\n## Agrégation de liens\nRegrouper plusieurs câbles en un seul lien logique : plus de débit + redondance. Protocole **LACP** (802.3ad / 802.1AX). Sur Comware : *Bridge-Aggregation*.\n\n## Wi-Fi en entreprise\n- Bornes gérées par un **contrôleur** (ou mode cloud/instant, ex. Aruba).\n- Un **SSID** est généralement associé à un VLAN.\n- Sécurité : **WPA2/WPA3-Entreprise** avec authentification 802.1X et serveur **RADIUS** (ex. NPS de Windows) plutôt qu'une clé partagée.\n- Bandes : 2,4 GHz (portée), 5 GHz et 6 GHz (débit).\n- Une étude de couverture (*site survey*) se fait avant de poser les bornes."
+    }
+  ],
+  "quiz": [
+    { "q": "Combien d'hôtes utilisables dans un /26 ?", "choix": ["64", "62", "30", "126"], "reponse": 1, "explication": "2^(32−26) = 64 adresses, moins réseau et broadcast = 62." },
+    { "q": "Quel est le masque d'un /27 ?", "choix": ["255.255.255.192", "255.255.255.224", "255.255.255.240", "255.255.255.128"], "reponse": 1, "explication": "27 bits à 1 : le 4e octet vaut 11100000 = 224." },
+    { "q": "192.168.1.100/26 appartient à quel réseau ?", "choix": ["192.168.1.0", "192.168.1.64", "192.168.1.96", "192.168.1.128"], "reponse": 1, "explication": "Nombre magique 256−192 = 64 : réseaux .0, .64, .128… 100 est entre 64 et 127." },
+    { "q": "À quelle couche OSI travaille un switch classique ?", "choix": ["1 – Physique", "2 – Liaison", "3 – Réseau", "4 – Transport"], "reponse": 1, "explication": "Le switch commute des trames grâce aux adresses MAC : couche 2." },
+    { "q": "Quelle norme définit le tag VLAN ?", "choix": ["802.11", "802.3ad", "802.1Q", "802.1X"], "reponse": 2, "explication": "802.1Q = VLAN tagging. 802.1X = authentification, 802.11 = Wi-Fi, 802.3ad = agrégation." },
+    { "q": "Un poste a l'adresse 169.254.12.4. Que se passe-t-il ?", "choix": ["Il est dans le VLAN invités", "Il n'a pas obtenu de réponse DHCP", "Il a une IP publique", "Il est en IPv6"], "reponse": 1, "explication": "169.254.0.0/16 = APIPA, adresse auto-attribuée faute de serveur DHCP joignable." },
+    { "q": "Quel protocole de routage utilise l'algorithme de Dijkstra ?", "choix": ["RIP", "OSPF", "STP", "ARP"], "reponse": 1, "explication": "OSPF est à état de liens et calcule les plus courts chemins avec Dijkstra." },
+    { "q": "Quel port utilise SSH ?", "choix": ["21", "22", "23", "3389"], "reponse": 1, "explication": "22 = SSH. 23 = Telnet (non chiffré), 3389 = RDP." },
+    { "q": "À quoi sert STP ?", "choix": ["Chiffrer le trafic", "Éviter les boucles entre switchs", "Attribuer des IP", "Agréger des liens"], "reponse": 1, "explication": "Spanning Tree bloque les ports redondants pour éviter les tempêtes de broadcast." },
+    { "q": "Lequel de ces réseaux est privé ?", "choix": ["172.32.0.1", "11.0.0.1", "172.20.5.4", "193.168.1.1"], "reponse": 2, "explication": "172.16.0.0/12 va de 172.16 à 172.31. Donc 172.20 est privé, 172.32 non." },
+    { "q": "Quel type de port transporte plusieurs VLAN ?", "choix": ["Access", "Trunk", "Console", "Mirror"], "reponse": 1, "explication": "Le trunk transporte plusieurs VLAN grâce au tag 802.1Q." },
+    { "q": "DHCP utilise quel protocole de transport ?", "choix": ["TCP", "UDP", "ICMP", "Aucun"], "reponse": 1, "explication": "DHCP fonctionne en UDP, ports 67 (serveur) et 68 (client)." }
+  ],
+  "cartes": [
+    { "recto": "Formule du nombre d'hôtes", "verso": "2^(32 − n) − 2" },
+    { "recto": "/24 en masque décimal", "verso": "255.255.255.0 → 254 hôtes" },
+    { "recto": "/30 : combien d'hôtes ?", "verso": "2 hôtes (idéal pour un lien point à point)" },
+    { "recto": "Les 3 plages privées IPv4", "verso": "10.0.0.0/8 · 172.16.0.0/12 · 192.168.0.0/16" },
+    { "recto": "Les 7 couches OSI (de 1 à 7)", "verso": "Physique, Liaison, Réseau, Transport, Session, Présentation, Application" },
+    { "recto": "PDU de la couche 4", "verso": "Le segment (TCP) / datagramme (UDP)" },
+    { "recto": "802.1Q", "verso": "Norme de marquage (tag) des VLAN sur un trunk" },
+    { "recto": "Plage d'ID VLAN utilisables", "verso": "1 à 4094 (ID sur 12 bits)" },
+    { "recto": "Routage inter-VLAN : 2 solutions", "verso": "Switch niveau 3 (interface VLAN / SVI) ou routeur « on a stick »" },
+    { "recto": "Distance administrative OSPF / RIP", "verso": "OSPF 110 · RIP 120 (statique 1)" },
+    { "recto": "Port RDP", "verso": "3389" },
+    { "recto": "Port SNMP (requêtes / traps)", "verso": "161 / 162 (UDP)" },
+    { "recto": "LACP sert à…", "verso": "Agréger plusieurs liens physiques en un lien logique (débit + redondance)" },
+    { "recto": "Poignée de main TCP", "verso": "SYN → SYN-ACK → ACK" }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "nom": "Culture générale : « Le vrai du faux »",
+  "icone": "📚",
+  "groupe": "Enseignement général",
+  "ordre": 6,
+  "description": "Thème 2027, notions clés, méthode de l'épreuve, arguments et exemples.",
+  "fiches": [
+    {
+      "titre": "Le thème en un coup d'œil",
+      "contenu": "## « Le vrai du faux » — de quoi on parle ?\nDistinguer le vrai du faux, c'est se demander **comment on sait** qu'une chose est vraie, et **pourquoi** le faux nous attire ou nous trompe.\n\n## Les grands axes\n1. **Le mensonge et la manipulation** : mentir volontairement, propagande, *fake news*, arnaques.\n2. **L'illusion et l'erreur** : se tromper de bonne foi, illusions des sens, biais cognitifs.\n3. **La fiction** : le roman, le cinéma, le théâtre disent du faux… pour montrer du vrai. Une fiction n'est pas un mensonge : le lecteur sait que c'est inventé (*pacte de lecture*).\n4. **Le numérique** : deepfakes, IA générative, réseaux sociaux, bulles de filtre, vérification des faits (*fact-checking*).\n5. **La sincérité et l'authenticité** : être vrai avec soi-même, les apparences, le masque social.\n\n## Vocabulaire à placer\nvéracité, vraisemblance, authenticité, sincérité, crédulité, esprit critique, désinformation (volontaire) vs mésinformation (involontaire), post-vérité, biais de confirmation, source, recoupement.\n\n> Astuce : collecte tout au long de l'année des exemples personnels (films, séries, actu, situations au travail) et note-les ici avec la fonction « Ajouter une fiche »."
+    },
+    {
+      "titre": "Méthode de l'épreuve",
+      "contenu": "## Le format\nL'épreuve s'appuie sur un **corpus de documents** liés au thème : on répond à des questions sur le corpus, puis on rédige un **essai argumenté** qui répond à une question. Vérifie le format exact sur la circulaire de la session 2027 avec ton professeur.\n\n## Lire le corpus\n1. Identifie pour chaque document : auteur, date, genre, **idée principale** en une phrase.\n2. Repère les points communs et les oppositions entre documents.\n\n## L'essai : le plan qui marche\n- **Introduction** : accroche (exemple concret) → reformulation de la question → problématique → annonce du plan.\n- **Développement** en 2 ou 3 parties. Chaque paragraphe = **argument + explication + exemple**.\n- **Conclusion** : réponse claire à la question + ouverture.\n\n## Structures de plan\n- **Dialectique** : oui… / mais… / dépassement.\n- **Thématique** : différents aspects du sujet.\n\n## Exemple de sujet possible\n*« Peut-on se passer de mentir ? »*\n- I. Le mensonge semble condamnable : il trahit la confiance, manipule.\n- II. Mais certains mensonges protègent (politesse, mensonge pour épargner quelqu'un).\n- III. La fiction montre qu'on peut dire du « faux » pour révéler du vrai, sans tromper."
+    },
+    {
+      "titre": "Exemples tirés de l'informatique et de l'actu",
+      "contenu": "Tes connaissances en informatique sont des **exemples originaux** pour la culture générale :\n\n- **Hameçonnage** : un faux mail imite un vrai pour tromper. Le faux se déguise en vrai.\n- **Deepfakes et IA générative** : on peut fabriquer des images, voix et vidéos crédibles. La vraisemblance ne prouve plus la vérité.\n- **Certificats et signatures numériques** : l'informatique a inventé des outils pour **prouver** l'authenticité d'un site ou d'un document.\n- **Vérification des sources** : recouper, remonter à la source originale, vérifier la date — la même démarche qu'un technicien qui diagnostique une panne au lieu de croire le premier symptôme.\n- **Ingénierie sociale** : manipuler la confiance d'une personne plutôt que d'attaquer la machine.\n\nCes exemples montrent que le vrai et le faux ne se distinguent pas « à l'œil » : il faut une **méthode** et des **preuves**."
+    }
+  ],
+  "quiz": [
+    { "q": "Quelle différence entre désinformation et mésinformation ?", "choix": ["Aucune", "Désinformation = volontaire, mésinformation = involontaire", "L'inverse", "La mésinformation ne concerne qu'Internet"], "reponse": 1, "explication": "La désinformation est une tromperie intentionnelle ; la mésinformation est une erreur partagée de bonne foi." },
+    { "q": "Pourquoi une fiction n'est-elle pas un mensonge ?", "choix": ["Parce qu'elle est écrite", "Parce que le lecteur sait qu'elle est inventée", "Parce qu'elle est toujours vraie", "Parce qu'elle est courte"], "reponse": 1, "explication": "Le pacte de lecture : personne n'est trompé." },
+    { "q": "Le biais de confirmation consiste à…", "choix": ["Vérifier chaque source", "Privilégier les infos qui confirment ce qu'on pense déjà", "Douter de tout", "Confirmer un rendez-vous"], "reponse": 1, "explication": "On retient surtout ce qui va dans le sens de nos croyances." },
+    { "q": "Dans un paragraphe d'essai, on trouve…", "choix": ["Un résumé du corpus", "Argument + explication + exemple", "Uniquement des citations", "La conclusion"], "reponse": 1, "explication": "C'est la structure de base d'un paragraphe argumenté." },
+    { "q": "Un plan « oui / mais / dépassement » est un plan…", "choix": ["Thématique", "Chronologique", "Dialectique", "Analytique"], "reponse": 2, "explication": "Thèse, antithèse, synthèse." }
+  ],
+  "cartes": [
+    { "recto": "Thème CGE session 2027", "verso": "« Le vrai du faux »" },
+    { "recto": "Vraisemblance", "verso": "Ce qui a l'apparence du vrai (mais peut être faux)" },
+    { "recto": "Post-vérité", "verso": "Situation où l'émotion et les croyances pèsent plus que les faits" },
+    { "recto": "Pacte de lecture", "verso": "Accord tacite : le lecteur sait que la fiction est inventée" },
+    { "recto": "Structure d'une intro", "verso": "Accroche, reformulation, problématique, annonce du plan" },
+    { "recto": "Recoupement", "verso": "Vérifier une info en la comparant à plusieurs sources indépendantes" }
+  ]
+}

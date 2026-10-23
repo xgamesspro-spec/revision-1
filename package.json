@@ -1,0 +1,17 @@
+{
+  "name": "revision-1",
+  "version": "1.0.0",
+  "description": "Plateforme de classe : révisions BTS SIO, salons de discussion et forum réservés aux élèves, actualités.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --no-warnings server.js",
+    "test": "node --no-warnings test/smoke.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

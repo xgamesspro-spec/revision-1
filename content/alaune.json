@@ -1,0 +1,38 @@
+[
+  {
+    "date": "2026-10-12", "categorie": "Cybersécurité",
+    "titre": "ECSC 2026 : l'équipe de France au championnat européen de cybersécurité à Bochum",
+    "resume": "La Team France participe au European Cybersecurity Challenge, la compétition de CTF entre pays européens. Bonne porte d'entrée pour découvrir les CTF.",
+    "url": "https://cyber.gouv.fr/actualites/ecsc-2026-la-team-france-a-bochum/", "source": "ANSSI"
+  },
+  {
+    "date": "2026-09-29", "categorie": "Cybersécurité",
+    "titre": "L'ANSSI publie son rapport d'incident sur les cyberattaques contre la DGFiP",
+    "resume": "Retour d'expérience officiel sur des attaques visant l'administration fiscale : utile pour comprendre une gestion d'incident réelle (détection, réponse, leçons).",
+    "url": "https://cyber.gouv.fr/actualites/lanssi-publie-le-rapport-dincident-sur-les-cyberattaques-ayant-touche-la-dgfip/", "source": "ANSSI"
+  },
+  {
+    "date": "2026-09-23", "categorie": "Droit & conformité",
+    "titre": "Cyber Resilience Act : l'ANSSI, l'ANFR et la DGE accompagnent les fabricants",
+    "resume": "Le règlement européen CRA impose des exigences de sécurité aux produits numériques. Les autorités françaises lancent un accompagnement pour la mise en conformité.",
+    "url": "https://cyber.gouv.fr/actualites/cra-lanssi-lanfr-et-la-dge-accompagnent-les-fabricants-dans-la-conformite-des-produits-numeriques/", "source": "ANSSI"
+  },
+  {
+    "date": "2026-09-07", "categorie": "Cybersécurité",
+    "titre": "L'ANSSI crée une capacité de réaction renforcée pour les services de l'État",
+    "resume": "Nouvelle organisation dédiée à la réponse aux cyberattaques visant les administrations.",
+    "url": "https://cyber.gouv.fr/actualites/cyberattaques-lanssi-met-en-place-une-capacite-renforcee-de-reaction-dediee-aux-services-de-letat/", "source": "ANSSI"
+  },
+  {
+    "date": "2026-09-03", "categorie": "Cybersécurité",
+    "titre": "Cryptographie post-quantique : appel à l'action de l'ANSSI et du G7",
+    "resume": "Les ordinateurs quantiques menacent à terme RSA et les courbes elliptiques. Les États appellent à préparer la migration vers des algorithmes résistants.",
+    "url": "https://cyber.gouv.fr/actualites/transition-post-quantique-lanssi-et-ses-partenaires-du-g7-publient-un-appel-a-action/", "source": "ANSSI"
+  },
+  {
+    "date": null, "categorie": "Études & BTS",
+    "titre": "Calendrier BTS 2027 : écrits du 11 au 21 mai 2027",
+    "resume": "Culture générale le 11 mai, CEJM le 12, langues le 13, maths le 14, épreuves pro les 20 et 21. Inscriptions jusqu'au 12 novembre 2026 selon le CNED.",
+    "url": "https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027", "source": "CNED"
+  }
+]
