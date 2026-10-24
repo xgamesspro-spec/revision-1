@@ -197,8 +197,8 @@ function render() {
       </main>
     </div>`;
   api('GET', '/api/channels').then(c => { state.channels = c; renderSidebar(); });
-  api('GET', '/api/meetings').then(m => { state.meetings = m; renderSidebar(); }).catch(() => {});
-  api('GET', '/api/meetings/config').then(c => { state.meetConfig = c; }).catch(() => {});
+  if (state.user.role !== 'prof') api('GET', '/api/meetings').then(m => { state.meetings = m; renderSidebar(); }).catch(() => {});
+  if (state.user.role !== 'prof') api('GET', '/api/meetings/config').then(c => { state.meetConfig = c; }).catch(() => {});
   api('GET', '/api/notifications').then(d => setUnread(d.unread)).catch(() => {});
   swRegistration();
   connectStream();
@@ -237,6 +237,7 @@ function renderSidebar() {
   const link = (href, ico, label, active, badge) =>
     `<a class="nav-link ${active ? 'active' : ''}" href="${href}"><span class="ico">${ico}</span><span>${esc(label)}</span>${badge ? `<span class="badge">${badge}</span>` : ''}</a>`;
   const isAdmin = state.user.role === 'admin';
+  const isProf = state.user.role === 'prof';
   // Salons de la filière de l'élève en premier ; un modérateur voit tout, regroupé par filière
   const mine = state.channels.filter(c => c.filiere && c.filiere === state.user.filiere);
   const others = state.channels.filter(c => c.filiere && c.filiere !== state.user.filiere);
@@ -250,22 +251,25 @@ function renderSidebar() {
     <div class="brand"><div class="logo">S</div><div>Classe SIO<small>CFA CEVEDOM</small></div></div>
     <div class="side-scroll">
       ${link('#/', '🏠', 'Accueil', r.name === 'accueil')}
+      ${link('#/planning', '🗓️', 'Planning', r.name === 'planning')}
+      ${link('#/exercices', '📝', 'Exercices', r.name === 'exercices')}
       ${link('#/revisions', '📖', 'Révisions', r.name === 'revisions')}
-      ${link('#/reunions', '🎥', 'Réunions', r.name === 'reunions' || r.name === 'reunion', (state.meetings || []).filter(m => m.count).length ? `<span class="live">● ${(state.meetings || []).filter(m => m.count).length}</span>` : '')}
+      ${isProf ? '' : link('#/reunions', '🎥', 'Réunions', r.name === 'reunions' || r.name === 'reunion', (state.meetings || []).filter(m => m.count).length ? `<span class="live">● ${(state.meetings || []).filter(m => m.count).length}</span>` : '')}
       <a class="nav-link ${r.name === 'notifications' ? 'active' : ''}" href="#/notifications"><span class="ico">🔔</span><span>Notifications</span><span class="badge" id="notif-badge" ${state.unreadNotifs ? '' : 'hidden'}>${state.unreadNotifs > 99 ? '99+' : state.unreadNotifs || ''}</span></a>
       ${link('#/actus', '📰', 'Actus', r.name === 'actus')}
       ${link('#/infos', '🎓', 'CFA & examens', r.name === 'infos')}
       ${isAdmin ? link('#/admin', '🛠️', 'Modération', r.name === 'admin') : ''}
       ${mine.length ? `<div class="side-title">Ma filière · ${esc(state.user.filiere_nom || '')}</div>${mine.map(chLink).join('')}` : ''}
+      ${isProf ? '<div class="side-title">Espace formateur</div><p class="small" style="padding:0 10px;color:var(--side-muted)">Les salons et le forum sont réservés aux élèves.</p>' : `
       <div class="side-title">Salons de tout le CFA</div>
       ${shared.filter(c => c.kind === 'chat').map(chLink).join('')}
       <div class="side-title">Forums de tout le CFA</div>
-      ${shared.filter(c => c.kind === 'forum').map(chLink).join('')}
+      ${shared.filter(c => c.kind === 'forum').map(chLink).join('')}`}
       ${Object.entries(groups).map(([nom, list]) => `<div class="side-title">${esc(nom)} <span class="pill" style="font-size:10px">modo</span></div>${list.map(chLink).join('')}`).join('')}
     </div>
     <div class="me-bar">
       ${avatar(state.user.display_name)}
-      <div class="who"><b>${esc(state.user.display_name)}</b><span>${state.user.role === 'admin' ? 'Modérateur' : 'Élève'}</span></div>
+      <div class="who"><b>${esc(state.user.display_name)}</b><span>${{ admin: 'Modérateur', prof: 'Formateur' }[state.user.role] || 'Élève'}</span></div>
       <a class="icon-btn" href="#/compte" title="Mon compte">⚙️</a>
       <button class="icon-btn" data-action="logout" title="Se déconnecter">⏻</button>
     </div>`;
@@ -287,7 +291,7 @@ const actions = {
 // ---------- Vues ----------
 async function loadView() {
   const r = state.route;
-  const views = { notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
+  const views = { planning: viewPlanning, exercices: viewExercises, notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
   const fn = views[r.name] || viewHome;
   try { await fn(r); } catch (err) { setContent(`<div class="empty">${esc(err.message)}</div>`); }
 }
@@ -303,6 +307,16 @@ async function viewHome() {
     ${prompt}
     ${u.expire_bientot ? `<div class="card" style="border-color:var(--gold);margin-bottom:16px">⏳ <b>Ton compte sera supprimé le ${new Date(u.expires_at).toLocaleDateString('fr-FR', { dateStyle: 'long' })}</b> (fin de ta formation + ${state.setup?.grace_days ?? 60} jours).
       <div class="small muted">Tu continues tes études ? Mets à jour ta filière dans <a href="#/compte">Mon compte</a>. Pense à copier les fiches que tu veux garder.</div></div>` : ''}
+    ${d.alternance ? `<div class="card alt-banner ${d.alternance.aujourdhui || ''}">
+      ${!d.alternance.configure ? '🔁 <b>Indique tes jours au CFA</b> pour voir ton alternance. <a href="#/planning">Régler mon rythme</a>'
+        : d.alternance.aujourdhui === 'cfa' ? '🏫 Aujourd’hui : <b>au CFA</b>' : d.alternance.aujourdhui === 'entreprise' ? '🏢 Aujourd’hui : <b>en entreprise</b>' : '🛋️ <b>Week-end</b>'}
+      ${d.alternance.configure ? `<span class="small muted"> · CFA le ${d.alternance.jours_cfa.map(n => DAYS_FR[n].toLowerCase()).join(', ')}</span>` : ''}</div>` : ''}
+    <div class="grid grid-2" style="margin-bottom:16px">
+      <div class="card"><div class="row"><h3 style="margin:0">🗓️ À venir</h3><span class="spacer"></span><a class="small" href="#/planning">Planning</a></div>
+        ${d.evenements.length ? d.evenements.map(e => `<a class="ev-row" href="#/planning?date=${e.occ_start}" style="--c:${TYPE_STYLE[e.type]?.c}"><span class="ev-time">${new Date(e.occ_start).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })}${e.all_day ? '' : ' ' + hhmm(e.occ_start)}</span><span class="ev-title">${evLabel(e)}</span></a>`).join('') : '<p class="muted small">Rien de prévu.</p>'}</div>
+      <div class="card"><div class="row"><h3 style="margin:0">📝 Exercices à faire</h3><span class="spacer"></span><a class="small" href="#/exercices">Tous</a></div>
+        ${d.exercices.length ? d.exercices.map(x => `<a class="ev-row" href="#/exercices/${x.id}" style="--c:#d99a1e"><span class="ev-time">${x.due_at ? new Date(x.due_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) : '—'}</span><span class="ev-title">${esc(x.title)}${x.subject ? ` <span class="pill">${esc(x.subject)}</span>` : ''}</span></a>`).join('') : `<p class="muted small">${u.role === 'eleve' ? 'Rien à rendre 🎉' : 'Voir la page Exercices pour publier et corriger.'}</p>`}</div>
+    </div>
     <div class="grid grid-3">
       <div class="card countdown">
         <div class="small" style="opacity:.8">Premières épreuves écrites (${esc(d.infos.examens.session)})</div>

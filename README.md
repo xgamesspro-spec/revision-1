@@ -12,6 +12,37 @@ Plateforme web pour une classe de BTS SIO, **réservée aux élèves** :
 
 **Accès réservé** : on ne peut s'inscrire qu'avec un code d'invitation. Le **premier compte créé devient modérateur**.
 
+## Planning (alternance)
+
+- Vue **mois** et vue **liste**, avec des filtres par type : examen, rendu, réunion, cours, congés, absence, perso, autre.
+- **Rythme d'alternance** : les formateurs et modérateurs règlent les jours de CFA de chaque filière, et chaque élève peut ajuster les siens. Le planning marque chaque jour « CFA » ou « Entreprise », et l'accueil affiche « Aujourd'hui : au CFA / en entreprise ».
+- **Qui voit quoi** :
+  - **Perso** (moi seul) : n'importe quel élève.
+  - **Ma filière** : un élève pour la sienne, un formateur pour n'importe laquelle.
+  - **Tout le CFA** : formateurs et modérateurs seulement.
+- **Absences** : l'élève précise si c'est au CFA, en entreprise ou les deux, avec un motif et un **justificatif** en option. L'absence est visible **par lui et par l'équipe du CFA, jamais par les autres élèves**.
+- **Congés** :
+  - congés payés, **congé de révision de 5 jours** pour l'examen, et fermetures du CFA (publiées par l'équipe) ;
+  - compteur des **jours ouvrables** posés sur la période de référence, du 1er juin au 31 mai ;
+  - alerte si des congés tombent sur des jours de CFA, puisque le temps au CFA est du temps de travail.
+  - Règles d'après [service-public.fr](https://www.service-public.gouv.fr/particuliers/vosdroits/F2258), le [CIDJ](https://www.cidj.com/etudes-formations-alternance/alternance/contrat-d-apprentissage-droits-et-avantages-de-l-apprenti) et [Centre Inffo](https://www.centre-inffo.fr/helpie_faq/toggle-title-18). C'est l'employeur qui fixe les dates.
+- **Répétition** chaque semaine sur les jours choisis, par exemple « Cours réseaux » tous les jeudis jusqu'en juin.
+- **Rappels** la veille d'un examen, d'un rendu ou d'une réunion, via les notifications.
+- **Réunions planifiées** : le jour J, un bouton « Rejoindre » ouvre la visio.
+- **Dans ton agenda** : chacun a un lien personnel au format iCalendar ([RFC 5545](https://icalendar.org/iCalendar-RFC-5545/5-recommended-practices.html)) à ajouter dans Google Agenda ([aide Google](https://support.google.com/calendar/answer/37100)), iPhone ou Outlook. Il se met à jour tout seul. Le lien est secret et peut être régénéré.
+- Les dates du **BTS 2027** sont préremplies pour la filière BTS.
+
+## Formateurs et exercices
+
+- Un modérateur génère un **code formateurs** (Modération → Codes d'invitation), ou bien il clique sur « Nommer formateur » sur un compte. Les formateurs n'ont pas de filière et leur compte n'est pas supprimé automatiquement.
+- Comme demandé, **les salons, le forum, les réunions et la liste des élèves restent réservés aux élèves**. Les formateurs ont le planning, les exercices, les révisions, les actus et les infos.
+- **Exercices** :
+  - le formateur publie une consigne (Markdown), des fichiers, la filière visée et une **date limite**, qui s'ajoute automatiquement au planning ;
+  - les élèves concernés sont notifiés ;
+  - l'élève rend son travail (texte + fichiers), modifiable tant qu'il n'est pas corrigé, ou coche « fait » si le rendu n'est pas en ligne ;
+  - le formateur voit qui a rendu (en retard ou non) et qui n'a pas rendu, puis met une **note et un commentaire** : l'élève est notifié ;
+  - un rendu n'est visible que par son auteur et par les formateurs.
+
 ## Espaces par filière
 
 - Chaque filière a ses propres salons (`cap-general`, `bac-pro-general`, `bts-general`, `titre-pro-general`) et forums (`…-questions`). Ils ne sont **visibles que par les élèves de la filière** et par les modérateurs. Les autres salons restent communs à tout le CFA.
@@ -127,6 +158,7 @@ npm start
 | `VAPID_SUBJECT` | contact de l'admin pour les notifications push (`mailto:…` ou `https://…`) | `PUBLIC_URL` |
 | `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` | clés push fixes (sinon générées dans `data/vapid.json`) | auto |
 | `MEETING_MAX` | participants max par réunion | `10` |
+| `APP_TZ` | fuseau horaire du planning | `America/Cayenne` |
 | `STUN_URLS` | serveurs STUN (séparés par des virgules) | `stun:stun.l.google.com:19302` |
 | `TURN_URL`, `TURN_USER`, `TURN_PASS` | relais TURN optionnel | vide |
 | `ICE_SERVERS` | configuration ICE complète en JSON (remplace les 2 lignes précédentes) | vide |
@@ -167,6 +199,8 @@ accounts.js      comptes : Google, filières, réinitialisation, suppression aut
 uploads.js       pièces jointes sécurisées (OWASP)
 notify.js        notifications + Web Push
 public/sw.js     service worker (réception des notifications push)
+calendar.js      planning : événements, alternance, congés/absences, rappels, iCalendar
+exercises.js     exercices des formateurs, rendus et corrections
 meetings.js      réunions vidéo : salles + signalisation WebRTC
 Caddyfile        HTTPS (reverse proxy Caddy)
 db.js            base SQLite et salons par défaut

@@ -152,6 +152,14 @@ module.exports = function setupMeetings(app, { auth, conns, broadcast, sendTo, t
 
   return {
     onDisconnect(connId) { for (const r of rooms.values()) leave(r, connId); },
+    // Utilisé par le planning : crée une salle pour une réunion planifiée
+    createRoom(name, user) {
+      const id = crypto.randomBytes(6).toString('hex');
+      rooms.set(id, { id, name: String(name).slice(0, 60), created_by: user.id, creator_name: user.display_name, created_at: Date.now(), peers: new Map(), emptySince: Date.now() });
+      pushList();
+      return id;
+    },
+    exists: id => rooms.has(id),
     REACTIONS,
   };
 };

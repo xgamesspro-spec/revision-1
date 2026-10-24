@@ -9,6 +9,8 @@ const setupMeetings = require('./meetings');
 const setupAccounts = require('./accounts');
 const setupUploads = require('./uploads');
 const setupNotify = require('./notify');
+const setupCalendar = require('./calendar');
+const setupExercises = require('./exercises');
 
 const PORT = process.env.PORT || 3000;
 const CLASS_CODE = process.env.CLASS_CODE || ''; // code d'inscription permanent (optionnel)
@@ -89,6 +91,8 @@ app.use('/api', (req, res, next) => {
   next();
 });
 const auth = (req, res, next) => req.user ? next() : bad(res, 'Connexion requise', 401);
+// Salons, forum, réunions et liste des élèves : espace entre élèves, fermé aux formateurs
+const authEleves = (req, res, next) => auth(req, res, () => (req.user.role === 'prof' ? bad(res, 'Espace réservé aux élèves', 403) : next()));
 const admin = (req, res, next) => req.user?.role === 'admin' ? next() : bad(res, 'Réservé aux modérateurs', 403);
 
 // Anti-bruteforce très simple
@@ -119,7 +123,7 @@ function sendTo(connId, event, data) {
   if (c) c.res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
 }
 function onlineIds() { return [...new Set([...conns.values()].map(c => c.user.id))]; }
-const meetings = setupMeetings(app, { auth, conns, broadcast, sendTo, text, bad });
+const meetings = setupMeetings(app, { auth: authEleves, conns, broadcast, sendTo, text, bad });
 app.get('/api/stream', auth, (req, res) => {
   res.set({ 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', Connection: 'keep-alive', 'X-Accel-Buffering': 'no' });
   res.flushHeaders();
@@ -137,7 +141,7 @@ app.get('/api/stream', auth, (req, res) => {
 });
 
 // ---------- Comptes (voir accounts.js) ----------
-app.get('/api/members', auth, (req, res) => {
+app.get('/api/members', authEleves, (req, res) => {
   const online = new Set(onlineIds());
   const rows = db.prepare('SELECT id, username, display_name, role, filiere FROM users WHERE banned = 0 AND deleted = 0 ORDER BY display_name').all();
   res.json(rows.map(u => ({ ...u, filiere_nom: accounts.filiereNom(u.filiere), online: online.has(u.id) })));
@@ -155,7 +159,7 @@ if (!db.prepare('PRAGMA table_info(channels)').all().some(c => c.name === 'filie
   });
 }
 function canSee(user, ch) {
-  return !!ch && !!user && (user.role === 'admin' || !ch.filiere || ch.filiere === user.filiere);
+  return !!ch && !!user && user.role !== 'prof' && (user.role === 'admin' || !ch.filiere || ch.filiere === user.filiere);
 }
 function canSeeChannelId(user, id) {
   return canSee(user, db.prepare('SELECT * FROM channels WHERE id = ?').get(id));
@@ -169,8 +173,30 @@ function broadcastChannel(ch, event, data) {
   const payload = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
   for (const c of conns.values()) if (canSee(c.user, ch)) c.res.write(payload);
 }
-const uploads = setupUploads(app, { db, auth, bad, now, canSeeChannelId });
+let calendar, exercises; // créés plus bas
+function canAccessAttachment(user, a) {
+  if (['message', 'topic', 'reply'].includes(a.target)) return canSeeChannelId(user, a.channel_id);
+  if (a.target === 'event') {
+    const ev = db.prepare('SELECT * FROM events WHERE id = ?').get(a.target_id);
+    return !!ev && calendar.visibleTo(user, ev);
+  }
+  return exercises.canAccessAttachment(user, a);
+}
+const uploads = setupUploads(app, { db, auth, bad, now, canAccess: canAccessAttachment });
 const notifier = setupNotify(app, { db, auth, bad, now, conns, text });
+calendar = setupCalendar(app, { db, auth, bad, now, text, notifier, meetings, accounts, uploads });
+exercises = setupExercises(app, { db, auth, bad, now, text, uploads, notifier, accounts });
+app.locals.calendar = calendar;
+// Suppression d'un compte (fin de formation, demande RGPD) : on efface aussi ses rendus et son planning perso
+accounts.onDelete(uid => {
+  exercises.forgetUser(uid);
+  const evs = db.prepare("SELECT id FROM events WHERE created_by = ? AND visibility = 'perso'").all(uid).map(e => e.id);
+  uploads.removeFor('event', evs);
+  db.prepare("DELETE FROM events WHERE created_by = ? AND visibility = 'perso'").run(uid);
+  db.prepare('UPDATE users SET rythme = NULL, cal_token = NULL, notif_prefs = NULL WHERE id = ?').run(uid);
+  db.prepare('DELETE FROM notifications WHERE user_id = ?').run(uid);
+  db.prepare('DELETE FROM push_subs WHERE user_id = ?').run(uid);
+});
 app.locals.notifier = notifier;
 const snippet = s => String(s).replace(/\s+/g, ' ').slice(0, 140);
 
@@ -419,7 +445,15 @@ app.get('/api/dashboard', auth, (req, res) => {
   const quizzes = db.prepare('SELECT subject, score, total, created_at FROM quiz_results WHERE user_id = ? ORDER BY id DESC LIMIT 5').all(req.user.id);
   const topics = db.prepare(`SELECT t.id, t.title, t.solved, c.name AS channel FROM topics t JOIN channels c ON c.id = t.channel_id
     WHERE ? = 'admin' OR c.filiere IS NULL OR c.filiere = ? ORDER BY t.last_activity DESC LIMIT 5`).all(req.user.role, req.user.filiere || '');
-  res.json({ cartes_a_revoir: due + (total - seen), cartes_total: total, quiz: quizzes, sujets: topics, infos: readJson('infos.json') });
+  const r = calendar.rythmeOf(req.user);
+  const cfaDays = (r.effective || '').split(',').filter(Boolean).map(Number);
+  const today = calendar.weekday(now());
+  res.json({
+    cartes_a_revoir: due + (total - seen), cartes_total: total, quiz: quizzes,
+    sujets: req.user.role === 'prof' ? [] : topics, infos: readJson('infos.json'),
+    evenements: calendar.upcoming(req.user, 5), exercices: exercises.pendingFor(req.user, 5),
+    alternance: req.user.role === 'eleve' ? { configure: cfaDays.length > 0, aujourdhui: cfaDays.length ? (cfaDays.includes(today) ? 'cfa' : today >= 6 ? 'weekend' : 'entreprise') : null, jours_cfa: cfaDays } : null,
+  });
 });
 
 // ---------- Actus & infos ----------
@@ -436,9 +470,10 @@ app.get('/api/admin/invites', auth, admin, (req, res) => {
 });
 app.post('/api/admin/invites', auth, admin, (req, res) => {
   const uses = Math.min(Math.max(+req.body.uses | 0, 1), 100);
-  const code = crypto.randomBytes(5).toString('hex').toUpperCase();
-  db.prepare('INSERT INTO invites (code, created_by, uses_left, created_at) VALUES (?, ?, ?, ?)').run(code, req.user.id, uses, now());
-  res.json({ code, uses_left: uses });
+  const role = req.body.role === 'prof' ? 'prof' : 'eleve';
+  const code = (role === 'prof' ? 'P' : '') + crypto.randomBytes(5).toString('hex').toUpperCase();
+  db.prepare('INSERT INTO invites (code, created_by, uses_left, created_at, role) VALUES (?, ?, ?, ?, ?)').run(code, req.user.id, uses, now(), role);
+  res.json({ code, uses_left: uses, role });
 });
 app.delete('/api/admin/invites/:code', auth, admin, (req, res) => {
   db.prepare('DELETE FROM invites WHERE code = ?').run(req.params.code);

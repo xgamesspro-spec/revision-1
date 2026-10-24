@@ -66,19 +66,20 @@ function tempPassword() {
 module.exports = function setupAccounts(app, h) {
   const { db, auth, admin, text, bad, tooMany, hashPassword, checkPassword, setSession, clearSession, now, CLASS_CODE } = h;
   migrate(db);
+  if (!db.prepare('PRAGMA table_info(invites)').all().some(c => c.name === 'role')) db.exec("ALTER TABLE invites ADD COLUMN role TEXT NOT NULL DEFAULT 'eleve'");
 
   const userCount = () => db.prepare('SELECT COUNT(*) AS n FROM users WHERE deleted = 0').get().n;
   const filiereNom = id => FILIERES.find(f => f.id === id)?.nom || null;
 
   function me(u) {
     if (!u) return null;
-    const needsProfile = u.role !== 'admin' && !u.filiere;
+    const needsProfile = u.role === 'eleve' && !u.filiere;
     return {
       id: u.id, username: u.username, display_name: u.display_name, role: u.role,
       email: u.email, google: !!u.google_sub,
       filiere: u.filiere, filiere_nom: filiereNom(u.filiere), intitule: u.intitule,
-      end_date: u.end_date, expires_at: u.role === 'admin' ? null : u.expires_at,
-      expire_bientot: u.role !== 'admin' && u.expires_at && u.expires_at - now() < WARN_DAYS * 864e5,
+      end_date: u.end_date, expires_at: u.role === 'eleve' ? u.expires_at : null,
+      expire_bientot: u.role === 'eleve' && u.expires_at && u.expires_at - now() < WARN_DAYS * 864e5,
       must_change: !!u.must_change, needs_profile: needsProfile,
     };
   }
@@ -89,15 +90,19 @@ module.exports = function setupAccounts(app, h) {
     const u = req.user;
     if (!u || GATE_FREE.has(req.path)) return next();
     if (u.must_change) return res.status(403).json({ error: 'Change ton mot de passe provisoire', gate: 'must_change' });
-    if (u.role !== 'admin' && !u.filiere) return res.status(403).json({ error: 'Complète ton profil', gate: 'needs_profile' });
+    if (u.role === 'eleve' && !u.filiere) return res.status(403).json({ error: 'Complète ton profil', gate: 'needs_profile' });
     next();
   }
 
+  // Le tout premier compte devient modérateur (même si un CLASS_CODE est défini).
+  // Un code d'invitation peut être « élève » ou « prof ».
   function checkInvite(code) {
-    if (userCount() === 0 && !CLASS_CODE) return { ok: true, first: true };
-    if (CLASS_CODE && code === CLASS_CODE) return { ok: true };
+    const first = userCount() === 0;
+    const roleOf = r => (first ? 'admin' : r || 'eleve');
+    if (first && !CLASS_CODE) return { ok: true, first, role: 'admin' };
+    if (CLASS_CODE && code === CLASS_CODE) return { ok: true, first, role: roleOf('eleve') };
     const inv = code && db.prepare('SELECT * FROM invites WHERE code = ? AND uses_left > 0').get(code);
-    return inv ? { ok: true, invite: inv.code } : { ok: false };
+    return inv ? { ok: true, first, invite: inv.code, role: roleOf(inv.role) } : { ok: false };
   }
   const useInvite = code => { if (code) db.prepare('UPDATE invites SET uses_left = uses_left - 1 WHERE code = ?').run(code); };
 
@@ -111,11 +116,13 @@ module.exports = function setupAccounts(app, h) {
     if (String(pw || '').length < 8) throw new Error('Mot de passe : 8 caractères minimum');
   };
 
+  const deleteHooks = [];
   function anonymize(id) {
     const tag = `supprime-${id}-${crypto.randomBytes(3).toString('hex')}`;
     db.prepare(`UPDATE users SET username = ?, display_name = 'Ancien élève', email = NULL, google_sub = NULL, pass_hash = '!',
       banned = 1, deleted = 1, filiere = NULL, intitule = NULL, end_date = NULL, expires_at = NULL, must_change = 0 WHERE id = ?`).run(tag, id);
     for (const t of ['sessions', 'card_progress', 'quiz_results']) db.prepare(`DELETE FROM ${t} WHERE user_id = ?`).run(id);
+    for (const fn of deleteHooks) { try { fn(id); } catch (e) { console.warn('[comptes] nettoyage', e.message); } }
   }
 
   // ---------- Infos publiques ----------
@@ -128,6 +135,12 @@ module.exports = function setupAccounts(app, h) {
     });
   });
 
+  app.get('/api/invite-info', (req, res) => {
+    if (tooMany(req.ip)) return bad(res, 'Trop de tentatives', 429);
+    const inv = checkInvite(text(req.query.code, 64));
+    res.json({ ok: inv.ok, role: inv.ok ? inv.role : null });
+  });
+
   // ---------- Inscription classique (si autorisée) ----------
   app.post('/api/register', (req, res) => {
     if (tooMany(req.ip)) return bad(res, 'Trop de tentatives, réessaie plus tard', 429);
@@ -138,12 +151,12 @@ module.exports = function setupAccounts(app, h) {
     const password = String(req.body.password || '');
     if (!/^[a-zA-Z0-9_.-]{3,24}$/.test(username)) return bad(res, 'Identifiant : 3 à 24 caractères (lettres, chiffres, . _ -)');
     let profile;
-    try { checkNewPassword(password); profile = profileFields(req.body, !first); } catch (e) { return bad(res, e.message); }
     const inv = checkInvite(text(req.body.invite, 64));
+    try { checkNewPassword(password); profile = profileFields(req.body, inv.role === 'eleve'); } catch (e) { return bad(res, e.message); }
     if (!inv.ok) return bad(res, "Code d'invitation invalide. Demande-le à un modérateur de la classe.", 403);
     if (db.prepare('SELECT 1 FROM users WHERE username = ?').get(username)) return bad(res, 'Cet identifiant est déjà pris');
     const r = db.prepare(`INSERT INTO users (username, display_name, pass_hash, role, created_at, filiere, intitule, end_date, expires_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(username, display, hashPassword(password), inv.first ? 'admin' : 'eleve', now(),
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(username, display, hashPassword(password), inv.role, now(),
       profile.filiere || null, profile.intitule || null, profile.end_date || null, profile.expires_at || null);
     useInvite(inv.invite);
     setSession(res, r.lastInsertRowid);
@@ -181,9 +194,9 @@ module.exports = function setupAccounts(app, h) {
   app.post('/api/me/profile', auth, (req, res) => {
     let p = {};
     const display = text(req.body.display_name, 40);
-    const wantsProfile = 'filiere' in req.body || (req.user.role !== 'admin' && !req.user.filiere);
+    const wantsProfile = 'filiere' in req.body || (req.user.role === 'eleve' && !req.user.filiere);
     if (wantsProfile) {
-      try { p = profileFields(req.body, req.user.role !== 'admin'); } catch (e) { return bad(res, e.message); }
+      try { p = profileFields(req.body, req.user.role === 'eleve'); } catch (e) { return bad(res, e.message); }
     }
     if (p.filiere) {
       db.prepare('UPDATE users SET filiere = ?, intitule = ?, end_date = ?, expires_at = ? WHERE id = ?')
@@ -287,7 +300,7 @@ module.exports = function setupAccounts(app, h) {
   app.get('/api/register/google', (req, res) => {
     const p = pending.get(String(req.query.t || ''));
     if (!p || p.exp < now()) return bad(res, 'Lien expiré, recommence la connexion avec Google', 404);
-    res.json({ email: p.email, name: p.name, first: userCount() === 0 });
+    res.json({ email: p.email, name: p.name, first: userCount() === 0, role: checkInvite(p.invite).role || 'eleve' });
   });
 
   app.post('/api/register/google', (req, res) => {
@@ -298,7 +311,7 @@ module.exports = function setupAccounts(app, h) {
     if (!inv.ok) return bad(res, "Le code d'invitation n'est plus valide", 403);
     const display = text(req.body.display_name, 40) || p.name || p.email.split('@')[0];
     let profile;
-    try { checkNewPassword(req.body.password); profile = profileFields(req.body, !inv.first); } catch (e) { return bad(res, e.message); }
+    try { checkNewPassword(req.body.password); profile = profileFields(req.body, inv.role === 'eleve'); } catch (e) { return bad(res, e.message); }
     if (db.prepare('SELECT 1 FROM users WHERE (email = ? OR google_sub = ?) AND deleted = 0').get(p.email, p.sub)) return bad(res, 'Ce compte Google est déjà inscrit');
     // Identifiant automatique tiré de l'adresse (l'élève se connecte avec son email ou Google)
     let base = p.email.split('@')[0].replace(/[^a-zA-Z0-9_.-]/g, '').slice(0, 20) || 'eleve';
@@ -306,7 +319,7 @@ module.exports = function setupAccounts(app, h) {
     let username = base, i = 1;
     while (db.prepare('SELECT 1 FROM users WHERE username = ?').get(username)) username = `${base}${++i}`;
     const r = db.prepare(`INSERT INTO users (username, display_name, pass_hash, role, created_at, email, google_sub, filiere, intitule, end_date, expires_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(username, display, hashPassword(String(req.body.password)), inv.first ? 'admin' : 'eleve', now(),
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(username, display, hashPassword(String(req.body.password)), inv.role, now(),
       p.email, p.sub, profile.filiere || null, profile.intitule || null, profile.end_date || null, profile.expires_at || null);
     useInvite(inv.invite);
     pending.delete(t);
@@ -330,7 +343,7 @@ module.exports = function setupAccounts(app, h) {
       db.prepare('UPDATE users SET banned = ? WHERE id = ?').run(req.body.banned ? 1 : 0, id);
       if (req.body.banned) db.prepare('DELETE FROM sessions WHERE user_id = ?').run(id);
     }
-    if (req.body.role === 'admin' || req.body.role === 'eleve') db.prepare('UPDATE users SET role = ? WHERE id = ?').run(req.body.role, id);
+    if (['admin', 'eleve', 'prof'].includes(req.body.role)) db.prepare('UPDATE users SET role = ? WHERE id = ?').run(req.body.role, id);
     if ('end_date' in req.body) {
       // null = jamais supprimé automatiquement ; sinon nouvelle date de fin (prolongation, redoublement…)
       const d = req.body.end_date;
@@ -363,15 +376,15 @@ module.exports = function setupAccounts(app, h) {
 
   // ---------- Suppression automatique en fin de formation ----------
   function purgeExpired() {
-    const rows = db.prepare(`SELECT id FROM users WHERE deleted = 0 AND role != 'admin' AND expires_at IS NOT NULL AND expires_at < ?`).all(now());
+    const rows = db.prepare(`SELECT id FROM users WHERE deleted = 0 AND role = 'eleve' AND expires_at IS NOT NULL AND expires_at < ?`).all(now());
     rows.forEach(r => anonymize(r.id));
     if (rows.length) console.log(`[comptes] ${rows.length} compte(s) supprimé(s) : fin de formation dépassée`);
     return rows.length;
   }
-  purgeExpired();
+  setTimeout(purgeExpired, 5000).unref(); // après le branchement des autres modules
   setInterval(purgeExpired, 3600e3).unref();
 
-  return { gate, me, purgeExpired, anonymize, FILIERES, filiereNom };
+  return { gate, me, purgeExpired, anonymize, FILIERES, filiereNom, onDelete: fn => deleteHooks.push(fn) };
 };
 
 module.exports.computeEnd = computeEnd;

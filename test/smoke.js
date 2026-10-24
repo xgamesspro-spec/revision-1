@@ -10,6 +10,7 @@ const fakeGoogleUsers = {
   'code-lea': { sub: 'g-lea', email: 'Lea.Martin@gmail.com', name: 'Léa Martin' },
   'code-tom': { sub: 'g-tom', email: 'tom.r@gmail.com', name: 'Tom R' },
   'code-xavi': { sub: 'g-xavi', email: 'xavi@gmail.com', name: 'Xavi' },
+  'code-prof': { sub: 'g-prof', email: 'prof.dupont@gmail.com', name: 'M. Dupont' },
 };
 const google = http.createServer((req, res) => {
   let body = '';
@@ -307,6 +308,168 @@ const google = http.createServer((req, res) => {
   await new Promise(res => setTimeout(res, 50));
   r = await call('c', 'POST', '/api/push/test');
   assert.equal(r.status, 400, 'abonnement 410 supprimé');
+
+
+  // ================= Rôle formateur =================
+  r = await call('a', 'POST', '/api/admin/invites', { uses: 1, role: 'prof' });
+  assert.equal(r.data.role, 'prof');
+  r = await call('anon', 'GET', `/api/invite-info?code=${r.data.code}`);
+  assert.equal(r.data.role, 'prof');
+  const profCode = (await call('a', 'GET', '/api/admin/invites')).data.find(i => i.role === 'prof').code;
+  loc = await googleLogin('p', 'code-prof', profCode);
+  const tp = loc.split('t=')[1];
+  r = await call('p', 'POST', '/api/register/google', { t: tp, password: 'motdepasse1' });
+  assert.equal(r.status, 200, JSON.stringify(r.data));
+  assert.equal(r.data.user.role, 'prof'); assert.equal(r.data.user.needs_profile, false, 'un prof n’a pas de filière obligatoire');
+  r = await call('p', 'GET', '/api/channels');
+  assert.equal(r.data.length, 0, 'les formateurs ne voient pas les salons des élèves');
+  r = await call('p', 'GET', '/api/members');
+  assert.equal(r.status, 403);
+  r = await call('p', 'POST', '/api/meetings', { name: 'x' });
+  assert.equal(r.status, 403, 'réunions réservées aux élèves');
+
+  // ================= Planning =================
+  const DAY = 864e5;
+  const cal = app.locals.calendar;
+  r = await call('b', 'GET', `/api/events?from=${Date.now()}&to=${Date.now() + 300 * DAY}`);
+  assert.ok(r.data.events.some(e => e.type === 'examen' && e.title.startsWith('Culture générale')), 'dates du BTS 2027 préremplies');
+  r = await call('c', 'GET', `/api/events?from=${Date.now()}&to=${Date.now() + 300 * DAY}`);
+  assert.ok(!r.data.events.some(e => e.type === 'examen'), 'examens BTS invisibles pour un Titre pro');
+  r = await call('b', 'POST', '/api/events', { title: 'Tout le CFA', type: 'autre', start_at: Date.now() + DAY, visibility: 'cfa' });
+  assert.equal(r.status, 400, 'un élève ne publie pas pour tout le CFA');
+  r = await call('b', 'POST', '/api/events', { title: 'Dentiste', type: 'perso', start_at: Date.now() + 2 * DAY, visibility: 'perso' });
+  const persoId = r.data.id;
+  for (const who of ['a', 'p', 'c']) {
+    r = await call(who, 'GET', '/api/events');
+    assert.ok(!r.data.events.some(e => e.id === persoId), `événement perso invisible pour ${who}`);
+  }
+  // Absence : visible par les formateurs et modos, pas par les autres élèves
+  r = await call('b', 'POST', '/api/events', { title: 'Absente', type: 'absence', detail: 'cfa', all_day: true, start_at: Date.now() + 3 * DAY, visibility: 'cfa' });
+  const absId = r.data.id;
+  r = await call('p', 'GET', '/api/events');
+  const abs = r.data.events.find(e => e.id === absId);
+  assert.ok(abs && abs.author === 'Léa' && abs.visibility === 'perso' && abs.detail === 'cfa', 'le prof voit l’absence et son auteur');
+  r = await call('c', 'GET', '/api/events');
+  assert.ok(!r.data.events.some(e => e.id === absId));
+  r = await call('p', 'DELETE', `/api/events/${absId}`);
+  assert.equal(r.status, 403, 'un prof ne supprime pas l’absence d’un élève');
+
+  // Rythme d'alternance
+  r = await call('b', 'POST', '/api/rythme/filiere', { filiere: 'BTS', days: [4, 5] });
+  assert.equal(r.status, 403);
+  r = await call('p', 'POST', '/api/rythme/filiere', { filiere: 'BTS', days: [5, 4] });
+  r = await call('b', 'GET', '/api/rythme');
+  assert.equal(r.data.effective, '4,5');
+  r = await call('b', 'POST', '/api/rythme', { days: [3, 4] });
+  assert.equal(r.data.effective, '3,4');
+  r = await call('b', 'POST', '/api/rythme', { days: null });
+  assert.equal(r.data.effective, '4,5', 'retour au rythme de la filière');
+  r = await call('b', 'GET', '/api/dashboard');
+  assert.ok(['cfa', 'entreprise', 'weekend'].includes(r.data.alternance.aujourdhui));
+
+  // Congés : jours ouvrables (lundi → samedi) et alerte si des jours de CFA sont inclus
+  const monday = (() => { let t = Date.now() + 10 * DAY; while (cal.weekday(t) !== 1) t += DAY; return t; })();
+  r = await call('b', 'POST', '/api/events', { title: 'Congés', type: 'conge', detail: 'cp', all_day: true, start_at: monday, end_at: monday + 6 * DAY });
+  assert.equal(r.status, 200);
+  assert.equal(r.data.warnings.length, 1, 'alerte : jeudi et vendredi sont des jours de CFA');
+  r = await call('b', 'GET', '/api/events');
+  assert.ok(r.data.conges.cp >= 6, `6 jours ouvrables comptés (${r.data.conges.cp})`);
+  r = await call('b', 'POST', '/api/events', { title: 'Fermeture', type: 'conge', detail: 'fermeture', all_day: true, start_at: monday });
+  assert.equal(r.status, 400, 'seule l’équipe publie une fermeture du CFA');
+  r = await call('p', 'POST', '/api/events', { title: 'Vacances de Noël', type: 'conge', detail: 'fermeture', all_day: true, start_at: monday, end_at: monday + 13 * DAY, visibility: 'cfa' });
+  assert.equal(r.status, 200);
+  r = await call('c', 'GET', '/api/events');
+  assert.ok(r.data.events.some(e => e.title === 'Vacances de Noël'), 'fermeture visible par tout le CFA');
+
+  // Répétition hebdomadaire
+  const start = Date.now() + DAY;
+  r = await call('b', 'POST', '/api/events', { title: 'Cours CFA', type: 'cours', start_at: start, end_at: start + 7 * 3600e3, repeat_days: [4, 5], repeat_until: start + 28 * DAY });
+  assert.equal(r.status, 200, JSON.stringify(r.data));
+  const coursId = r.data.id;
+  r = await call('b', 'GET', `/api/events?from=${Date.now()}&to=${Date.now() + 40 * DAY}`);
+  const occ = r.data.events.filter(e => e.id === coursId);
+  assert.ok(occ.length >= 7 && occ.length <= 9, `≈8 cours sur 4 semaines (${occ.length})`);
+  assert.ok(occ.every(e => [4, 5].includes(cal.weekday(e.occ_start))), 'uniquement jeudi et vendredi');
+
+  // Flux iCalendar (RFC 5545)
+  r = await call('b', 'GET', '/api/calendar/feed');
+  const icsPath = new URL(r.data.url).pathname;
+  let icsRes = await fetch(base + icsPath);
+  assert.equal(icsRes.status, 200);
+  assert.ok(icsRes.headers.get('content-type').startsWith('text/calendar'));
+  const ics = await icsRes.text();
+  assert.ok(ics.startsWith('BEGIN:VCALENDAR\r\n') && ics.trim().endsWith('END:VCALENDAR'));
+  assert.ok(ics.includes('RRULE:FREQ=WEEKLY;BYDAY=TH,FR;UNTIL='), 'répétition exportée');
+  assert.ok(ics.split('\r\n').every(l => Buffer.byteLength(l) <= 75), 'lignes pliées à 75 octets');
+  assert.ok(!/[^\r]\n/.test(ics), 'fins de ligne CRLF');
+  assert.ok(ics.includes('Dentiste'), 'événements perso dans son propre flux');
+  r = await call('b', 'POST', '/api/calendar/feed/reset');
+  icsRes = await fetch(base + icsPath);
+  assert.equal(icsRes.status, 404, 'ancien lien révoqué');
+
+  // Rappels (24 h avant)
+  r = await call('b', 'POST', '/api/events', { title: 'Oral blanc', type: 'examen', start_at: Date.now() + 2 * 3600e3 });
+  const before = (await call('b', 'GET', '/api/notifications')).data.items.length;
+  cal.sendReminders();
+  r = await call('b', 'GET', '/api/notifications');
+  assert.equal(r.data.items.length, before + 1);
+  assert.equal(r.data.items[0].type, 'rappel');
+  assert.ok(r.data.items[0].title.includes('Oral blanc'));
+  cal.sendReminders();
+  assert.equal((await call('b', 'GET', '/api/notifications')).data.items.length, before + 1, 'pas de rappel en double');
+
+  // Réunion planifiée
+  r = await call('b', 'POST', '/api/events', { title: 'Révision E5', type: 'reunion', start_at: Date.now() + 5 * DAY });
+  r = await call('b', 'POST', `/api/events/${r.data.id}/meeting`);
+  assert.ok(/^[a-f0-9]{12}$/.test(r.data.id));
+
+  // ================= Exercices =================
+  r = await call('b', 'POST', '/api/exercises', { title: 'Triche', filiere: 'BTS' });
+  assert.equal(r.status, 403, 'un élève ne publie pas d’exercice');
+  up = await upload('p', 'TP-VLAN.pdf', Buffer.from('%PDF-1.4\nTP'));
+  const dueAt = Date.now() + 3 * DAY;
+  r = await call('p', 'POST', '/api/exercises', { title: 'TP VLAN', subject: 'Réseaux', content: 'Configurez **3 VLAN**', filiere: 'BTS', due_at: dueAt, attachments: [up.data.id] });
+  assert.equal(r.status, 200, JSON.stringify(r.data));
+  const exId = r.data.id;
+  r = await call('b', 'GET', '/api/notifications');
+  assert.equal(r.data.items[0].type, 'exercice');
+  r = await call('b', 'GET', '/api/exercises');
+  assert.equal(r.data.items.length, 1);
+  r = await call('c', 'GET', '/api/exercises');
+  assert.equal(r.data.items.length, 0, 'exercice BTS invisible pour un Titre pro');
+  r = await call('b', 'GET', `/api/events?from=${Date.now()}&to=${Date.now() + 10 * DAY}`);
+  assert.ok(r.data.events.some(e => e.title === 'À rendre : TP VLAN' && e.type === 'rendu'), 'date limite ajoutée au planning');
+  r = await call('b', 'GET', `/api/exercises/${exId}`);
+  fr = await call('b', 'GET', `/api/files/${r.data.exercise.attachments[0].id}`, null, true);
+  assert.equal(fr.status, 200, 'l’élève télécharge la consigne');
+  fr = await call('c', 'GET', `/api/files/${r.data.exercise.attachments[0].id}`, null, true);
+  assert.equal(fr.status, 404);
+  r = await call('c', 'POST', `/api/exercises/${exId}/submit`, { content: 'x' });
+  assert.equal(r.status, 404);
+  up = await upload('b', 'config.txt', Buffer.from('vlan 10 20 30'));
+  r = await call('b', 'POST', `/api/exercises/${exId}/submit`, { content: 'Voici ma config', attachments: [up.data.id] });
+  assert.equal(r.status, 200);
+  r = await call('p', 'GET', '/api/notifications');
+  assert.ok(r.data.items[0].title.includes('Rendu reçu'));
+  r = await call('p', 'GET', `/api/exercises/${exId}`);
+  assert.equal(r.data.submissions.length, 1);
+  const subId = r.data.submissions[0].id;
+  const subFile = r.data.submissions[0].attachments[0].id;
+  assert.ok(!r.data.missing.some(m => m.id === lea.id));
+  fr = await call('p', 'GET', `/api/files/${subFile}`, null, true);
+  assert.equal(fr.status, 200, 'le prof ouvre le rendu');
+  fr = await call('c', 'GET', `/api/files/${subFile}`, null, true);
+  assert.equal(fr.status, 404, 'un autre élève ne voit pas le rendu');
+  r = await call('b', 'POST', `/api/submissions/${subId}/grade`, { grade: '20/20' });
+  assert.equal(r.status, 403, 'un élève ne se note pas');
+  r = await call('p', 'POST', `/api/submissions/${subId}/grade`, { grade: '15/20', feedback: 'Bien, pense au VLAN natif' });
+  r = await call('b', 'GET', `/api/exercises/${exId}`);
+  assert.equal(r.data.mine.grade, '15/20');
+  r = await call('b', 'POST', `/api/exercises/${exId}/submit`, { content: 'modif' });
+  assert.equal(r.status, 400, 'rendu figé après correction');
+  r = await call('p', 'DELETE', `/api/exercises/${exId}`);
+  r = await call('b', 'GET', `/api/events?from=${Date.now()}&to=${Date.now() + 10 * DAY}`);
+  assert.ok(!r.data.events.some(e => e.title === 'À rendre : TP VLAN'), 'date limite retirée du planning');
 
   // --- Ancien compte sans filière : profil obligatoire ---
   const { DatabaseSync } = require('node:sqlite');

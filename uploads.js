@@ -108,7 +108,7 @@ async function processImage(buf, ext) {
   return { data, width: info.width, height: info.pageHeight || info.height };
 }
 
-module.exports = function setupUploads(app, { db, auth, bad, now, canSeeChannelId }) {
+module.exports = function setupUploads(app, { db, auth, bad, now, canAccess }) {
   db.exec(`CREATE TABLE IF NOT EXISTS attachments (
     id TEXT PRIMARY KEY,
     user_id INTEGER NOT NULL,
@@ -163,8 +163,8 @@ module.exports = function setupUploads(app, { db, auth, bad, now, canSeeChannelI
   app.get('/api/files/:id', auth, (req, res) => {
     const a = /^[a-f0-9]{32}$/.test(req.params.id) && db.prepare('SELECT * FROM attachments WHERE id = ?').get(req.params.id);
     if (!a) return bad(res, 'Fichier introuvable', 404);
-    // Fichier pas encore publié : seulement son auteur. Sinon : il faut avoir accès au salon.
-    const allowed = a.target ? canSeeChannelId(req.user, a.channel_id) : a.user_id === req.user.id;
+    // Fichier pas encore publié : seulement son auteur. Sinon : il faut avoir accès à ce à quoi il est rattaché.
+    const allowed = a.target ? canAccess(req.user, a) : a.user_id === req.user.id;
     if (!allowed) return bad(res, 'Fichier introuvable', 404);
     const inline = a.is_image && req.query.dl !== '1';
     res.set({

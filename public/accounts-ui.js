@@ -57,6 +57,19 @@ function bindFiliere(form, cur = {}) {
   update();
 }
 
+// Code formateur : on masque le choix de filière
+async function toggleFiliereForCode(form, code) {
+  const sel = form.querySelector('select[name=filiere]');
+  if (!sel || !code) return;
+  const info = await api('GET', `/api/invite-info?code=${encodeURIComponent(code.trim())}`).catch(() => ({}));
+  const prof = info.role === 'prof';
+  [sel.previousElementSibling, sel, form.querySelector('.fin-wrap'), form.querySelector('input[name=intitule]'), form.querySelector('input[name=intitule]')?.previousElementSibling, form.querySelector('.fin-note')]
+    .forEach(el => { if (el) el.hidden = prof; });
+  sel.required = !prof;
+  form.querySelectorAll('.fin-wrap select, .fin-wrap input').forEach(el => { el.required = !prof; });
+  if (prof) sel.value = '';
+}
+
 function authShell(inner) {
   app.innerHTML = `<div class="auth"><div class="card">
     <div class="brand" style="padding:0;color:var(--text)"><div class="logo" style="color:#fff">S</div></div>
@@ -139,6 +152,7 @@ async function renderAuth(mode) {
   const form = $('#auth-form');
   if (form) {
     bindFiliere(form);
+    form.invite?.addEventListener('change', () => toggleFiliereForCode(form, form.invite.value));
     form.onsubmit = async e => {
       e.preventDefault();
       try {
@@ -163,7 +177,7 @@ async function renderFinishGoogle(t) {
     <form id="finish-form">
       <label>Nom affiché</label>
       <input type="text" name="display_name" maxlength="40" value="${esc(info.name)}" required>
-      ${filiereFields({}, !info.first)}
+      ${info.role === 'eleve' ? filiereFields({}, true) : `<p class="pill gold">${info.role === 'prof' ? 'Compte formateur' : 'Compte modérateur'} : pas de filière à indiquer</p>`}
       <label>Crée ton mot de passe (8 caractères min.)</label>
       <input type="password" name="password" autocomplete="new-password" required minlength="8">
       <label>Confirme le mot de passe</label>
@@ -173,7 +187,7 @@ async function renderFinishGoogle(t) {
       <button class="btn primary" style="width:100%;margin-top:8px">Créer mon compte</button>
     </form>`);
   const form = $('#finish-form');
-  bindFiliere(form);
+  if (form.filiere) bindFiliere(form);
   form.onsubmit = async e => {
     e.preventDefault();
     const b = Object.fromEntries(new FormData(form));
@@ -293,12 +307,12 @@ async function viewAccount(r) {
 }
 
 // ---------- Modération ----------
-function showDialog(html) {
+function showDialog(html, { ok = true } = {}) {
   const d = document.createElement('dialog');
   d.className = 'card dialog';
-  d.innerHTML = html + '<div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn primary" data-close>OK</button></div>';
+  d.innerHTML = html + (ok ? '<div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn primary" data-ok>OK</button></div>' : '');
   document.body.appendChild(d);
-  d.querySelector('[data-close]').onclick = () => d.close();
+  d.querySelector('[data-ok]')?.addEventListener('click', () => d.close());
   d.addEventListener('close', () => d.remove());
   d.showModal();
   return d;
@@ -313,20 +327,21 @@ async function viewAdmin(r) {
   const fil = r?.q?.f || '';
   const qtxt = (r?.q?.s || '').toLowerCase();
   const counts = {};
-  users.forEach(u => { const k = u.role === 'admin' ? 'MODO' : u.filiere || 'AUCUNE'; counts[k] = (counts[k] || 0) + 1; });
-  const shown = users.filter(u => (!fil || (fil === 'MODO' ? u.role === 'admin' : fil === 'AUCUNE' ? !u.filiere && u.role !== 'admin' : u.filiere === fil))
+  users.forEach(u => { const k = u.role === 'admin' ? 'MODO' : u.role === 'prof' ? 'PROF' : u.filiere || 'AUCUNE'; counts[k] = (counts[k] || 0) + 1; });
+  const shown = users.filter(u => (!fil || (fil === 'MODO' ? u.role === 'admin' : fil === 'PROF' ? u.role === 'prof' : fil === 'AUCUNE' ? !u.filiere && u.role === 'eleve' : u.filiere === fil && u.role === 'eleve'))
     && (!qtxt || `${u.display_name} ${u.username} ${u.email || ''}`.toLowerCase().includes(qtxt)));
-  const chips = [['', 'Tous', users.length], ...state.setup.filieres.map(f => [f.id, f.nom, counts[f.id] || 0]), ['MODO', 'Modérateurs', counts.MODO || 0], ['AUCUNE', 'Sans filière', counts.AUCUNE || 0]];
+  const chips = [['', 'Tous', users.length], ...state.setup.filieres.map(f => [f.id, f.nom, counts[f.id] || 0]), ['PROF', 'Formateurs', counts.PROF || 0], ['MODO', 'Modérateurs', counts.MODO || 0], ['AUCUNE', 'Sans filière', counts.AUCUNE || 0]];
   setContent(`
     <div class="grid grid-2">
       <div class="card">
         <h3>🎟️ Codes d'invitation</h3>
         <p class="small muted">Donne ce code aux élèves : ils s'inscrivent ${state.setup.google ? 'avec leur compte Google (Gmail), ' : ''}choisissent leur filière et leur mot de passe.</p>
-        <form id="inv-form" class="row"><input type="number" name="uses" value="30" min="1" max="100" style="width:110px"><span class="small muted">utilisations</span><button class="btn primary">Générer</button></form>
+        <form id="inv-form" class="row"><select name="role" style="width:auto"><option value="eleve">🎓 Code élèves</option><option value="prof">👨‍🏫 Code formateurs</option></select>
+          <input type="number" name="uses" value="30" min="1" max="100" style="width:90px"><span class="small muted">utilisations</span><button class="btn primary">Générer</button></form>
         <div style="margin-top:12px">${invites.length ? invites.map(i => `
           <div class="row" style="padding:6px 0;border-bottom:1px solid var(--border)">
             <code style="font-size:16px;font-weight:700;letter-spacing:1px">${esc(i.code)}</code>
-            <span class="small muted">${i.uses_left} restant(s)</span><span class="spacer"></span>
+            <span class="pill ${i.role === 'prof' ? 'gold' : ''}">${i.role === 'prof' ? 'formateurs' : 'élèves'}</span><span class="small muted">${i.uses_left} restant(s)</span><span class="spacer"></span>
             <button class="btn sm" data-copy="${esc(i.code)}">Copier</button>
             <button class="btn sm danger" data-del-inv="${esc(i.code)}">✕</button>
           </div>`).join('') : '<p class="muted small">Aucun code actif.</p>'}</div>
@@ -358,18 +373,19 @@ async function viewAdmin(r) {
           <div class="user-info">
             <div><b>${esc(u.display_name)}</b> <span class="small muted">${esc(u.email || '@' + u.username)}</span></div>
             <div class="row small" style="gap:6px;margin-top:3px">
-              ${u.role === 'admin' ? '<span class="pill accent">modo</span>' : ''}
+              ${u.role === 'admin' ? '<span class="pill accent">modo</span>' : u.role === 'prof' ? '<span class="pill gold">formateur</span>' : ''}
               ${u.filiere_nom ? `<span class="pill">${esc(u.filiere_nom)}${u.intitule ? ' · ' + esc(u.intitule) : ''}</span>` : ''}
               ${u.google ? '<span class="pill">Google</span>' : ''}
               ${u.banned ? '<span class="pill" style="color:var(--danger)">suspendu</span>' : ''}
               ${u.must_change ? '<span class="pill gold">mdp provisoire</span>' : ''}
-              <span class="muted">${u.role === 'admin' ? 'jamais supprimé' : u.expires_at ? `fin ${fmtDay(u.end_date)} · suppression le ${fmtDay(u.expires_at)}` : 'pas de suppression auto'}</span>
+              <span class="muted">${u.role !== 'eleve' ? 'jamais supprimé' : u.expires_at ? `fin ${fmtDay(u.end_date)} · suppression le ${fmtDay(u.expires_at)}` : 'pas de suppression auto'}</span>
             </div>
           </div>
           ${u.id !== state.user.id ? `<div class="row user-actions">
             <button class="btn sm" data-reset="${u.id}" data-name="${esc(u.display_name)}">🔑 Réinitialiser</button>
             <button class="btn sm" data-end="${u.id}" data-cur="${esc(u.end_date || '')}">📅 Fin</button>
             <button class="btn sm" data-role="${u.id}" data-to="${u.role === 'admin' ? 'eleve' : 'admin'}">${u.role === 'admin' ? 'Retirer modo' : 'Nommer modo'}</button>
+            <button class="btn sm" data-role="${u.id}" data-to="${u.role === 'prof' ? 'eleve' : 'prof'}">${u.role === 'prof' ? 'Repasser élève' : 'Nommer formateur'}</button>
             <button class="btn sm" data-ban="${u.id}" data-to="${u.banned ? 0 : 1}">${u.banned ? 'Réactiver' : 'Suspendre'}</button>
             <button class="btn sm danger" data-del-user="${u.id}" data-name="${esc(u.display_name)}">Supprimer</button>
           </div>` : '<span class="small muted">c’est toi</span>'}
@@ -384,7 +400,7 @@ async function viewAdmin(r) {
   });
   let tmo;
   $('#user-search').oninput = e => { clearTimeout(tmo); tmo = setTimeout(() => { location.hash = `#/admin?f=${fil}&s=${encodeURIComponent(e.target.value)}`; }, 400); };
-  $('#inv-form').onsubmit = async e => { e.preventDefault(); const { code } = await api('POST', '/api/admin/invites', { uses: +e.target.uses.value }); toast(`Code ${code} créé`); reload(); };
+  $('#inv-form').onsubmit = async e => { e.preventDefault(); const { code } = await api('POST', '/api/admin/invites', { uses: +e.target.uses.value, role: e.target.role.value }); toast(`Code ${code} créé`); reload(); };
   $('#ch-form').onsubmit = async e => {
     e.preventDefault();
     try { await api('POST', '/api/channels', Object.fromEntries(new FormData(e.target))); state.channels = await api('GET', '/api/channels'); renderSidebar(); reload(); }
