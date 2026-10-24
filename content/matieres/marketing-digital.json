@@ -1,0 +1,349 @@
+{
+  "nom": "Marketing, relation client à distance & digital",
+  "icone": "📱",
+  "groupe": "Commerce",
+  "publics": [
+    "d:commerce",
+    "bp-mcv",
+    "bts-assurance",
+    "bts-com",
+    "bts-ndrc",
+    "tp-acom",
+    "tp-ntc"
+  ],
+  "ordre": 12,
+  "description": "Marketing mix, segmentation, parcours client omnicanal, CRM, e-commerce, réseaux sociaux, indicateurs digitaux, prospection et RGPD, animation de réseau.",
+  "sources": [
+    {
+      "titre": "CNIL — prospection commerciale et RGPD",
+      "url": "https://www.cnil.fr"
+    },
+    {
+      "titre": "Code de la consommation (Légifrance) — vente à distance",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006069565/"
+    },
+    {
+      "titre": "Bloctel — liste d'opposition au démarchage téléphonique",
+      "url": "https://www.bloctel.gouv.fr"
+    },
+    {
+      "titre": "Référentiel du BTS NDRC (PDF du CFA)",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-NDRC.pdf"
+    },
+    {
+      "titre": "CNIL — prospection commerciale par courrier électronique",
+      "url": "https://www.cnil.fr/fr/la-prospection-commerciale-par-courrier-electronique"
+    },
+    {
+      "titre": "Blog du Modérateur — actualité du digital",
+      "url": "https://www.blogdumoderateur.com"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "Les bases du marketing",
+      "contenu": "## La démarche\n1. **Segmenter** : découper le marché en groupes homogènes (âge, lieu, revenus, habitudes, besoins).\n2. **Cibler** : choisir le ou les segments visés.\n3. **Se positionner** : la place qu'on veut occuper dans l'esprit du client par rapport aux concurrents.\n\n## Le persona\nPortrait fictif d'un client type (prénom, âge, métier, besoins, freins, canaux utilisés) pour adapter le message.\n\n## Le marketing mix (4P)\n- **Produit** : gamme, qualité, marque, services associés.\n- **Prix** : psychologique, d'appel, d'écrémage (cher au lancement) ou de pénétration (bas).\n- **Place** (distribution) : magasin, e-commerce, réseau de distributeurs.\n- **Promotion** (communication) : publicité, réseaux sociaux, promotions.\n\n## Fidéliser coûte moins cher\nAcquérir un nouveau client coûte souvent **bien plus cher** que garder un client existant : d'où la **gestion de la relation client** (GRC / CRM)."
+    },
+    {
+      "titre": "Le parcours client omnicanal et le CRM",
+      "contenu": "## Omnicanal\nLe client passe d'un canal à l'autre : il voit un produit sur Instagram, compare sur le site, réserve en ligne, retire en magasin (**click & collect**), contacte le SAV par chat. Les canaux doivent être **cohérents** et **partager l'information**.\n\n## Le CRM (logiciel de gestion de la relation client)\nFiche client unique : coordonnées, historique d'achats, contacts, réclamations, préférences. Il sert à :\n- **segmenter** et personnaliser (mail d'anniversaire, offre ciblée) ;\n- suivre les **opportunités** de vente (pipeline) ;\n- mesurer la **valeur client**.\n\n## La relation client à distance\nTéléphone (appels entrants / sortants), mail, chat, réseaux sociaux, visio. Bonnes pratiques : **script** souple, reformulation, traitement en un seul contact, délais de réponse courts, ton adapté au canal.\n\n## Mesurer la satisfaction\n**NPS** (« recommanderiez-vous… ? » de 0 à 10 : % de promoteurs 9-10 − % de détracteurs 0-6), taux de réclamations, avis clients."
+    },
+    {
+      "titre": "E-commerce, réseaux sociaux et indicateurs",
+      "contenu": "## Être visible\n- **SEO** (référencement naturel) : contenu utile, mots-clés, site rapide → gratuit mais lent.\n- **SEA** (liens sponsorisés) : on paie pour apparaître → rapide mais payant.\n- **Réseaux sociaux** : ligne éditoriale, calendrier de publication, interaction avec la communauté (*community management*).\n\n## Les indicateurs digitaux\n- **CTR** (taux de clic) = clics ÷ impressions × 100.\n- **Taux de conversion** = commandes ÷ visites × 100.\n- **Taux de rebond** : visiteurs qui quittent après une seule page.\n- **CPC** (coût par clic), **CPM** (coût pour 1 000 impressions).\n- **Panier moyen**, **taux d'abandon de panier**.\n\n## Le droit de la vente à distance\n- Droit de **rétractation de 14 jours** pour le consommateur (avec des exceptions).\n- Informations précontractuelles obligatoires (prix TTC, frais de livraison, délais).\n- **Garantie légale de conformité** de 2 ans sur les biens."
+    },
+    {
+      "titre": "Prospecter dans les règles et animer un réseau",
+      "contenu": "## Prospection et RGPD (règles CNIL)\n- **Mail / SMS à un particulier** : il faut son **accord préalable** (*opt-in*), sauf s'il est déjà client pour des produits similaires.\n- **Mail à un professionnel** : possible sans accord préalable si le message concerne **sa profession**, avec un moyen simple de **se désinscrire**.\n- **Téléphone** : vérifier que le numéro n'est pas inscrit sur **Bloctel**.\n- Toujours : informer, permettre l'opposition, ne garder les données que le temps nécessaire.\n\n## Animer un réseau de distribution\n- **Franchise** : le franchiseur apporte marque et savoir-faire, le franchisé paie un droit d'entrée et des redevances.\n- **Concession**, **commerce associé** (coopératives), réseau de **partenaires**.\n- Missions : former, informer, motiver (challenges), suivre les résultats des points de vente, organiser des **événements** (salons, animations).\n\n## Le plan d'action commerciale (PAC)\nObjectifs SMART, cibles, actions (prospection, salon, mailing…), planning, budget, indicateurs de suivi."
+    },
+    {
+      "titre": "La relation client à distance",
+      "contenu": "## Au téléphone\n- Se présenter, annoncer l'objet, **sourire** (ça s'entend).\n- Appel **entrant** (le client appelle : SAV, commande) / **sortant** (prospection, relance).\n- Utiliser un **script** ou un guide d'entretien, sans le réciter.\n\n## Indicateurs d'un centre de contacts\n- **Taux de décroché**, durée moyenne de traitement (**DMT**), **taux de résolution au premier contact**.\n- **Satisfaction** : CSAT (note), **NPS** (« recommanderiez-vous… » de 0 à 10 ; promoteurs 9-10 − détracteurs 0-6).\n\n## Les réclamations\nÉcouter, s'excuser, reformuler, proposer une solution, **tenir le délai annoncé**, tracer dans le CRM."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Les 4P du marketing mix :",
+      "choix": [
+        "Prix, Produit, Place (distribution), Promotion (communication)",
+        "Plan, Public, Pub, Prix",
+        "Prospect, Parcours, Panier, Profit",
+        "Personne, Process, Preuve, Prix"
+      ],
+      "reponse": 0,
+      "explication": "Produit, prix, distribution et communication doivent être cohérents avec la cible."
+    },
+    {
+      "q": "Un prix d'écrémage, c'est :",
+      "choix": [
+        "un prix bas pour conquérir le marché",
+        "un prix élevé au lancement",
+        "un prix à 0,99 €",
+        "un prix en promotion"
+      ],
+      "reponse": 1,
+      "explication": "On vise d'abord les clients prêts à payer cher (innovation, prestige)."
+    },
+    {
+      "q": "Le CTR se calcule :",
+      "choix": [
+        "ventes ÷ visites",
+        "clics ÷ impressions × 100",
+        "coût ÷ clics",
+        "visites ÷ jours"
+      ],
+      "reponse": 1,
+      "explication": "Taux de clic : la part des personnes qui ont vu l'annonce et cliqué."
+    },
+    {
+      "q": "2 000 visites, 50 commandes : taux de conversion ?",
+      "choix": [
+        "0,25 %",
+        "2,5 %",
+        "25 %",
+        "40 %"
+      ],
+      "reponse": 1,
+      "explication": "50 ÷ 2 000 × 100 = 2,5 %."
+    },
+    {
+      "q": "Le SEA, c'est :",
+      "choix": [
+        "le référencement naturel gratuit",
+        "les liens sponsorisés payants",
+        "le service après-vente",
+        "les avis clients"
+      ],
+      "reponse": 1,
+      "explication": "SEO = naturel (gratuit, lent) ; SEA = payant (rapide)."
+    },
+    {
+      "q": "Envoyer une newsletter commerciale à un particulier qui n'est pas client :",
+      "choix": [
+        "toujours autorisé",
+        "seulement avec son accord préalable (opt-in)",
+        "interdit dans tous les cas",
+        "autorisé le week-end"
+      ],
+      "reponse": 1,
+      "explication": "Règle CNIL : consentement préalable pour la prospection par mail des particuliers."
+    },
+    {
+      "q": "Avant d'appeler un particulier pour prospecter, on vérifie :",
+      "choix": [
+        "sa date de naissance",
+        "qu'il n'est pas inscrit sur Bloctel",
+        "son compte en banque",
+        "son employeur"
+      ],
+      "reponse": 1,
+      "explication": "Bloctel est la liste d'opposition au démarchage téléphonique."
+    },
+    {
+      "q": "Délai de rétractation pour un achat en ligne (cas général) :",
+      "choix": [
+        "7 jours",
+        "14 jours",
+        "30 jours",
+        "aucun"
+      ],
+      "reponse": 1,
+      "explication": "14 jours pour le consommateur, avec quelques exceptions (biens personnalisés, denrées périssables…)."
+    },
+    {
+      "q": "Le NPS mesure :",
+      "choix": [
+        "le chiffre d'affaires",
+        "la propension des clients à recommander",
+        "le nombre de visites",
+        "le prix moyen"
+      ],
+      "reponse": 1,
+      "explication": "% de promoteurs (9-10) − % de détracteurs (0-6)."
+    },
+    {
+      "q": "Dans une franchise, le franchisé :",
+      "choix": [
+        "est salarié du franchiseur",
+        "exploite la marque et le savoir-faire contre redevances",
+        "ne paie rien",
+        "fixe seul toutes les règles"
+      ],
+      "reponse": 1,
+      "explication": "Le franchisé est un commerçant indépendant qui utilise la marque du réseau."
+    },
+    {
+      "q": "Le click & collect, c'est :",
+      "choix": [
+        "payer en magasin",
+        "commander en ligne et retirer en magasin",
+        "livrer à domicile",
+        "un code promo"
+      ],
+      "reponse": 1,
+      "explication": "Exemple typique de parcours omnicanal."
+    },
+    {
+      "q": "À quoi sert un CRM ?",
+      "choix": [
+        "Faire la paie",
+        "Centraliser les infos et l'historique des clients",
+        "Gérer les stocks",
+        "Faire la compta"
+      ],
+      "reponse": 1,
+      "explication": "Customer Relationship Management : il centralise et permet de segmenter et personnaliser."
+    },
+    {
+      "q": "Pour envoyer de la prospection par e-mail à un particulier, il faut :",
+      "choix": [
+        "Rien",
+        "Son consentement préalable",
+        "Son adresse postale",
+        "L'accord de la CNIL"
+      ],
+      "reponse": 1,
+      "explication": "RGPD et Code des postes : consentement préalable, case non pré-cochée, lien de désinscription."
+    },
+    {
+      "q": "1 000 e-mails ouverts, 80 clics. Taux de clic (sur les ouverts) ?",
+      "choix": [
+        "0,8 %",
+        "8 %",
+        "12,5 %",
+        "80 %"
+      ],
+      "reponse": 1,
+      "explication": "80 ÷ 1 000 × 100 = 8 %."
+    },
+    {
+      "q": "Le SEO, c'est :",
+      "choix": [
+        "La publicité payante",
+        "Le référencement naturel",
+        "Un réseau social",
+        "Un logiciel de caisse"
+      ],
+      "reponse": 1,
+      "explication": "SEO = naturel (contenu, mots-clés) ; SEA = annonces payantes."
+    },
+    {
+      "q": "Un appel où TU appelles le client pour le relancer est :",
+      "choix": [
+        "Entrant",
+        "Sortant",
+        "Automatique",
+        "Interne"
+      ],
+      "reponse": 1,
+      "explication": "Sortant = à l'initiative de l'entreprise (prospection, relance)."
+    },
+    {
+      "q": "Le taux d'engagement d'une publication se calcule avec :",
+      "choix": [
+        "Le prix",
+        "Les réactions, commentaires et partages rapportés à la portée",
+        "Le nombre d'abonnés seulement",
+        "Le chiffre d'affaires"
+      ],
+      "reponse": 1,
+      "explication": "Il mesure l'intérêt réel du public, pas seulement combien l'ont vue."
+    },
+    {
+      "q": "Un client mécontent laisse un avis négatif. Il faut :",
+      "choix": [
+        "Le supprimer",
+        "Répondre vite, poliment, et proposer une solution",
+        "L'ignorer",
+        "Lui répondre sèchement"
+      ],
+      "reponse": 1,
+      "explication": "Une réponse professionnelle rassure les futurs clients qui lisent l'échange."
+    },
+    {
+      "q": "5 000 visites, 100 commandes : taux de conversion du site ?",
+      "choix": [
+        "0,5 %",
+        "2 %",
+        "5 %",
+        "20 %"
+      ],
+      "reponse": 1,
+      "explication": "100 ÷ 5 000 × 100 = 2 %."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Segmentation → ciblage → positionnement",
+      "verso": "Découper le marché, choisir les cibles, se différencier dans l'esprit du client"
+    },
+    {
+      "recto": "4P",
+      "verso": "Produit, Prix, Place (distribution), Promotion (communication)"
+    },
+    {
+      "recto": "Persona",
+      "verso": "Portrait fictif d'un client type pour adapter l'offre et le message"
+    },
+    {
+      "recto": "CRM / GRC",
+      "verso": "Logiciel / démarche de gestion de la relation client"
+    },
+    {
+      "recto": "SEO / SEA",
+      "verso": "Référencement naturel / liens sponsorisés"
+    },
+    {
+      "recto": "CTR",
+      "verso": "Clics ÷ impressions × 100"
+    },
+    {
+      "recto": "Taux de conversion",
+      "verso": "Commandes ÷ visites × 100"
+    },
+    {
+      "recto": "Prospection mail B2C",
+      "verso": "Consentement préalable (opt-in) sauf client existant pour produits similaires"
+    },
+    {
+      "recto": "Bloctel",
+      "verso": "Liste d'opposition au démarchage téléphonique"
+    },
+    {
+      "recto": "NPS",
+      "verso": "% promoteurs (9-10) − % détracteurs (0-6)"
+    },
+    {
+      "recto": "Omnicanal",
+      "verso": "Le client passe d'un canal à l'autre avec une expérience cohérente"
+    },
+    {
+      "recto": "ROPO",
+      "verso": "Research online, purchase offline : se renseigner en ligne, acheter en magasin"
+    },
+    {
+      "recto": "CRM",
+      "verso": "Logiciel de gestion de la relation client (historique, segmentation)"
+    },
+    {
+      "recto": "CTA",
+      "verso": "Call to action : le bouton ou l'appel à agir d'un message"
+    },
+    {
+      "recto": "Prospection e-mail d'un particulier",
+      "verso": "Consentement préalable + lien de désinscription"
+    },
+    {
+      "recto": "Taux de conversion (site)",
+      "verso": "Commandes ÷ visites × 100"
+    },
+    {
+      "recto": "DMT",
+      "verso": "Durée moyenne de traitement d'un appel"
+    },
+    {
+      "recto": "Taux d'abandon de panier",
+      "verso": "Paniers non validés ÷ paniers créés"
+    }
+  ]
+}

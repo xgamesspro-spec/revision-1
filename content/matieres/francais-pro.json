@@ -1,0 +1,219 @@
+{
+  "nom": "Français, histoire-géo & EMC (CAP / bac pro)",
+  "icone": "📝",
+  "groupe": "Enseignement général",
+  "publics": [
+    "CAP",
+    "BACPRO",
+    "bp-agora",
+    "bp-ciel",
+    "bp-log",
+    "bp-mcv",
+    "bp-otm",
+    "bp-rpi",
+    "cap-aph",
+    "cap-epc",
+    "cap-ol",
+    "cap-si",
+    "cap-tf"
+  ],
+  "ordre": 7,
+  "description": "Méthode de l'écrit de français, argumenter, outils de la langue ; méthode de l'épreuve d'histoire-géo ; repères (dont la Guyane) et valeurs de la République.",
+  "sources": [
+    {
+      "titre": "Éduscol — programmes de français et HG-EMC de la voie pro",
+      "url": "https://eduscol.education.fr"
+    },
+    {
+      "titre": "Banque nationale de sujets d'examens (BNSEEP)",
+      "url": "https://bnseep.eduscol.education.fr"
+    },
+    {
+      "titre": "Vie-publique.fr — institutions et valeurs de la République",
+      "url": "https://www.vie-publique.fr"
+    },
+    {
+      "titre": "Légifrance — loi de 1905 et Constitution de 1958",
+      "url": "https://www.legifrance.gouv.fr"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "L'écrit de français : méthode",
+      "contenu": "## Ce qu'on te demande\nLire un ou plusieurs **textes** (extrait de roman, poème, article, image), répondre à des **questions de compréhension**, puis **écrire** : une réponse argumentée ou un texte d'invention.\n\n## Les questions de compréhension\n1. Lis la question, repère le **mot-clé** (qui ? pourquoi ? quel effet ?).\n2. Réponds par une **phrase complète**.\n3. **Justifie** avec une citation entre guillemets (et la ligne).\n4. Explique ce que montre la citation.\n\n## L'écriture argumentée\n- **Introduction** : présente le sujet et annonce ta position.\n- **2 ou 3 paragraphes** : un argument + un exemple précis (vécu, lecture, actualité, film) + une explication.\n- **Conclusion** : bilan et ouverture.\n- Utilise des **connecteurs** : d'abord, ensuite, de plus, en effet, cependant, en revanche, ainsi, donc, enfin.\n\n## Relire (10 min !)\nAccords sujet-verbe, participes passés, homophones (a/à, et/est, son/sont, ou/où, ces/ses)."
+    },
+    {
+      "titre": "Outils de la langue",
+      "contenu": "## Figures de style courantes\n- **Comparaison** : rapproche deux éléments avec un outil (comme, tel) : « fort comme un lion ».\n- **Métaphore** : comparaison sans outil : « cet homme est un lion ».\n- **Personnification** : donne des traits humains à une chose.\n- **Hyperbole** : exagération ; **litote** : dire moins pour suggérer plus (« ce n'est pas mauvais »).\n- **Anaphore** : répétition d'un mot en début de phrase ou de vers.\n\n## Énonciation\nQui parle ? À qui ? Où et quand ? Les **pronoms** (je, tu, nous) et les **temps** (présent d'énonciation, passé simple du récit) donnent la réponse.\n\n## Les registres\nComique, tragique, lyrique (sentiments personnels), pathétique (pitié), polémique (attaque), épique (exploits).\n\n## Les types de textes\nNarratif (raconter), descriptif (décrire), argumentatif (convaincre), explicatif (faire comprendre), injonctif (donner des ordres, ex. notice)."
+    },
+    {
+      "titre": "Histoire-géo-EMC : méthode et repères",
+      "contenu": "## Méthode\n- **Question de cours / problématisée** : réponds en un paragraphe organisé (idée générale, explications, exemples datés et localisés).\n- **Analyse de document** : présente-le (nature, auteur, date, sujet), **relève** les informations utiles, **explique**-les avec tes connaissances, donne sa **portée** ou ses **limites**.\n- **Croquis / carte** : titre, légende organisée, couleurs logiques.\n\n## Quelques repères de l'histoire de la Guyane et de la France\n- **1789** : Révolution française, Déclaration des droits de l'homme et du citoyen.\n- **1848** : abolition définitive de l'**esclavage** dans les colonies françaises (Victor Schœlcher).\n- **1905** : loi de **séparation des Églises et de l'État** (laïcité).\n- **1946** : la Guyane devient un **département** (loi de départementalisation, 19 mars 1946) ; les femmes votent pour la première fois en France en 1945.\n- **1958** : Constitution de la **Ve République**.\n- **1964** : décision d'installer le **Centre spatial guyanais** à Kourou.\n- **2015** : création de la **Collectivité territoriale de Guyane** (CTG), qui remplace département et région.\n\n## EMC : les valeurs\nDevise **Liberté, Égalité, Fraternité** ; **laïcité** ; droits et devoirs du citoyen ; lutte contre les discriminations ; engagement (vote, associations)."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "« Cet homme est un lion » est :",
+      "choix": [
+        "une comparaison",
+        "une métaphore",
+        "une hyperbole",
+        "une litote"
+      ],
+      "reponse": 1,
+      "explication": "Rapprochement sans outil de comparaison (comme, tel…) : métaphore."
+    },
+    {
+      "q": "« Ce n'est pas mauvais » pour dire « c'est très bon » :",
+      "choix": [
+        "une hyperbole",
+        "une litote",
+        "une anaphore",
+        "une personnification"
+      ],
+      "reponse": 1,
+      "explication": "La litote dit moins pour faire entendre plus."
+    },
+    {
+      "q": "Pour justifier une réponse de compréhension, on :",
+      "choix": [
+        "recopie tout le texte",
+        "cite un passage entre guillemets et on l'explique",
+        "donne son avis",
+        "résume l'auteur"
+      ],
+      "reponse": 1,
+      "explication": "Citation courte + explication de ce qu'elle montre."
+    },
+    {
+      "q": "Un connecteur d'opposition :",
+      "choix": [
+        "de plus",
+        "cependant",
+        "ensuite",
+        "donc"
+      ],
+      "reponse": 1,
+      "explication": "Cependant, en revanche, pourtant, néanmoins marquent l'opposition."
+    },
+    {
+      "q": "L'esclavage est définitivement aboli dans les colonies françaises en :",
+      "choix": [
+        "1789",
+        "1794",
+        "1848",
+        "1905"
+      ],
+      "reponse": 2,
+      "explication": "Décret du 27 avril 1848, porté par Victor Schœlcher (une première abolition en 1794 avait été annulée en 1802)."
+    },
+    {
+      "q": "La Guyane devient un département en :",
+      "choix": [
+        "1848",
+        "1946",
+        "1958",
+        "2015"
+      ],
+      "reponse": 1,
+      "explication": "Loi de départementalisation du 19 mars 1946."
+    },
+    {
+      "q": "La loi de séparation des Églises et de l'État date de :",
+      "choix": [
+        "1789",
+        "1882",
+        "1905",
+        "1946"
+      ],
+      "reponse": 2,
+      "explication": "Loi du 9 décembre 1905 : fondement de la laïcité."
+    },
+    {
+      "q": "La Collectivité territoriale de Guyane (CTG) existe depuis :",
+      "choix": [
+        "1946",
+        "1982",
+        "2015",
+        "2020"
+      ],
+      "reponse": 2,
+      "explication": "Elle remplace le département et la région depuis décembre 2015."
+    },
+    {
+      "q": "Le registre qui exprime des sentiments personnels :",
+      "choix": [
+        "comique",
+        "lyrique",
+        "polémique",
+        "épique"
+      ],
+      "reponse": 1,
+      "explication": "Le lyrique exprime les émotions du « je »."
+    },
+    {
+      "q": "Pour présenter un document en histoire-géo, on donne :",
+      "choix": [
+        "seulement son titre",
+        "nature, auteur, date, sujet",
+        "son prix",
+        "son nombre de lignes"
+      ],
+      "reponse": 1,
+      "explication": "Une présentation complète permet de comprendre le point de vue du document."
+    },
+    {
+      "q": "La Constitution de la Ve République date de :",
+      "choix": [
+        "1946",
+        "1958",
+        "1968",
+        "1981"
+      ],
+      "reponse": 1,
+      "explication": "4 octobre 1958."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Comparaison / métaphore",
+      "verso": "Avec outil (comme, tel) / sans outil"
+    },
+    {
+      "recto": "Hyperbole / litote",
+      "verso": "Exagération / dire moins pour suggérer plus"
+    },
+    {
+      "recto": "Anaphore",
+      "verso": "Répétition d'un mot en début de phrase ou de vers"
+    },
+    {
+      "recto": "Paragraphe argumenté",
+      "verso": "Argument + exemple précis + explication"
+    },
+    {
+      "recto": "Homophones à surveiller",
+      "verso": "a/à, et/est, son/sont, ou/où, ces/ses, on/ont"
+    },
+    {
+      "recto": "1848",
+      "verso": "Abolition définitive de l'esclavage (Victor Schœlcher)"
+    },
+    {
+      "recto": "1905",
+      "verso": "Loi de séparation des Églises et de l'État"
+    },
+    {
+      "recto": "19 mars 1946",
+      "verso": "Départementalisation de la Guyane"
+    },
+    {
+      "recto": "1958",
+      "verso": "Constitution de la Ve République"
+    },
+    {
+      "recto": "2015",
+      "verso": "Création de la Collectivité territoriale de Guyane"
+    }
+  ]
+}

@@ -23,6 +23,18 @@ function matches(u, publics) {
   const f = get(u.formation);
   return publics.some(p => p === u.filiere || (f && (p === f.id || p === `d:${f.domaine}`)));
 }
+// Épreuve la plus « lourde » de la formation de l'élève qui se prépare avec cette matière
+function epreuveFor(u, subjectId) {
+  const f = u && get(u.formation);
+  if (!f?.epreuves) return null;
+  let best = null;
+  for (const e of f.epreuves) {
+    if (!e.reviser?.includes(subjectId)) continue;
+    const c = e.coef ?? 0;
+    if (!best || c > (best.coef ?? 0)) best = { code: e.code, nom: e.nom, coef: e.coef ?? null };
+  }
+  return best;
+}
 // Plus c'est précis, plus c'est « pour toi » : formation > domaine > filière > tous
 function score(u, publics) {
   if (!u || u.role !== 'eleve' || !publics?.length) return 0;
@@ -54,7 +66,7 @@ module.exports = function setupFormations(app, { auth, admin, bad }) {
     res.json({ ok: true, formations: DATA.formations.length });
   });
 
-  return { get, valid, nom, matches, score, examens: () => DATA.examens, all: () => DATA.formations };
+  return { get, valid, nom, matches, score, epreuveFor, examens: () => DATA.examens, all: () => DATA.formations };
 };
 const light = () => DATA.formations.map(f => ({ id: f.id, nom: f.nom, filiere: f.filiere, domaine: f.domaine }));
-Object.assign(module.exports, { get, valid, nom, matches, score, light, examens: () => DATA.examens });
+Object.assign(module.exports, { get, valid, nom, matches, score, epreuveFor, light, examens: () => DATA.examens });

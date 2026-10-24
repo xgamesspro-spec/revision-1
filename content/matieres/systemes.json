@@ -2,7 +2,12 @@
   "nom": "Systèmes & services",
   "icone": "🖥️",
   "groupe": "Informatique & réseaux",
-  "publics": ["bts-sio", "bts-ciel", "bp-ciel", "tp-cda", "tp-dwwm", "d:numerique"],
+  "publics": [
+    "d:numerique",
+    "bp-ciel",
+    "bts-ciel",
+    "bts-sio"
+  ],
   "ordre": 2,
   "description": "Active Directory, DNS, DHCP, Linux, virtualisation, sauvegarde, supervision, ITIL.",
   "fiches": [
@@ -32,32 +37,194 @@
     }
   ],
   "quiz": [
-    { "q": "Dans quel ordre s'appliquent les GPO ?", "choix": ["OU, Domaine, Site, Local", "Local, Site, Domaine, OU", "Domaine, Local, OU, Site", "Site, OU, Local, Domaine"], "reponse": 1, "explication": "LSDOU : Local, Site, Domaine, OU. La dernière appliquée l'emporte." },
-    { "q": "Quel enregistrement DNS désigne le serveur mail d'un domaine ?", "choix": ["A", "CNAME", "MX", "PTR"], "reponse": 2, "explication": "MX = Mail eXchanger." },
-    { "q": "Que signifie le « R » de DORA ?", "choix": ["Reply", "Request", "Release", "Route"], "reponse": 1, "explication": "Discover, Offer, Request, Ack." },
-    { "q": "Hyper-V est un hyperviseur de type…", "choix": ["1 (bare-metal)", "2 (hébergé)", "3", "Ce n'est pas un hyperviseur"], "reponse": 0, "explication": "Hyper-V s'exécute directement sur le matériel, sous le système hôte." },
-    { "q": "chmod 750 donne au groupe :", "choix": ["rwx", "r-x", "r--", "---"], "reponse": 1, "explication": "5 = 4 + 1 = lecture + exécution." },
-    { "q": "Combien de disques minimum pour un RAID 5 ?", "choix": ["2", "3", "4", "5"], "reponse": 1, "explication": "RAID 5 = répartition avec parité distribuée, minimum 3 disques." },
-    { "q": "Le RPO correspond à…", "choix": ["La durée max d'arrêt", "La perte de données max acceptable", "Le nombre de sauvegardes", "Le délai du SLA"], "reponse": 1, "explication": "RPO = point de reprise ; RTO = temps de reprise." },
-    { "q": "Une sauvegarde différentielle contient ce qui a changé depuis…", "choix": ["La dernière sauvegarde, quelle qu'elle soit", "La dernière sauvegarde complète", "Hier", "Le dernier snapshot"], "reponse": 1, "explication": "Différentielle = depuis la dernière complète ; incrémentale = depuis la dernière sauvegarde." },
-    { "q": "En ITIL, rechercher la cause racine de pannes répétées relève de la gestion des…", "choix": ["Incidents", "Problèmes", "Changements", "Demandes"], "reponse": 1, "explication": "La gestion des problèmes cherche et supprime les causes." },
-    { "q": "Quel protocole AD utilise le port 88 ?", "choix": ["LDAP", "Kerberos", "SMB", "NTP"], "reponse": 1, "explication": "Kerberos assure l'authentification dans Active Directory." },
-    { "q": "Un serveur DHCP doit servir plusieurs VLAN. Il faut…", "choix": ["Un serveur par VLAN obligatoirement", "Un relais DHCP sur les interfaces VLAN", "Désactiver STP", "Passer en IP fixes"], "reponse": 1, "explication": "Le broadcast DHCP ne traverse pas le routeur : le relais le transmet au serveur." }
+    {
+      "q": "Dans quel ordre s'appliquent les GPO ?",
+      "choix": [
+        "OU, Domaine, Site, Local",
+        "Local, Site, Domaine, OU",
+        "Domaine, Local, OU, Site",
+        "Site, OU, Local, Domaine"
+      ],
+      "reponse": 1,
+      "explication": "LSDOU : Local, Site, Domaine, OU. La dernière appliquée l'emporte."
+    },
+    {
+      "q": "Quel enregistrement DNS désigne le serveur mail d'un domaine ?",
+      "choix": [
+        "A",
+        "CNAME",
+        "MX",
+        "PTR"
+      ],
+      "reponse": 2,
+      "explication": "MX = Mail eXchanger."
+    },
+    {
+      "q": "Que signifie le « R » de DORA ?",
+      "choix": [
+        "Reply",
+        "Request",
+        "Release",
+        "Route"
+      ],
+      "reponse": 1,
+      "explication": "Discover, Offer, Request, Ack."
+    },
+    {
+      "q": "Hyper-V est un hyperviseur de type…",
+      "choix": [
+        "1 (bare-metal)",
+        "2 (hébergé)",
+        "3",
+        "Ce n'est pas un hyperviseur"
+      ],
+      "reponse": 0,
+      "explication": "Hyper-V s'exécute directement sur le matériel, sous le système hôte."
+    },
+    {
+      "q": "chmod 750 donne au groupe :",
+      "choix": [
+        "rwx",
+        "r-x",
+        "r--",
+        "---"
+      ],
+      "reponse": 1,
+      "explication": "5 = 4 + 1 = lecture + exécution."
+    },
+    {
+      "q": "Combien de disques minimum pour un RAID 5 ?",
+      "choix": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "reponse": 1,
+      "explication": "RAID 5 = répartition avec parité distribuée, minimum 3 disques."
+    },
+    {
+      "q": "Le RPO correspond à…",
+      "choix": [
+        "La durée max d'arrêt",
+        "La perte de données max acceptable",
+        "Le nombre de sauvegardes",
+        "Le délai du SLA"
+      ],
+      "reponse": 1,
+      "explication": "RPO = point de reprise ; RTO = temps de reprise."
+    },
+    {
+      "q": "Une sauvegarde différentielle contient ce qui a changé depuis…",
+      "choix": [
+        "La dernière sauvegarde, quelle qu'elle soit",
+        "La dernière sauvegarde complète",
+        "Hier",
+        "Le dernier snapshot"
+      ],
+      "reponse": 1,
+      "explication": "Différentielle = depuis la dernière complète ; incrémentale = depuis la dernière sauvegarde."
+    },
+    {
+      "q": "En ITIL, rechercher la cause racine de pannes répétées relève de la gestion des…",
+      "choix": [
+        "Incidents",
+        "Problèmes",
+        "Changements",
+        "Demandes"
+      ],
+      "reponse": 1,
+      "explication": "La gestion des problèmes cherche et supprime les causes."
+    },
+    {
+      "q": "Quel protocole AD utilise le port 88 ?",
+      "choix": [
+        "LDAP",
+        "Kerberos",
+        "SMB",
+        "NTP"
+      ],
+      "reponse": 1,
+      "explication": "Kerberos assure l'authentification dans Active Directory."
+    },
+    {
+      "q": "Un serveur DHCP doit servir plusieurs VLAN. Il faut…",
+      "choix": [
+        "Un serveur par VLAN obligatoirement",
+        "Un relais DHCP sur les interfaces VLAN",
+        "Désactiver STP",
+        "Passer en IP fixes"
+      ],
+      "reponse": 1,
+      "explication": "Le broadcast DHCP ne traverse pas le routeur : le relais le transmet au serveur."
+    }
   ],
   "cartes": [
-    { "recto": "LSDOU", "verso": "Ordre des GPO : Local, Site, Domaine, OU" },
-    { "recto": "AGDLP", "verso": "Comptes → groupes Globaux → groupes Domaine Local → Permissions" },
-    { "recto": "Enregistrement PTR", "verso": "Résolution inverse : IP → nom" },
-    { "recto": "Enregistrement SRV", "verso": "Localise un service (ex. contrôleurs de domaine AD)" },
-    { "recto": "DORA", "verso": "Discover, Offer, Request, Ack" },
-    { "recto": "Option DHCP 3 / 6", "verso": "3 = passerelle · 6 = serveurs DNS" },
-    { "recto": "Hyperviseur type 1 vs 2", "verso": "Type 1 sur le matériel (Hyper-V, ESXi, Proxmox) · Type 2 sur un OS (VirtualBox)" },
-    { "recto": "Règle 3-2-1", "verso": "3 copies, 2 supports, 1 hors site (+1 immuable, 0 erreur)" },
-    { "recto": "RPO vs RTO", "verso": "RPO = données perdues max · RTO = durée d'arrêt max" },
-    { "recto": "PCA vs PRA", "verso": "PCA = continuer pendant · PRA = redémarrer après" },
-    { "recto": "RAID 1", "verso": "Miroir, 2 disques, tolère la perte d'un disque" },
-    { "recto": "Incident vs problème (ITIL)", "verso": "Incident = rétablir le service · Problème = trouver la cause" },
-    { "recto": "Commande pour voir les ports en écoute sous Linux", "verso": "ss -tulpn" },
-    { "recto": "Un snapshot est-il une sauvegarde ?", "verso": "Non : il dépend du disque d'origine" }
+    {
+      "recto": "LSDOU",
+      "verso": "Ordre des GPO : Local, Site, Domaine, OU"
+    },
+    {
+      "recto": "AGDLP",
+      "verso": "Comptes → groupes Globaux → groupes Domaine Local → Permissions"
+    },
+    {
+      "recto": "Enregistrement PTR",
+      "verso": "Résolution inverse : IP → nom"
+    },
+    {
+      "recto": "Enregistrement SRV",
+      "verso": "Localise un service (ex. contrôleurs de domaine AD)"
+    },
+    {
+      "recto": "DORA",
+      "verso": "Discover, Offer, Request, Ack"
+    },
+    {
+      "recto": "Option DHCP 3 / 6",
+      "verso": "3 = passerelle · 6 = serveurs DNS"
+    },
+    {
+      "recto": "Hyperviseur type 1 vs 2",
+      "verso": "Type 1 sur le matériel (Hyper-V, ESXi, Proxmox) · Type 2 sur un OS (VirtualBox)"
+    },
+    {
+      "recto": "Règle 3-2-1",
+      "verso": "3 copies, 2 supports, 1 hors site (+1 immuable, 0 erreur)"
+    },
+    {
+      "recto": "RPO vs RTO",
+      "verso": "RPO = données perdues max · RTO = durée d'arrêt max"
+    },
+    {
+      "recto": "PCA vs PRA",
+      "verso": "PCA = continuer pendant · PRA = redémarrer après"
+    },
+    {
+      "recto": "RAID 1",
+      "verso": "Miroir, 2 disques, tolère la perte d'un disque"
+    },
+    {
+      "recto": "Incident vs problème (ITIL)",
+      "verso": "Incident = rétablir le service · Problème = trouver la cause"
+    },
+    {
+      "recto": "Commande pour voir les ports en écoute sous Linux",
+      "verso": "ss -tulpn"
+    },
+    {
+      "recto": "Un snapshot est-il une sauvegarde ?",
+      "verso": "Non : il dépend du disque d'origine"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Référentiel du BTS SIO 2025 — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2025/12/Referentiel_BTS_SIO_ServicesInformatiquesOrganisations_2025_Version_2024_07_10.pdf"
+    },
+    {
+      "titre": "Documentation Microsoft Learn (Windows Server, AD)",
+      "url": "https://learn.microsoft.com/fr-fr/windows-server/"
+    }
   ]
 }

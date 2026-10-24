@@ -2,7 +2,19 @@
   "nom": "Culture générale BTS : « Le vrai du faux »",
   "icone": "📚",
   "groupe": "Enseignement général",
-  "publics": ["BTS"],
+  "publics": [
+    "BTS",
+    "bts-assurance",
+    "bts-banque",
+    "bts-cg",
+    "bts-com",
+    "bts-erpc",
+    "bts-gpme",
+    "bts-gtla",
+    "bts-ndrc",
+    "bts-sam",
+    "bts-sio"
+  ],
   "ordre": 6,
   "description": "Thème 2027, notions clés, méthode de l'épreuve, arguments et exemples.",
   "fiches": [
@@ -20,18 +32,147 @@
     }
   ],
   "quiz": [
-    { "q": "Quelle différence entre désinformation et mésinformation ?", "choix": ["Aucune", "Désinformation = volontaire, mésinformation = involontaire", "L'inverse", "La mésinformation ne concerne qu'Internet"], "reponse": 1, "explication": "La désinformation est une tromperie intentionnelle ; la mésinformation est une erreur partagée de bonne foi." },
-    { "q": "Pourquoi une fiction n'est-elle pas un mensonge ?", "choix": ["Parce qu'elle est écrite", "Parce que le lecteur sait qu'elle est inventée", "Parce qu'elle est toujours vraie", "Parce qu'elle est courte"], "reponse": 1, "explication": "Le pacte de lecture : personne n'est trompé." },
-    { "q": "Le biais de confirmation consiste à…", "choix": ["Vérifier chaque source", "Privilégier les infos qui confirment ce qu'on pense déjà", "Douter de tout", "Confirmer un rendez-vous"], "reponse": 1, "explication": "On retient surtout ce qui va dans le sens de nos croyances." },
-    { "q": "Dans un paragraphe d'essai, on trouve…", "choix": ["Un résumé du corpus", "Argument + explication + exemple", "Uniquement des citations", "La conclusion"], "reponse": 1, "explication": "C'est la structure de base d'un paragraphe argumenté." },
-    { "q": "Un plan « oui / mais / dépassement » est un plan…", "choix": ["Thématique", "Chronologique", "Dialectique", "Analytique"], "reponse": 2, "explication": "Thèse, antithèse, synthèse." }
+    {
+      "q": "Quelle différence entre désinformation et mésinformation ?",
+      "choix": [
+        "Aucune",
+        "Désinformation = volontaire, mésinformation = involontaire",
+        "L'inverse",
+        "La mésinformation ne concerne qu'Internet"
+      ],
+      "reponse": 1,
+      "explication": "La désinformation est une tromperie intentionnelle ; la mésinformation est une erreur partagée de bonne foi."
+    },
+    {
+      "q": "Pourquoi une fiction n'est-elle pas un mensonge ?",
+      "choix": [
+        "Parce qu'elle est écrite",
+        "Parce que le lecteur sait qu'elle est inventée",
+        "Parce qu'elle est toujours vraie",
+        "Parce qu'elle est courte"
+      ],
+      "reponse": 1,
+      "explication": "Le pacte de lecture : personne n'est trompé."
+    },
+    {
+      "q": "Le biais de confirmation consiste à…",
+      "choix": [
+        "Vérifier chaque source",
+        "Privilégier les infos qui confirment ce qu'on pense déjà",
+        "Douter de tout",
+        "Confirmer un rendez-vous"
+      ],
+      "reponse": 1,
+      "explication": "On retient surtout ce qui va dans le sens de nos croyances."
+    },
+    {
+      "q": "Dans un paragraphe d'essai, on trouve…",
+      "choix": [
+        "Un résumé du corpus",
+        "Argument + explication + exemple",
+        "Uniquement des citations",
+        "La conclusion"
+      ],
+      "reponse": 1,
+      "explication": "C'est la structure de base d'un paragraphe argumenté."
+    },
+    {
+      "q": "Un plan « oui / mais / dépassement » est un plan…",
+      "choix": [
+        "Thématique",
+        "Chronologique",
+        "Dialectique",
+        "Analytique"
+      ],
+      "reponse": 2,
+      "explication": "Thèse, antithèse, synthèse."
+    },
+    {
+      "q": "L'épreuve de culture générale du BTS comprend :",
+      "choix": [
+        "Une dissertation seule",
+        "Une synthèse de documents et une écriture personnelle",
+        "Un QCM",
+        "Un oral"
+      ],
+      "reponse": 1,
+      "explication": "Synthèse objective d'un corpus (≈ 40 pts) puis écriture personnelle argumentée (≈ 20 pts), en 4 h."
+    },
+    {
+      "q": "Dans la synthèse, ton avis personnel :",
+      "choix": [
+        "Est attendu partout",
+        "Est interdit",
+        "Va en introduction",
+        "Remplace les documents"
+      ],
+      "reponse": 1,
+      "explication": "La synthèse confronte les documents de façon objective ; ton avis va dans l'écriture personnelle."
+    },
+    {
+      "q": "Une synthèse se construit :",
+      "choix": [
+        "Document par document",
+        "Par idées, en croisant les documents",
+        "Par ordre chronologique d'auteurs",
+        "Au hasard"
+      ],
+      "reponse": 1,
+      "explication": "Un plan thématique qui confronte les documents : jamais un résumé de chaque texte l'un après l'autre."
+    },
+    {
+      "q": "Une « infox » est :",
+      "choix": [
+        "Une information vérifiée",
+        "Une fausse information diffusée pour tromper",
+        "Une publicité",
+        "Un article scientifique"
+      ],
+      "reponse": 1,
+      "explication": "Le mot officiel pour « fake news ». Désinformation = volontaire ; mésinformation = partagée de bonne foi."
+    },
+    {
+      "q": "Pour vérifier une info, le premier réflexe est :",
+      "choix": [
+        "La partager vite",
+        "Chercher la source d'origine et la croiser",
+        "Lire seulement le titre",
+        "Regarder le nombre de likes"
+      ],
+      "reponse": 1,
+      "explication": "Qui parle ? D'où vient l'info ? D'autres sources fiables disent-elles la même chose ?"
+    }
   ],
   "cartes": [
-    { "recto": "Thème CGE session 2027", "verso": "« Le vrai du faux »" },
-    { "recto": "Vraisemblance", "verso": "Ce qui a l'apparence du vrai (mais peut être faux)" },
-    { "recto": "Post-vérité", "verso": "Situation où l'émotion et les croyances pèsent plus que les faits" },
-    { "recto": "Pacte de lecture", "verso": "Accord tacite : le lecteur sait que la fiction est inventée" },
-    { "recto": "Structure d'une intro", "verso": "Accroche, reformulation, problématique, annonce du plan" },
-    { "recto": "Recoupement", "verso": "Vérifier une info en la comparant à plusieurs sources indépendantes" }
+    {
+      "recto": "Thème CGE session 2027",
+      "verso": "« Le vrai du faux »"
+    },
+    {
+      "recto": "Vraisemblance",
+      "verso": "Ce qui a l'apparence du vrai (mais peut être faux)"
+    },
+    {
+      "recto": "Post-vérité",
+      "verso": "Situation où l'émotion et les croyances pèsent plus que les faits"
+    },
+    {
+      "recto": "Pacte de lecture",
+      "verso": "Accord tacite : le lecteur sait que la fiction est inventée"
+    },
+    {
+      "recto": "Structure d'une intro",
+      "verso": "Accroche, reformulation, problématique, annonce du plan"
+    },
+    {
+      "recto": "Recoupement",
+      "verso": "Vérifier une info en la comparant à plusieurs sources indépendantes"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Référentiel du BTS SIO (épreuve E1) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2025/12/Referentiel_BTS_SIO_ServicesInformatiquesOrganisations_2025_Version_2024_07_10.pdf"
+    }
   ]
 }

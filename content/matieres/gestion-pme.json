@@ -1,0 +1,331 @@
+{
+  "nom": "Gestion de la PME : clients, fournisseurs, trésorerie",
+  "icone": "🏢",
+  "groupe": "Gestion, administration & RH",
+  "ordre": 13,
+  "description": "BTS GPME E4 et E6 (coef 6 chacune), bac pro AGOrA E2/E31 (coef 4), TP assistants : devis, factures, relances, achats, stocks, trésorerie, tableaux de bord.",
+  "fiches": [
+    {
+      "titre": "Du devis au paiement : la chaîne des ventes",
+      "contenu": "1. **Demande** du client → **devis** (prix, délai, validité, conditions). Signé, il vaut **engagement**.\n2. **Bon de commande** / confirmation.\n3. **Bon de livraison** : signé à la réception, il prouve la livraison.\n4. **Facture** : document comptable et juridique.\n5. **Encaissement** et **relances** si retard.\n\n## Mentions obligatoires d'une facture (principales)\nDate, numéro unique et chronologique, identité et SIREN du vendeur et de l'acheteur, désignation et quantité, prix unitaire HT, taux et montant de TVA (si applicable), total HT et TTC, date d'échéance, **pénalités de retard** et **indemnité forfaitaire de 40 €** pour frais de recouvrement (entre pros).\n\n## Facture électronique\nToutes les entreprises doivent pouvoir **recevoir** des factures électroniques depuis le **1er septembre 2026**, et toutes devront en **émettre** au plus tard le **1er septembre 2027** (PME et micro-entreprises)."
+    },
+    {
+      "titre": "Délais de paiement et relances",
+      "contenu": "## Les règles entre professionnels\n- Délai maximum : **60 jours** à compter de la date de facture (ou 45 jours fin de mois si c'est prévu au contrat).\n- Sans précision : **30 jours** après réception de la marchandise.\n- En cas de retard : **pénalités** + **40 €** d'indemnité forfaitaire.\n\n## Relancer un client\n1. Relance **amiable** (mail ou téléphone, courtoise) quelques jours après l'échéance.\n2. 2e relance plus ferme.\n3. **Mise en demeure** par lettre recommandée.\n4. **Injonction de payer** devant le tribunal.\n\n👉 Suivre les **créances clients** (qui doit combien, depuis quand) dans un tableau : c'est de la gestion du **risque client**."
+    },
+    {
+      "titre": "Achats, fournisseurs et stocks",
+      "contenu": "## Choisir un fournisseur\nComparer avec une **grille de critères pondérés** : prix, qualité, délai, fiabilité, conditions de paiement, proximité (important en Guyane : délais de fret maritime et **octroi de mer** à l'import).\n\n## Le circuit d'achat\nBesoin → demande de prix → comparaison → **bon de commande** → réception (contrôle quantité/qualité) → facture → rapprochement commande / livraison / facture → paiement.\n\n## Les stocks\n- **Stock de sécurité** : pour éviter la rupture.\n- **Stock d'alerte** = stock de sécurité + consommation pendant le délai de livraison.\n- **Coût de stockage** : place, assurance, argent immobilisé, obsolescence.\n- Valorisation : **CMUP** (coût moyen unitaire pondéré) ou **PEPS/FIFO** (premier entré, premier sorti)."
+    },
+    {
+      "titre": "Trésorerie et tableaux de bord",
+      "contenu": "## Le budget de trésorerie\nUn tableau mois par mois : **encaissements** prévus − **décaissements** prévus = solde du mois ; on cumule pour voir la **trésorerie fin de mois**. Si elle devient négative, il faut anticiper : relancer les clients, négocier avec les fournisseurs, découvert ou prêt.\n\n## Un tableau de bord\nQuelques **indicateurs** (KPI) suivis régulièrement, comparés à un **objectif**, avec des **alertes** (couleurs) :\n- chiffre d'affaires, marge ;\n- délai moyen de paiement des clients ;\n- taux de retard de livraison ;\n- nombre de réclamations.\n\n## Le seuil de rentabilité\nChiffre d'affaires à partir duquel l'entreprise **ne perd plus d'argent** :\n**SR = charges fixes ÷ taux de marge sur coût variable**."
+    },
+    {
+      "titre": "Risques de la PME et organisation",
+      "contenu": "## Identifier les risques (BTS GPME E51)\n- **Risque client** (impayés), **fournisseur** (rupture, dépendance), **financier** (trésorerie), **informatique** (panne, piratage, perte de données → sauvegardes), **juridique** (non-conformité, RGPD), **humain** (absence d'une personne clé).\n- Pour chacun : **probabilité × gravité**, puis mesures de **prévention**.\n\n## Organiser l'information\n- Classement et **archivage** (factures : 10 ans en comptabilité).\n- Outils collaboratifs : agenda partagé, drive, messagerie, **ERP** (progiciel de gestion intégré).\n- **Procédures** écrites pour les tâches répétitives."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Un devis signé par le client :",
+      "choix": [
+        "N'a aucune valeur",
+        "Vaut engagement (contrat)",
+        "Remplace la facture",
+        "Est une publicité"
+      ],
+      "reponse": 1,
+      "explication": "Accepté et signé, le devis devient un contrat : le prix et les conditions s'imposent aux deux parties."
+    },
+    {
+      "q": "Le document qui prouve la livraison :",
+      "choix": [
+        "Le devis",
+        "Le bon de livraison signé",
+        "La facture",
+        "Le bon de commande"
+      ],
+      "reponse": 1,
+      "explication": "Signé par le client à la réception, il prouve que la marchandise a été livrée."
+    },
+    {
+      "q": "Entre pros, l'indemnité forfaitaire pour frais de recouvrement est de :",
+      "choix": [
+        "10 €",
+        "40 €",
+        "100 €",
+        "1 % de la facture"
+      ],
+      "reponse": 1,
+      "explication": "40 €, en plus des pénalités de retard ; elle doit figurer sur la facture."
+    },
+    {
+      "q": "Délai de paiement maximum entre professionnels (cas général) :",
+      "choix": [
+        "15 jours",
+        "30 jours",
+        "60 jours à compter de la facture",
+        "1 an"
+      ],
+      "reponse": 2,
+      "explication": "60 jours date de facture (ou 45 jours fin de mois si prévu). Sans accord : 30 jours."
+    },
+    {
+      "q": "Depuis le 1er septembre 2026, toutes les entreprises doivent :",
+      "choix": [
+        "Émettre des factures papier",
+        "Pouvoir recevoir des factures électroniques",
+        "Supprimer la TVA",
+        "Fermer leur compte bancaire"
+      ],
+      "reponse": 1,
+      "explication": "Réception obligatoire pour toutes depuis le 1er septembre 2026 ; émission pour les PME au plus tard le 1er septembre 2027."
+    },
+    {
+      "q": "Avant d'aller au tribunal pour un impayé, on envoie :",
+      "choix": [
+        "Un SMS",
+        "Une mise en demeure en recommandé",
+        "Un devis",
+        "Une facture d'avoir"
+      ],
+      "reponse": 1,
+      "explication": "La mise en demeure est l'étape formelle avant l'injonction de payer."
+    },
+    {
+      "q": "Stock d'alerte = ?",
+      "choix": [
+        "Stock maximum",
+        "Stock de sécurité + consommation pendant le délai de livraison",
+        "Stock moyen",
+        "Stock final"
+      ],
+      "reponse": 1,
+      "explication": "Quand on l'atteint, on recommande pour être livré avant d'entamer le stock de sécurité."
+    },
+    {
+      "q": "Un budget de trésorerie compare :",
+      "choix": [
+        "Charges et produits",
+        "Encaissements et décaissements",
+        "Actif et passif",
+        "Ventes et achats HT"
+      ],
+      "reponse": 1,
+      "explication": "Il suit les mouvements d'argent réels (TTC, à la date de paiement)."
+    },
+    {
+      "q": "Charges fixes 30 000 €, taux de marge sur coût variable 40 %. Seuil de rentabilité ?",
+      "choix": [
+        "12 000 €",
+        "42 000 €",
+        "75 000 €",
+        "120 000 €"
+      ],
+      "reponse": 2,
+      "explication": "SR = 30 000 ÷ 0,40 = 75 000 € de chiffre d'affaires."
+    },
+    {
+      "q": "Combien de temps garder les factures en comptabilité ?",
+      "choix": [
+        "1 an",
+        "3 ans",
+        "6 ans",
+        "10 ans"
+      ],
+      "reponse": 3,
+      "explication": "Les pièces comptables se conservent 10 ans (Code de commerce)."
+    },
+    {
+      "q": "Une grille de choix fournisseur avec des critères pondérés sert à :",
+      "choix": [
+        "Payer moins d'impôts",
+        "Comparer objectivement plusieurs fournisseurs",
+        "Faire la paie",
+        "Calculer la TVA"
+      ],
+      "reponse": 1,
+      "explication": "On note chaque fournisseur sur chaque critère, multiplié par son poids, et on compare les totaux."
+    },
+    {
+      "q": "Dans un logigramme, le losange représente :",
+      "choix": [
+        "une tâche",
+        "une décision (oui/non)",
+        "un document",
+        "le début"
+      ],
+      "reponse": 1,
+      "explication": "Le losange pose une question ; selon la réponse, on suit une flèche ou l'autre."
+    },
+    {
+      "q": "Les 5M du diagramme d'Ishikawa :",
+      "choix": [
+        "Marketing, Mix, Marché, Marge, Mode",
+        "Main-d'œuvre, Matériel, Méthodes, Milieu, Matières",
+        "Mois, Minutes, Mètres, Mesures, Masses",
+        "Management, Moyens, Motivation, Mission, Mérite"
+      ],
+      "reponse": 1,
+      "explication": "On classe les causes possibles d'un problème en 5 familles."
+    },
+    {
+      "q": "Le principe de Pareto dit que :",
+      "choix": [
+        "tout se vaut",
+        "environ 20 % des causes produisent 80 % des effets",
+        "il faut 80 % de marge",
+        "on traite les problèmes au hasard"
+      ],
+      "reponse": 1,
+      "explication": "On s'attaque d'abord aux quelques causes qui expliquent la majorité des problèmes."
+    },
+    {
+      "q": "Ordre normal des documents commerciaux :",
+      "choix": [
+        "Facture → devis → livraison",
+        "Devis → bon de commande → bon de livraison → facture",
+        "Avoir → facture → devis",
+        "Bon de livraison → devis → commande"
+      ],
+      "reponse": 1,
+      "explication": "On propose (devis), le client commande, on livre, on facture."
+    },
+    {
+      "q": "Entre professionnels, l'indemnité forfaitaire pour frais de recouvrement est de :",
+      "choix": [
+        "10 €",
+        "40 €",
+        "100 €",
+        "15 % de la facture"
+      ],
+      "reponse": 1,
+      "explication": "40 € par facture payée en retard, en plus des pénalités de retard."
+    },
+    {
+      "q": "Durée de conservation des factures et documents comptables :",
+      "choix": [
+        "1 an",
+        "3 ans",
+        "5 ans",
+        "10 ans"
+      ],
+      "reponse": 3,
+      "explication": "10 ans (Code de commerce)."
+    },
+    {
+      "q": "Une fuite de données personnelles à risque se déclare à la CNIL :",
+      "choix": [
+        "sous 24 h",
+        "sous 72 h",
+        "sous 1 mois",
+        "jamais"
+      ],
+      "reponse": 1,
+      "explication": "Le RGPD impose 72 heures après en avoir pris connaissance."
+    },
+    {
+      "q": "Dans une matrice RACI, le « A » est :",
+      "choix": [
+        "l'assistant",
+        "celui qui approuve / rend des comptes",
+        "l'acheteur",
+        "l'archiviste"
+      ],
+      "reponse": 1,
+      "explication": "Réalise, Approuve, Consulté, Informé."
+    },
+    {
+      "q": "Le PDCA sert à :",
+      "choix": [
+        "calculer la TVA",
+        "améliorer en continu (Plan, Do, Check, Act)",
+        "recruter",
+        "archiver"
+      ],
+      "reponse": 1,
+      "explication": "La roue de Deming : planifier, faire, vérifier, ajuster, et recommencer."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Chaîne des ventes",
+      "verso": "Devis → commande → livraison → facture → encaissement"
+    },
+    {
+      "recto": "Indemnité forfaitaire de recouvrement",
+      "verso": "40 € (entre professionnels)"
+    },
+    {
+      "recto": "Délai de paiement max entre pros",
+      "verso": "60 jours date de facture (ou 45 jours fin de mois)"
+    },
+    {
+      "recto": "Facture électronique : réception",
+      "verso": "Obligatoire pour toutes les entreprises depuis le 1er septembre 2026"
+    },
+    {
+      "recto": "Facture électronique : émission PME",
+      "verso": "Au plus tard le 1er septembre 2027"
+    },
+    {
+      "recto": "Étapes d'une relance",
+      "verso": "Amiable → 2e relance → mise en demeure → injonction de payer"
+    },
+    {
+      "recto": "Stock d'alerte",
+      "verso": "Stock de sécurité + consommation pendant le délai de livraison"
+    },
+    {
+      "recto": "CMUP",
+      "verso": "Coût moyen unitaire pondéré (valorisation des stocks)"
+    },
+    {
+      "recto": "Budget de trésorerie",
+      "verso": "Encaissements − décaissements, mois par mois"
+    },
+    {
+      "recto": "Seuil de rentabilité",
+      "verso": "Charges fixes ÷ taux de marge sur coût variable"
+    },
+    {
+      "recto": "Conservation des factures",
+      "verso": "10 ans"
+    },
+    {
+      "recto": "ERP",
+      "verso": "Progiciel de gestion intégré (ventes, achats, stocks, compta…)"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Épreuves et coefficients du BTS GPME (session 2026) — ADF Formation",
+      "url": "https://adfformation.fr/wp-content/uploads/2024/01/region_BTS_GPME_2026.pdf"
+    },
+    {
+      "titre": "Référentiel du BTS Gestion de la PME — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/10/REFERENTIEL_GESTION_DE_LA_PME.pdf"
+    },
+    {
+      "titre": "Référentiel du bac pro AGOrA (règlement d'examen) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2025/03/Referentiel-BCP-AGOrA-2025-03-18.pdf"
+    },
+    {
+      "titre": "Calendrier de la facture électronique 2026-2027 — Cegid",
+      "url": "https://www.cegid.com/fr/facture-electronique-obligatoire/calendrier-facture-electronique/"
+    },
+    {
+      "titre": "Délais de paiement entre entreprises — Service Public Entreprendre",
+      "url": "https://entreprendre.service-public.gouv.fr/vosdroits/F23211"
+    }
+  ],
+  "publics": [
+    "bp-agora",
+    "bts-gpme",
+    "tp-ad",
+    "tp-eaa",
+    "tp-sa",
+    "tp-sc"
+  ]
+}

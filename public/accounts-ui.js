@@ -308,7 +308,7 @@ async function viewAccount(r) {
   $('#fx-motion').onchange = e => { fxPrefs.motion = e.target.checked; saveFxPrefs(); if (fxPrefs.motion) confetti(50); };
   const pf = $('#profile-form');
   bindFiliere(pf, user);
-  const done = d => { state.user = d.user; renderSidebar(); viewAccount({}); toast('Enregistré'); };
+  const done = d => { state.user = d.user; state.subjectsCache = null; renderSidebar(); viewAccount({}); toast('Enregistré'); };
   pf.onsubmit = async e => { e.preventDefault(); try { done(await api('POST', '/api/me/profile', Object.fromEntries(new FormData(pf)))); } catch (er) { toast(er.message); } };
   $('#name-form').onsubmit = async e => { e.preventDefault(); try { done(await api('POST', '/api/me/profile', Object.fromEntries(new FormData(e.target)))); } catch (er) { toast(er.message); } };
   $('#pw-form').onsubmit = async e => {

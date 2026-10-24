@@ -1,0 +1,198 @@
+{
+  "nom": "Stratégie & plan de communication",
+  "icone": "📣",
+  "groupe": "Communication & graphisme",
+  "publics": [
+    "d:communication",
+    "bts-com",
+    "bts-erpc"
+  ],
+  "ordre": 15,
+  "description": "Diagnostic, objectifs, cibles, copy strategy, médias et hors-médias, POEM, budget et rétroplanning, communication de crise, droit de la com.",
+  "sources": [
+    {
+      "titre": "ARPP — règles de déontologie publicitaire",
+      "url": "https://www.arpp.org"
+    },
+    {
+      "titre": "CNIL — droit à l'image et données personnelles",
+      "url": "https://www.cnil.fr"
+    },
+    {
+      "titre": "Code de la consommation (Légifrance) — pratiques commerciales trompeuses",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006069565/"
+    },
+    {
+      "titre": "Fiche RNCP du BTS Communication (France Compétences)",
+      "url": "https://www.francecompetences.fr/recherche/rncp/37198/"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "Construire une stratégie de communication",
+      "contenu": "## 1. Le diagnostic\nContexte de l'annonceur, image actuelle, concurrence, **SWOT**, cibles existantes.\n\n## 2. Les objectifs\n- **Cognitifs** : faire connaître (notoriété).\n- **Affectifs** : faire aimer (image).\n- **Conatifs** : faire agir (acheter, s'inscrire, venir).\n\n## 3. Les cibles\n**Cœur de cible**, cible principale, cibles secondaires, **prescripteurs** et **leaders d'opinion** (influenceurs, journalistes).\n\n## 4. Le message : la copy strategy\n- **Promesse** (le bénéfice principal pour la cible),\n- **Preuve** (ce qui rend la promesse crédible),\n- **Bénéfice consommateur**,\n- **Ton** (humour, sérieux, émotion…),\n- **Contraintes** (charte graphique, mentions légales).\n\n## 5. Les moyens, le budget, le planning, l'évaluation\nVoir fiche suivante."
+    },
+    {
+      "titre": "Médias, hors-médias et POEM",
+      "contenu": "## Les grands médias\nTélévision, radio, presse, **affichage**, cinéma, **internet**. On choisit selon la **cible**, la **couverture** et le **budget** (coût pour 1 000 contacts).\n\n## Le hors-médias\nÉvénementiel, relations presse, **relations publiques**, promotion des ventes, marketing direct, salons, **sponsoring** et **mécénat**, PLV (publicité sur le lieu de vente).\n\n## Le modèle POEM\n- **Paid** media : espaces achetés (pub, posts sponsorisés).\n- **Owned** media : ce que possède l'annonceur (site, comptes sociaux, newsletter).\n- **Earned** media : ce qu'on gagne gratuitement (partages, articles de presse, avis, bouche-à-oreille).\n\n## Le plan de communication\nTableau qui croise **objectifs × cibles × messages × moyens × dates × budget × indicateurs**. Il est accompagné d'un **rétroplanning** (on part de la date de l'événement et on remonte).\n\n## Évaluer\nIndicateurs : portée, impressions, engagement (likes, partages, commentaires), retombées presse, trafic, inscriptions, ventes, **notoriété** avant/après."
+    },
+    {
+      "titre": "Communication de crise, interne et responsable",
+      "contenu": "## La communication de crise\n1. **Réagir vite** (les réseaux sociaux n'attendent pas).\n2. Désigner **un porte-parole** unique.\n3. Dire ce qu'on sait, **reconnaître** les faits, montrer les **actions** engagées, ne pas mentir.\n4. Suivre l'évolution (veille), informer régulièrement.\n\n## La communication interne\nInformer et motiver les salariés : intranet, réunions, journal interne, messagerie, événements. Un salarié bien informé devient **ambassadeur** de l'entreprise.\n\n## Communication responsable\n- Pas de **greenwashing** : une allégation environnementale doit être **précise** et **prouvée**.\n- Respect des recommandations de l'**ARPP** (image de la personne, sécurité, discriminations…).\n- Accessibilité des supports (contraste, sous-titres).\n\n## Le droit de la communication\n- **Droit à l'image** : autorisation écrite de la personne photographiée/filmée (des deux parents pour un mineur).\n- **Droit d'auteur** : une photo, une musique, une police de caractères ne s'utilisent pas sans licence.\n- **Pratiques commerciales trompeuses** interdites (Code de la consommation)."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Faire connaître une marque, c'est un objectif :",
+      "choix": [
+        "cognitif",
+        "affectif",
+        "conatif",
+        "budgétaire"
+      ],
+      "reponse": 0,
+      "explication": "Cognitif = connaître ; affectif = aimer ; conatif = agir."
+    },
+    {
+      "q": "Dans une copy strategy, la preuve sert à :",
+      "choix": [
+        "choisir le média",
+        "rendre la promesse crédible",
+        "fixer le budget",
+        "définir la cible"
+      ],
+      "reponse": 1,
+      "explication": "Exemple : « testé dermatologiquement », un chiffre, un témoignage, un label."
+    },
+    {
+      "q": "Le « Earned media » regroupe :",
+      "choix": [
+        "les espaces publicitaires achetés",
+        "le site et les comptes de la marque",
+        "ce que la marque obtient gratuitement : partages, articles, avis",
+        "les salariés"
+      ],
+      "reponse": 2,
+      "explication": "Paid = acheté, Owned = possédé, Earned = gagné."
+    },
+    {
+      "q": "Le mécénat, c'est :",
+      "choix": [
+        "acheter un espace télé",
+        "soutenir une cause sans contrepartie commerciale directe",
+        "une promotion",
+        "un salon"
+      ],
+      "reponse": 1,
+      "explication": "Le sponsoring attend une visibilité commerciale ; le mécénat soutient une cause d'intérêt général."
+    },
+    {
+      "q": "Un rétroplanning se construit :",
+      "choix": [
+        "à partir d'aujourd'hui",
+        "en partant de la date de l'événement et en remontant",
+        "au hasard",
+        "après l'événement"
+      ],
+      "reponse": 1,
+      "explication": "On place la date finale, puis chaque tâche avec son délai, à rebours."
+    },
+    {
+      "q": "En communication de crise, la première règle est :",
+      "choix": [
+        "attendre que ça passe",
+        "réagir vite avec un porte-parole unique",
+        "supprimer les commentaires",
+        "accuser un concurrent"
+      ],
+      "reponse": 1,
+      "explication": "Rapidité, transparence, un seul porte-parole, des actions concrètes."
+    },
+    {
+      "q": "Le greenwashing, c'est :",
+      "choix": [
+        "une communication écologique prouvée",
+        "une communication qui exagère ou invente un bénéfice écologique",
+        "une couleur verte",
+        "un label officiel"
+      ],
+      "reponse": 1,
+      "explication": "C'est interdit si c'est trompeur : une allégation environnementale doit être précise et justifiée."
+    },
+    {
+      "q": "Pour publier la photo d'un salarié sur les réseaux de l'entreprise, il faut :",
+      "choix": [
+        "rien",
+        "son autorisation (écrite de préférence)",
+        "l'accord du DRH seulement",
+        "le flouter toujours"
+      ],
+      "reponse": 1,
+      "explication": "Droit à l'image : autorisation de la personne (des deux parents pour un mineur)."
+    },
+    {
+      "q": "La PLV, c'est :",
+      "choix": [
+        "la publicité sur le lieu de vente",
+        "un réseau social",
+        "le prix de lancement",
+        "un média télé"
+      ],
+      "reponse": 0,
+      "explication": "Présentoirs, affiches, stop-rayons, kakémonos en magasin."
+    },
+    {
+      "q": "Les leaders d'opinion sont :",
+      "choix": [
+        "les actionnaires",
+        "des personnes qui influencent la cible (journalistes, influenceurs)",
+        "les concurrents",
+        "les fournisseurs"
+      ],
+      "reponse": 1,
+      "explication": "On peut les viser pour qu'ils relaient le message (cible relais)."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Objectifs de communication",
+      "verso": "Cognitif (connaître), affectif (aimer), conatif (agir)"
+    },
+    {
+      "recto": "Copy strategy",
+      "verso": "Promesse, preuve, bénéfice consommateur, ton, contraintes"
+    },
+    {
+      "recto": "POEM",
+      "verso": "Paid (acheté), Owned (possédé), Earned (gagné)"
+    },
+    {
+      "recto": "Médias",
+      "verso": "TV, radio, presse, affichage, cinéma, internet"
+    },
+    {
+      "recto": "Hors-médias",
+      "verso": "Événementiel, RP, promotion, marketing direct, salons, sponsoring, mécénat, PLV"
+    },
+    {
+      "recto": "Rétroplanning",
+      "verso": "Planning construit à rebours depuis la date finale"
+    },
+    {
+      "recto": "Crise : 3 réflexes",
+      "verso": "Vite, un porte-parole unique, transparence + actions"
+    },
+    {
+      "recto": "Greenwashing",
+      "verso": "Allégation écologique trompeuse : interdite"
+    },
+    {
+      "recto": "Droit à l'image",
+      "verso": "Autorisation de la personne (des 2 parents pour un mineur)"
+    },
+    {
+      "recto": "ARPP",
+      "verso": "Autorité de régulation professionnelle de la publicité (déontologie)"
+    }
+  ]
+}

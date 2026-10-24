@@ -2,7 +2,9 @@
   "nom": "Sranan Tongo & Patwa",
   "icone": "🌴",
   "groupe": "Langues",
-  "publics": ["*"],
+  "publics": [
+    "*"
+  ],
   "ordre": 8,
   "description": "Bases du sranan tongo (Suriname) et du patois jamaïcain.",
   "fiches": [
@@ -16,20 +18,94 @@
     }
   ],
   "quiz": [
-    { "q": "« Tangi » en sranan signifie…", "choix": ["Bonjour", "Merci", "Au revoir", "Eau"], "reponse": 1, "explication": "Tangi = merci." },
-    { "q": "En sranan, la particule du passé est…", "choix": ["e", "o", "ben", "den"], "reponse": 2, "explication": "ben = passé, e = en cours, o = futur." },
-    { "q": "« Wah gwaan? » veut dire…", "choix": ["Au revoir", "Quoi de neuf ?", "J'ai faim", "Viens ici"], "reponse": 1, "explication": "Salut courant en Jamaïque : What's going on?" },
-    { "q": "En patwa, « pickney » signifie…", "choix": ["Enfant", "Pique-nique", "Ami", "Maison"], "reponse": 0, "explication": "Pickney = child." },
-    { "q": "« Den oso » en sranan veut dire…", "choix": ["La maison", "Les maisons", "Ma maison", "Dans la maison"], "reponse": 1, "explication": "den marque le pluriel." }
+    {
+      "q": "« Tangi » en sranan signifie…",
+      "choix": [
+        "Bonjour",
+        "Merci",
+        "Au revoir",
+        "Eau"
+      ],
+      "reponse": 1,
+      "explication": "Tangi = merci."
+    },
+    {
+      "q": "En sranan, la particule du passé est…",
+      "choix": [
+        "e",
+        "o",
+        "ben",
+        "den"
+      ],
+      "reponse": 2,
+      "explication": "ben = passé, e = en cours, o = futur."
+    },
+    {
+      "q": "« Wah gwaan? » veut dire…",
+      "choix": [
+        "Au revoir",
+        "Quoi de neuf ?",
+        "J'ai faim",
+        "Viens ici"
+      ],
+      "reponse": 1,
+      "explication": "Salut courant en Jamaïque : What's going on?"
+    },
+    {
+      "q": "En patwa, « pickney » signifie…",
+      "choix": [
+        "Enfant",
+        "Pique-nique",
+        "Ami",
+        "Maison"
+      ],
+      "reponse": 0,
+      "explication": "Pickney = child."
+    },
+    {
+      "q": "« Den oso » en sranan veut dire…",
+      "choix": [
+        "La maison",
+        "Les maisons",
+        "Ma maison",
+        "Dans la maison"
+      ],
+      "reponse": 1,
+      "explication": "den marque le pluriel."
+    }
   ],
   "cartes": [
-    { "recto": "Sranan : Comment ça va ?", "verso": "Fa waka?" },
-    { "recto": "Sranan : Je vais bien", "verso": "Mi de bun" },
-    { "recto": "Sranan : merci", "verso": "Tangi" },
-    { "recto": "Sranan : futur", "verso": "o (Mi o nyan = je mangerai)" },
-    { "recto": "Patwa : quoi de neuf ?", "verso": "Wah gwaan?" },
-    { "recto": "Patwa : maison", "verso": "Yaad" },
-    { "recto": "Patwa : vous (pluriel)", "verso": "Unu" },
-    { "recto": "Patwa : je ne sais pas", "verso": "Mi nuh know" }
+    {
+      "recto": "Sranan : Comment ça va ?",
+      "verso": "Fa waka?"
+    },
+    {
+      "recto": "Sranan : Je vais bien",
+      "verso": "Mi de bun"
+    },
+    {
+      "recto": "Sranan : merci",
+      "verso": "Tangi"
+    },
+    {
+      "recto": "Sranan : futur",
+      "verso": "o (Mi o nyan = je mangerai)"
+    },
+    {
+      "recto": "Patwa : quoi de neuf ?",
+      "verso": "Wah gwaan?"
+    },
+    {
+      "recto": "Patwa : maison",
+      "verso": "Yaad"
+    },
+    {
+      "recto": "Patwa : vous (pluriel)",
+      "verso": "Unu"
+    },
+    {
+      "recto": "Patwa : je ne sais pas",
+      "verso": "Mi nuh know"
+    }
   ]
 }

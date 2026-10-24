@@ -2,7 +2,20 @@
   "nom": "Prévention, santé, environnement (PSE)",
   "icone": "🦺",
   "groupe": "Enseignement général",
-  "publics": ["CAP", "BACPRO"],
+  "publics": [
+    "CAP",
+    "BACPRO",
+    "bp-agora",
+    "bp-ciel",
+    "bp-log",
+    "bp-mcv",
+    "bp-otm",
+    "bp-rpi",
+    "cap-aph",
+    "cap-epc",
+    "cap-ol",
+    "cap-tf"
+  ],
   "ordre": 9,
   "description": "Démarche de prévention, risques au travail, premiers secours, santé au quotidien, environnement.",
   "fiches": [
@@ -24,22 +37,170 @@
     }
   ],
   "quiz": [
-    { "q": "Une personne exposée à un danger, c'est :", "choix": ["un dommage", "une situation dangereuse", "un EPI", "un accident"], "reponse": 1, "explication": "Danger + personne exposée = situation dangereuse." },
-    { "q": "Quelle prévention passe en premier ?", "choix": ["Individuelle (EPI)", "Collective (EPC)", "Intrinsèque (supprimer le danger)", "La formation"], "reponse": 2, "explication": "On supprime d'abord le danger à la source, ensuite on protège collectivement, et les EPI en dernier recours." },
-    { "q": "Le numéro du SAMU est le :", "choix": ["15", "17", "18", "114"], "reponse": 0, "explication": "15 = SAMU, 18 = pompiers, 17 = police, 112 = urgence européen, 114 = par SMS." },
-    { "q": "Des gants et des lunettes de sécurité sont des :", "choix": ["EPC", "EPI", "TMS", "FDS"], "reponse": 1, "explication": "Équipements de protection individuelle." },
-    { "q": "Une victime inconsciente qui respire doit être mise :", "choix": ["assise", "debout", "en PLS", "sur le ventre"], "reponse": 2, "explication": "Position latérale de sécurité, puis alerte et surveillance." },
-    { "q": "Les TMS sont surtout causés par :", "choix": ["le bruit", "les gestes répétitifs et les mauvaises postures", "les produits chimiques", "le froid"], "reponse": 1, "explication": "Troubles musculo-squelettiques : gestes répétitifs, postures, efforts." },
-    { "q": "Après un accident du travail, tu préviens ton employeur :", "choix": ["dans les 24 h", "dans le mois", "seulement si c'est grave", "jamais"], "reponse": 0, "explication": "Dans les 24 heures, pour que l'accident soit déclaré." }
+    {
+      "q": "Une personne exposée à un danger, c'est :",
+      "choix": [
+        "un dommage",
+        "une situation dangereuse",
+        "un EPI",
+        "un accident"
+      ],
+      "reponse": 1,
+      "explication": "Danger + personne exposée = situation dangereuse."
+    },
+    {
+      "q": "Quelle prévention passe en premier ?",
+      "choix": [
+        "Individuelle (EPI)",
+        "Collective (EPC)",
+        "Intrinsèque (supprimer le danger)",
+        "La formation"
+      ],
+      "reponse": 2,
+      "explication": "On supprime d'abord le danger à la source, ensuite on protège collectivement, et les EPI en dernier recours."
+    },
+    {
+      "q": "Le numéro du SAMU est le :",
+      "choix": [
+        "15",
+        "17",
+        "18",
+        "114"
+      ],
+      "reponse": 0,
+      "explication": "15 = SAMU, 18 = pompiers, 17 = police, 112 = urgence européen, 114 = par SMS."
+    },
+    {
+      "q": "Des gants et des lunettes de sécurité sont des :",
+      "choix": [
+        "EPC",
+        "EPI",
+        "TMS",
+        "FDS"
+      ],
+      "reponse": 1,
+      "explication": "Équipements de protection individuelle."
+    },
+    {
+      "q": "Une victime inconsciente qui respire doit être mise :",
+      "choix": [
+        "assise",
+        "debout",
+        "en PLS",
+        "sur le ventre"
+      ],
+      "reponse": 2,
+      "explication": "Position latérale de sécurité, puis alerte et surveillance."
+    },
+    {
+      "q": "Les TMS sont surtout causés par :",
+      "choix": [
+        "le bruit",
+        "les gestes répétitifs et les mauvaises postures",
+        "les produits chimiques",
+        "le froid"
+      ],
+      "reponse": 1,
+      "explication": "Troubles musculo-squelettiques : gestes répétitifs, postures, efforts."
+    },
+    {
+      "q": "Après un accident du travail, tu préviens ton employeur :",
+      "choix": [
+        "dans les 24 h",
+        "dans le mois",
+        "seulement si c'est grave",
+        "jamais"
+      ],
+      "reponse": 0,
+      "explication": "Dans les 24 heures, pour que l'accident soit déclaré."
+    },
+    {
+      "q": "Le 112 est :",
+      "choix": [
+        "Le numéro de la police",
+        "Le numéro d'urgence européen",
+        "Le SAMU seulement",
+        "Un numéro payant"
+      ],
+      "reponse": 1,
+      "explication": "Gratuit, il fonctionne dans toute l'Union européenne, même sans réseau de ton opérateur."
+    },
+    {
+      "q": "Un saignement abondant : premier geste ?",
+      "choix": [
+        "Mettre la victime debout",
+        "Comprimer la plaie",
+        "Donner à boire",
+        "Attendre"
+      ],
+      "reponse": 1,
+      "explication": "Compression directe, puis alerter."
+    },
+    {
+      "q": "Au-delà de quel niveau sonore sur une journée la protection auditive doit être fournie ?",
+      "choix": [
+        "50 dB(A)",
+        "80 dB(A)",
+        "100 dB(A)",
+        "120 dB(A)"
+      ],
+      "reponse": 1,
+      "explication": "80 dB(A) : mise à disposition ; 85 dB(A) : port obligatoire."
+    },
+    {
+      "q": "Le développement durable repose sur 3 piliers :",
+      "choix": [
+        "Prix, qualité, délai",
+        "Économique, social, environnemental",
+        "Santé, sport, sommeil",
+        "État, entreprise, ménages"
+      ],
+      "reponse": 1,
+      "explication": "Un équilibre entre les trois."
+    }
   ],
   "cartes": [
-    { "recto": "Danger", "verso": "Ce qui peut causer un dommage" },
-    { "recto": "Situation dangereuse", "verso": "Une personne exposée à un danger" },
-    { "recto": "EPC", "verso": "Équipement de protection collective (protège tout le monde)" },
-    { "recto": "EPI", "verso": "Équipement de protection individuelle (dernier recours)" },
-    { "recto": "15 / 17 / 18 / 112 / 114", "verso": "SAMU / police / pompiers / urgence européen / urgence par SMS" },
-    { "recto": "PAS", "verso": "Protéger, Alerter, Secourir" },
-    { "recto": "TMS", "verso": "Troubles musculo-squelettiques : gestes répétitifs, postures, charges" },
-    { "recto": "Développement durable : 3 piliers", "verso": "Économique, social, environnemental" }
+    {
+      "recto": "Danger",
+      "verso": "Ce qui peut causer un dommage"
+    },
+    {
+      "recto": "Situation dangereuse",
+      "verso": "Une personne exposée à un danger"
+    },
+    {
+      "recto": "EPC",
+      "verso": "Équipement de protection collective (protège tout le monde)"
+    },
+    {
+      "recto": "EPI",
+      "verso": "Équipement de protection individuelle (dernier recours)"
+    },
+    {
+      "recto": "15 / 17 / 18 / 112 / 114",
+      "verso": "SAMU / police / pompiers / urgence européen / urgence par SMS"
+    },
+    {
+      "recto": "PAS",
+      "verso": "Protéger, Alerter, Secourir"
+    },
+    {
+      "recto": "TMS",
+      "verso": "Troubles musculo-squelettiques : gestes répétitifs, postures, charges"
+    },
+    {
+      "recto": "Développement durable : 3 piliers",
+      "verso": "Économique, social, environnemental"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "INRS — prévention des risques professionnels",
+      "url": "https://www.inrs.fr"
+    },
+    {
+      "titre": "Calendrier 2027 CAP et bac pro (épreuve de PSE) — Éducation nationale",
+      "url": "https://www.education.gouv.fr/reussir-au-lycee/baccalaureat-brevet-cap-le-calendrier-2027-341384"
+    }
   ]
 }

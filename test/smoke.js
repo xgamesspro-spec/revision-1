@@ -655,6 +655,16 @@ const google = http.createServer((req, res) => {
   const subj = id => r.data.find(x => x.id === id);
   assert.equal(subj('reseau').pour_toi, true); assert.equal(subj('reseau').pertinence, 3);
   assert.equal(subj('pse').pour_toi, false); assert.equal(subj('apprenti').pour_toi, true);
+  assert.equal(subj('cyber').epreuve.coef, 4, 'matière liée à une épreuve de la formation, avec son coef');
+  assert.ok(subj('cejm').sources > 0);
+  r = await call('b', 'GET', '/api/formations/bts-ndrc');
+  assert.equal(r.data.epreuves.find(e => e.code === 'E4').coef, 5);
+  r = await call('b', 'GET', '/api/subjects/vente');
+  assert.ok(r.data.sources.length && r.data.quiz.every(q => q.explication), 'quiz expliqués + sources');
+  r = await call('b', 'GET', '/api/news');
+  assert.ok(r.data.alaune.some(x => x.pour_toi && x.categorie === 'Cybersécurité'));
+  assert.ok(r.data.alaune.some(x => !x.pour_toi && x.categorie === 'Transport & logistique'), 'actus transport hors formation');
+  r = await call('b', 'GET', '/api/subjects');
   r = await call('c', 'GET', '/api/subjects');
   assert.equal(r.data.find(x => x.id === 'titrepro').pour_toi, true);
   assert.equal(r.data.find(x => x.id === 'reseau').pour_toi, false);

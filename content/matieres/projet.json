@@ -1,0 +1,223 @@
+{
+  "nom": "Organisation, processus & gestion de projet",
+  "icone": "🗂️",
+  "groupe": "Gestion, administration & RH",
+  "ordre": 15,
+  "description": "BTS SAM E4 et E5 (coef 4 chacune), bac pro AGOrA E2 (coef 4), TP Assistant de direction, Secrétaire assistant, Employé administratif : processus, réunions, Gantt, chemin critique, communication écrite.",
+  "fiches": [
+    {
+      "titre": "Optimiser un processus administratif",
+      "contenu": "Un **processus** = une suite d'activités qui transforme une demande en résultat (ex. traiter une note de frais, accueillir un nouveau salarié).\n\n## La démarche\n1. **Observer et décrire** l'existant (logigramme : qui fait quoi, dans quel ordre, avec quels documents).\n2. **Repérer les dysfonctionnements** : doublons, attentes, erreurs, ressaisies, papier inutile.\n3. **Proposer des améliorations** : dématérialisation, formulaire en ligne, **automatisation**, outil collaboratif, procédure écrite.\n4. **Mesurer** avant/après avec des **indicateurs** (délai de traitement, taux d'erreur, coût).\n\n## Outils\n- **QQOQCCP** : Qui ? Quoi ? Où ? Quand ? Comment ? Combien ? Pourquoi ?\n- **Diagramme d'Ishikawa** (5M : Main-d'œuvre, Matériel, Méthode, Milieu, Matière) pour trouver les causes.\n- **Roue de Deming (PDCA)** : Plan, Do, Check, Act."
+    },
+    {
+      "titre": "Gérer un projet",
+      "contenu": "## Les étapes\n1. **Cadrage** : besoin, **objectifs SMART** (Spécifique, Mesurable, Atteignable, Réaliste, Temporellement défini), budget, contraintes, parties prenantes.\n2. **Planification** : découper en tâches, estimer les durées, identifier les **antériorités**.\n3. **Réalisation et suivi** : réunions d'avancement, tableau de bord, gestion des risques.\n4. **Clôture et bilan**.\n\n## Le diagramme de Gantt\nBarres horizontales sur un calendrier : chaque tâche, sa durée, ses dépendances. Simple pour **voir** l'avancement.\n\n## Le PERT et le chemin critique\nOn relie les tâches selon leurs antériorités. Le **chemin critique** est la suite de tâches la plus **longue** : il donne la durée minimale du projet. Une tâche critique en retard **retarde tout le projet** ; une tâche non critique a une **marge**."
+    },
+    {
+      "titre": "Organiser une réunion ou un événement",
+      "contenu": "## Avant\n- Objectif, participants, date (sondage d'agenda), lieu ou visio, matériel.\n- **Convocation** avec l'**ordre du jour**, envoyée à l'avance.\n- Documents préparatoires.\n\n## Pendant\nAccueil, respect de l'horaire, animation, prise de notes.\n\n## Après\n- **Compte rendu** (résumé des échanges et des décisions) ou **procès-verbal** (document officiel, ex. assemblée générale).\n- Liste des **actions** : qui fait quoi pour quand.\n- Archivage et suivi.\n\n## Budget d'un événement\nSalle, traiteur, déplacements, communication, imprévus (prévoir une marge de 5 à 10 %)."
+    },
+    {
+      "titre": "Écrits professionnels",
+      "contenu": "## Le courriel professionnel\n- **Objet** clair (« Réunion projet X — mardi 14 h »).\n- Formule d'appel adaptée (« Madame, » / « Bonjour Monsieur Dupont, »).\n- Un message = un sujet ; phrases courtes.\n- Formule de politesse + **signature** complète.\n- Vérifier les destinataires (**Cci** pour un envoi groupé à des externes, RGPD).\n\n## La lettre\nExpéditeur, destinataire, lieu et date, objet, références, formule d'appel, corps (contexte → demande → conclusion), formule de politesse, signature.\n\n## La note\n- **Note de service** : du chef vers les équipes (consigne).\n- **Note d'information** : informer.\n- **Note de synthèse** : résumer des documents de façon **objective**, sans avis personnel."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Un objectif SMART doit être :",
+      "choix": [
+        "Simple, Modeste, Agréable, Rapide, Total",
+        "Spécifique, Mesurable, Atteignable, Réaliste, Temporellement défini",
+        "Sûr, Moderne, Adapté, Rentable, Testé",
+        "Il n'existe pas"
+      ],
+      "reponse": 1,
+      "explication": "Ex. : « Réduire le délai de traitement des notes de frais de 10 à 5 jours d'ici juin »."
+    },
+    {
+      "q": "Le chemin critique d'un projet est :",
+      "choix": [
+        "Le chemin le plus court",
+        "La suite de tâches la plus longue, sans marge",
+        "La liste des risques",
+        "Le budget"
+      ],
+      "reponse": 1,
+      "explication": "Il fixe la durée minimale du projet : tout retard sur une tâche critique retarde le projet."
+    },
+    {
+      "q": "Le diagramme de Gantt représente :",
+      "choix": [
+        "Les causes d'un problème",
+        "Les tâches sur un calendrier",
+        "Le budget",
+        "L'organigramme"
+      ],
+      "reponse": 1,
+      "explication": "Barres horizontales : durée et enchaînement des tâches."
+    },
+    {
+      "q": "Le diagramme d'Ishikawa sert à :",
+      "choix": [
+        "Planifier",
+        "Chercher les causes d'un problème (5M)",
+        "Calculer un coût",
+        "Faire un compte rendu"
+      ],
+      "reponse": 1,
+      "explication": "Main-d'œuvre, Matériel, Méthode, Milieu, Matière."
+    },
+    {
+      "q": "PDCA signifie :",
+      "choix": [
+        "Plan, Do, Check, Act",
+        "Prévoir, Décider, Contrôler, Archiver",
+        "Projet, Délai, Coût, Activité",
+        "Paie, DSN, Congés, Absences"
+      ],
+      "reponse": 0,
+      "explication": "La roue de Deming : planifier, faire, vérifier, améliorer… et recommencer."
+    },
+    {
+      "q": "L'ordre du jour se trouve dans :",
+      "choix": [
+        "Le compte rendu",
+        "La convocation",
+        "La facture",
+        "Le contrat"
+      ],
+      "reponse": 1,
+      "explication": "Il est envoyé avec la convocation, avant la réunion."
+    },
+    {
+      "q": "Pour un mail groupé à des clients externes, on met les adresses en :",
+      "choix": [
+        "À",
+        "Cc",
+        "Cci",
+        "Objet"
+      ],
+      "reponse": 2,
+      "explication": "Copie cachée : personne ne voit les adresses des autres (protection des données)."
+    },
+    {
+      "q": "Dans une note de synthèse, ton avis personnel :",
+      "choix": [
+        "Est obligatoire",
+        "N'a pas sa place",
+        "Est en introduction",
+        "Est en conclusion"
+      ],
+      "reponse": 1,
+      "explication": "La synthèse est objective : elle restitue les documents sans les juger."
+    },
+    {
+      "q": "QQOQCCP sert à :",
+      "choix": [
+        "Faire la paie",
+        "Décrire complètement une situation",
+        "Classer des documents",
+        "Négocier"
+      ],
+      "reponse": 1,
+      "explication": "Qui, Quoi, Où, Quand, Comment, Combien, Pourquoi."
+    },
+    {
+      "q": "Une tâche non critique en retard :",
+      "choix": [
+        "Retarde toujours le projet",
+        "Ne retarde pas le projet tant que le retard reste dans sa marge",
+        "Annule le projet",
+        "Devient critique dès 1 minute"
+      ],
+      "reponse": 1,
+      "explication": "Les tâches non critiques ont une marge ; si le retard la dépasse, elles deviennent critiques."
+    },
+    {
+      "q": "Le chemin critique d'un projet, c'est :",
+      "choix": [
+        "la tâche la plus chère",
+        "la suite de tâches sans marge qui détermine la durée totale",
+        "le budget maximum",
+        "la liste des risques"
+      ],
+      "reponse": 1,
+      "explication": "Un retard sur une tâche du chemin critique retarde tout le projet."
+    },
+    {
+      "q": "Un objectif SMART est :",
+      "choix": [
+        "Simple, Moderne, Agréable, Rapide, Tendance",
+        "Spécifique, Mesurable, Atteignable, Réaliste, Temporellement défini",
+        "Sûr, Maîtrisé, Annuel, Rentable, Testé",
+        "Stratégique, Marketing, Analytique, Rapide, Total"
+      ],
+      "reponse": 1,
+      "explication": "Un objectif clair, chiffrable et daté, qu'on peut vérifier à la fin."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Processus",
+      "verso": "Suite d'activités qui transforme une demande en résultat"
+    },
+    {
+      "recto": "SMART",
+      "verso": "Spécifique, Mesurable, Atteignable, Réaliste, Temporellement défini"
+    },
+    {
+      "recto": "Gantt",
+      "verso": "Tâches en barres sur un calendrier"
+    },
+    {
+      "recto": "Chemin critique",
+      "verso": "Tâches les plus longues, sans marge : durée minimale du projet"
+    },
+    {
+      "recto": "Ishikawa (5M)",
+      "verso": "Main-d'œuvre, Matériel, Méthode, Milieu, Matière"
+    },
+    {
+      "recto": "PDCA",
+      "verso": "Plan, Do, Check, Act (amélioration continue)"
+    },
+    {
+      "recto": "QQOQCCP",
+      "verso": "Qui, Quoi, Où, Quand, Comment, Combien, Pourquoi"
+    },
+    {
+      "recto": "Convocation",
+      "verso": "Invitation à une réunion avec l'ordre du jour"
+    },
+    {
+      "recto": "Compte rendu / PV",
+      "verso": "Résumé des échanges / document officiel des décisions"
+    },
+    {
+      "recto": "Cci",
+      "verso": "Copie cachée : protège les adresses des destinataires"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Épreuves du BTS SAM (E4 et E5, coef 4) — lycée Condorcet (académie d'Amiens)",
+      "url": "https://condorcet-saint-quentin.ac-amiens.fr/site/formations/pdf/BTS_SAM_2022.pdf"
+    },
+    {
+      "titre": "Référentiel du BTS SAM — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-SAM-Support_action_manageriale.pdf"
+    },
+    {
+      "titre": "Référentiel du TP Assistant de direction (REAC) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_AD_V03_28052019.pdf"
+    }
+  ],
+  "publics": [
+    "bp-agora",
+    "bts-sam",
+    "tp-ad",
+    "tp-eaa",
+    "tp-sa",
+    "tp-sc"
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "nom": "Anglais professionnel (accueil, commerce, logistique)",
+  "icone": "🇬🇧",
+  "groupe": "Langues",
+  "publics": [
+    "CAP",
+    "BACPRO",
+    "d:commerce",
+    "d:gestion",
+    "d:compta",
+    "d:transport",
+    "d:communication",
+    "bp-agora",
+    "bp-log",
+    "bp-mcv",
+    "bp-otm",
+    "bp-rpi",
+    "bts-assurance",
+    "bts-banque",
+    "bts-cg",
+    "bts-com",
+    "bts-erpc",
+    "bts-gpme",
+    "bts-gtla",
+    "bts-ndrc",
+    "bts-sam",
+    "cap-epc",
+    "cap-si",
+    "cap-tf",
+    "tp-acom",
+    "tp-ad",
+    "tp-aie",
+    "tp-otamm"
+  ],
+  "ordre": 9,
+  "description": "Se présenter, accueillir, téléphoner, écrire un mail, parler d'un produit, d'une commande ou d'une livraison : l'anglais des métiers du CFA.",
+  "sources": [
+    {
+      "titre": "Cadre européen commun de référence pour les langues (Conseil de l'Europe)",
+      "url": "https://www.coe.int/fr/web/common-european-framework-reference-languages"
+    },
+    {
+      "titre": "Éduscol — langues vivantes voie pro et BTS",
+      "url": "https://eduscol.education.fr"
+    },
+    {
+      "titre": "Cambridge Dictionary (définitions et prononciation)",
+      "url": "https://dictionary.cambridge.org"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "Se présenter et accueillir",
+      "contenu": "## Se présenter (oral d'examen)\n- *Hello, my name is… I'm 19 and I live in Cayenne, in French Guiana.*\n- *I'm an apprentice at… I'm training to become a… / I'm studying for a BTS in…*\n- *My company sells… / provides… / transports…*\n- *My main tasks are: welcoming customers, managing orders, preparing deliveries…*\n\n## Accueillir un client\n- *Good morning, how can I help you?*\n- *Could you spell your name, please?*\n- *Please take a seat, someone will be with you shortly.*\n- *I'm sorry, Mr Smith is not available at the moment. Can I take a message?*\n\n## Être poli\n**Could you…? / Would you mind…? / I'd like… / I'm afraid that…** (pour annoncer une mauvaise nouvelle)."
+    },
+    {
+      "titre": "Téléphone et mails",
+      "contenu": "## Au téléphone\n- *Good afternoon, [company], [name] speaking.*\n- *Who's calling, please? / May I ask who's calling?*\n- *Hold on, please. I'll put you through.* (je vous passe…)\n- *Could you speak more slowly, please?*\n- *Let me read that back to you* (reformuler pour vérifier).\n\n## Les nombres et dates\n- 13 *thirteen* / 30 *thirty* (accent sur la fin pour 13, sur le début pour 30).\n- *on Monday*, *in March*, *on the 5th of March*, *at 9 a.m.*\n- Prix : *twelve dollars fifty* ; e-mail : *@ = at*, *. = dot*.\n\n## Écrire un mail\n- *Dear Mr / Ms Brown,* (ou *Dear Sir or Madam,*)\n- *Thank you for your email of 3 May.* / *I am writing to…*\n- *Please find attached the invoice / the quotation.*\n- *I look forward to hearing from you.*\n- *Best regards / Kind regards,*"
+    },
+    {
+      "titre": "Vocabulaire des métiers",
+      "contenu": "## Commerce et vente\n*customer* (client), *supplier* (fournisseur), *quotation / quote* (devis), *order* (commande), *invoice* (facture), *discount* (remise), *refund* (remboursement), *receipt* (ticket de caisse), *shelf* (rayon), *checkout* (caisse), *complaint* (réclamation).\n\n## Logistique et transport\n*warehouse* (entrepôt), *stock / inventory* (stock), *pallet* (palette), *forklift* (chariot élévateur), *shipment* (expédition), *delivery* (livraison), *delay* (retard), *tracking number* (numéro de suivi), *customs* (douane), *freight* (fret), *bill of lading* (connaissement).\n\n## Bureau et gestion\n*meeting* (réunion), *schedule* (planning), *deadline* (date limite), *spreadsheet* (tableur), *payroll* (paie), *staff* (personnel), *to hire* (embaucher), *to book* (réserver).\n\n## Faux amis\n*actually* = en fait (pas « actuellement ») ; *eventually* = finalement ; *library* = bibliothèque ; *to attend* = assister à."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "« Une facture » se dit :",
+      "choix": [
+        "a bill of lading",
+        "an invoice",
+        "a receipt",
+        "a quotation"
+      ],
+      "reponse": 1,
+      "explication": "Invoice = facture ; quotation = devis ; receipt = ticket ; bill of lading = connaissement."
+    },
+    {
+      "q": "« Je vous passe M. Smith » au téléphone :",
+      "choix": [
+        "I'll put you through to Mr Smith",
+        "I'll pass you Mr Smith",
+        "I give you Mr Smith",
+        "Hold Mr Smith"
+      ],
+      "reponse": 0,
+      "explication": "To put someone through = transférer un appel."
+    },
+    {
+      "q": "Formule de fin de mail professionnel :",
+      "choix": [
+        "Bye!",
+        "Kind regards,",
+        "See ya",
+        "Love,"
+      ],
+      "reponse": 1,
+      "explication": "Kind regards / Best regards sont neutres et professionnels."
+    },
+    {
+      "q": "« Warehouse » signifie :",
+      "choix": [
+        "magasin de vêtements",
+        "entrepôt",
+        "usine",
+        "bureau"
+      ],
+      "reponse": 1,
+      "explication": "A warehouse est un entrepôt."
+    },
+    {
+      "q": "« Actually » veut dire :",
+      "choix": [
+        "actuellement",
+        "en fait",
+        "activement",
+        "bientôt"
+      ],
+      "reponse": 1,
+      "explication": "Faux ami : actuellement = currently / at the moment."
+    },
+    {
+      "q": "Pour annoncer poliment une mauvaise nouvelle :",
+      "choix": [
+        "You must…",
+        "I'm afraid that…",
+        "No way…",
+        "Listen…"
+      ],
+      "reponse": 1,
+      "explication": "« I'm afraid that your order is delayed. »"
+    },
+    {
+      "q": "« Veuillez trouver ci-joint le devis » :",
+      "choix": [
+        "Please find attached the quotation",
+        "Look the quote",
+        "Here is the bill",
+        "Find the invoice joined"
+      ],
+      "reponse": 0,
+      "explication": "Formule standard des mails professionnels."
+    },
+    {
+      "q": "« Un chariot élévateur » :",
+      "choix": [
+        "a trolley",
+        "a forklift",
+        "a truck",
+        "a pallet"
+      ],
+      "reponse": 1,
+      "explication": "Forklift (truck) = chariot élévateur."
+    },
+    {
+      "q": "Pour demander d'épeler un nom :",
+      "choix": [
+        "Could you spell your name, please?",
+        "Write your name!",
+        "What is your name letters?",
+        "Say again name"
+      ],
+      "reponse": 0,
+      "explication": "Could you… please? est la forme polie."
+    },
+    {
+      "q": "« La date limite » :",
+      "choix": [
+        "the schedule",
+        "the deadline",
+        "the delay",
+        "the meeting"
+      ],
+      "reponse": 1,
+      "explication": "Deadline = date limite ; delay = retard ; schedule = planning."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Devis / commande / facture",
+      "verso": "Quotation / order / invoice"
+    },
+    {
+      "recto": "Client / fournisseur",
+      "verso": "Customer / supplier"
+    },
+    {
+      "recto": "Entrepôt / palette / chariot élévateur",
+      "verso": "Warehouse / pallet / forklift"
+    },
+    {
+      "recto": "Livraison / retard / douane",
+      "verso": "Delivery / delay / customs"
+    },
+    {
+      "recto": "Je vous passe…",
+      "verso": "I'll put you through to…"
+    },
+    {
+      "recto": "Qui est à l'appareil ?",
+      "verso": "Who's calling, please?"
+    },
+    {
+      "recto": "Veuillez trouver ci-joint…",
+      "verso": "Please find attached…"
+    },
+    {
+      "recto": "Dans l'attente de votre réponse",
+      "verso": "I look forward to hearing from you."
+    },
+    {
+      "recto": "Faux ami : actually",
+      "verso": "En fait (actuellement = currently)"
+    },
+    {
+      "recto": "Réclamation / remboursement",
+      "verso": "Complaint / refund"
+    }
+  ]
+}

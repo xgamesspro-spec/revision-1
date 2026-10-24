@@ -1,0 +1,222 @@
+{
+  "nom": "Maths pro : calculs du quotidien et du métier",
+  "icone": "➗",
+  "groupe": "Enseignement général",
+  "publics": [
+    "CAP",
+    "BACPRO",
+    "TP",
+    "bp-agora",
+    "bp-ciel",
+    "bp-log",
+    "bp-mcv",
+    "bp-otm",
+    "bp-rpi",
+    "bts-cg",
+    "bts-erpc",
+    "cap-aph",
+    "cap-epc",
+    "cap-ol",
+    "cap-si",
+    "cap-tf"
+  ],
+  "ordre": 6,
+  "description": "Proportionnalité, pourcentages et coefficients multiplicateurs, calculs commerciaux, statistiques, équations et fonctions, conversions, aires et volumes.",
+  "sources": [
+    {
+      "titre": "Éduscol — programmes de maths de la voie professionnelle",
+      "url": "https://eduscol.education.fr"
+    },
+    {
+      "titre": "Lumni — maths lycée professionnel",
+      "url": "https://www.lumni.fr"
+    },
+    {
+      "titre": "Banque nationale de sujets d'examens (BNSEEP)",
+      "url": "https://bnseep.eduscol.education.fr"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "Proportionnalité et pourcentages",
+      "contenu": "## La proportionnalité\nDeux grandeurs sont proportionnelles si on passe de l'une à l'autre en multipliant **toujours par le même nombre**.\n**Produit en croix** : si 3 kg coûtent 7,50 €, alors 5 kg coûtent 7,50 × 5 ÷ 3 = **12,50 €**.\n\n## Calculer un pourcentage\n- 15 % de 240 = 240 × 15 ÷ 100 = **36**.\n- Part en % = partie ÷ total × 100 : 18 sur 60 = **30 %**.\n\n## Le coefficient multiplicateur\n- Hausse de t % → multiplier par **(1 + t/100)** : +20 % → × 1,20.\n- Baisse de t % → multiplier par **(1 − t/100)** : −15 % → × 0,85.\n- Deux évolutions successives : on **multiplie** les coefficients (+10 % puis −10 % → × 1,1 × 0,9 = × 0,99 : **−1 %**, pas 0 !).\n\n## Taux d'évolution\n(valeur d'arrivée − valeur de départ) ÷ valeur de départ × 100."
+    },
+    {
+      "titre": "Calculs commerciaux",
+      "contenu": "## Prix HT et TTC (en métropole, TVA 20 %)\n- TTC = HT × 1,20 ; HT = TTC ÷ 1,20.\n- ⚠️ En Guyane, la TVA ne s'applique pas : lis bien l'énoncé.\n\n## Remises\nRemises successives de 10 % puis 5 % : × 0,90 × 0,95 = × 0,855 → **14,5 %** au total (pas 15 %).\n\n## Marge\n- **Marge** = prix de vente HT − coût d'achat HT.\n- **Taux de marge** = marge ÷ coût d'achat × 100.\n- **Taux de marque** = marge ÷ prix de vente HT × 100.\n\n## Exemple\nAchat 40 € HT, vente 60 € HT : marge 20 € ; taux de marge 50 % ; taux de marque 33,3 %.\n\n## Intérêts simples\nIntérêts = capital × taux annuel × durée (en années)."
+    },
+    {
+      "titre": "Statistiques",
+      "contenu": "## Les indicateurs\n- **Moyenne** = somme des valeurs ÷ nombre de valeurs. Moyenne **pondérée** : on multiplie chaque valeur par son coefficient (comme une moyenne de notes !).\n- **Médiane** : valeur du milieu quand on range les données dans l'ordre (la moitié en dessous, la moitié au-dessus).\n- **Étendue** = plus grande valeur − plus petite valeur.\n- **Fréquence** = effectif ÷ effectif total (en % si × 100).\n\n## Exemple de moyenne pondérée\nNotes 12 (coef 2), 15 (coef 1), 9 (coef 3) : (12×2 + 15 + 9×3) ÷ 6 = 66 ÷ 6 = **11**.\n\n## Les graphiques\nDiagramme en **bâtons** (valeurs isolées), **histogramme** (classes), **circulaire** (répartition, angle = fréquence × 360°), **courbe** (évolution dans le temps).\n\n## Probabilités\nProbabilité = nombre de cas favorables ÷ nombre de cas possibles (entre 0 et 1)."
+    },
+    {
+      "titre": "Équations, fonctions, mesures",
+      "contenu": "## Équation du 1er degré\n3x + 5 = 20 → 3x = 15 → **x = 5**. On fait la même opération des deux côtés.\n\n## Fonction affine\nf(x) = **ax + b** : droite ; **a** = coefficient directeur (pente), **b** = ordonnée à l'origine. Si b = 0, c'est une fonction **linéaire** (proportionnalité).\nExemple : un taxi coûte 4 € + 1,50 € par km → f(x) = 1,5x + 4.\n\n## Conversions\n1 m = 100 cm ; 1 km = 1 000 m ; 1 m² = 10 000 cm² ; **1 m³ = 1 000 L** ; 1 L = 1 dm³ ; 1 h = 60 min = 3 600 s.\n\n## Aires et volumes\n- Rectangle : L × l ; triangle : base × hauteur ÷ 2 ; disque : π × r².\n- Pavé (carton, palette) : L × l × h ; cylindre : π × r² × h.\n\n## Vitesse\nv = d ÷ t ; 90 km/h pendant 2 h 30 → d = 90 × 2,5 = **225 km**."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Une hausse de 20 % correspond à un coefficient multiplicateur de :",
+      "choix": [
+        "0,20",
+        "0,80",
+        "1,20",
+        "20"
+      ],
+      "reponse": 2,
+      "explication": "1 + 20/100 = 1,20."
+    },
+    {
+      "q": "Une hausse de 10 % puis une baisse de 10 % donnent au total :",
+      "choix": [
+        "0 %",
+        "−1 %",
+        "+1 %",
+        "−10 %"
+      ],
+      "reponse": 1,
+      "explication": "1,1 × 0,9 = 0,99 : soit −1 %."
+    },
+    {
+      "q": "15 % de 240 :",
+      "choix": [
+        "24",
+        "36",
+        "40",
+        "16"
+      ],
+      "reponse": 1,
+      "explication": "240 × 0,15 = 36."
+    },
+    {
+      "q": "Achat 40 € HT, vente 60 € HT : taux de marge ?",
+      "choix": [
+        "20 %",
+        "33,3 %",
+        "50 %",
+        "150 %"
+      ],
+      "reponse": 2,
+      "explication": "Marge 20 € ÷ coût d'achat 40 € = 50 %."
+    },
+    {
+      "q": "Remises successives de 10 % puis 5 % : remise totale ?",
+      "choix": [
+        "15 %",
+        "14,5 %",
+        "5 %",
+        "10,5 %"
+      ],
+      "reponse": 1,
+      "explication": "0,90 × 0,95 = 0,855 → 14,5 %."
+    },
+    {
+      "q": "Médiane de 3 ; 7 ; 8 ; 12 ; 20 :",
+      "choix": [
+        "8",
+        "10",
+        "7",
+        "12"
+      ],
+      "reponse": 0,
+      "explication": "La valeur du milieu des données rangées : 8."
+    },
+    {
+      "q": "Notes 12 (coef 2), 15 (coef 1), 9 (coef 3) : moyenne ?",
+      "choix": [
+        "12",
+        "11",
+        "10",
+        "12,5"
+      ],
+      "reponse": 1,
+      "explication": "(24 + 15 + 27) ÷ 6 = 66 ÷ 6 = 11."
+    },
+    {
+      "q": "1 m³ = ?",
+      "choix": [
+        "100 L",
+        "1 000 L",
+        "10 L",
+        "10 000 L"
+      ],
+      "reponse": 1,
+      "explication": "1 m³ = 1 000 dm³ = 1 000 L."
+    },
+    {
+      "q": "Résoudre 3x + 5 = 20 :",
+      "choix": [
+        "x = 3",
+        "x = 5",
+        "x = 25/3",
+        "x = 15"
+      ],
+      "reponse": 1,
+      "explication": "3x = 15 donc x = 5."
+    },
+    {
+      "q": "Volume d'un carton de 0,5 m × 0,4 m × 0,3 m :",
+      "choix": [
+        "0,06 m³",
+        "1,2 m³",
+        "0,6 m³",
+        "0,012 m³"
+      ],
+      "reponse": 0,
+      "explication": "0,5 × 0,4 × 0,3 = 0,06 m³ (60 L)."
+    },
+    {
+      "q": "Prix TTC (TVA 20 %) d'un article à 50 € HT :",
+      "choix": [
+        "55 €",
+        "60 €",
+        "70 €",
+        "41,67 €"
+      ],
+      "reponse": 1,
+      "explication": "50 × 1,20 = 60 €."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Coefficient pour +t %",
+      "verso": "1 + t/100"
+    },
+    {
+      "recto": "Coefficient pour −t %",
+      "verso": "1 − t/100"
+    },
+    {
+      "recto": "Évolutions successives",
+      "verso": "On multiplie les coefficients"
+    },
+    {
+      "recto": "Taux d'évolution",
+      "verso": "(arrivée − départ) ÷ départ × 100"
+    },
+    {
+      "recto": "Taux de marge / taux de marque",
+      "verso": "Marge ÷ coût d'achat / marge ÷ prix de vente HT"
+    },
+    {
+      "recto": "Médiane",
+      "verso": "Valeur centrale d'une série rangée"
+    },
+    {
+      "recto": "Étendue",
+      "verso": "Max − min"
+    },
+    {
+      "recto": "Fonction affine",
+      "verso": "f(x) = ax + b (a = pente, b = ordonnée à l'origine)"
+    },
+    {
+      "recto": "1 m³",
+      "verso": "1 000 litres"
+    },
+    {
+      "recto": "Vitesse",
+      "verso": "v = d ÷ t (d = v × t)"
+    }
+  ]
+}

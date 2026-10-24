@@ -2,7 +2,13 @@
   "nom": "Communication & chaîne graphique",
   "icone": "🎨",
   "groupe": "Communication & graphisme",
-  "publics": ["d:communication"],
+  "publics": [
+    "d:communication",
+    "bp-rpi",
+    "bts-com",
+    "bts-erpc",
+    "cap-si"
+  ],
   "ordre": 14,
   "description": "RVB vs CMJN, résolution, fonds perdus, procédés d'impression, plan de communication.",
   "fiches": [
@@ -20,21 +26,159 @@
     }
   ],
   "quiz": [
-    { "q": "Pour un fichier destiné à l'impression, on utilise :", "choix": ["RVB", "CMJN", "HTML", "72 dpi"], "reponse": 1, "explication": "CMJN pour l'impression, RVB pour les écrans." },
-    { "q": "Résolution conseillée pour l'impression :", "choix": ["72 dpi", "150 dpi", "300 dpi", "1 200 dpi toujours"], "reponse": 2, "explication": "300 dpi à taille réelle." },
-    { "q": "Les fonds perdus servent à :", "choix": ["économiser l'encre", "éviter un liseré blanc après la coupe", "agrandir le texte", "rien"], "reponse": 1, "explication": "On prolonge le fond au-delà du format pour une coupe nette." },
-    { "q": "Le procédé avec un écran et une racle :", "choix": ["offset", "sérigraphie", "numérique", "flexographie"], "reponse": 1, "explication": "La sérigraphie fait passer l'encre à travers un écran." },
-    { "q": "Faire agir la cible, c'est un objectif :", "choix": ["cognitif", "affectif", "conatif", "budgétaire"], "reponse": 2, "explication": "Cognitif = connaître, affectif = aimer, conatif = agir." },
-    { "q": "Le BAT est :", "choix": ["un logiciel", "le bon à tirer signé par le client", "un format de papier", "une encre"], "reponse": 1, "explication": "Le bon à tirer valide le document avant impression." }
+    {
+      "q": "Pour un fichier destiné à l'impression, on utilise :",
+      "choix": [
+        "RVB",
+        "CMJN",
+        "HTML",
+        "72 dpi"
+      ],
+      "reponse": 1,
+      "explication": "CMJN pour l'impression, RVB pour les écrans."
+    },
+    {
+      "q": "Résolution conseillée pour l'impression :",
+      "choix": [
+        "72 dpi",
+        "150 dpi",
+        "300 dpi",
+        "1 200 dpi toujours"
+      ],
+      "reponse": 2,
+      "explication": "300 dpi à taille réelle."
+    },
+    {
+      "q": "Les fonds perdus servent à :",
+      "choix": [
+        "économiser l'encre",
+        "éviter un liseré blanc après la coupe",
+        "agrandir le texte",
+        "rien"
+      ],
+      "reponse": 1,
+      "explication": "On prolonge le fond au-delà du format pour une coupe nette."
+    },
+    {
+      "q": "Le procédé avec un écran et une racle :",
+      "choix": [
+        "offset",
+        "sérigraphie",
+        "numérique",
+        "flexographie"
+      ],
+      "reponse": 1,
+      "explication": "La sérigraphie fait passer l'encre à travers un écran."
+    },
+    {
+      "q": "Faire agir la cible, c'est un objectif :",
+      "choix": [
+        "cognitif",
+        "affectif",
+        "conatif",
+        "budgétaire"
+      ],
+      "reponse": 2,
+      "explication": "Cognitif = connaître, affectif = aimer, conatif = agir."
+    },
+    {
+      "q": "Le BAT est :",
+      "choix": [
+        "un logiciel",
+        "le bon à tirer signé par le client",
+        "un format de papier",
+        "une encre"
+      ],
+      "reponse": 1,
+      "explication": "Le bon à tirer valide le document avant impression."
+    },
+    {
+      "q": "Un logo doit plutôt être fourni en :",
+      "choix": [
+        "JPEG basse résolution",
+        "Format vectoriel (SVG, AI, EPS, PDF)",
+        "GIF",
+        "BMP"
+      ],
+      "reponse": 1,
+      "explication": "Le vectoriel s'agrandit sans perte de qualité, contrairement à une image en pixels."
+    },
+    {
+      "q": "Un fichier A4 avec 3 mm de fonds perdus mesure :",
+      "choix": [
+        "210 × 297 mm",
+        "216 × 303 mm",
+        "213 × 300 mm",
+        "200 × 287 mm"
+      ],
+      "reponse": 1,
+      "explication": "On ajoute 3 mm de chaque côté : 210 + 6 = 216 et 297 + 6 = 303 mm."
+    },
+    {
+      "q": "Le grammage (g/m²) indique :",
+      "choix": [
+        "La couleur du papier",
+        "Le poids donc l'épaisseur du papier",
+        "Le prix",
+        "La résolution"
+      ],
+      "reponse": 1,
+      "explication": "80 g pour du papier de copie, 300 g et plus pour une carte."
+    },
+    {
+      "q": "Utiliser une photo trouvée sur internet pour une affiche :",
+      "choix": [
+        "Est toujours permis",
+        "Demande l'autorisation de l'auteur (droit d'auteur)",
+        "Est permis si on la recadre",
+        "Est permis si l'affiche est gratuite"
+      ],
+      "reponse": 1,
+      "explication": "Une image est protégée par le droit d'auteur ; on utilise des banques d'images avec licence ou ses propres photos."
+    }
   ],
   "cartes": [
-    { "recto": "RVB / CMJN", "verso": "Écran / impression (quadrichromie)" },
-    { "recto": "Résolution impression", "verso": "300 dpi à taille réelle" },
-    { "recto": "Fonds perdus", "verso": "Fond prolongé (souvent 3 mm) au-delà du format, coupé ensuite" },
-    { "recto": "BAT", "verso": "Bon à tirer, signé par le client avant impression" },
-    { "recto": "Sérigraphie", "verso": "Encre passée à travers un écran avec une racle (textile, objets)" },
-    { "recto": "Offset", "verso": "Plaque → blanchet → papier : grands tirages" },
-    { "recto": "Objectifs de communication", "verso": "Cognitif (connaître), affectif (aimer), conatif (agir)" },
-    { "recto": "Format A4", "verso": "210 × 297 mm" }
+    {
+      "recto": "RVB / CMJN",
+      "verso": "Écran / impression (quadrichromie)"
+    },
+    {
+      "recto": "Résolution impression",
+      "verso": "300 dpi à taille réelle"
+    },
+    {
+      "recto": "Fonds perdus",
+      "verso": "Fond prolongé (souvent 3 mm) au-delà du format, coupé ensuite"
+    },
+    {
+      "recto": "BAT",
+      "verso": "Bon à tirer, signé par le client avant impression"
+    },
+    {
+      "recto": "Sérigraphie",
+      "verso": "Encre passée à travers un écran avec une racle (textile, objets)"
+    },
+    {
+      "recto": "Offset",
+      "verso": "Plaque → blanchet → papier : grands tirages"
+    },
+    {
+      "recto": "Objectifs de communication",
+      "verso": "Cognitif (connaître), affectif (aimer), conatif (agir)"
+    },
+    {
+      "recto": "Format A4",
+      "verso": "210 × 297 mm"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Règlement d'examen du BTS ERPC (BO n°28 du 14 juillet 2016)",
+      "url": "https://www.education.gouv.fr/bo/16/Hebdo28/MENS1614700A.htm"
+    },
+    {
+      "titre": "Règlement d'examen du bac pro RPIP — Éduscol",
+      "url": "https://referentiels-professionnels.eduscol.education.fr/HORIZON_stockage_PDF/I_3_3_7_371_Annexe_II_b.pdf"
+    }
   ]
 }

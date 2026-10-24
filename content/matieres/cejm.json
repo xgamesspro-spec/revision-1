@@ -1,0 +1,267 @@
+{
+  "nom": "Économie, droit & management (CEJM)",
+  "icone": "🏛️",
+  "groupe": "Économie, droit & management",
+  "ordre": 2,
+  "description": "L'épreuve commune à presque tous les BTS (coef 3 à 6) et l'économie-droit du bac pro : marché, contrats, travail, formes d'entreprises, stratégie.",
+  "fiches": [
+    {
+      "titre": "Économie : les mécanismes de base",
+      "contenu": "## Les agents économiques\n- **Ménages** : consomment, épargnent, travaillent.\n- **Entreprises** : produisent des biens et services.\n- **Administrations publiques** (État, collectivités comme la CTG en Guyane, Sécurité sociale) : services non marchands, redistribution.\n- **Banques** : collectent l'épargne et financent (crédit).\n- **Reste du monde** : importations / exportations.\n\n## Le marché\nLieu de rencontre entre **offre** et **demande**. Si la demande augmente plus vite que l'offre → le **prix monte**. Un marché est en **concurrence** quand il y a beaucoup d'offreurs ; en **monopole** quand il n'y en a qu'un.\n\n## Les grands indicateurs\n- **PIB** : richesse produite dans un pays en un an. Sa hausse = **croissance**.\n- **Inflation** : hausse générale et durable des prix (mesurée par l'indice des prix à la consommation de l'INSEE).\n- **Chômage au sens du BIT** : sans emploi, disponible sous 15 jours, et en recherche active.\n\n## Le rôle de l'État et de l'Europe\n- **Politique budgétaire** (État) : dépenses publiques et impôts pour relancer ou freiner l'activité.\n- **Politique monétaire** (Banque centrale européenne) : les **taux directeurs**. Taux en hausse → crédit plus cher → moins d'inflation."
+    },
+    {
+      "titre": "Droit : les sources et le contrat",
+      "contenu": "## La hiérarchie des normes\nConstitution → traités internationaux et droit de l'UE → lois → règlements (décrets, arrêtés) → contrats. Une règle inférieure doit respecter les règles supérieures.\n\n## Le contrat\nAccord de volontés qui crée des obligations. Pour être **valable** (art. 1128 du Code civil) :\n1. le **consentement** des parties (sans erreur, dol ni violence) ;\n2. leur **capacité** de contracter ;\n3. un **contenu licite et certain**.\n\nSinon → **nullité** du contrat.\n\n## Si le contrat n'est pas respecté\nLe créancier peut : demander l'**exécution forcée**, **réduire le prix**, **résoudre** (annuler pour l'avenir) le contrat, ou demander des **dommages et intérêts** (responsabilité **contractuelle**).\n\n## Hors contrat\nLa **responsabilité civile délictuelle** (art. 1240 du Code civil) : celui qui cause un dommage à autrui par sa faute doit le réparer. Il faut un **fait générateur**, un **dommage** et un **lien de causalité**.\n\n## Prouver\nEntre professionnels, la preuve est **libre**. Face à un particulier, au-delà de 1 500 €, il faut un **écrit** (papier ou électronique)."
+    },
+    {
+      "titre": "Droit du travail et formes d'entreprise",
+      "contenu": "## Le contrat de travail\n3 éléments : une **prestation de travail**, une **rémunération** et un **lien de subordination** (l'employeur donne des ordres, contrôle et peut sanctionner).\n- **CDI** : la règle.\n- **CDD** et intérim : exceptions, pour des cas prévus par la loi (remplacement, surcroît d'activité…), avec un écrit obligatoire.\n- **Contrat d'apprentissage** : CDD ou CDI particulier, avec formation en CFA.\n\n## La rupture\nDémission, licenciement (motif personnel ou économique, procédure obligatoire), **rupture conventionnelle** (accord commun, homologuée par la DREETS / DEETS en Guyane).\n\n## Les formes juridiques\n| Forme | Associés | Responsabilité |\n|---|---|---|\n| Entreprise individuelle (dont micro-entrepreneur) | 1 | sur le patrimoine professionnel (patrimoine perso protégé depuis 2022) |\n| SARL / EURL | 1 à 100 | limitée aux apports |\n| SAS / SASU | 1 ou plus | limitée aux apports |\n| SA | 2 ou plus (7 si cotée) | limitée aux apports |\n\nUne **société** a la **personnalité morale** : elle a son propre patrimoine, son nom, son siège."
+    },
+    {
+      "titre": "Management et stratégie",
+      "contenu": "## Le management\nPiloter une organisation : **fixer des objectifs**, **organiser**, **animer** les équipes, **contrôler** les résultats.\n\n## Les styles de direction (Likert)\nAutoritaire, paternaliste, consultatif, participatif. Le bon style dépend de la situation et de l'autonomie de l'équipe.\n\n## Les structures\n- **Fonctionnelle** : par métier (achats, ventes, RH…).\n- **Divisionnelle** : par produit ou zone géographique.\n- **Matricielle** : double rattachement (métier + projet).\n\n## Diagnostiquer\n- **PESTEL** : environnement Politique, Économique, Socioculturel, Technologique, Écologique, Légal.\n- **SWOT** : Forces / Faiblesses (interne), Opportunités / Menaces (externe).\n- **5 forces de Porter** : concurrents, nouveaux entrants, produits de substitution, pouvoir des clients, pouvoir des fournisseurs.\n\n## Les stratégies génériques (Porter)\n- **Domination par les coûts** : produire moins cher que les autres.\n- **Différenciation** : offrir quelque chose d'unique (qualité, image, service).\n- **Focalisation** : se concentrer sur un segment précis."
+    },
+    {
+      "titre": "Méthode de l'épreuve écrite (étude de cas)",
+      "contenu": "## Comment ça se passe\nUne **étude de cas** de 4 h sur une organisation réelle ou réaliste, avec des **documents** (articles, chiffres, extraits de contrats, jurisprudence) et des **questions**.\n\n## La méthode en 4 temps\n1. **Lire les questions d'abord**, puis le contexte.\n2. **Surligner** dans les documents ce qui sert à chaque question.\n3. Répondre avec un **raisonnement structuré** :\n   - en droit : **faits** → **problème juridique** → **règle de droit** (cite-la) → **application** → **conclusion** ;\n   - en management / économie : **notion du cours** + **exemple tiré du cas** + **conclusion**.\n4. **Garder 15 min** pour relire.\n\n## Les pièges\n- Recopier les documents sans analyser.\n- Oublier de **justifier** avec une règle ou une notion.\n- Répondre « oui / non » sans argument.\n\n👉 Avec le CEJM, tu peux te servir de **ton entreprise d'alternance** comme exemple à l'oral et dans ta tête pour comprendre."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Qui fixe les taux directeurs dans la zone euro ?",
+      "choix": [
+        "Le gouvernement français",
+        "La Banque centrale européenne",
+        "La Banque de France seule",
+        "Le Parlement européen"
+      ],
+      "reponse": 1,
+      "explication": "La BCE mène la politique monétaire de la zone euro ; la politique budgétaire reste aux États."
+    },
+    {
+      "q": "Le PIB mesure :",
+      "choix": [
+        "La richesse produite dans un pays en un an",
+        "Le montant des impôts",
+        "Les exportations",
+        "L'épargne des ménages"
+      ],
+      "reponse": 0,
+      "explication": "Produit intérieur brut : la valeur ajoutée produite sur le territoire en un an. Sa variation = la croissance."
+    },
+    {
+      "q": "Au sens du BIT, un chômeur est :",
+      "choix": [
+        "Toute personne sans emploi",
+        "Sans emploi, disponible sous 15 jours et en recherche active",
+        "Inscrit à France Travail seulement",
+        "Un étudiant"
+      ],
+      "reponse": 1,
+      "explication": "Il faut les trois conditions à la fois : sans emploi, disponible, recherche active."
+    },
+    {
+      "q": "Lequel N'est PAS une condition de validité d'un contrat (art. 1128 C. civ.) ?",
+      "choix": [
+        "Le consentement",
+        "La capacité",
+        "Un contenu licite et certain",
+        "Un écrit signé devant notaire"
+      ],
+      "reponse": 3,
+      "explication": "La plupart des contrats sont valables sans écrit ni notaire. L'écrit sert surtout de preuve."
+    },
+    {
+      "q": "Un contrat signé sous la menace est :",
+      "choix": [
+        "Valable",
+        "Nul pour vice du consentement (violence)",
+        "Valable si le prix est juste",
+        "Toujours résolu"
+      ],
+      "reponse": 1,
+      "explication": "Erreur, dol (tromperie) et violence sont les vices du consentement : ils entraînent la nullité."
+    },
+    {
+      "q": "Ce qui distingue le contrat de travail d'un contrat commercial :",
+      "choix": [
+        "Le salaire",
+        "Le lien de subordination",
+        "La durée",
+        "La signature"
+      ],
+      "reponse": 1,
+      "explication": "Le salarié travaille sous l'autorité de l'employeur, qui donne des ordres, contrôle et peut sanctionner."
+    },
+    {
+      "q": "Dans une SAS, la responsabilité des associés est :",
+      "choix": [
+        "Illimitée",
+        "Limitée à leurs apports",
+        "Partagée avec l'État",
+        "Celle du dirigeant seulement"
+      ],
+      "reponse": 1,
+      "explication": "SARL, SAS et SA : responsabilité limitée aux apports."
+    },
+    {
+      "q": "La rupture conventionnelle est :",
+      "choix": [
+        "Une démission",
+        "Un licenciement",
+        "Une rupture d'un commun accord, homologuée par l'administration",
+        "Une sanction"
+      ],
+      "reponse": 2,
+      "explication": "Employeur et salarié se mettent d'accord ; l'administration du travail l'homologue."
+    },
+    {
+      "q": "Dans un SWOT, une nouvelle loi favorable à ton secteur est :",
+      "choix": [
+        "Une force",
+        "Une faiblesse",
+        "Une opportunité",
+        "Une menace"
+      ],
+      "reponse": 2,
+      "explication": "Elle vient de l'environnement extérieur et est favorable → opportunité. Forces et faiblesses sont internes."
+    },
+    {
+      "q": "Une marque qui vend plus cher grâce à son image suit une stratégie de :",
+      "choix": [
+        "Domination par les coûts",
+        "Différenciation",
+        "Monopole",
+        "Intégration verticale"
+      ],
+      "reponse": 1,
+      "explication": "La différenciation repose sur une offre perçue comme unique (qualité, image, service)."
+    },
+    {
+      "q": "La responsabilité délictuelle exige :",
+      "choix": [
+        "Un contrat",
+        "Un fait générateur, un dommage et un lien de causalité",
+        "Un écrit",
+        "Une faute pénale"
+      ],
+      "reponse": 1,
+      "explication": "Article 1240 du Code civil : celui qui cause un dommage par sa faute doit le réparer, s'il y a un lien entre les deux."
+    },
+    {
+      "q": "Dans la hiérarchie des normes, le décret est :",
+      "choix": [
+        "Au-dessus de la loi",
+        "En dessous de la loi",
+        "Au-dessus de la Constitution",
+        "Au même niveau qu'un traité"
+      ],
+      "reponse": 1,
+      "explication": "Constitution > traités > lois > règlements (décrets, arrêtés)."
+    },
+    {
+      "q": "Une structure où un salarié dépend à la fois d'un chef de service et d'un chef de projet est :",
+      "choix": [
+        "Fonctionnelle",
+        "Divisionnelle",
+        "Matricielle",
+        "Hiérarchique simple"
+      ],
+      "reponse": 2,
+      "explication": "La structure matricielle croise métiers et projets : double rattachement."
+    },
+    {
+      "q": "En étude de cas de droit, après les faits, tu dois poser :",
+      "choix": [
+        "La conclusion",
+        "Le problème juridique",
+        "Ton avis personnel",
+        "Un schéma"
+      ],
+      "reponse": 1,
+      "explication": "Faits → problème juridique → règle → application → conclusion."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Inflation",
+      "verso": "Hausse générale et durable des prix"
+    },
+    {
+      "recto": "Politique monétaire",
+      "verso": "Taux directeurs de la BCE (zone euro)"
+    },
+    {
+      "recto": "Politique budgétaire",
+      "verso": "Dépenses publiques et impôts décidés par l'État"
+    },
+    {
+      "recto": "Conditions de validité d'un contrat",
+      "verso": "Consentement, capacité, contenu licite et certain (art. 1128 C. civ.)"
+    },
+    {
+      "recto": "Vices du consentement",
+      "verso": "Erreur, dol, violence"
+    },
+    {
+      "recto": "Responsabilité délictuelle : 3 conditions",
+      "verso": "Fait générateur, dommage, lien de causalité (art. 1240 C. civ.)"
+    },
+    {
+      "recto": "Lien de subordination",
+      "verso": "L'employeur donne des ordres, contrôle et sanctionne : critère du contrat de travail"
+    },
+    {
+      "recto": "Rupture conventionnelle",
+      "verso": "Rupture d'un commun accord, homologuée par l'administration du travail"
+    },
+    {
+      "recto": "Responsabilité en SARL / SAS",
+      "verso": "Limitée aux apports"
+    },
+    {
+      "recto": "PESTEL",
+      "verso": "Politique, Économique, Socioculturel, Technologique, Écologique, Légal"
+    },
+    {
+      "recto": "SWOT",
+      "verso": "Forces, Faiblesses (interne) / Opportunités, Menaces (externe)"
+    },
+    {
+      "recto": "5 forces de Porter",
+      "verso": "Concurrents, nouveaux entrants, substituts, clients, fournisseurs"
+    },
+    {
+      "recto": "Stratégies génériques",
+      "verso": "Domination par les coûts, différenciation, focalisation"
+    },
+    {
+      "recto": "Méthode cas de droit",
+      "verso": "Faits → problème → règle → application → conclusion"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Référentiel du BTS NDRC (épreuve E3 CEJM) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-NDRC.pdf"
+    },
+    {
+      "titre": "Code civil (articles 1128, 1240) — Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006070721/"
+    },
+    {
+      "titre": "Définitions de l'INSEE (PIB, inflation, chômage BIT)",
+      "url": "https://www.insee.fr/fr/metadonnees/definitions"
+    }
+  ],
+  "publics": [
+    "bts-banque",
+    "bts-cg",
+    "bts-com",
+    "bts-gpme",
+    "bts-gtla",
+    "bts-ndrc",
+    "bts-sam",
+    "bts-sio"
+  ]
+}

@@ -29,6 +29,8 @@ Classe CEVEDOM est l’espace en ligne des apprentis du CFA CEVEDOM (41 formatio
 - **Trouver l’info officielle** — Ma formation → « Où trouver l’info officielle » : fiche RNCP, dossier du CFA, référentiel, statistiques de réussite, ONISEP, académie.
 - **Voir les autres formations du CFA** — 🏫 CFA & examens → « Voir les 41 formations », avec filtres par filière et domaine.
 - **Réviser en priorité ce qui concerne sa formation** — 📖 Révisions : la partie « ⭐ Pour toi » est choisie selon ta formation ; les autres matières sont plus bas.
+- **Voir ses épreuves et leurs coefficients** — 🎓 Ma formation → « Tes épreuves » : rangées par coefficient, avec le poids de chacune dans la note finale et les matières pour les réviser.
+- **Lire les actus de son métier** — 📰 Actus → « Pour ta formation » : presse spécialisée de ton domaine + infos utiles à tous les apprentis.
 
 **🚫 Tu ne peux pas**
 
@@ -119,6 +121,10 @@ Classe CEVEDOM est l’espace en ligne des apprentis du CFA CEVEDOM (41 formatio
 - **Débloquer des badges et voir le classement de ta filière** — Progression → Badges / Classement (de la semaine ou depuis le début).
 - **Ne pas apparaître dans le classement** — Progression → coche « Ne pas apparaître dans le classement ».
 - **Partager tes propres fiches** — Dans une matière → onglet « Fiches de la classe ».
+- **Réviser d'abord ce qui compte le plus** — 📖 Révisions → « ⭐ Pour toi » : tes matières triées par coefficient (badge « E4 · coef 5 »).
+- **Faire un entraînement mixte** — Révisions → « 🎯 Entraînement mixte » : 20 questions de toutes tes matières, plus nombreuses pour les gros coefficients.
+- **Comprendre ses erreurs** — Après chaque réponse de quiz, une explication ; à la fin, le récap de tes erreurs avec la bonne réponse.
+- **Vérifier les sources d'une fiche** — En bas de l'onglet Fiches : les référentiels et textes officiels utilisés.
 
 **🚫 Tu ne peux pas**
 

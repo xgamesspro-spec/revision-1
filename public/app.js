@@ -428,7 +428,7 @@ async function viewHome() {
       <a class="card subject-card" href="#/actus">
         <div class="muted small">Veille</div>
         <div class="stat">📰</div>
-        <div class="small muted">Actus de la Guyane, de l'alternance et des métiers</div>
+        <div class="small muted">Actus de ta formation, de l'alternance et de la Guyane</div>
       </a>
     </div>
     <div class="grid grid-2" style="margin-top:16px">
@@ -453,11 +453,12 @@ async function viewSubjects() {
   const all = await api('GET', '/api/subjects');
   const eleve = state.user.role === 'eleve';
   // Élève : d'abord ce qui concerne sa formation (le plus précis en premier), le reste plus bas
-  const mine = eleve ? all.filter(s => s.pour_toi).sort((a, b) => b.pertinence - a.pertinence) : all;
+  const coefOf = s => (s.epreuve ? (s.epreuve.coef ?? 0.5) : 0);
+  const mine = eleve ? all.filter(s => s.pour_toi).sort((a, b) => coefOf(b) - coefOf(a) || b.pertinence - a.pertinence) : all;
   const rest = eleve ? all.filter(s => !s.pour_toi) : [];
   const card = s => `
         <a class="card subject-card" href="#/revisions/${s.id}">
-          <div class="emoji">${s.icone}</div>
+          <div class="row"><div class="emoji">${s.icone}</div><span class="spacer"></span>${s.epreuve ? `<span class="pill ${s.epreuve.coef >= 5 ? 'gold' : 'accent'}" title="${esc(s.epreuve.nom)}">${esc(s.epreuve.code)}${s.epreuve.coef != null ? ` · coef ${String(s.epreuve.coef).replace('.', ',')}` : ''}</span>` : ''}</div>
           <h3 style="margin-top:8px">${esc(s.nom)}</h3>
           <div class="small muted">${esc(s.description)}</div>
           <div class="row small muted" style="margin-top:10px">
@@ -469,9 +470,35 @@ async function viewSubjects() {
   const byGroup = list => [...new Set(list.map(s => s.groupe))].map(g => `<div class="section-title">${esc(g)}</div>
     <div class="grid grid-3">${list.filter(s => s.groupe === g).map(card).join('')}</div>`).join('');
   setContent(`
+    <details class="card how-it-works" ${localStorage.getItem('howSeen') ? '' : 'open'} style="margin-bottom:16px"><summary><b>❓ Comment ça marche ?</b> <span class="small muted">— fiches, cartes, quiz, coefficients</span></summary>
+      <div class="grid grid-3" style="margin-top:12px">
+        <div><b>📄 1. Les fiches</b><p class="small">Le cours en court, avec les sources officielles en bas (référentiels, lois, sites publics). Commence toujours par là.</p></div>
+        <div><b>🃏 2. Les cartes mémoire</b><p class="small">Une question, tu réfléchis, tu retournes la carte. « Je savais » : elle revient dans 1, 3, 7, 14, 30 puis 60 jours. « À revoir » : elle revient demain. C'est la <b>répétition espacée</b>, la méthode qui fait le plus retenir.</p></div>
+        <div><b>❓ 3. Les quiz</b><p class="small">Questions mélangées, réponses dans le désordre (touches 1 à 4). Après chaque réponse, une <b>explication</b> te dit pourquoi. À la fin, le récap de tes erreurs. 80 % et plus = maîtrisé.</p></div>
+        <div><b>⭐ Pour toi</b><p class="small">Les matières de <b>tes épreuves</b>, rangées par <b>coefficient</b> : plus le coef est gros, plus elle compte dans ta note finale. Commence par celles-là.</p></div>
+        <div><b>🎯 Entraînement mixte</b><p class="small">20 questions tirées de toutes tes matières, avec plus de questions pour les gros coefficients. Idéal la veille d'un examen.</p></div>
+        <div><b>🏆 XP</b><p class="small">Cartes et quiz te font gagner de l'XP et alimentent ta série 🔥 (page Progression).</p></div>
+      </div></details>
+    ${eleve && mine.length ? '<div class="row" style="margin-bottom:12px"><button class="btn primary" id="mix-go">🎯 Entraînement mixte (20 questions)</button></div>' : ''}
     ${eleve ? `<p class="muted small">${state.user.formation ? `Matières choisies pour <b>${esc(state.user.formation_nom)}</b>.` : `Matières pour les ${esc(state.user.filiere_nom || 'apprentis')}. <a href="#/compte">Indique ta formation exacte</a> pour un choix plus précis.`}</p>` : ''}
     ${eleve ? `<div class="section-title">⭐ Pour toi</div><div class="grid grid-3">${mine.map(card).join('')}</div>` : byGroup(mine)}
     ${rest.length ? `<details class="card" style="margin-top:20px"><summary style="cursor:pointer"><b>📚 Autres matières du CFA (${rest.length})</b> <span class="small muted">— pour aller plus loin</span></summary>${byGroup(rest)}</details>` : ''}`);
+  $('.how-it-works')?.addEventListener('toggle', e => { try { if (!e.target.open) localStorage.setItem('howSeen', '1'); } catch { /* ignoré */ } });
+  $('#mix-go')?.addEventListener('click', () => mixQuiz(mine, coefOf));
+}
+
+// Entraînement mixte : 20 questions de toutes les matières de la formation, au prorata des coefficients
+async function mixQuiz(list, coefOf) {
+  const full = await Promise.all(list.map(s => api('GET', `/api/subjects/${s.id}`)));
+  const weight = s => Math.max(1, coefOf(list.find(x => x.id === s.id)) || 1);
+  const pool = full.filter(s => s.quiz.length);
+  const tot = pool.reduce((a, s) => a + weight(s), 0);
+  let qs = [];
+  for (const s of pool) qs.push(...shuffle(s.quiz).slice(0, Math.max(1, Math.round(20 * weight(s) / tot))).map(q => ({ ...q, _sub: s.nom })));
+  qs = shuffle(qs).slice(0, 20);
+  setTitle('🎯 Entraînement mixte', `${qs.length} questions de tes matières, au prorata des coefficients`);
+  setContent('<div class="row" style="margin-bottom:8px"><a href="#/revisions" class="small">← Révisions</a></div><div id="tab-body"></div>');
+  tabQuiz({ id: null, nom: 'Entraînement mixte', quiz: qs, _mix: true });
 }
 
 // Une matière
@@ -489,11 +516,13 @@ async function viewSubject(r) {
 }
 
 function tabFiches(s) {
-  $('#tab-body').innerHTML = s.fiches.length ? s.fiches.map((f, i) => `
+  $('#tab-body').innerHTML = (s.fiches.length ? s.fiches.map((f, i) => `
     <details class="card fiche" ${i === 0 ? 'open' : ''}>
       <summary>${esc(f.titre)}</summary>
       <div class="body">${md(f.contenu)}</div>
-    </details>`).join('') : '<div class="empty">Pas encore de fiche.</div>';
+    </details>`).join('') : '<div class="empty">Pas encore de fiche.</div>')
+    + (s.sources?.length ? `<div class="card" style="margin-top:12px"><h3 style="margin-top:0">📚 Sources</h3><p class="small muted">Ces fiches s'appuient sur les documents officiels ci-dessous. En cas de doute, c'est eux qui font foi.</p>
+      <ul class="small">${s.sources.map(x => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.titre)}</a></li>`).join('')}</ul></div>` : '');
 }
 
 function tabCards(s) {
@@ -542,16 +571,20 @@ function tabCards(s) {
 function tabQuiz(s) {
   const qs = shuffle(s.quiz);
   let idx = 0, score = 0;
+  const errors = [];
   const body = $('#tab-body');
   if (!qs.length) { body.innerHTML = '<div class="empty">Pas de quiz pour cette matière.</div>'; return; }
   const show = () => {
     if (idx >= qs.length) {
-      api('POST', '/api/quiz-results', { subject: s.id, score, total: qs.length }).then(r => { if (r.perfect) confetti(160); }).catch(() => {});
+      if (!s._mix) api('POST', '/api/quiz-results', { subject: s.id, score, total: qs.length }).then(r => { if (r.perfect) confetti(160); }).catch(() => {});
+      else if (score === qs.length) confetti(160);
       const pct = Math.round(score / qs.length * 100);
       beep(pct >= 60 ? 'ok' : 'ko');
       body.innerHTML = `<div class="card empty"><div class="stat">${score}/${qs.length}</div>
-        <p>${pct >= 80 ? 'Excellent 🔥' : pct >= 60 ? 'Pas mal, encore un effort 💪' : 'Relis les fiches et retente 📖'}</p>
-        <div class="row" style="justify-content:center"><button class="btn primary" id="q-again">Recommencer</button><a class="btn" href="#/revisions/${s.id}?tab=fiches">Revoir les fiches</a></div></div>`;
+        <p>${pct >= 80 ? 'Excellent 🔥 C’est maîtrisé.' : pct >= 60 ? 'Pas mal, encore un effort 💪' : 'Relis les fiches et retente 📖'}</p>
+        <div class="row" style="justify-content:center"><button class="btn primary" id="q-again">Recommencer</button>${s._mix ? '<a class="btn" href="#/revisions">Mes matières</a>' : `<a class="btn" href="#/revisions/${s.id}?tab=fiches">Revoir les fiches</a>`}</div></div>
+        ${errors.length ? `<div class="card" style="margin-top:16px;max-width:760px;margin-left:auto;margin-right:auto"><h3 style="margin-top:0">🔁 Tes erreurs à retenir (${errors.length})</h3>
+          ${errors.map(q => `<div class="sub-item"><b>${esc(q.q)}</b>${q._sub ? ` <span class="pill">${esc(q._sub)}</span>` : ''}<div class="small">✅ ${esc(q.choix[q.reponse])}</div><div class="small muted">${esc(q.explication || '')}</div></div>`).join('')}</div>` : ''}`;
       $('#q-again').onclick = () => tabQuiz(s);
       return;
     }
@@ -559,7 +592,7 @@ function tabQuiz(s) {
     const order = shuffle(q.choix.map((c, i) => ({ c, i })));
     body.innerHTML = `
       <div class="card" style="max-width:640px;margin:0 auto">
-        <div class="row small muted"><span>Question ${idx + 1} / ${qs.length}</span><span class="spacer"></span><span>Score : ${score}</span></div>
+        <div class="row small muted"><span>Question ${idx + 1} / ${qs.length}</span>${q._sub ? `<span class="pill">${esc(q._sub)}</span>` : ''}<span class="spacer"></span><span>Score : ${score}</span></div>
         <div class="progress"><div style="width:${idx / qs.length * 100}%"></div></div>
         <h3 style="margin:18px 0 10px">${esc(q.q)}</h3>
         ${order.map((o, k) => `<button class="quiz-choice" data-i="${o.i}"><kbd>${k + 1}</kbd> ${esc(o.c)}</button>`).join('')}
@@ -568,7 +601,7 @@ function tabQuiz(s) {
     $$('.quiz-choice', body).forEach(b => b.onclick = () => {
       const chosen = +b.dataset.i;
       const good = chosen === q.reponse;
-      if (good) score++;
+      if (good) score++; else errors.push(q);
       beep(good ? 'ok' : 'ko');
       b.closest('.card').classList.add(good ? 'shake-ok' : 'shake-ko');
       $$('.quiz-choice', body).forEach(x => {
@@ -972,35 +1005,41 @@ async function viewTopic(r) {
 
 // ---------- Actus ----------
 async function viewNews(r) {
-  setTitle('Actus', 'Veille : cybersécurité, systèmes & réseaux, droit, Guyane, BTS');
+  setTitle('📰 Actus', 'Veille pour ton métier : sources officielles et presse spécialisée');
   setContent('<div class="empty">Récupération des actus…</div>');
   const n = await api('GET', '/api/news');
+  const eleve = state.user.role === 'eleve';
+  const tab = r.q.tab || (eleve ? 'toi' : 'tout');
   const cat = r.q.cat || '';
-  const cats = [...new Set([...n.alaune.map(a => a.categorie), ...n.flux.map(f => f.category)])];
-  const items = n.flux.filter(f => !cat || f.category === cat);
+  const keep = x => (tab !== 'toi' || x.pour_toi) && (!cat || (x.category || x.categorie) === cat);
+  const une = n.alaune.filter(keep), flux = n.flux.filter(keep);
+  const cats = [...new Set([...n.alaune, ...n.flux].filter(x => tab !== 'toi' || x.pour_toi).map(x => x.category || x.categorie))];
+  const q = o => `#/actus?${new URLSearchParams(Object.entries({ tab, cat, ...o }).filter(([, v]) => v))}`;
   setContent(`
-    <div class="section-title" style="margin-top:0">⭐ À la une (sélection)</div>
+    ${eleve ? `<div class="tabs"><a class="tab ${tab === 'toi' ? 'active' : ''}" href="${q({ tab: 'toi', cat: '' })}">⭐ Pour ta formation</a><a class="tab ${tab === 'tout' ? 'active' : ''}" href="${q({ tab: 'tout', cat: '' })}">🌐 Tout le CFA</a></div>
+      ${tab === 'toi' ? `<p class="small muted">${n.formation ? `Actus choisies pour <b>${esc(n.formation)}</b> + les infos utiles à tous les apprentis.` : 'Indique ta formation exacte dans <a href="#/compte">Mon compte</a> pour voir les actus de ton métier.'}</p>` : ''}` : ''}
+    <div class="row" style="margin-bottom:12px">
+      <a class="btn sm ${!cat ? 'primary' : ''}" href="${q({ cat: '' })}">Tout</a>
+      ${cats.map(c => `<a class="btn sm ${c === cat ? 'primary' : ''}" href="${q({ cat: c })}">${esc(c)}</a>`).join('')}
+    </div>
+    ${une.length ? `<div class="section-title" style="margin-top:0">⭐ À la une (sélection vérifiée)</div>
     <div class="grid grid-2">
-      ${n.alaune.filter(a => !cat || a.categorie === cat).map(a => `
+      ${une.map(a => `
         <a class="card news-item" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">
-          <div class="row small"><span class="pill accent">${esc(a.categorie)}</span><span class="muted">${esc(a.source)}${a.date ? ' · ' + fmtDate(a.date, false) : ''}</span></div>
+          <div class="row small"><span class="pill ${a.metier ? 'gold' : 'accent'}">${esc(a.categorie)}</span><span class="muted">${esc(a.source)}${a.date ? ' · ' + fmtDate(a.date.length === 10 ? a.date + 'T12:00:00' : a.date, false) : ''}</span></div>
           <h3 style="margin-top:8px">${esc(a.titre)}</h3>
           <div class="small muted">${esc(a.resume)}</div>
         </a>`).join('')}
-    </div>
+    </div>` : ''}
     <div class="section-title">📡 En direct des sources</div>
-    <div class="row" style="margin-bottom:12px">
-      <a class="btn sm ${!cat ? 'primary' : ''}" href="#/actus">Tout</a>
-      ${cats.map(c => `<a class="btn sm ${c === cat ? 'primary' : ''}" href="#/actus?cat=${encodeURIComponent(c)}">${esc(c)}</a>`).join('')}
-    </div>
-    ${items.length ? `<div class="card" style="padding:0">${items.map(f => `
+    ${flux.length ? `<div class="card" style="padding:0">${flux.map(f => `
       <a class="topic-row news-item" href="${esc(f.link)}" target="_blank" rel="noopener noreferrer">
         <div style="flex:1;min-width:0">
-          <div class="row small"><span class="pill">${esc(f.category)}</span><span class="muted">${esc(f.source)}${f.date ? ' · ' + fmtDate(f.date) : ''}</span></div>
+          <div class="row small"><span class="pill ${f.metier ? 'gold' : ''}">${esc(f.category)}</span><span class="muted">${esc(f.source)}${f.date ? ' · ' + fmtDate(f.date) : ''}</span></div>
           <h3 style="margin:6px 0 2px;font-size:15px">${esc(f.title)}</h3>
           ${f.summary ? `<div class="small muted">${esc(f.summary)}</div>` : ''}
         </div>
-      </a>`).join('')}</div>` : `<div class="card empty">Aucune actu récupérée pour le moment (le serveur doit avoir accès à Internet).</div>`}
+      </a>`).join('')}</div>` : `<div class="card empty">Aucune actu en direct pour le moment (le serveur doit avoir accès à Internet).</div>`}
     ${n.indisponibles.length ? `<p class="small muted">Sources injoignables : ${n.indisponibles.map(esc).join(', ')}</p>` : ''}`);
 }
 

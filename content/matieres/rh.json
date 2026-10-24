@@ -1,0 +1,375 @@
+{
+  "nom": "Ressources humaines & administration du personnel",
+  "icone": "👥",
+  "groupe": "Gestion, administration & RH",
+  "ordre": 14,
+  "description": "BTS SAM E6 (coef 4), BTS GPME E52 (coef 4), bac pro AGOrA E32 (coef 3), TP ARH, Gestionnaire de paie, Secrétaire : recrutement, contrats, temps de travail, absences, formation, paie.",
+  "fiches": [
+    {
+      "titre": "Recruter et intégrer",
+      "contenu": "## Le processus\n1. **Analyse du besoin** : remplacement ou création ? **fiche de poste** (missions, compétences, conditions).\n2. **Sourcing** : annonce (France Travail, APEC, jobboards, LinkedIn, réseau), candidatures spontanées.\n3. **Présélection** des CV, puis **entretiens** (grille d'évaluation identique pour tous).\n4. **Décision** et réponse à **tous** les candidats.\n5. **Intégration** (onboarding) : livret d'accueil, tuteur, visite, accès informatiques.\n\n## Interdit : la discrimination\nOn ne peut pas écarter quelqu'un pour son origine, son sexe, son âge, sa situation de famille, son handicap, son lieu de résidence, etc. (Code du travail, art. L1132-1). Les questions d'entretien doivent porter **uniquement** sur les compétences."
+    },
+    {
+      "titre": "Les formalités d'embauche et les contrats",
+      "contenu": "## À l'embauche\n- **DPAE** (déclaration préalable à l'embauche) à l'URSSAF **avant** la prise de poste.\n- Inscription au **registre unique du personnel**.\n- **Visite d'information et de prévention** (médecine du travail).\n- **Contrat écrit** : obligatoire pour un CDD, un temps partiel ou un apprentissage.\n\n## Les principaux contrats\n| Contrat | Particularité |\n|---|---|\n| CDI | La règle, sans date de fin |\n| CDD | Motif obligatoire, durée limitée, indemnité de fin de contrat (10 % en général) |\n| Temps partiel | Moins de 35 h, horaires écrits au contrat |\n| Apprentissage | Formation au CFA, salaire en % du SMIC |\n| Professionnalisation | Alternance, souvent pour adultes |\n\n## La période d'essai (CDI)\nOuvriers/employés **2 mois**, agents de maîtrise **3 mois**, cadres **4 mois** (renouvelable une fois si l'accord de branche le prévoit)."
+    },
+    {
+      "titre": "Temps de travail, congés et absences",
+      "contenu": "## Temps de travail\n- Durée légale : **35 h** par semaine ; au-delà = **heures supplémentaires** (majorées de 25 % pour les 8 premières, 50 % ensuite, sauf accord).\n- Maximum : **10 h par jour**, **48 h** par semaine.\n- Repos : **11 h** consécutives par jour, **24 h** (+11 h) par semaine.\n\n## Congés payés\n**2,5 jours ouvrables par mois** de travail effectif, soit **30 jours ouvrables** (5 semaines) par an.\n\n## Les absences à suivre\nMaladie (arrêt à transmettre sous **48 h**), accident du travail, congés familiaux (naissance, mariage, décès), absences injustifiées. L'assistant RH les saisit pour la **paie** (variables de paie)."
+    },
+    {
+      "titre": "Formation et gestion des compétences",
+      "contenu": "- **Entretien de parcours professionnel** (ex-entretien professionnel) : depuis la loi du 24 octobre 2025, un premier entretien **dans l'année qui suit l'embauche**, puis **tous les 4 ans** (avant : tous les 2 ans), et un bilan tous les 8 ans. Il porte sur les perspectives d'évolution (≠ entretien annuel d'évaluation, qui juge le travail).\n- **Plan de développement des compétences** : les formations décidées par l'employeur.\n- **CPF** (compte personnel de formation) : crédité en euros chaque année, utilisable par le salarié.\n- **VAE** : obtenir un diplôme grâce à son expérience.\n- **GEPP** (gestion des emplois et des parcours professionnels) : anticiper les besoins en compétences.\n- Le **bilan de compétences** aide à faire le point (proposé aussi par l'OF CEVEDOM)."
+    },
+    {
+      "titre": "La paie en bref",
+      "contenu": "## Le bulletin de paie\n1. **Salaire de base** + heures supplémentaires + primes − absences = **salaire brut**.\n2. − **Cotisations salariales** (retraite, chômage selon les cas, CSG/CRDS…) = **net à payer avant impôt**.\n3. − **Prélèvement à la source** = **net payé**.\n\nL'employeur paie en plus des **cotisations patronales** → **coût employeur**.\n\n## Le SMIC\nAu **1er juin 2026** : **12,31 € brut de l'heure**, soit **1 867,02 € brut par mois** pour 35 h.\n\n## La DSN\nLa **déclaration sociale nominative**, envoyée chaque mois, transmet salaires et cotisations aux organismes sociaux.\n\n## Variables de paie\nTout ce qui change d'un mois à l'autre : heures sup, absences, primes, congés pris. L'assistant RH les collecte **avant** la clôture de la paie."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "La DPAE doit être faite :",
+      "choix": [
+        "Après la période d'essai",
+        "Avant la prise de poste",
+        "À la fin du mois",
+        "Seulement pour les CDD"
+      ],
+      "reponse": 1,
+      "explication": "La déclaration préalable à l'embauche se fait auprès de l'URSSAF avant que le salarié commence."
+    },
+    {
+      "q": "Quelle question est interdite en entretien d'embauche ?",
+      "choix": [
+        "Vos compétences en Excel ?",
+        "Avez-vous des enfants ?",
+        "Pourquoi ce poste ?",
+        "Vos disponibilités ?"
+      ],
+      "reponse": 1,
+      "explication": "La situation de famille est un critère de discrimination interdit (art. L1132-1 du Code du travail)."
+    },
+    {
+      "q": "Un contrat écrit est obligatoire pour :",
+      "choix": [
+        "Un CDI à temps plein",
+        "Un CDD",
+        "Aucun contrat",
+        "Seulement les cadres"
+      ],
+      "reponse": 1,
+      "explication": "CDD, temps partiel et apprentissage doivent être écrits. Le CDI à temps plein peut être oral (mais l'écrit est conseillé)."
+    },
+    {
+      "q": "Période d'essai maximale d'un employé en CDI (hors renouvellement) :",
+      "choix": [
+        "1 mois",
+        "2 mois",
+        "4 mois",
+        "6 mois"
+      ],
+      "reponse": 1,
+      "explication": "2 mois pour ouvriers et employés, 3 mois agents de maîtrise, 4 mois cadres."
+    },
+    {
+      "q": "Les 8 premières heures supplémentaires sont majorées (sans accord) de :",
+      "choix": [
+        "10 %",
+        "25 %",
+        "50 %",
+        "100 %"
+      ],
+      "reponse": 1,
+      "explication": "25 % de la 36e à la 43e heure, 50 % au-delà."
+    },
+    {
+      "q": "Combien de jours ouvrables de congés payés par an ?",
+      "choix": [
+        "20",
+        "25",
+        "30",
+        "35"
+      ],
+      "reponse": 2,
+      "explication": "2,5 jours par mois × 12 = 30 jours ouvrables, soit 5 semaines."
+    },
+    {
+      "q": "Depuis la loi du 24 octobre 2025, l'entretien de parcours professionnel a lieu :",
+      "choix": [
+        "Tous les mois",
+        "Tous les 2 ans",
+        "Tous les 4 ans (premier dans l'année d'embauche)",
+        "Jamais"
+      ],
+      "reponse": 2,
+      "explication": "Il remplace l'entretien professionnel (qui était tous les 2 ans) : premier entretien dans l'année suivant l'embauche, puis tous les 4 ans, bilan tous les 8 ans."
+    },
+    {
+      "q": "Le CPF est :",
+      "choix": [
+        "Une prime",
+        "Un compte de formation alimenté en euros",
+        "Un contrat de travail",
+        "Une mutuelle"
+      ],
+      "reponse": 1,
+      "explication": "Compte personnel de formation, utilisable par le salarié pour des formations certifiantes."
+    },
+    {
+      "q": "Brut − cotisations salariales = ?",
+      "choix": [
+        "Coût employeur",
+        "Net avant impôt",
+        "Salaire de base",
+        "Prime"
+      ],
+      "reponse": 1,
+      "explication": "Puis on retire le prélèvement à la source pour obtenir le net payé."
+    },
+    {
+      "q": "SMIC horaire brut au 1er juin 2026 :",
+      "choix": [
+        "11,65 €",
+        "12,02 €",
+        "12,31 €",
+        "13,00 €"
+      ],
+      "reponse": 2,
+      "explication": "12,31 € brut (1 867,02 € par mois pour 35 h), après la revalorisation de 2,41 %."
+    },
+    {
+      "q": "Un arrêt maladie doit être transmis à l'employeur sous :",
+      "choix": [
+        "24 h",
+        "48 h",
+        "1 semaine",
+        "1 mois"
+      ],
+      "reponse": 1,
+      "explication": "48 heures, à l'employeur et à la CPAM (CGSS en Guyane)."
+    },
+    {
+      "q": "La DSN est envoyée :",
+      "choix": [
+        "Chaque année",
+        "Chaque mois",
+        "À l'embauche seulement",
+        "Jamais"
+      ],
+      "reponse": 1,
+      "explication": "Déclaration sociale nominative mensuelle, issue de la paie."
+    },
+    {
+      "q": "Un CDD peut être conclu pour :",
+      "choix": [
+        "n'importe quel poste permanent",
+        "un motif précis prévu par la loi (remplacement, surcroît d'activité…)",
+        "économiser des charges",
+        "tester un salarié"
+      ],
+      "reponse": 1,
+      "explication": "Le CDD ne doit pas pourvoir durablement un emploi permanent : il faut un motif légal."
+    },
+    {
+      "q": "Durée légale du travail en France :",
+      "choix": [
+        "32 h",
+        "35 h",
+        "39 h",
+        "40 h"
+      ],
+      "reponse": 1,
+      "explication": "35 heures par semaine ; au-delà, ce sont des heures supplémentaires."
+    },
+    {
+      "q": "Majoration légale des heures sup de la 36e à la 43e heure (sans accord) :",
+      "choix": [
+        "10 %",
+        "25 %",
+        "50 %",
+        "100 %"
+      ],
+      "reponse": 1,
+      "explication": "25 % de la 36e à la 43e heure, 50 % au-delà, sauf accord collectif fixant un autre taux (minimum 10 %)."
+    },
+    {
+      "q": "Le CSE est obligatoire à partir de :",
+      "choix": [
+        "1 salarié",
+        "11 salariés",
+        "50 salariés",
+        "300 salariés"
+      ],
+      "reponse": 1,
+      "explication": "Dès 11 salariés (pendant 12 mois consécutifs)."
+    },
+    {
+      "q": "Le DUERP est obligatoire :",
+      "choix": [
+        "dès le 1er salarié",
+        "à partir de 11 salariés",
+        "à partir de 50 salariés",
+        "seulement dans l'industrie"
+      ],
+      "reponse": 0,
+      "explication": "Toute entreprise qui emploie au moins un salarié doit évaluer les risques et tenir le document unique."
+    },
+    {
+      "q": "Lors d'un entretien d'embauche, on peut demander :",
+      "choix": [
+        "si la candidate veut des enfants",
+        "la religion",
+        "les compétences liées au poste",
+        "le lieu de naissance des parents"
+      ],
+      "reponse": 2,
+      "explication": "Les questions doivent porter uniquement sur la capacité à occuper le poste ; le reste est discriminatoire."
+    },
+    {
+      "q": "Le taux d'absentéisme se calcule :",
+      "choix": [
+        "départs ÷ effectif",
+        "heures d'absence ÷ heures théoriques × 100",
+        "jours de congés ÷ 30",
+        "salaires ÷ effectif"
+      ],
+      "reponse": 1,
+      "explication": "C'est la part des heures prévues qui n'ont pas été travaillées."
+    },
+    {
+      "q": "Le CPF sert à :",
+      "choix": [
+        "payer les congés",
+        "financer des formations choisies par le salarié",
+        "calculer la retraite",
+        "déclarer les embauches"
+      ],
+      "reponse": 1,
+      "explication": "Compte personnel de formation : le salarié l'utilise pour des formations certifiantes."
+    },
+    {
+      "q": "Le règlement intérieur est obligatoire à partir de :",
+      "choix": [
+        "1 salarié",
+        "11 salariés",
+        "50 salariés",
+        "250 salariés"
+      ],
+      "reponse": 2,
+      "explication": "À partir de 50 salariés."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "DPAE",
+      "verso": "Déclaration préalable à l'embauche (URSSAF), avant la prise de poste"
+    },
+    {
+      "recto": "Fiche de poste",
+      "verso": "Missions, compétences, conditions du poste à pourvoir"
+    },
+    {
+      "recto": "Discrimination à l'embauche",
+      "verso": "Interdite : origine, sexe, âge, famille, handicap… (art. L1132-1)"
+    },
+    {
+      "recto": "Indemnité de fin de CDD",
+      "verso": "10 % de la rémunération brute (cas général)"
+    },
+    {
+      "recto": "Période d'essai CDI employé",
+      "verso": "2 mois (3 agents de maîtrise, 4 cadres)"
+    },
+    {
+      "recto": "Durée maximale de travail",
+      "verso": "10 h par jour, 48 h par semaine"
+    },
+    {
+      "recto": "Repos quotidien",
+      "verso": "11 h consécutives"
+    },
+    {
+      "recto": "Heures sup (sans accord)",
+      "verso": "+25 % les 8 premières, +50 % ensuite"
+    },
+    {
+      "recto": "Entretien de parcours professionnel",
+      "verso": "1re année après l'embauche, puis tous les 4 ans (loi du 24 oct. 2025)"
+    },
+    {
+      "recto": "CPF",
+      "verso": "Compte personnel de formation (en euros)"
+    },
+    {
+      "recto": "SMIC au 1er juin 2026",
+      "verso": "12,31 € brut/h — 1 867,02 € brut/mois (35 h)"
+    },
+    {
+      "recto": "Coût employeur",
+      "verso": "Salaire brut + cotisations patronales"
+    },
+    {
+      "recto": "Période d'essai CDI (employé / maîtrise / cadre)",
+      "verso": "2 mois / 3 mois / 4 mois (renouvelable une fois si accord de branche)"
+    },
+    {
+      "recto": "CDD : durée maximale (cas général)",
+      "verso": "18 mois renouvellements compris"
+    },
+    {
+      "recto": "Durées maximales de travail",
+      "verso": "10 h/jour, 48 h/semaine (44 h en moyenne sur 12 semaines)"
+    },
+    {
+      "recto": "Repos quotidien minimum",
+      "verso": "11 heures consécutives"
+    },
+    {
+      "recto": "CSE",
+      "verso": "Comité social et économique, dès 11 salariés"
+    },
+    {
+      "recto": "DUERP",
+      "verso": "Document unique d'évaluation des risques, dès 1 salarié"
+    },
+    {
+      "recto": "Turnover",
+      "verso": "((départs + arrivées) ÷ 2) ÷ effectif moyen × 100"
+    },
+    {
+      "recto": "Registre unique du personnel",
+      "verso": "Liste de tous les salariés, obligatoire dans chaque établissement"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Épreuves du BTS SAM (E6 RH, coef 4) — lycée Condorcet (académie d'Amiens)",
+      "url": "https://condorcet-saint-quentin.ac-amiens.fr/site/formations/pdf/BTS_SAM_2022.pdf"
+    },
+    {
+      "titre": "Référentiel du TP Assistant ressources humaines (REAC) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_ARH_V03_03082020.pdf"
+    },
+    {
+      "titre": "SMIC au 1er juin 2026 — Éditions Tissot",
+      "url": "https://www.editions-tissot.fr/actualite/droit-du-travail/smic-quels-impacts-sur-les-minima-de-votre-convention-collective"
+    },
+    {
+      "titre": "Code du travail — Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006072050/"
+    },
+    {
+      "titre": "L'entretien de parcours professionnel en 6 questions — Lefebvre Dalloz",
+      "url": "https://formation.lefebvre-dalloz.fr/actualite/lentretien-de-parcours-professionnel-en-6-questions"
+    }
+  ],
+  "publics": [
+    "bp-agora",
+    "bts-gpme",
+    "bts-sam",
+    "tp-ad",
+    "tp-arh",
+    "tp-gp",
+    "tp-sa"
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "nom": "Développement web & applications",
+  "icone": "💻",
+  "groupe": "Informatique & réseaux",
+  "publics": [
+    "d:numerique",
+    "bp-ciel",
+    "bts-ciel",
+    "bts-sio",
+    "tp-cda",
+    "tp-dwwm"
+  ],
+  "ordre": 4,
+  "description": "HTML/CSS, JavaScript et DOM, HTTP et API REST, SQL, architecture MVC, sécurité (OWASP), Git : les bases des titres DWWM et CDA et du BTS SIO SLAM.",
+  "sources": [
+    {
+      "titre": "MDN Web Docs (Mozilla) — HTML, CSS, JavaScript, HTTP",
+      "url": "https://developer.mozilla.org/fr/"
+    },
+    {
+      "titre": "OWASP Top 10",
+      "url": "https://owasp.org/www-project-top-ten/"
+    },
+    {
+      "titre": "ANSSI — recommandations relatives aux mots de passe",
+      "url": "https://cyber.gouv.fr"
+    },
+    {
+      "titre": "Référentiel du TP Développeur web et web mobile (REAC, PDF du CFA)",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_DWWM_V03_03052018.pdf"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "Le front-end : HTML, CSS, JavaScript",
+      "contenu": "## HTML : la structure\nBalises **sémantiques** : `header`, `nav`, `main`, `section`, `article`, `footer`. Un seul `h1` par page, des `alt` sur les images (accessibilité), des `label` liés aux champs de formulaire.\n\n## CSS : la présentation\n- **Modèle de boîte** : contenu + `padding` + `border` + `margin`.\n- Mise en page : **Flexbox** (une dimension), **Grid** (deux dimensions).\n- **Responsive** : `@media (max-width: 600px) { … }` et conception *mobile first*.\n- Priorité des sélecteurs (spécificité) : `#id` > `.classe` > `balise`.\n\n## JavaScript : l'interaction\n- Le **DOM** : `document.querySelector('#btn')`, `addEventListener('click', …)`.\n- Variables : `const` (non réassignable), `let` ; éviter `var`.\n- Asynchrone : `fetch('/api/produits').then(r => r.json())` ou `async/await`.\n- Ne **jamais** insérer du texte saisi avec `innerHTML` sans l'échapper (risque XSS) : préférer `textContent`."
+    },
+    {
+      "titre": "Le back-end : HTTP, API REST, MVC",
+      "contenu": "## HTTP\n- Méthodes : **GET** (lire), **POST** (créer), **PUT/PATCH** (modifier), **DELETE** (supprimer).\n- Codes : **200** OK, **201** créé, **301** redirection, **400** requête invalide, **401** non authentifié, **403** interdit, **404** introuvable, **500** erreur serveur.\n- **HTTPS** = HTTP chiffré par TLS.\n\n## API REST\nDes **ressources** identifiées par des URL (`/api/clients/42`), des échanges en **JSON**, sans état côté serveur (chaque requête porte son authentification, ex. jeton ou cookie de session).\n\n## Architecture MVC\n- **Modèle** : données et règles métier (accès à la base).\n- **Vue** : affichage.\n- **Contrôleur** : reçoit la requête, appelle le modèle, choisit la vue.\n\n## Environnement\nServeur (Node.js, PHP, Java…), framework (Express, Symfony, Spring…), **variables d'environnement** pour les secrets (jamais dans le code ni sur Git)."
+    },
+    {
+      "titre": "Les bases de données et SQL",
+      "contenu": "## Le modèle relationnel\nDes **tables** avec une **clé primaire** (identifiant unique) ; une **clé étrangère** relie deux tables (ex. `commande.client_id` → `client.id`).\n\n## Les requêtes essentielles\n```sql\nSELECT nom, ville FROM client WHERE ville = 'Cayenne' ORDER BY nom;\nINSERT INTO client (nom, ville) VALUES ('Dupont', 'Kourou');\nUPDATE client SET ville = 'Matoury' WHERE id = 3;\nDELETE FROM client WHERE id = 3;\nSELECT c.nom, COUNT(*) AS nb FROM client c JOIN commande o ON o.client_id = c.id GROUP BY c.nom;\n```\n- `JOIN` (jointure interne) : seulement les lignes qui ont une correspondance ; `LEFT JOIN` : toutes les lignes de la table de gauche.\n- Fonctions d'agrégat : `COUNT`, `SUM`, `AVG`, `MIN`, `MAX` avec `GROUP BY` (et `HAVING` pour filtrer les groupes).\n\n## Bonnes pratiques\n**Requêtes préparées** (paramètres `?`) contre l'injection SQL, index sur les colonnes recherchées, sauvegardes, droits minimaux pour l'utilisateur de la base."
+    },
+    {
+      "titre": "Sécurité et travail en équipe",
+      "contenu": "## Les failles les plus courantes (OWASP)\n- **Injection** (SQL…) : on concatène une saisie dans une requête → **requêtes préparées**.\n- **XSS** : du JavaScript injecté s'exécute chez les visiteurs → **échapper** les sorties, CSP.\n- **CSRF** : un site tiers fait agir l'utilisateur connecté → jeton anti-CSRF, cookies `SameSite`.\n- **Contrôle d'accès défaillant** : vérifier les droits **côté serveur** à chaque requête.\n\n## Les mots de passe\nJamais en clair : les **hacher** avec un algorithme lent et salé (**bcrypt**, **Argon2**, scrypt). Jamais MD5 ni SHA-1 seuls.\n\n## Git\n`git clone`, `git add`, `git commit -m \"…\"`, `git push`, `git pull` ; une **branche** par fonctionnalité, puis **pull request** et revue de code. Ne jamais pousser de mot de passe ou de clé.\n\n## Tester\nTests unitaires (une fonction), tests d'intégration (plusieurs modules), tests fonctionnels / de bout en bout (comme l'utilisateur)."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Quelle méthode HTTP sert à créer une ressource ?",
+      "choix": [
+        "GET",
+        "POST",
+        "DELETE",
+        "HEAD"
+      ],
+      "reponse": 1,
+      "explication": "GET lit, POST crée, PUT/PATCH modifie, DELETE supprime."
+    },
+    {
+      "q": "Le code HTTP 404 signifie :",
+      "choix": [
+        "erreur serveur",
+        "ressource introuvable",
+        "non authentifié",
+        "créé"
+      ],
+      "reponse": 1,
+      "explication": "401 = non authentifié, 403 = interdit, 404 = introuvable, 500 = erreur serveur."
+    },
+    {
+      "q": "Pour une mise en page en deux dimensions (lignes et colonnes), on utilise surtout :",
+      "choix": [
+        "Flexbox",
+        "CSS Grid",
+        "float",
+        "table"
+      ],
+      "reponse": 1,
+      "explication": "Grid gère lignes et colonnes ; Flexbox une seule dimension."
+    },
+    {
+      "q": "La meilleure protection contre l'injection SQL :",
+      "choix": [
+        "un pare-feu",
+        "les requêtes préparées",
+        "cacher le code",
+        "HTTPS"
+      ],
+      "reponse": 1,
+      "explication": "Les paramètres sont envoyés séparément de la requête : ils ne peuvent pas la modifier."
+    },
+    {
+      "q": "Pour afficher un texte saisi par un utilisateur sans risque XSS :",
+      "choix": [
+        "innerHTML",
+        "textContent",
+        "eval",
+        "document.write"
+      ],
+      "reponse": 1,
+      "explication": "textContent insère du texte brut, jamais interprété comme du HTML."
+    },
+    {
+      "q": "Comment stocker un mot de passe ?",
+      "choix": [
+        "en clair",
+        "chiffré en base64",
+        "haché avec bcrypt ou Argon2",
+        "haché en MD5"
+      ],
+      "reponse": 2,
+      "explication": "Un hachage lent et salé rend les mots de passe très difficiles à retrouver en cas de fuite."
+    },
+    {
+      "q": "Dans MVC, le contrôleur :",
+      "choix": [
+        "stocke les données",
+        "affiche la page",
+        "reçoit la requête et fait le lien entre modèle et vue",
+        "est la base de données"
+      ],
+      "reponse": 2,
+      "explication": "Modèle = données, Vue = affichage, Contrôleur = chef d'orchestre."
+    },
+    {
+      "q": "Une clé étrangère sert à :",
+      "choix": [
+        "chiffrer une table",
+        "relier une table à une autre",
+        "trier",
+        "sauvegarder"
+      ],
+      "reponse": 1,
+      "explication": "Elle référence la clé primaire d'une autre table."
+    },
+    {
+      "q": "LEFT JOIN renvoie :",
+      "choix": [
+        "seulement les lignes qui correspondent",
+        "toutes les lignes de la table de gauche, même sans correspondance",
+        "rien",
+        "seulement la table de droite"
+      ],
+      "reponse": 1,
+      "explication": "Les colonnes de droite sont NULL quand il n'y a pas de correspondance."
+    },
+    {
+      "q": "Où mettre la clé secrète d'une API ?",
+      "choix": [
+        "dans le code sur GitHub",
+        "dans une variable d'environnement",
+        "dans le HTML",
+        "dans un commentaire"
+      ],
+      "reponse": 1,
+      "explication": "Les secrets restent hors du code et hors du dépôt Git."
+    },
+    {
+      "q": "Le CSRF consiste à :",
+      "choix": [
+        "voler la base de données",
+        "faire exécuter une action à un utilisateur connecté depuis un autre site",
+        "injecter du SQL",
+        "saturer un serveur"
+      ],
+      "reponse": 1,
+      "explication": "Parades : jeton anti-CSRF, cookies SameSite, vérifier l'origine."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "GET / POST / PUT-PATCH / DELETE",
+      "verso": "Lire / créer / modifier / supprimer"
+    },
+    {
+      "recto": "200 / 201 / 401 / 403 / 404 / 500",
+      "verso": "OK / créé / non authentifié / interdit / introuvable / erreur serveur"
+    },
+    {
+      "recto": "Modèle de boîte CSS",
+      "verso": "Contenu + padding + border + margin"
+    },
+    {
+      "recto": "Flexbox vs Grid",
+      "verso": "Une dimension / deux dimensions"
+    },
+    {
+      "recto": "MVC",
+      "verso": "Modèle (données), Vue (affichage), Contrôleur (logique de requête)"
+    },
+    {
+      "recto": "Clé primaire / étrangère",
+      "verso": "Identifiant unique / référence vers une autre table"
+    },
+    {
+      "recto": "Anti-injection SQL",
+      "verso": "Requêtes préparées"
+    },
+    {
+      "recto": "Anti-XSS",
+      "verso": "Échapper les sorties (textContent), CSP"
+    },
+    {
+      "recto": "Hachage des mots de passe",
+      "verso": "bcrypt, Argon2, scrypt (lents et salés)"
+    },
+    {
+      "recto": "Commandes Git de base",
+      "verso": "clone, add, commit, push, pull, branch"
+    }
+  ]
+}

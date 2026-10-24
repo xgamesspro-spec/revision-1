@@ -1,9 +1,16 @@
 [
-  { "name": "CERT-FR (ANSSI)", "category": "Cybersécurité", "url": "https://www.cert.ssi.gouv.fr/feed/" },
-  { "name": "IT-Connect", "category": "Systèmes & réseaux", "url": "https://www.it-connect.fr/feed/" },
-  { "name": "Le Monde Informatique", "category": "Systèmes & réseaux", "url": "https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml" },
-  { "name": "Korben", "category": "Tech", "url": "https://korben.info/feed" },
-  { "name": "CNIL", "category": "Droit & RGPD", "url": "https://www.cnil.fr/fr/rss.xml" },
-  { "name": "Guyane la 1ère", "category": "Guyane", "url": "https://la1ere.francetvinfo.fr/guyane/rss" },
-  { "name": "L'Étudiant", "category": "Études & BTS", "url": "https://www.letudiant.fr/rss.html" }
+  { "name": "Guyane la 1ère", "category": "Guyane", "url": "https://la1ere.francetvinfo.fr/guyane/rss", "publics": ["*"] },
+  { "name": "L'Étudiant", "category": "Études & alternance", "url": "https://www.letudiant.fr/rss.html", "publics": ["*"] },
+  { "name": "Service Public Entreprendre", "category": "Droit du travail & entreprise", "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actu-pro.rss", "publics": ["*"] },
+  { "name": "CERT-FR (ANSSI)", "category": "Cybersécurité", "url": "https://www.cert.ssi.gouv.fr/feed/", "publics": ["d:numerique"] },
+  { "name": "IT-Connect", "category": "Systèmes & réseaux", "url": "https://www.it-connect.fr/feed/", "publics": ["d:numerique"] },
+  { "name": "Le Monde Informatique", "category": "Systèmes & réseaux", "url": "https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml", "publics": ["d:numerique"] },
+  { "name": "Korben", "category": "Tech", "url": "https://korben.info/feed", "publics": ["d:numerique"] },
+  { "name": "CNIL", "category": "Droit & RGPD", "url": "https://www.cnil.fr/fr/rss.xml", "publics": ["d:numerique", "d:gestion", "d:commerce", "d:communication"] },
+  { "name": "Blog du Modérateur", "category": "Digital & réseaux sociaux", "url": "https://www.blogdumoderateur.com/feed/", "publics": ["d:commerce", "d:communication", "d:numerique"] },
+  { "name": "EcommerceMag", "category": "Commerce & e-commerce", "url": "https://www.ecommercemag.fr/rss", "publics": ["d:commerce", "d:transport"] },
+  { "name": "CB News", "category": "Communication & pub", "url": "https://www.cbnews.fr/rss.xml", "publics": ["d:communication"] },
+  { "name": "La finance pour tous", "category": "Banque, assurance & argent", "url": "https://www.lafinancepourtous.com/feed/", "publics": ["d:compta", "d:gestion"] },
+  { "name": "Actu Transport Logistique", "category": "Transport & logistique", "url": "https://www.actu-transport-logistique.fr/feed", "publics": ["d:transport"] },
+  { "name": "Supply Chain Info", "category": "Transport & logistique", "url": "https://www.supplychaininfo.eu/feed/", "publics": ["d:transport"] }
 ]

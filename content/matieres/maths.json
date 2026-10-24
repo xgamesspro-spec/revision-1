@@ -2,7 +2,10 @@
   "nom": "Mathématiques",
   "icone": "🔢",
   "groupe": "Enseignement général",
-  "publics": ["d:numerique"],
+  "publics": [
+    "d:numerique",
+    "bts-sio"
+  ],
   "ordre": 5,
   "description": "Binaire en douceur, hexadécimal, logique, ensembles, matrices, graphes.",
   "fiches": [
@@ -24,26 +27,152 @@
     }
   ],
   "quiz": [
-    { "q": "1100 0000 en décimal ?", "choix": ["128", "192", "224", "160"], "reponse": 1, "explication": "128 + 64 = 192." },
-    { "q": "178 en binaire ?", "choix": ["1011 0010", "1010 1100", "1101 0010", "1011 0100"], "reponse": 0, "explication": "128 + 32 + 16 + 2 = 178." },
-    { "q": "0xFF en décimal ?", "choix": ["15", "155", "255", "256"], "reponse": 2, "explication": "15×16 + 15 = 255." },
-    { "q": "1101 0111 en hexadécimal ?", "choix": ["0xC7", "0xD7", "0xE7", "0xD8"], "reponse": 1, "explication": "1101 = D, 0111 = 7." },
-    { "q": "1 OUX 1 = ?", "choix": ["0", "1", "2", "Indéfini"], "reponse": 0, "explication": "Le OU exclusif vaut 1 seulement si les deux valeurs sont différentes." },
-    { "q": "NON(A ET B) est égal à…", "choix": ["NON A ET NON B", "NON A OU NON B", "A OU B", "A ET B"], "reponse": 1, "explication": "Loi de De Morgan." },
-    { "q": "Un graphe a 5 arêtes. Somme des degrés ?", "choix": ["5", "10", "25", "2,5"], "reponse": 1, "explication": "Chaque arête compte pour 2 extrémités : 2 × 5 = 10." },
-    { "q": "Le produit de matrices est-il commutatif ?", "choix": ["Toujours", "Jamais", "Pas en général", "Seulement pour les nombres pairs"], "reponse": 2, "explication": "A×B ≠ B×A dans la plupart des cas." },
-    { "q": "Combien de bits représente un chiffre hexadécimal ?", "choix": ["2", "4", "8", "16"], "reponse": 1, "explication": "16 = 2^4, donc 4 bits." }
+    {
+      "q": "1100 0000 en décimal ?",
+      "choix": [
+        "128",
+        "192",
+        "224",
+        "160"
+      ],
+      "reponse": 1,
+      "explication": "128 + 64 = 192."
+    },
+    {
+      "q": "178 en binaire ?",
+      "choix": [
+        "1011 0010",
+        "1010 1100",
+        "1101 0010",
+        "1011 0100"
+      ],
+      "reponse": 0,
+      "explication": "128 + 32 + 16 + 2 = 178."
+    },
+    {
+      "q": "0xFF en décimal ?",
+      "choix": [
+        "15",
+        "155",
+        "255",
+        "256"
+      ],
+      "reponse": 2,
+      "explication": "15×16 + 15 = 255."
+    },
+    {
+      "q": "1101 0111 en hexadécimal ?",
+      "choix": [
+        "0xC7",
+        "0xD7",
+        "0xE7",
+        "0xD8"
+      ],
+      "reponse": 1,
+      "explication": "1101 = D, 0111 = 7."
+    },
+    {
+      "q": "1 OUX 1 = ?",
+      "choix": [
+        "0",
+        "1",
+        "2",
+        "Indéfini"
+      ],
+      "reponse": 0,
+      "explication": "Le OU exclusif vaut 1 seulement si les deux valeurs sont différentes."
+    },
+    {
+      "q": "NON(A ET B) est égal à…",
+      "choix": [
+        "NON A ET NON B",
+        "NON A OU NON B",
+        "A OU B",
+        "A ET B"
+      ],
+      "reponse": 1,
+      "explication": "Loi de De Morgan."
+    },
+    {
+      "q": "Un graphe a 5 arêtes. Somme des degrés ?",
+      "choix": [
+        "5",
+        "10",
+        "25",
+        "2,5"
+      ],
+      "reponse": 1,
+      "explication": "Chaque arête compte pour 2 extrémités : 2 × 5 = 10."
+    },
+    {
+      "q": "Le produit de matrices est-il commutatif ?",
+      "choix": [
+        "Toujours",
+        "Jamais",
+        "Pas en général",
+        "Seulement pour les nombres pairs"
+      ],
+      "reponse": 2,
+      "explication": "A×B ≠ B×A dans la plupart des cas."
+    },
+    {
+      "q": "Combien de bits représente un chiffre hexadécimal ?",
+      "choix": [
+        "2",
+        "4",
+        "8",
+        "16"
+      ],
+      "reponse": 1,
+      "explication": "16 = 2^4, donc 4 bits."
+    }
   ],
   "cartes": [
-    { "recto": "Valeurs des positions d'un octet", "verso": "128 64 32 16 8 4 2 1" },
-    { "recto": "1110 0000", "verso": "224" },
-    { "recto": "1111 1100", "verso": "252" },
-    { "recto": "100 en binaire", "verso": "0110 0100 (64 + 32 + 4)" },
-    { "recto": "0x2F en décimal", "verso": "47" },
-    { "recto": "A, B, C, D, E, F en hexa", "verso": "10, 11, 12, 13, 14, 15" },
-    { "recto": "Adresse réseau = ?", "verso": "IP ET masque (bit à bit)" },
-    { "recto": "De Morgan (OU)", "verso": "NON(A OU B) = NON A ET NON B" },
-    { "recto": "Condition du produit A×B", "verso": "Colonnes de A = lignes de B" },
-    { "recto": "Somme des degrés d'un graphe", "verso": "2 × nombre d'arêtes" }
+    {
+      "recto": "Valeurs des positions d'un octet",
+      "verso": "128 64 32 16 8 4 2 1"
+    },
+    {
+      "recto": "1110 0000",
+      "verso": "224"
+    },
+    {
+      "recto": "1111 1100",
+      "verso": "252"
+    },
+    {
+      "recto": "100 en binaire",
+      "verso": "0110 0100 (64 + 32 + 4)"
+    },
+    {
+      "recto": "0x2F en décimal",
+      "verso": "47"
+    },
+    {
+      "recto": "A, B, C, D, E, F en hexa",
+      "verso": "10, 11, 12, 13, 14, 15"
+    },
+    {
+      "recto": "Adresse réseau = ?",
+      "verso": "IP ET masque (bit à bit)"
+    },
+    {
+      "recto": "De Morgan (OU)",
+      "verso": "NON(A OU B) = NON A ET NON B"
+    },
+    {
+      "recto": "Condition du produit A×B",
+      "verso": "Colonnes de A = lignes de B"
+    },
+    {
+      "recto": "Somme des degrés d'un graphe",
+      "verso": "2 × nombre d'arêtes"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Référentiel du BTS SIO 2025 (mathématiques pour l'informatique) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2025/12/Referentiel_BTS_SIO_ServicesInformatiquesOrganisations_2025_Version_2024_07_10.pdf"
+    }
   ]
 }

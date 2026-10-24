@@ -41,7 +41,7 @@ function parseFeed(xml, feed) {
     items.push({
       title, link, summary,
       date: isNaN(date) ? null : date.toISOString(),
-      source: feed.name, category: feed.category,
+      source: feed.name, category: feed.category, publics: feed.publics || ['*'],
     });
   }
   return items;

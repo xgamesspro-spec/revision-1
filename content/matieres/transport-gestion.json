@@ -1,0 +1,218 @@
+{
+  "nom": "Exploitation du transport : coûts, réglementation, douane",
+  "icone": "🧭",
+  "groupe": "Transport & logistique",
+  "publics": [
+    "d:transport",
+    "bp-otm",
+    "bts-gtla",
+    "tp-aie",
+    "tp-ertrv",
+    "tp-etrm",
+    "tp-gotrm",
+    "tp-otamm"
+  ],
+  "ordre": 13,
+  "description": "Coût de revient (méthode du trinôme), cotation, affrètement et commission, réglementation (FIMO/FCO, ADR, chronotachygraphe), douane et octroi de mer, indicateurs.",
+  "sources": [
+    {
+      "titre": "Règlement (CE) 561/2006 — temps de conduite et de repos (EUR-Lex)",
+      "url": "https://eur-lex.europa.eu/eli/reg/2006/561/oj"
+    },
+    {
+      "titre": "Douane.gouv.fr — professionnels, dédouanement, octroi de mer",
+      "url": "https://www.douane.gouv.fr"
+    },
+    {
+      "titre": "Ministère de la Transition écologique — transport routier",
+      "url": "https://www.ecologie.gouv.fr"
+    },
+    {
+      "titre": "ICC — règles Incoterms® 2020",
+      "url": "https://iccwbo.org/business-solutions/incoterms-rules/"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "Calculer un coût de revient : le trinôme",
+      "contenu": "## Les 3 termes (méthode du « trinôme »)\n- **CK — terme kilométrique** : carburant, pneus, entretien, péages (coût par km).\n- **CC — terme horaire (conducteur)** : salaire chargé du conducteur, frais de route (coût par heure).\n- **CJ — terme journalier (véhicule)** : amortissement ou location du véhicule, assurances, taxes, frais de structure (coût par jour).\n\n**Coût d'un transport = CK × km + CC × heures + CJ × jours.**\n\n## Exemple\nCK = 0,55 €/km, CC = 28 €/h, CJ = 210 €/jour. Tournée : 420 km, 9 h, 1 jour.\nCoût = 0,55 × 420 + 28 × 9 + 210 × 1 = 231 + 252 + 210 = **693 €**.\n\n## Du coût au prix\nPrix de vente = coût de revient + **marge** souhaitée. Taux de marge = marge ÷ coût. Pour comparer des offres : coût **à la tonne**, **au km**, **à la palette**."
+    },
+    {
+      "titre": "Organiser une opération de transport",
+      "contenu": "## Les acteurs\n- **Transporteur** : déplace la marchandise avec ses véhicules.\n- **Commissionnaire de transport** : organise le transport de bout en bout pour le client et choisit les transporteurs ; il est **responsable** de l'ensemble.\n- **Affréteur** : trouve un transporteur pour une charge.\n- **Transitaire** / **déclarant en douane** : passage portuaire, aéroportuaire, formalités douanières.\n\n## Choisir le mode\nRoute (souplesse), maritime (gros volumes, longues distances, peu cher à la tonne), aérien (rapide, cher), fluvial (pondéreux, écologique), ferroviaire. En Guyane : beaucoup de **maritime** (port de Dégrad-des-Cannes) et de **fluvial** (Maroni, Oyapock) pour l'intérieur.\n\n## Le dossier transport\nOrdre de transport, document de transport (CMR, LTA, connaissement), facture commerciale, liste de colisage, **Incoterm** qui fixe qui paie quoi et le transfert des risques."
+    },
+    {
+      "titre": "Réglementation du transport routier",
+      "contenu": "## Le conducteur\n- **Permis C / CE** (poids lourds), **D** (autocar).\n- **FIMO** : formation initiale obligatoire pour les conducteurs professionnels.\n- **FCO** : formation continue **tous les 5 ans**.\n- Temps de conduite et de repos (UE) : **9 h/jour** (10 h deux fois par semaine), **56 h/semaine**, **90 h sur 2 semaines**, pause de **45 min après 4 h 30**.\n- Tout est enregistré par le **chronotachygraphe** (carte conducteur).\n\n## L'entreprise\nInscription au **registre des transporteurs**, **licence** communautaire pour l'international, **capacité professionnelle** du gestionnaire.\n\n## Les marchandises dangereuses\nRéglementation **ADR** : formation spécifique du conducteur, étiquetage, panneaux orange, documents.\n\n## Sanctions\nDépassement des temps de conduite, surcharge : amendes, immobilisation du véhicule. L'exploitant qui planifie est aussi responsable."
+    },
+    {
+      "titre": "Douane, octroi de mer et indicateurs",
+      "contenu": "## La douane\n- **Numéro EORI** : identifiant obligatoire de l'entreprise pour les opérations douanières.\n- **Déclaration en douane** à l'import et à l'export, avec le **code SH / nomenclature** de la marchandise, sa **valeur** et son **origine**.\n- Droits de douane + taxes.\n\n## Le cas des DOM : l'octroi de mer\nEn Guyane, les marchandises **importées** (y compris depuis l'Hexagone) et certaines productions locales paient l'**octroi de mer**. Il faut le prévoir dans le coût d'importation.\n\n## Indicateurs de performance (KPI)\n- **Taux de service** = commandes livrées à l'heure et complètes ÷ commandes totales.\n- **Taux de remplissage** = chargement réel ÷ capacité du véhicule.\n- **Taux de kilomètres à vide**.\n- **Coût par tonne transportée**, **émissions de CO₂** par tonne-km.\n\n## Développement durable\nOptimiser les tournées, réduire les km à vide, éco-conduite, report modal (fluvial, rail), véhicules moins polluants."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Dans le trinôme, le terme CK correspond :",
+      "choix": [
+        "au coût du conducteur",
+        "au coût par kilomètre",
+        "au coût par jour du véhicule",
+        "à la marge"
+      ],
+      "reponse": 1,
+      "explication": "CK = carburant, pneus, entretien, péages : coûts liés aux kilomètres."
+    },
+    {
+      "q": "CK 0,50 €/km, CC 25 €/h, CJ 200 €/j ; 300 km, 6 h, 1 jour. Coût ?",
+      "choix": [
+        "400 €",
+        "500 €",
+        "550 €",
+        "650 €"
+      ],
+      "reponse": 1,
+      "explication": "0,50 × 300 + 25 × 6 + 200 = 150 + 150 + 200 = 500 €."
+    },
+    {
+      "q": "Qui organise le transport de bout en bout et en est responsable ?",
+      "choix": [
+        "Le chargeur",
+        "Le commissionnaire de transport",
+        "Le destinataire",
+        "La douane"
+      ],
+      "reponse": 1,
+      "explication": "Le commissionnaire choisit les transporteurs et répond de l'ensemble de l'opération."
+    },
+    {
+      "q": "La FCO du conducteur poids lourd se renouvelle :",
+      "choix": [
+        "chaque année",
+        "tous les 3 ans",
+        "tous les 5 ans",
+        "jamais"
+      ],
+      "reponse": 2,
+      "explication": "Formation continue obligatoire tous les 5 ans."
+    },
+    {
+      "q": "Conduite maximale sur 2 semaines consécutives :",
+      "choix": [
+        "56 h",
+        "90 h",
+        "100 h",
+        "112 h"
+      ],
+      "reponse": 1,
+      "explication": "90 heures sur deux semaines (et 56 h maximum sur une seule semaine)."
+    },
+    {
+      "q": "L'ADR concerne :",
+      "choix": [
+        "les marchandises dangereuses par route",
+        "les animaux vivants",
+        "le transport aérien",
+        "les douanes"
+      ],
+      "reponse": 0,
+      "explication": "Accord européen sur le transport routier des marchandises dangereuses."
+    },
+    {
+      "q": "En Guyane, une marchandise importée de l'Hexagone peut payer :",
+      "choix": [
+        "la TVA à 20 %",
+        "l'octroi de mer",
+        "rien du tout",
+        "une vignette"
+      ],
+      "reponse": 1,
+      "explication": "L'octroi de mer s'applique aux importations dans les DOM, même en provenance de l'Hexagone."
+    },
+    {
+      "q": "Le numéro EORI sert à :",
+      "choix": [
+        "immatriculer un camion",
+        "identifier l'entreprise auprès des douanes",
+        "payer la TVA",
+        "suivre un colis"
+      ],
+      "reponse": 1,
+      "explication": "Il est obligatoire pour toute opération de dédouanement."
+    },
+    {
+      "q": "Taux de remplissage = ?",
+      "choix": [
+        "km à vide ÷ km totaux",
+        "chargement réel ÷ capacité du véhicule",
+        "commandes livrées ÷ commandes",
+        "coût ÷ tonnes"
+      ],
+      "reponse": 1,
+      "explication": "Il mesure si le véhicule roule plein ou à moitié vide."
+    },
+    {
+      "q": "Le mode le plus adapté pour de gros volumes sur longue distance, à faible coût à la tonne :",
+      "choix": [
+        "aérien",
+        "routier",
+        "maritime",
+        "coursier"
+      ],
+      "reponse": 2,
+      "explication": "Le maritime est lent mais très économique pour les gros volumes."
+    },
+    {
+      "q": "L'enregistrement des temps de conduite se fait par :",
+      "choix": [
+        "un GPS",
+        "le chronotachygraphe",
+        "le compteur kilométrique",
+        "un carnet papier libre"
+      ],
+      "reponse": 1,
+      "explication": "Le chronotachygraphe (et la carte conducteur) enregistre conduite, pauses et repos."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Formule du trinôme",
+      "verso": "Coût = CK × km + CC × heures + CJ × jours"
+    },
+    {
+      "recto": "CK / CC / CJ",
+      "verso": "Terme kilométrique / horaire (conducteur) / journalier (véhicule)"
+    },
+    {
+      "recto": "Commissionnaire de transport",
+      "verso": "Organise le transport de bout en bout, responsable de l'ensemble"
+    },
+    {
+      "recto": "FIMO / FCO",
+      "verso": "Formation initiale / formation continue tous les 5 ans"
+    },
+    {
+      "recto": "Temps de conduite (UE)",
+      "verso": "9 h/j (10 h 2×/sem.), 56 h/sem., 90 h/2 sem., pause 45 min après 4 h 30"
+    },
+    {
+      "recto": "ADR",
+      "verso": "Transport routier des marchandises dangereuses"
+    },
+    {
+      "recto": "EORI",
+      "verso": "Identifiant douanier obligatoire de l'entreprise"
+    },
+    {
+      "recto": "Octroi de mer",
+      "verso": "Taxe sur les importations (et certaines productions) dans les DOM"
+    },
+    {
+      "recto": "Taux de service",
+      "verso": "Commandes livrées à l'heure et complètes ÷ commandes totales"
+    },
+    {
+      "recto": "Port de commerce de Guyane",
+      "verso": "Dégrad-des-Cannes (Rémire-Montjoly)"
+    }
+  ]
+}

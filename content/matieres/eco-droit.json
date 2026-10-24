@@ -1,0 +1,196 @@
+{
+  "nom": "Économie-droit (bac pro & CAP)",
+  "icone": "⚖️",
+  "groupe": "Droit & économie",
+  "publics": [
+    "bp-agora",
+    "bp-log",
+    "bp-mcv",
+    "bp-otm",
+    "cap-ol"
+  ],
+  "ordre": 8,
+  "description": "L'entreprise et son environnement, le marché, le contrat, le consommateur, le travail : l'épreuve d'économie-droit du bac pro tertiaire (coef 2).",
+  "sources": [
+    {
+      "titre": "Éduscol — programme d'économie-droit du bac pro",
+      "url": "https://eduscol.education.fr"
+    },
+    {
+      "titre": "Code de la consommation (Légifrance)",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006069565/"
+    },
+    {
+      "titre": "Service-Public.fr — consommation, travail",
+      "url": "https://www.service-public.fr"
+    },
+    {
+      "titre": "INSEE — définitions",
+      "url": "https://www.insee.fr/fr/metadonnees/definitions"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "L'économie et l'entreprise",
+      "contenu": "## Les agents économiques\n**Ménages** (consomment, travaillent, épargnent), **entreprises** (produisent), **administrations publiques** (services publics, impôts), **banques** (financent), **reste du monde** (importations, exportations).\n\n## Le circuit économique\nLes ménages vendent leur **travail** aux entreprises contre un **salaire** ; ils achètent des **biens et services** ; l'État prélève des impôts et verse des prestations.\n\n## L'entreprise\n- **Finalité** : produire des biens ou services pour faire du **profit** (secteur marchand) ou répondre à un besoin (associations, économie sociale et solidaire).\n- **Taille** : micro (moins de 10 salariés), PME (moins de 250), ETI, grande entreprise.\n- **Secteurs** : primaire (agriculture, pêche, mines), secondaire (industrie, BTP), tertiaire (services, commerce, transport).\n\n## Le marché\nLieu de rencontre de l'**offre** et de la **demande**. Si la demande augmente et l'offre ne suit pas, le **prix monte**."
+    },
+    {
+      "titre": "Le contrat et le consommateur",
+      "contenu": "## Le contrat\nAccord de volontés qui crée des **obligations**. Il faut : le **consentement** (libre et éclairé), la **capacité** (majeur, ou mineur représenté), un **contenu licite et certain**.\n\n## La protection du consommateur\n- **Droit de rétractation de 14 jours** pour un achat à distance ou hors établissement (démarchage).\n- **Garantie légale de conformité** : **2 ans** pour un bien neuf (réparation ou remplacement).\n- **Garantie des vices cachés** : défaut caché qui rend le bien inutilisable.\n- **Information** : affichage des prix TTC, étiquetage, mentions obligatoires.\n- Pratiques interdites : publicité **mensongère**, vente forcée, abus de faiblesse.\n\n## En cas de litige\nRéclamation écrite au vendeur → **médiateur de la consommation** (obligatoire pour le professionnel de le proposer) → associations de consommateurs → tribunal."
+    },
+    {
+      "titre": "Le travail et ses règles",
+      "contenu": "## Le contrat de travail\n- Trois éléments : **travail**, **salaire**, **lien de subordination**.\n- **CDI** (normal), **CDD** (motif précis, écrit), **apprentissage**, **intérim**, **temps partiel**.\n\n## Droits et obligations\n- Salarié : exécuter le travail, respecter les consignes et le règlement intérieur, **loyauté**, discrétion.\n- Employeur : fournir le travail, payer le salaire, **assurer la sécurité et la santé** des salariés, respecter le droit du travail.\n\n## Les sources du droit du travail\nCode du travail, **conventions collectives** (par branche), accords d'entreprise, contrat de travail. En général, c'est la règle la plus **favorable** au salarié qui s'applique (principe de faveur, avec des exceptions).\n\n## Le bulletin de paie\nSalaire **brut** − cotisations salariales = salaire **net** ; le net à payer tient compte du **prélèvement à la source** de l'impôt."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Une entreprise de moins de 10 salariés est :",
+      "choix": [
+        "une PME",
+        "une micro-entreprise",
+        "une ETI",
+        "une grande entreprise"
+      ],
+      "reponse": 1,
+      "explication": "Micro : moins de 10 salariés ; PME : moins de 250."
+    },
+    {
+      "q": "Le transport et le commerce font partie du secteur :",
+      "choix": [
+        "primaire",
+        "secondaire",
+        "tertiaire",
+        "quaternaire"
+      ],
+      "reponse": 2,
+      "explication": "Le tertiaire regroupe les services."
+    },
+    {
+      "q": "Si la demande augmente et l'offre ne change pas, le prix :",
+      "choix": [
+        "baisse",
+        "augmente",
+        "ne bouge pas",
+        "devient nul"
+      ],
+      "reponse": 1,
+      "explication": "Plus de demandeurs pour la même quantité : le prix monte."
+    },
+    {
+      "q": "Délai de rétractation d'un achat sur internet :",
+      "choix": [
+        "7 jours",
+        "14 jours",
+        "1 mois",
+        "aucun"
+      ],
+      "reponse": 1,
+      "explication": "14 jours pour le consommateur (sauf exceptions)."
+    },
+    {
+      "q": "La garantie légale de conformité d'un bien neuf dure :",
+      "choix": [
+        "6 mois",
+        "1 an",
+        "2 ans",
+        "5 ans"
+      ],
+      "reponse": 2,
+      "explication": "2 ans à compter de la livraison."
+    },
+    {
+      "q": "Ce qui caractérise le contrat de travail :",
+      "choix": [
+        "la durée",
+        "le lien de subordination",
+        "le lieu",
+        "le diplôme"
+      ],
+      "reponse": 1,
+      "explication": "Le salarié est placé sous l'autorité de l'employeur."
+    },
+    {
+      "q": "L'employeur a une obligation de :",
+      "choix": [
+        "faire des cadeaux",
+        "sécurité et protection de la santé des salariés",
+        "loger les salariés",
+        "payer les vacances à l'étranger"
+      ],
+      "reponse": 1,
+      "explication": "C'est une obligation fondamentale du Code du travail."
+    },
+    {
+      "q": "Un CDD doit être :",
+      "choix": [
+        "oral",
+        "écrit et justifié par un motif précis",
+        "toujours de 3 ans",
+        "signé par un notaire"
+      ],
+      "reponse": 1,
+      "explication": "Sinon il peut être requalifié en CDI."
+    },
+    {
+      "q": "Les ménages, sur le marché du travail, sont :",
+      "choix": [
+        "demandeurs de travail",
+        "offreurs de travail",
+        "producteurs de biens",
+        "l'État"
+      ],
+      "reponse": 1,
+      "explication": "Les ménages offrent leur travail ; les entreprises le demandent."
+    },
+    {
+      "q": "En cas de litige avec un vendeur, après la réclamation, on peut saisir :",
+      "choix": [
+        "la police",
+        "le médiateur de la consommation",
+        "la mairie",
+        "l'URSSAF"
+      ],
+      "reponse": 1,
+      "explication": "Le professionnel doit proposer un médiateur gratuit au consommateur."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Agents économiques",
+      "verso": "Ménages, entreprises, administrations, banques, reste du monde"
+    },
+    {
+      "recto": "Secteurs d'activité",
+      "verso": "Primaire (nature), secondaire (industrie), tertiaire (services)"
+    },
+    {
+      "recto": "Micro-entreprise / PME",
+      "verso": "Moins de 10 / moins de 250 salariés"
+    },
+    {
+      "recto": "Conditions de validité d'un contrat",
+      "verso": "Consentement, capacité, contenu licite et certain"
+    },
+    {
+      "recto": "Rétractation vente à distance",
+      "verso": "14 jours"
+    },
+    {
+      "recto": "Garantie légale de conformité",
+      "verso": "2 ans (bien neuf)"
+    },
+    {
+      "recto": "Lien de subordination",
+      "verso": "Pouvoir de l'employeur de donner des ordres, contrôler, sanctionner"
+    },
+    {
+      "recto": "Brut → net",
+      "verso": "Brut − cotisations salariales = net (puis prélèvement à la source)"
+    },
+    {
+      "recto": "Convention collective",
+      "verso": "Accord qui fixe les règles d'une branche professionnelle"
+    }
+  ]
+}

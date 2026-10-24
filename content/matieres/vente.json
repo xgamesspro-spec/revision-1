@@ -1,40 +1,273 @@
 {
-  "nom": "Vente & relation client",
+  "nom": "Vente, négociation & relation client",
   "icone": "🤝",
-  "groupe": "Commerce",
-  "publics": ["d:commerce", "bts-banque", "bts-assurance"],
+  "groupe": "Commerce & relation client",
   "ordre": 11,
-  "description": "Les étapes de la vente, SONCAS, CAP, objections, fidélisation et indicateurs commerciaux.",
+  "description": "L'épreuve à plus gros coefficient du BTS NDRC (E4, coef 5) et des CAP / bac pro commerce : étapes de la vente, SONCAS, CAP, objections, négociation, fidélisation, calculs commerciaux.",
   "fiches": [
     {
       "titre": "Les étapes d'un entretien de vente",
-      "contenu": "1. **Prise de contact** : sourire, bonjour, se présenter (règle des 4×20 : 20 premières secondes, 20 premiers mots, 20 cm de visage, 20 premiers pas).\n2. **Découverte des besoins** : questions ouvertes, écoute active, reformulation.\n3. **Argumentation** : présenter la solution adaptée avec la méthode **CAP**.\n4. **Traitement des objections**.\n5. **Conclusion** : proposer, obtenir l'accord, vente additionnelle.\n6. **Prise de congé** : remercier, rassurer, fidéliser."
+      "contenu": "1. **Prise de contact** : sourire, bonjour, se présenter. Règle des **4×20** : 20 premières secondes, 20 premiers mots, 20 cm de visage, 20 premiers pas.\n2. **Découverte des besoins** : questions **ouvertes** (« Que recherchez-vous ? »), écoute active, **reformulation** (« Si je comprends bien, vous voulez… »).\n3. **Argumentation** : présenter la solution adaptée avec la méthode **CAP**.\n4. **Traitement des objections**.\n5. **Conclusion** : proposer, obtenir l'accord, **vente additionnelle** (accessoire, garantie).\n6. **Prise de congé** : remercier, rassurer, fidéliser.\n\n👉 À l'oral du CAP EPC (EP3, coef 6), du bac pro (E31) ou du BTS NDRC (E4), le jury regarde surtout la **découverte** et l'**argumentation adaptée** au client."
     },
     {
       "titre": "SONCAS et CAP",
-      "contenu": "## SONCAS : les motivations d'achat\n- **S**écurité : peur du risque, besoin de garanties.\n- **O**rgueil : image, prestige.\n- **N**ouveauté : innovation, dernier modèle.\n- **C**onfort : facilité, praticité.\n- **A**rgent : prix, économies.\n- **S**ympathie : relation, confiance.\n\n## CAP : construire un argument\n- **C**aractéristique : ce qu'est le produit (« batterie de 20 h »).\n- **A**vantage : ce que ça apporte (« vous ne le rechargez qu'une fois par jour »).\n- **P**reuve : démonstration, avis, garantie (« testé par… »).\n\n👉 Adapte l'avantage au mobile SONCAS du client."
+      "contenu": "## SONCAS : les motivations d'achat\n- **S**écurité : peur du risque, besoin de garanties.\n- **O**rgueil : image, prestige.\n- **N**ouveauté : innovation, dernier modèle.\n- **C**onfort : facilité, praticité.\n- **A**rgent : prix, économies.\n- **S**ympathie : relation, confiance.\n\n## CAP : construire un argument\n- **C**aractéristique : ce qu'est le produit (« batterie de 20 h »).\n- **A**vantage : ce que ça apporte au client (« vous ne le rechargez qu'une fois par jour »).\n- **P**reuve : démonstration, avis, garantie, chiffre (« testé par 60 Millions de consommateurs »).\n\n👉 Choisis l'avantage qui correspond au **mobile SONCAS** repéré pendant la découverte."
     },
     {
-      "titre": "Objections, fidélisation, indicateurs",
-      "contenu": "## Traiter une objection\n- **Accueillir** sans contredire (« Je comprends… »), **questionner** pour comprendre, **répondre** (reformulation, compensation, preuve), **vérifier** que c'est réglé.\n- Méthode **« oui, mais »**, **reformulation**, **boomerang** (transformer l'objection en argument).\n\n## Fidéliser\nCarte de fidélité, suivi après-vente, newsletter, traitement rapide des réclamations, programme de parrainage.\n\n## Indicateurs\n- **Panier moyen** = CA ÷ nombre de clients (ou de tickets).\n- **Taux de transformation** = nombre d'acheteurs ÷ nombre de visiteurs × 100.\n- **Taux de marge** = marge ÷ coût d'achat × 100 ; **taux de marque** = marge ÷ prix de vente HT × 100."
+      "titre": "Objections et négociation",
+      "contenu": "## Traiter une objection\n1. **Accueillir** sans contredire (« Je comprends… »).\n2. **Questionner** pour la comprendre (« Cher par rapport à quoi ? »).\n3. **Répondre** : reformulation, **compensation** (« c'est plus cher, mais il dure deux fois plus longtemps »), preuve, **boomerang** (transformer l'objection en argument).\n4. **Vérifier** que c'est réglé.\n\n## Négocier (BTS NDRC, TP NTC)\n- Préparer : **objectif**, **prix plancher** (limite à ne pas franchir), **marge de manœuvre**, contreparties.\n- Ne jamais céder sans **contrepartie** (« Je peux faire −5 % si vous commandez 200 pièces »).\n- Viser un accord **gagnant-gagnant** : la relation dure plus longtemps que la vente.\n- Conclure par écrit : **devis signé**, bon de commande, conditions générales de vente."
+    },
+    {
+      "titre": "Fidéliser et suivre les ventes",
+      "contenu": "## Fidéliser\nCarte ou programme de fidélité, suivi après-vente, newsletter, traitement **rapide** des réclamations, parrainage, événements clients. Garder un client coûte moins cher que d'en trouver un nouveau.\n\n## Suivre les ventes (bac pro E32, CAP EP1)\n- **Tableaux de bord** : chiffre d'affaires par jour / rayon / vendeur, comparaison avec l'objectif.\n- Gestion des **stocks** et des **ruptures**, **démarque** (vol, casse, erreurs).\n\n## Les calculs à connaître\n- **Panier moyen** = CA ÷ nombre de clients (tickets).\n- **Taux de transformation** = acheteurs ÷ visiteurs × 100.\n- **Marge** = prix de vente HT − coût d'achat HT.\n- **Taux de marge** = marge ÷ coût d'achat HT × 100.\n- **Taux de marque** = marge ÷ prix de vente HT × 100.\n- **Coefficient multiplicateur** = prix de vente TTC ÷ coût d'achat HT."
+    },
+    {
+      "titre": "Le droit de la vente (l'essentiel)",
+      "contenu": "- **Affichage des prix** obligatoire, en TTC pour les particuliers.\n- **Promotions** : le prix de référence est le plus bas pratiqué dans les **30 jours** précédant la réduction.\n- **Vente à distance** (internet, téléphone) : **droit de rétractation de 14 jours** pour le client particulier.\n- **Garantie légale de conformité** : **2 ans** pour un bien neuf acheté par un particulier.\n- **Démarchage téléphonique** : interdit vers les numéros inscrits sur **Bloctel**.\n- **Données clients** : le RGPD s'applique (consentement pour la prospection par e-mail des particuliers)."
     }
   ],
   "quiz": [
-    { "q": "Dans SONCAS, le A signifie :", "choix": ["Achat", "Argent", "Accueil", "Avantage"], "reponse": 1, "explication": "Sécurité, Orgueil, Nouveauté, Confort, Argent, Sympathie." },
-    { "q": "Dans la méthode CAP, le P signifie :", "choix": ["Prix", "Preuve", "Produit", "Promotion"], "reponse": 1, "explication": "Caractéristique, Avantage, Preuve." },
-    { "q": "200 visiteurs, 30 acheteurs : taux de transformation ?", "choix": ["6 %", "15 %", "30 %", "66 %"], "reponse": 1, "explication": "30 ÷ 200 × 100 = 15 %." },
-    { "q": "CA de 4 500 € pour 150 tickets : panier moyen ?", "choix": ["15 €", "30 €", "45 €", "300 €"], "reponse": 1, "explication": "4 500 ÷ 150 = 30 €." },
-    { "q": "Pour découvrir les besoins, on utilise surtout :", "choix": ["des questions fermées", "des questions ouvertes et la reformulation", "une remise", "l'argumentation"], "reponse": 1, "explication": "Questions ouvertes + écoute active + reformulation." },
-    { "q": "Un client dit « c'est trop cher ». Première chose à faire :", "choix": ["baisser le prix", "accueillir l'objection et questionner", "changer de produit", "insister"], "reponse": 1, "explication": "On accueille sans contredire, puis on cherche à comprendre (cher par rapport à quoi ?)." }
+    {
+      "q": "Dans SONCAS, le A signifie :",
+      "choix": [
+        "Achat",
+        "Argent",
+        "Accueil",
+        "Avantage"
+      ],
+      "reponse": 1,
+      "explication": "Sécurité, Orgueil, Nouveauté, Confort, Argent, Sympathie."
+    },
+    {
+      "q": "Dans la méthode CAP, le P signifie :",
+      "choix": [
+        "Prix",
+        "Preuve",
+        "Produit",
+        "Promotion"
+      ],
+      "reponse": 1,
+      "explication": "Caractéristique, Avantage, Preuve : la preuve rend l'argument crédible."
+    },
+    {
+      "q": "200 visiteurs, 30 acheteurs : taux de transformation ?",
+      "choix": [
+        "6 %",
+        "15 %",
+        "30 %",
+        "66 %"
+      ],
+      "reponse": 1,
+      "explication": "30 ÷ 200 × 100 = 15 %."
+    },
+    {
+      "q": "CA de 4 500 € pour 150 tickets : panier moyen ?",
+      "choix": [
+        "15 €",
+        "30 €",
+        "45 €",
+        "300 €"
+      ],
+      "reponse": 1,
+      "explication": "4 500 ÷ 150 = 30 €."
+    },
+    {
+      "q": "Coût d'achat 40 € HT, prix de vente 60 € HT. Taux de marque ?",
+      "choix": [
+        "20 %",
+        "33,3 %",
+        "50 %",
+        "66,7 %"
+      ],
+      "reponse": 1,
+      "explication": "Marge = 20 €. Taux de marque = 20 ÷ 60 × 100 = 33,3 % (le taux de marge, lui, = 20 ÷ 40 = 50 %)."
+    },
+    {
+      "q": "Même exemple (40 € → 60 € HT) : taux de marge ?",
+      "choix": [
+        "20 %",
+        "33,3 %",
+        "50 %",
+        "150 %"
+      ],
+      "reponse": 2,
+      "explication": "Taux de marge = marge ÷ coût d'achat = 20 ÷ 40 × 100 = 50 %."
+    },
+    {
+      "q": "Pour découvrir les besoins, on utilise surtout :",
+      "choix": [
+        "Des questions fermées",
+        "Des questions ouvertes et la reformulation",
+        "Une remise",
+        "L'argumentation"
+      ],
+      "reponse": 1,
+      "explication": "Questions ouvertes + écoute active + reformulation pour vérifier qu'on a bien compris."
+    },
+    {
+      "q": "Un client dit « c'est trop cher ». Première chose à faire :",
+      "choix": [
+        "Baisser le prix",
+        "Accueillir l'objection et questionner",
+        "Changer de produit",
+        "Insister"
+      ],
+      "reponse": 1,
+      "explication": "On accueille sans contredire, puis on cherche à comprendre (cher par rapport à quoi ?)."
+    },
+    {
+      "q": "En négociation, une concession doit toujours :",
+      "choix": [
+        "Être faite tout de suite",
+        "S'accompagner d'une contrepartie",
+        "Dépasser le prix plancher",
+        "Être refusée"
+      ],
+      "reponse": 1,
+      "explication": "On ne cède jamais sans contrepartie (quantité, durée, paiement comptant…)."
+    },
+    {
+      "q": "Le prix plancher, c'est :",
+      "choix": [
+        "Le prix affiché",
+        "Le prix minimum en dessous duquel on refuse de vendre",
+        "Le prix du concurrent",
+        "Le prix TTC"
+      ],
+      "reponse": 1,
+      "explication": "On le fixe avant la négociation pour savoir jusqu'où on peut aller."
+    },
+    {
+      "q": "Un particulier achète sur internet. Il peut se rétracter pendant :",
+      "choix": [
+        "7 jours",
+        "14 jours",
+        "30 jours",
+        "Jamais"
+      ],
+      "reponse": 1,
+      "explication": "14 jours pour la vente à distance (Code de la consommation)."
+    },
+    {
+      "q": "La garantie légale de conformité d'un bien neuf dure :",
+      "choix": [
+        "6 mois",
+        "1 an",
+        "2 ans",
+        "5 ans"
+      ],
+      "reponse": 2,
+      "explication": "2 ans pour un bien neuf vendu à un particulier."
+    },
+    {
+      "q": "Le prix de référence d'une promotion est :",
+      "choix": [
+        "Le prix conseillé par le fabricant",
+        "Le prix le plus bas des 30 derniers jours",
+        "Le prix du concurrent",
+        "Le prix de l'an dernier"
+      ],
+      "reponse": 1,
+      "explication": "Règle européenne reprise en France depuis 2022 : le prix le plus bas pratiqué dans les 30 jours avant la réduction."
+    },
+    {
+      "q": "La méthode « boomerang » consiste à :",
+      "choix": [
+        "Ignorer l'objection",
+        "Transformer l'objection en argument",
+        "Rappeler le client plus tard",
+        "Baisser le prix"
+      ],
+      "reponse": 1,
+      "explication": "Ex. : « Il est lourd. » → « Justement, c'est ce qui le rend stable. »"
+    }
   ],
   "cartes": [
-    { "recto": "SONCAS", "verso": "Sécurité, Orgueil, Nouveauté, Confort, Argent, Sympathie" },
-    { "recto": "CAP", "verso": "Caractéristique, Avantage, Preuve" },
-    { "recto": "Règle des 4×20", "verso": "20 secondes, 20 mots, 20 cm, 20 pas : la première impression" },
-    { "recto": "Panier moyen", "verso": "Chiffre d'affaires ÷ nombre de clients (tickets)" },
-    { "recto": "Taux de transformation", "verso": "Acheteurs ÷ visiteurs × 100" },
-    { "recto": "Taux de marque", "verso": "Marge ÷ prix de vente HT × 100" },
-    { "recto": "Taux de marge", "verso": "Marge ÷ coût d'achat HT × 100" },
-    { "recto": "Méthode boomerang", "verso": "Transformer l'objection du client en argument" }
+    {
+      "recto": "SONCAS",
+      "verso": "Sécurité, Orgueil, Nouveauté, Confort, Argent, Sympathie"
+    },
+    {
+      "recto": "CAP",
+      "verso": "Caractéristique, Avantage, Preuve"
+    },
+    {
+      "recto": "Règle des 4×20",
+      "verso": "20 secondes, 20 mots, 20 cm, 20 pas : la première impression"
+    },
+    {
+      "recto": "Étapes de la vente",
+      "verso": "Contact, découverte, argumentation, objections, conclusion, prise de congé"
+    },
+    {
+      "recto": "Panier moyen",
+      "verso": "CA ÷ nombre de clients (tickets)"
+    },
+    {
+      "recto": "Taux de transformation",
+      "verso": "Acheteurs ÷ visiteurs × 100"
+    },
+    {
+      "recto": "Taux de marque",
+      "verso": "Marge ÷ prix de vente HT × 100"
+    },
+    {
+      "recto": "Taux de marge",
+      "verso": "Marge ÷ coût d'achat HT × 100"
+    },
+    {
+      "recto": "Coefficient multiplicateur",
+      "verso": "Prix de vente TTC ÷ coût d'achat HT"
+    },
+    {
+      "recto": "Méthode boomerang",
+      "verso": "Transformer l'objection en argument"
+    },
+    {
+      "recto": "Prix plancher",
+      "verso": "Limite basse fixée avant la négociation"
+    },
+    {
+      "recto": "Rétractation vente à distance",
+      "verso": "14 jours (client particulier)"
+    },
+    {
+      "recto": "Garantie légale de conformité",
+      "verso": "2 ans pour un bien neuf"
+    },
+    {
+      "recto": "Bloctel",
+      "verso": "Liste d'opposition au démarchage téléphonique"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Référentiel du BTS NDRC (E4 Relation client et négociation-vente, coef 5) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-NDRC.pdf"
+    },
+    {
+      "titre": "Référentiel du CAP Équipier polyvalent du commerce — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/10/REFERENTIEL-CAP-EQUIPIER-POLYVALENT-DU-COMMERCE.pdf"
+    },
+    {
+      "titre": "Cahier des charges CAP EPC (EP1 coef 3, EP2 coef 5, EP3 coef 6) — académie de Guyane",
+      "url": "https://eco-gestion.dis.ac-guyane.fr/IMG/pdf/cahier_des_charges__epc_ep1-ep2-ep3_guyane.pdf"
+    },
+    {
+      "titre": "Droit de rétractation et garanties — Service Public",
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F10485"
+    }
+  ],
+  "publics": [
+    "bp-agora",
+    "bp-mcv",
+    "bts-assurance",
+    "bts-banque",
+    "bts-gpme",
+    "bts-ndrc",
+    "cap-epc",
+    "tp-acom",
+    "tp-cc",
+    "tp-ntc"
   ]
 }

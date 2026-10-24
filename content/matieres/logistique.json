@@ -2,7 +2,19 @@
   "nom": "Transport & logistique : l'essentiel",
   "icone": "🚚",
   "groupe": "Transport & logistique",
-  "publics": ["d:transport", "tp-aie"],
+  "publics": [
+    "d:transport",
+    "bp-log",
+    "bp-otm",
+    "bts-gtla",
+    "cap-epc",
+    "cap-ol",
+    "cap-tf",
+    "tp-aie",
+    "tp-etrm",
+    "tp-gotrm",
+    "tp-otamm"
+  ],
   "ordre": 12,
   "description": "Incoterms 2020, documents de transport, temps de conduite, gestion des stocks, sécurité en entrepôt.",
   "fiches": [
@@ -24,23 +36,189 @@
     }
   ],
   "quiz": [
-    { "q": "Avec quel Incoterm le vendeur fait-il le moins ?", "choix": ["DDP", "EXW", "CIF", "DAP"], "reponse": 1, "explication": "EXW (à l'usine) : l'acheteur s'occupe de presque tout." },
-    { "q": "FOB et CIF sont réservés au transport :", "choix": ["routier", "aérien", "maritime / fluvial", "ferroviaire"], "reponse": 2, "explication": "FAS, FOB, CFR et CIF : maritime et voies navigables intérieures." },
-    { "q": "Le document de transport maritime qui vaut titre de propriété :", "choix": ["CMR", "LTA", "Connaissement (B/L)", "Packing list"], "reponse": 2, "explication": "Le connaissement représente la marchandise : il est négociable." },
-    { "q": "Pause obligatoire après 4 h 30 de conduite :", "choix": ["15 min", "30 min", "45 min", "1 h"], "reponse": 2, "explication": "45 minutes, éventuellement en 15 + 30." },
-    { "q": "Durée maximale de conduite sur une semaine :", "choix": ["45 h", "48 h", "56 h", "90 h"], "reponse": 2, "explication": "56 h par semaine, et 90 h sur deux semaines consécutives." },
-    { "q": "FIFO signifie :", "choix": ["Premier entré, premier sorti", "Dernier entré, premier sorti", "Stock de sécurité", "Inventaire tournant"], "reponse": 0, "explication": "First In, First Out = PEPS." },
-    { "q": "Le document de transport routier international :", "choix": ["CMR", "LTA", "B/L", "DAU"], "reponse": 0, "explication": "La lettre de voiture CMR." }
+    {
+      "q": "Avec quel Incoterm le vendeur fait-il le moins ?",
+      "choix": [
+        "DDP",
+        "EXW",
+        "CIF",
+        "DAP"
+      ],
+      "reponse": 1,
+      "explication": "EXW (à l'usine) : l'acheteur s'occupe de presque tout."
+    },
+    {
+      "q": "FOB et CIF sont réservés au transport :",
+      "choix": [
+        "routier",
+        "aérien",
+        "maritime / fluvial",
+        "ferroviaire"
+      ],
+      "reponse": 2,
+      "explication": "FAS, FOB, CFR et CIF : maritime et voies navigables intérieures."
+    },
+    {
+      "q": "Le document de transport maritime qui vaut titre de propriété :",
+      "choix": [
+        "CMR",
+        "LTA",
+        "Connaissement (B/L)",
+        "Packing list"
+      ],
+      "reponse": 2,
+      "explication": "Le connaissement représente la marchandise : il est négociable."
+    },
+    {
+      "q": "Pause obligatoire après 4 h 30 de conduite :",
+      "choix": [
+        "15 min",
+        "30 min",
+        "45 min",
+        "1 h"
+      ],
+      "reponse": 2,
+      "explication": "45 minutes, éventuellement en 15 + 30."
+    },
+    {
+      "q": "Durée maximale de conduite sur une semaine :",
+      "choix": [
+        "45 h",
+        "48 h",
+        "56 h",
+        "90 h"
+      ],
+      "reponse": 2,
+      "explication": "56 h par semaine, et 90 h sur deux semaines consécutives."
+    },
+    {
+      "q": "FIFO signifie :",
+      "choix": [
+        "Premier entré, premier sorti",
+        "Dernier entré, premier sorti",
+        "Stock de sécurité",
+        "Inventaire tournant"
+      ],
+      "reponse": 0,
+      "explication": "First In, First Out = PEPS."
+    },
+    {
+      "q": "Le document de transport routier international :",
+      "choix": [
+        "CMR",
+        "LTA",
+        "B/L",
+        "DAU"
+      ],
+      "reponse": 0,
+      "explication": "La lettre de voiture CMR."
+    },
+    {
+      "q": "Le stock de sécurité sert à :",
+      "choix": [
+        "Remplir l'entrepôt",
+        "Éviter la rupture en cas d'imprévu",
+        "Payer moins d'impôts",
+        "Vendre plus cher"
+      ],
+      "reponse": 1,
+      "explication": "Il couvre une hausse de consommation ou un retard de livraison."
+    },
+    {
+      "q": "Rotation des stocks : sorties 120 000 €, stock moyen 20 000 €. Rotation ?",
+      "choix": [
+        "2",
+        "6",
+        "20",
+        "120"
+      ],
+      "reponse": 1,
+      "explication": "120 000 ÷ 20 000 = 6 rotations par an (le stock « tourne » tous les 2 mois)."
+    },
+    {
+      "q": "Pour conduire un chariot élévateur, il faut :",
+      "choix": [
+        "Le permis B",
+        "Une autorisation de conduite de l'employeur (CACES® R489 en référence)",
+        "Rien",
+        "Un BTS"
+      ],
+      "reponse": 1,
+      "explication": "L'employeur délivre l'autorisation après formation ; le CACES® atteste les connaissances."
+    },
+    {
+      "q": "La préparation de commandes « picking » consiste à :",
+      "choix": [
+        "Livrer le client",
+        "Prélever les articles en stock pour constituer une commande",
+        "Faire l'inventaire",
+        "Charger le camion"
+      ],
+      "reponse": 1,
+      "explication": "Le préparateur prélève selon le bon de préparation, souvent avec un terminal de lecture code-barres."
+    },
+    {
+      "q": "Un inventaire tournant, c'est :",
+      "choix": [
+        "Compter tout le stock une fois par an",
+        "Compter une partie du stock régulièrement, tout au long de l'année",
+        "Faire tourner les palettes",
+        "Changer de magasinier"
+      ],
+      "reponse": 1,
+      "explication": "Il évite de fermer l'entrepôt pour un grand inventaire annuel."
+    }
   ],
   "cartes": [
-    { "recto": "Incoterm EXW", "verso": "À l'usine : l'acheteur prend tout en charge (ou presque)" },
-    { "recto": "Incoterm DDP", "verso": "Rendu droits acquittés : le vendeur prend tout en charge (ou presque)" },
-    { "recto": "Incoterms maritimes", "verso": "FAS, FOB, CFR, CIF" },
-    { "recto": "CMR / LTA / B/L", "verso": "Route / aérien / maritime" },
-    { "recto": "Conduite journalière max", "verso": "9 h (10 h deux fois par semaine)" },
-    { "recto": "Pause de conduite", "verso": "45 min après 4 h 30 (ou 15 + 30 min)" },
-    { "recto": "Stock d'alerte", "verso": "Stock de sécurité + consommation pendant le délai de livraison" },
-    { "recto": "Rotation des stocks", "verso": "Sorties ÷ stock moyen" },
-    { "recto": "CACES® R489", "verso": "Référence pour conduire les chariots élévateurs" }
+    {
+      "recto": "Incoterm EXW",
+      "verso": "À l'usine : l'acheteur prend tout en charge (ou presque)"
+    },
+    {
+      "recto": "Incoterm DDP",
+      "verso": "Rendu droits acquittés : le vendeur prend tout en charge (ou presque)"
+    },
+    {
+      "recto": "Incoterms maritimes",
+      "verso": "FAS, FOB, CFR, CIF"
+    },
+    {
+      "recto": "CMR / LTA / B/L",
+      "verso": "Route / aérien / maritime"
+    },
+    {
+      "recto": "Conduite journalière max",
+      "verso": "9 h (10 h deux fois par semaine)"
+    },
+    {
+      "recto": "Pause de conduite",
+      "verso": "45 min après 4 h 30 (ou 15 + 30 min)"
+    },
+    {
+      "recto": "Stock d'alerte",
+      "verso": "Stock de sécurité + consommation pendant le délai de livraison"
+    },
+    {
+      "recto": "Rotation des stocks",
+      "verso": "Sorties ÷ stock moyen"
+    },
+    {
+      "recto": "CACES® R489",
+      "verso": "Référence pour conduire les chariots élévateurs"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Référentiel du bac pro Logistique (E31 coef 7) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BAC-PRO-LOGISTIQUE.pdf"
+    },
+    {
+      "titre": "Référentiel du BTS GTLA — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-GTL-Gestion-Transport-Slogistique-Associee.pdf"
+    },
+    {
+      "titre": "Incoterms® 2020 — Chambre de commerce internationale",
+      "url": "https://iccwbo.org/business-solutions/incoterms-rules/"
+    }
   ]
 }

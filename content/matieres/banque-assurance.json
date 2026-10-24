@@ -1,0 +1,235 @@
+{
+  "nom": "Banque & assurance",
+  "icone": "🏦",
+  "groupe": "Comptabilité, paie, banque & assurance",
+  "ordre": 17,
+  "description": "BTS Banque (E3 relation client coef 5, E4 et E5 coef 4), BTS Assurance (U31, U32, U41 coef 4) : comptes, épargne, crédit, assurances de biens et de personnes, sinistres, devoir de conseil, LCB-FT.",
+  "fiches": [
+    {
+      "titre": "Les produits bancaires du particulier",
+      "contenu": "## Le compte et les moyens de paiement\nCompte de dépôt, carte (débit immédiat ou différé), virement (dont **virement instantané**), prélèvement **SEPA**, chèque. Le **droit au compte** permet à toute personne d'obtenir un compte via la Banque de France.\n\n## L'épargne\n- **Livret A** et **LDDS** : disponibles, non imposés, taux fixé par l'État.\n- **LEP** : pour les revenus modestes, mieux rémunéré.\n- **PEL** : épargne logement, bloqué.\n- **Assurance-vie** : épargne de long terme, fiscalité avantageuse après 8 ans.\n- **PEA**, compte-titres : actions, plus risqués.\n\n👉 Règle d'or : **rendement, risque et disponibilité** — on ne peut pas avoir les trois au maximum."
+    },
+    {
+      "titre": "Le crédit",
+      "contenu": "## Types de crédits\n- **Crédit à la consommation** (prêt personnel, crédit affecté, renouvelable).\n- **Crédit immobilier**.\n- **Découvert autorisé**.\n\n## Les règles de protection\n- Le **TAEG** (taux annuel effectif global) doit être indiqué : il inclut intérêts, frais et assurance. C'est lui qu'on compare.\n- **Délai de rétractation de 14 jours** pour un crédit à la consommation.\n- Le banquier doit vérifier la **solvabilité** (taux d'endettement, reste à vivre) : le **HCSF** recommande un taux d'effort maximum de **35 %** pour l'immobilier.\n- Mention obligatoire : « Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager. »\n\n## Le surendettement\nDossier auprès de la **Banque de France** (IEDOM dans les DOM, dont la Guyane)."
+    },
+    {
+      "titre": "L'assurance : principes et contrats",
+      "contenu": "## Le principe\nLa **mutualisation** : beaucoup d'assurés paient une **prime** (cotisation) pour indemniser les quelques-uns qui ont un **sinistre**.\n\n## Le vocabulaire\n- **Souscripteur** (signe et paie), **assuré** (personne couverte), **bénéficiaire** (reçoit l'indemnité).\n- **Franchise** : part du dommage qui reste à la charge de l'assuré.\n- **Exclusions** : ce qui n'est pas couvert.\n- **Plafond** : montant maximum remboursé.\n\n## Les grandes familles\n- **Assurances de biens et de responsabilité (IARD)** : auto (la **responsabilité civile** auto est **obligatoire**), habitation, multirisque professionnelle.\n- **Assurances de personnes** : santé (complémentaire / mutuelle), prévoyance, décès, assurance-vie, assurance emprunteur.\n\n## Le devoir de conseil\nL'intermédiaire doit recueillir les **exigences et besoins** du client et proposer un contrat **adapté** (directive sur la distribution d'assurances)."
+    },
+    {
+      "titre": "Gérer un sinistre",
+      "contenu": "1. **Déclaration** par l'assuré : en général **5 jours ouvrés** ; **2 jours** pour un vol ; **30 jours** après la publication de l'arrêté pour une **catastrophe naturelle**.\n2. **Ouverture du dossier**, vérification des **garanties** (le contrat couvre-t-il ce sinistre ? franchise ? exclusion ?).\n3. **Expertise** si besoin (évaluation des dommages).\n4. Détermination des **responsabilités** (auto : constat amiable, conventions entre assureurs).\n5. **Indemnisation** : valeur à neuf ou **vétusté déduite**, moins la franchise.\n6. **Recours** contre le responsable ou son assureur.\n\n👉 À l'oral (U42 du BTS Assurance), le jury regarde l'**accueil** d'un assuré souvent stressé : empathie, écoute, explication claire des étapes et des délais."
+    },
+    {
+      "titre": "Conformité : LCB-FT et protection du client",
+      "contenu": "## Lutte contre le blanchiment et le financement du terrorisme (LCB-FT)\n- **Connaître son client (KYC)** : identité, justificatifs, origine des fonds.\n- **Vigilance** sur les opérations inhabituelles (gros dépôts en espèces, montages complexes).\n- **Déclaration de soupçon** à **Tracfin** (sans prévenir le client).\n\n## Protéger le client\n- **Secret bancaire / professionnel**.\n- **RGPD** pour les données personnelles.\n- **Médiateur** de la banque ou de l'assurance en cas de litige.\n- Contrôle par l'**ACPR** (Autorité de contrôle prudentiel et de résolution) et l'**AMF** pour les placements financiers."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Pour comparer deux crédits, on regarde :",
+      "choix": [
+        "Le taux nominal",
+        "Le TAEG",
+        "La mensualité seule",
+        "La durée seule"
+      ],
+      "reponse": 1,
+      "explication": "Le TAEG inclut intérêts, frais de dossier et assurance obligatoire."
+    },
+    {
+      "q": "Délai de rétractation d'un crédit à la consommation :",
+      "choix": [
+        "7 jours",
+        "14 jours",
+        "30 jours",
+        "Aucun"
+      ],
+      "reponse": 1,
+      "explication": "14 jours calendaires à partir de l'acceptation de l'offre."
+    },
+    {
+      "q": "Taux d'effort maximum recommandé par le HCSF pour un crédit immobilier :",
+      "choix": [
+        "25 %",
+        "35 %",
+        "50 %",
+        "70 %"
+      ],
+      "reponse": 1,
+      "explication": "35 % des revenus, assurance comprise (avec une part de dérogations possibles)."
+    },
+    {
+      "q": "Le Livret A est :",
+      "choix": [
+        "Bloqué 8 ans",
+        "Disponible et non imposé",
+        "Investi en actions",
+        "Réservé aux entreprises"
+      ],
+      "reponse": 1,
+      "explication": "Épargne de précaution disponible, taux fixé par l'État, non imposable."
+    },
+    {
+      "q": "En assurance, la franchise est :",
+      "choix": [
+        "La prime annuelle",
+        "La part du dommage qui reste à la charge de l'assuré",
+        "Le plafond",
+        "L'exclusion"
+      ],
+      "reponse": 1,
+      "explication": "Ex. : dommage 1 000 €, franchise 150 € → l'assureur verse 850 €."
+    },
+    {
+      "q": "Quelle assurance est obligatoire pour une voiture ?",
+      "choix": [
+        "Tous risques",
+        "Responsabilité civile",
+        "Vol",
+        "Bris de glace"
+      ],
+      "reponse": 1,
+      "explication": "La RC auto (dommages causés aux autres) est obligatoire ; le reste est optionnel."
+    },
+    {
+      "q": "Délai pour déclarer un vol à son assureur :",
+      "choix": [
+        "2 jours ouvrés",
+        "5 jours",
+        "15 jours",
+        "1 mois"
+      ],
+      "reponse": 0,
+      "explication": "2 jours ouvrés pour un vol, 5 jours ouvrés en général."
+    },
+    {
+      "q": "La mutualisation, c'est :",
+      "choix": [
+        "Faire payer le responsable",
+        "Répartir le coût des sinistres entre tous les assurés",
+        "Une mutuelle santé seulement",
+        "Un crédit"
+      ],
+      "reponse": 1,
+      "explication": "Les primes de tous paient les sinistres de quelques-uns."
+    },
+    {
+      "q": "Une opération suspecte de blanchiment se déclare à :",
+      "choix": [
+        "La police municipale",
+        "Tracfin",
+        "La CNIL",
+        "L'URSSAF"
+      ],
+      "reponse": 1,
+      "explication": "Tracfin, sans prévenir le client (interdiction de divulgation)."
+    },
+    {
+      "q": "KYC signifie :",
+      "choix": [
+        "Keep Your Cash",
+        "Know Your Customer",
+        "Key Yield Calculation",
+        "Kit Yield Credit"
+      ],
+      "reponse": 1,
+      "explication": "Connaître son client : identité, activité, origine des fonds."
+    },
+    {
+      "q": "Le devoir de conseil oblige l'intermédiaire à :",
+      "choix": [
+        "Vendre le contrat le plus cher",
+        "Proposer un contrat adapté aux besoins du client",
+        "Refuser les jeunes",
+        "Ne rien expliquer"
+      ],
+      "reponse": 1,
+      "explication": "Il recueille les exigences et besoins, puis justifie sa proposition."
+    },
+    {
+      "q": "En Guyane, la banque centrale est représentée par :",
+      "choix": [
+        "La BCE directement",
+        "L'IEDOM",
+        "La CGSS",
+        "La CTG"
+      ],
+      "reponse": 1,
+      "explication": "L'Institut d'émission des départements d'outre-mer agit pour la Banque de France (surendettement, fichiers…)."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "TAEG",
+      "verso": "Taux annuel effectif global : intérêts + frais + assurance"
+    },
+    {
+      "recto": "Rétractation crédit conso",
+      "verso": "14 jours"
+    },
+    {
+      "recto": "Taux d'effort max (HCSF)",
+      "verso": "35 % des revenus"
+    },
+    {
+      "recto": "Triangle de l'épargne",
+      "verso": "Rendement, risque, disponibilité"
+    },
+    {
+      "recto": "Souscripteur / assuré / bénéficiaire",
+      "verso": "Signe et paie / est couvert / reçoit l'indemnité"
+    },
+    {
+      "recto": "Franchise",
+      "verso": "Part du dommage à la charge de l'assuré"
+    },
+    {
+      "recto": "IARD",
+      "verso": "Incendie, accidents, risques divers : assurances de biens et de responsabilité"
+    },
+    {
+      "recto": "Déclaration de sinistre",
+      "verso": "5 jours ouvrés (2 pour un vol, 30 après l’arrêté CatNat)"
+    },
+    {
+      "recto": "Vétusté",
+      "verso": "Perte de valeur liée à l'âge, déduite de l'indemnité"
+    },
+    {
+      "recto": "Tracfin",
+      "verso": "Service qui reçoit les déclarations de soupçon de blanchiment"
+    },
+    {
+      "recto": "ACPR",
+      "verso": "Autorité de contrôle des banques et assurances"
+    },
+    {
+      "recto": "IEDOM",
+      "verso": "Banque de France dans les DOM (Guyane)"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Règlement d'examen du BTS Banque (BO n°16 du 17 avril 2014)",
+      "url": "https://www.education.gouv.fr/bo/14/Hebdo16/ESRS1403534A.htm"
+    },
+    {
+      "titre": "Référentiel du BTS Assurance — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTSAssurance.pdf"
+    },
+    {
+      "titre": "Sujet BTS Assurance E41 Gestion des sinistres (coef 4) — académie de Lille",
+      "url": "https://pedagogie.ac-lille.fr/ecogestion/wp-content/uploads/sites/53/2024/09/E-41-sujet-2024.pdf"
+    },
+    {
+      "titre": "La finance pour tous (IEFP) — banque, crédit, assurance",
+      "url": "https://www.lafinancepourtous.com"
+    }
+  ],
+  "publics": [
+    "bts-assurance",
+    "bts-banque"
+  ]
+}

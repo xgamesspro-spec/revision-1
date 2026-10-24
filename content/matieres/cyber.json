@@ -2,7 +2,12 @@
   "nom": "Cybersécurité",
   "icone": "🛡️",
   "groupe": "Informatique & réseaux",
-  "publics": ["bts-sio", "bts-ciel", "bp-ciel", "tp-cda", "tp-dwwm", "d:numerique"],
+  "publics": [
+    "d:numerique",
+    "bp-ciel",
+    "bts-ciel",
+    "bts-sio"
+  ],
   "ordre": 3,
   "description": "DICP, chiffrement, PKI, pare-feu, VPN, attaques, bonnes pratiques ANSSI.",
   "fiches": [
@@ -28,31 +33,190 @@
     }
   ],
   "quiz": [
-    { "q": "Que garantit le hachage ?", "choix": ["La confidentialité", "L'intégrité", "La disponibilité", "L'anonymat"], "reponse": 1, "explication": "Une empreinte différente révèle une modification : c'est un contrôle d'intégrité." },
-    { "q": "Pour envoyer un message que seul Paul pourra lire, je chiffre avec…", "choix": ["Ma clé privée", "Ma clé publique", "La clé publique de Paul", "La clé privée de Paul"], "reponse": 2, "explication": "Seule la clé privée de Paul pourra déchiffrer." },
-    { "q": "Une signature numérique utilise…", "choix": ["La clé publique du signataire", "La clé privée du signataire", "Une clé symétrique", "Un mot de passe"], "reponse": 1, "explication": "On signe avec sa clé privée ; les autres vérifient avec la clé publique." },
-    { "q": "AES est un algorithme…", "choix": ["Asymétrique", "Symétrique", "De hachage", "De compression"], "reponse": 1, "explication": "AES = chiffrement symétrique, une seule clé." },
-    { "q": "À quoi sert une DMZ ?", "choix": ["Héberger les serveurs exposés à Internet", "Stocker les sauvegardes", "Accélérer le Wi-Fi", "Remplacer le VPN"], "reponse": 0, "explication": "Elle isole les serveurs publics du réseau interne." },
-    { "q": "Le « P » de DICP signifie…", "choix": ["Performance", "Preuve / traçabilité", "Protection", "Pérennité"], "reponse": 1, "explication": "Disponibilité, Intégrité, Confidentialité, Preuve." },
-    { "q": "Meilleure protection contre un rançongiciel ?", "choix": ["Un RAID 1", "Des sauvegardes hors ligne testées", "Un écran de veille", "Un VPN"], "reponse": 1, "explication": "Le RAID réplique aussi les fichiers chiffrés ; seule une sauvegarde isolée permet de restaurer." },
-    { "q": "Une injection SQL se prévient avec…", "choix": ["Des requêtes préparées", "Un antivirus", "Le RAID", "Un switch manageable"], "reponse": 0, "explication": "Les requêtes préparées séparent le code SQL des données saisies." },
-    { "q": "Combien de mesures dans le guide d'hygiène de l'ANSSI ?", "choix": ["10", "25", "42", "100"], "reponse": 2, "explication": "Le guide d'hygiène informatique compte 42 mesures." },
-    { "q": "EBIOS Risk Manager est…", "choix": ["Un antivirus", "Une méthode d'analyse de risques", "Un pare-feu", "Une norme Wi-Fi"], "reponse": 1, "explication": "C'est la méthode d'analyse de risques publiée par l'ANSSI." },
-    { "q": "Dans HTTPS, les données de la session sont chiffrées en…", "choix": ["Asymétrique uniquement", "Symétrique, avec une clé échangée via l'asymétrique", "Hachage", "Clair"], "reponse": 1, "explication": "L'asymétrique sert à l'échange de clé, puis le symétrique (plus rapide) chiffre le trafic." }
+    {
+      "q": "Que garantit le hachage ?",
+      "choix": [
+        "La confidentialité",
+        "L'intégrité",
+        "La disponibilité",
+        "L'anonymat"
+      ],
+      "reponse": 1,
+      "explication": "Une empreinte différente révèle une modification : c'est un contrôle d'intégrité."
+    },
+    {
+      "q": "Pour envoyer un message que seul Paul pourra lire, je chiffre avec…",
+      "choix": [
+        "Ma clé privée",
+        "Ma clé publique",
+        "La clé publique de Paul",
+        "La clé privée de Paul"
+      ],
+      "reponse": 2,
+      "explication": "Seule la clé privée de Paul pourra déchiffrer."
+    },
+    {
+      "q": "Une signature numérique utilise…",
+      "choix": [
+        "La clé publique du signataire",
+        "La clé privée du signataire",
+        "Une clé symétrique",
+        "Un mot de passe"
+      ],
+      "reponse": 1,
+      "explication": "On signe avec sa clé privée ; les autres vérifient avec la clé publique."
+    },
+    {
+      "q": "AES est un algorithme…",
+      "choix": [
+        "Asymétrique",
+        "Symétrique",
+        "De hachage",
+        "De compression"
+      ],
+      "reponse": 1,
+      "explication": "AES = chiffrement symétrique, une seule clé."
+    },
+    {
+      "q": "À quoi sert une DMZ ?",
+      "choix": [
+        "Héberger les serveurs exposés à Internet",
+        "Stocker les sauvegardes",
+        "Accélérer le Wi-Fi",
+        "Remplacer le VPN"
+      ],
+      "reponse": 0,
+      "explication": "Elle isole les serveurs publics du réseau interne."
+    },
+    {
+      "q": "Le « P » de DICP signifie…",
+      "choix": [
+        "Performance",
+        "Preuve / traçabilité",
+        "Protection",
+        "Pérennité"
+      ],
+      "reponse": 1,
+      "explication": "Disponibilité, Intégrité, Confidentialité, Preuve."
+    },
+    {
+      "q": "Meilleure protection contre un rançongiciel ?",
+      "choix": [
+        "Un RAID 1",
+        "Des sauvegardes hors ligne testées",
+        "Un écran de veille",
+        "Un VPN"
+      ],
+      "reponse": 1,
+      "explication": "Le RAID réplique aussi les fichiers chiffrés ; seule une sauvegarde isolée permet de restaurer."
+    },
+    {
+      "q": "Une injection SQL se prévient avec…",
+      "choix": [
+        "Des requêtes préparées",
+        "Un antivirus",
+        "Le RAID",
+        "Un switch manageable"
+      ],
+      "reponse": 0,
+      "explication": "Les requêtes préparées séparent le code SQL des données saisies."
+    },
+    {
+      "q": "Combien de mesures dans le guide d'hygiène de l'ANSSI ?",
+      "choix": [
+        "10",
+        "25",
+        "42",
+        "100"
+      ],
+      "reponse": 2,
+      "explication": "Le guide d'hygiène informatique compte 42 mesures."
+    },
+    {
+      "q": "EBIOS Risk Manager est…",
+      "choix": [
+        "Un antivirus",
+        "Une méthode d'analyse de risques",
+        "Un pare-feu",
+        "Une norme Wi-Fi"
+      ],
+      "reponse": 1,
+      "explication": "C'est la méthode d'analyse de risques publiée par l'ANSSI."
+    },
+    {
+      "q": "Dans HTTPS, les données de la session sont chiffrées en…",
+      "choix": [
+        "Asymétrique uniquement",
+        "Symétrique, avec une clé échangée via l'asymétrique",
+        "Hachage",
+        "Clair"
+      ],
+      "reponse": 1,
+      "explication": "L'asymétrique sert à l'échange de clé, puis le symétrique (plus rapide) chiffre le trafic."
+    }
   ],
   "cartes": [
-    { "recto": "DICP", "verso": "Disponibilité, Intégrité, Confidentialité, Preuve" },
-    { "recto": "Symétrique vs asymétrique", "verso": "1 clé partagée (AES) · paire publique/privée (RSA)" },
-    { "recto": "Signer = utiliser quelle clé ?", "verso": "Sa propre clé privée" },
-    { "recto": "SHA-256", "verso": "Fonction de hachage (intégrité). MD5 et SHA-1 sont obsolètes." },
-    { "recto": "Rôle d'une AC (autorité de certification)", "verso": "Signer les certificats pour garantir le lien clé publique ↔ identité" },
-    { "recto": "Pare-feu stateful", "verso": "Suit l'état des connexions et autorise les réponses" },
-    { "recto": "Politique par défaut d'un pare-feu", "verso": "Tout interdire sauf ce qui est explicitement autorisé" },
-    { "recto": "VPN site à site", "verso": "Relie deux réseaux, souvent en IPsec" },
-    { "recto": "Moindre privilège", "verso": "Chacun n'a que les droits strictement nécessaires" },
-    { "recto": "EDR", "verso": "Endpoint Detection & Response : détection et réponse sur les postes" },
-    { "recto": "SIEM", "verso": "Centralise et corrèle les journaux pour détecter les incidents" },
-    { "recto": "Loi Godfrain", "verso": "1988 — sanctionne l'accès frauduleux à un système (art. 323-1 Code pénal)" },
-    { "recto": "NIS 2", "verso": "Directive européenne qui étend les obligations de cybersécurité (dont la santé)" }
+    {
+      "recto": "DICP",
+      "verso": "Disponibilité, Intégrité, Confidentialité, Preuve"
+    },
+    {
+      "recto": "Symétrique vs asymétrique",
+      "verso": "1 clé partagée (AES) · paire publique/privée (RSA)"
+    },
+    {
+      "recto": "Signer = utiliser quelle clé ?",
+      "verso": "Sa propre clé privée"
+    },
+    {
+      "recto": "SHA-256",
+      "verso": "Fonction de hachage (intégrité). MD5 et SHA-1 sont obsolètes."
+    },
+    {
+      "recto": "Rôle d'une AC (autorité de certification)",
+      "verso": "Signer les certificats pour garantir le lien clé publique ↔ identité"
+    },
+    {
+      "recto": "Pare-feu stateful",
+      "verso": "Suit l'état des connexions et autorise les réponses"
+    },
+    {
+      "recto": "Politique par défaut d'un pare-feu",
+      "verso": "Tout interdire sauf ce qui est explicitement autorisé"
+    },
+    {
+      "recto": "VPN site à site",
+      "verso": "Relie deux réseaux, souvent en IPsec"
+    },
+    {
+      "recto": "Moindre privilège",
+      "verso": "Chacun n'a que les droits strictement nécessaires"
+    },
+    {
+      "recto": "EDR",
+      "verso": "Endpoint Detection & Response : détection et réponse sur les postes"
+    },
+    {
+      "recto": "SIEM",
+      "verso": "Centralise et corrèle les journaux pour détecter les incidents"
+    },
+    {
+      "recto": "Loi Godfrain",
+      "verso": "1988 — sanctionne l'accès frauduleux à un système (art. 323-1 Code pénal)"
+    },
+    {
+      "recto": "NIS 2",
+      "verso": "Directive européenne qui étend les obligations de cybersécurité (dont la santé)"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "ANSSI — guides et bonnes pratiques",
+      "url": "https://cyber.gouv.fr"
+    },
+    {
+      "titre": "CERT-FR — alertes et avis",
+      "url": "https://www.cert.ssi.gouv.fr"
+    }
   ]
 }

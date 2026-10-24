@@ -2,7 +2,28 @@
   "nom": "Réussir ta session de titre pro",
   "icone": "🏅",
   "groupe": "Examens",
-  "publics": ["TP"],
+  "publics": [
+    "TP",
+    "tp-acom",
+    "tp-ad",
+    "tp-aie",
+    "tp-aph",
+    "tp-arh",
+    "tp-ca",
+    "tp-cc",
+    "tp-cda",
+    "tp-dwwm",
+    "tp-eaa",
+    "tp-ertrv",
+    "tp-etrm",
+    "tp-gcf",
+    "tp-gotrm",
+    "tp-gp",
+    "tp-ntc",
+    "tp-otamm",
+    "tp-sa",
+    "tp-sc"
+  ],
   "ordre": 0,
   "description": "Jury, mise en situation, dossier professionnel (DP), ECF, CCP, REAC : tout pour ta certification.",
   "fiches": [
@@ -20,21 +41,155 @@
     }
   ],
   "quiz": [
-    { "q": "Qui fixe la date de ta session de titre pro ?", "choix": ["Le ministère, au niveau national", "Le CFA (centre agréé)", "Ton entreprise", "Toi"], "reponse": 1, "explication": "Il n'y a pas de date nationale : le centre agréé organise la session." },
-    { "q": "Combien de membres au minimum dans le jury ?", "choix": ["1", "2", "3", "5"], "reponse": 1, "explication": "Un jury collégial d'au moins 2 professionnels habilités." },
-    { "q": "Dans le Dossier professionnel, tu mets :", "choix": ["ton CV", "des exemples réels de ta pratique", "tes notes du CFA", "une lettre de motivation"], "reponse": 1, "explication": "Le DP rassemble les preuves de ta pratique professionnelle." },
-    { "q": "Un CCP validé…", "choix": ["est perdu si tu rates le reste", "reste acquis définitivement", "est valable 1 an", "doit être repassé"], "reponse": 1, "explication": "Les CCP sont acquis définitivement : tu ne repasses que ceux qui manquent." },
-    { "q": "Le document qui explique comment tu seras évalué :", "choix": ["REAC", "RC (référentiel de certification)", "DP", "ECF"], "reponse": 1, "explication": "Le RC décrit les épreuves ; le REAC décrit le métier." },
-    { "q": "Les ECF, ce sont :", "choix": ["les épreuves finales", "les évaluations passées en cours de formation", "les fiches de paie", "les congés"], "reponse": 1, "explication": "Évaluations en cours de formation, rassemblées dans un livret présenté au jury." }
+    {
+      "q": "Qui fixe la date de ta session de titre pro ?",
+      "choix": [
+        "Le ministère, au niveau national",
+        "Le CFA (centre agréé)",
+        "Ton entreprise",
+        "Toi"
+      ],
+      "reponse": 1,
+      "explication": "Il n'y a pas de date nationale : le centre agréé organise la session."
+    },
+    {
+      "q": "Combien de membres au minimum dans le jury ?",
+      "choix": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "reponse": 1,
+      "explication": "Un jury collégial d'au moins 2 professionnels habilités."
+    },
+    {
+      "q": "Dans le Dossier professionnel, tu mets :",
+      "choix": [
+        "ton CV",
+        "des exemples réels de ta pratique",
+        "tes notes du CFA",
+        "une lettre de motivation"
+      ],
+      "reponse": 1,
+      "explication": "Le DP rassemble les preuves de ta pratique professionnelle."
+    },
+    {
+      "q": "Un CCP validé…",
+      "choix": [
+        "est perdu si tu rates le reste",
+        "reste acquis définitivement",
+        "est valable 1 an",
+        "doit être repassé"
+      ],
+      "reponse": 1,
+      "explication": "Les CCP sont acquis définitivement : tu ne repasses que ceux qui manquent."
+    },
+    {
+      "q": "Le document qui explique comment tu seras évalué :",
+      "choix": [
+        "REAC",
+        "RC (référentiel de certification)",
+        "DP",
+        "ECF"
+      ],
+      "reponse": 1,
+      "explication": "Le RC décrit les épreuves ; le REAC décrit le métier."
+    },
+    {
+      "q": "Les ECF, ce sont :",
+      "choix": [
+        "les épreuves finales",
+        "les évaluations passées en cours de formation",
+        "les fiches de paie",
+        "les congés"
+      ],
+      "reponse": 1,
+      "explication": "Évaluations en cours de formation, rassemblées dans un livret présenté au jury."
+    },
+    {
+      "q": "Si tu valides 2 CCP sur 3 :",
+      "choix": [
+        "Tu perds tout",
+        "Tu gardes les 2 CCP et tu repasses le 3e",
+        "Tu obtiens quand même le titre",
+        "Tu dois tout refaire"
+      ],
+      "reponse": 1,
+      "explication": "Les CCP sont acquis définitivement ; tu repasses seulement le bloc manquant."
+    },
+    {
+      "q": "En Guyane, les résultats d'un titre pro sont validés par :",
+      "choix": [
+        "Le rectorat",
+        "La DEETS (services de l'État)",
+        "Ton entreprise",
+        "Le CFA seul"
+      ],
+      "reponse": 1,
+      "explication": "Le procès-verbal de session est validé par le représentant du ministère du Travail (DEETS)."
+    },
+    {
+      "q": "Le meilleur moyen de préparer ton DP :",
+      "choix": [
+        "L'écrire la veille",
+        "Noter chaque semaine tes activités en entreprise (livret)",
+        "Copier celui d'un ami",
+        "Ne rien préparer"
+      ],
+      "reponse": 1,
+      "explication": "Le livret d'apprentissage de Classe CEVEDOM t'aide à garder une trace de tes activités."
+    },
+    {
+      "q": "Dans ton DP, les noms de clients de l'entreprise :",
+      "choix": [
+        "Doivent être réels",
+        "Doivent être anonymisés",
+        "Sont obligatoires",
+        "Ne comptent pas"
+      ],
+      "reponse": 1,
+      "explication": "Confidentialité : anonymise noms, chiffres et documents de l'entreprise."
+    }
   ],
   "cartes": [
-    { "recto": "MSP", "verso": "Mise en situation professionnelle : l'épreuve pratique devant le jury" },
-    { "recto": "DP", "verso": "Dossier professionnel : preuves de ta pratique en entreprise" },
-    { "recto": "ECF", "verso": "Évaluations en cours de formation (livret présenté au jury)" },
-    { "recto": "CCP", "verso": "Certificat de compétences professionnelles : un bloc du titre, acquis définitivement" },
-    { "recto": "REAC", "verso": "Référentiel emploi activités compétences : ce que tu dois savoir faire" },
-    { "recto": "RC", "verso": "Référentiel de certification : comment tu es évalué" },
-    { "recto": "Jury de titre pro", "verso": "Au moins 2 professionnels du métier habilités" },
-    { "recto": "Qui valide les résultats ?", "verso": "Les services de l'État (DEETS en Guyane), qui te les notifient" }
+    {
+      "recto": "MSP",
+      "verso": "Mise en situation professionnelle : l'épreuve pratique devant le jury"
+    },
+    {
+      "recto": "DP",
+      "verso": "Dossier professionnel : preuves de ta pratique en entreprise"
+    },
+    {
+      "recto": "ECF",
+      "verso": "Évaluations en cours de formation (livret présenté au jury)"
+    },
+    {
+      "recto": "CCP",
+      "verso": "Certificat de compétences professionnelles : un bloc du titre, acquis définitivement"
+    },
+    {
+      "recto": "REAC",
+      "verso": "Référentiel emploi activités compétences : ce que tu dois savoir faire"
+    },
+    {
+      "recto": "RC",
+      "verso": "Référentiel de certification : comment tu es évalué"
+    },
+    {
+      "recto": "Jury de titre pro",
+      "verso": "Au moins 2 professionnels du métier habilités"
+    },
+    {
+      "recto": "Qui valide les résultats ?",
+      "verso": "Les services de l'État (DEETS en Guyane), qui te les notifient"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Les fondamentaux de la certification des titres pro — DREETS",
+      "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+    }
   ]
 }

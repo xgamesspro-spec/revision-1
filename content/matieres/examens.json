@@ -2,7 +2,9 @@
   "nom": "Examens BTS SIO & portfolio",
   "icone": "🎯",
   "groupe": "Examens",
-  "publics": ["bts-sio"],
+  "publics": [
+    "*"
+  ],
   "ordre": 0,
   "description": "Calendrier 2027, portfolio, réalisations professionnelles, préparation des oraux.",
   "fiches": [
@@ -20,15 +22,110 @@
     }
   ],
   "quiz": [
-    { "q": "Que faire avec les vraies données de l'entreprise dans ton portfolio ?", "choix": ["Les montrer telles quelles", "Les anonymiser ou utiliser des données fictives", "Les flouter un peu", "Demander au jury"], "reponse": 1, "explication": "Confidentialité et RGPD : données fictives ou anonymisées, validées par le tuteur." },
-    { "q": "Quand ont lieu les écrits communs du BTS 2027 ?", "choix": ["Décembre 2026", "Du 11 au 14 mai 2027", "Septembre 2027", "Juillet 2027"], "reponse": 1, "explication": "CGE le 11, CEJM le 12, langues le 13, maths le 14 mai 2027." },
-    { "q": "Une réalisation montée entièrement par un collègue peut-elle être présentée comme la tienne ?", "choix": ["Oui", "Non", "Oui si le collègue est d'accord", "Seulement à l'écrit"], "reponse": 1, "explication": "Le jury évalue ce que TU as fait. Présente ta part réelle, ou choisis une autre réalisation." },
-    { "q": "Quelle compétence est souvent oubliée en SISR ?", "choix": ["Gérer le patrimoine informatique", "Développer la présence en ligne", "Répondre aux incidents", "Travailler en mode projet"], "reponse": 1, "explication": "Elle doit être couverte volontairement (site, portfolio en ligne, page de service…)." }
+    {
+      "q": "Que faire avec les vraies données de l'entreprise dans ton portfolio ?",
+      "choix": [
+        "Les montrer telles quelles",
+        "Les anonymiser ou utiliser des données fictives",
+        "Les flouter un peu",
+        "Demander au jury"
+      ],
+      "reponse": 1,
+      "explication": "Confidentialité et RGPD : données fictives ou anonymisées, validées par le tuteur."
+    },
+    {
+      "q": "Quand ont lieu les écrits communs du BTS 2027 ?",
+      "choix": [
+        "Décembre 2026",
+        "Du 11 au 14 mai 2027",
+        "Septembre 2027",
+        "Juillet 2027"
+      ],
+      "reponse": 1,
+      "explication": "CGE le 11, CEJM le 12, langues le 13, maths le 14 mai 2027."
+    },
+    {
+      "q": "Une réalisation montée entièrement par un collègue peut-elle être présentée comme la tienne ?",
+      "choix": [
+        "Oui",
+        "Non",
+        "Oui si le collègue est d'accord",
+        "Seulement à l'écrit"
+      ],
+      "reponse": 1,
+      "explication": "Le jury évalue ce que TU as fait. Présente ta part réelle, ou choisis une autre réalisation."
+    },
+    {
+      "q": "Quelle compétence est souvent oubliée en SISR ?",
+      "choix": [
+        "Gérer le patrimoine informatique",
+        "Développer la présence en ligne",
+        "Répondre aux incidents",
+        "Travailler en mode projet"
+      ],
+      "reponse": 1,
+      "explication": "Elle doit être couverte volontairement (site, portfolio en ligne, page de service…)."
+    },
+    {
+      "q": "Le jury de l'oral veut voir des réalisations :",
+      "choix": [
+        "Faites par un collègue",
+        "Que tu as menées toi-même",
+        "Trouvées sur internet",
+        "Sans rapport avec le métier"
+      ],
+      "reponse": 1,
+      "explication": "Ce sont tes réalisations professionnelles qui prouvent tes compétences."
+    },
+    {
+      "q": "Avant l'oral, ton portfolio doit être :",
+      "choix": [
+        "En brouillon",
+        "Accessible au jury, lien testé",
+        "Sur ta clé USB seulement",
+        "Secret"
+      ],
+      "reponse": 1,
+      "explication": "Teste le lien et les droits d'accès plusieurs jours avant."
+    },
+    {
+      "q": "Face à une question dont tu ignores la réponse :",
+      "choix": [
+        "Inventer",
+        "Le dire et expliquer comment tu chercherais",
+        "Changer de sujet",
+        "Rester muet"
+      ],
+      "reponse": 1,
+      "explication": "Le jury apprécie l'honnêteté et la démarche (doc, logs, test en labo)."
+    }
   ],
   "cartes": [
-    { "recto": "Date de l'épreuve de CGE 2027", "verso": "11 mai 2027" },
-    { "recto": "6 étapes d'une fiche de réalisation", "verso": "Contexte, objectifs, solution, mise en œuvre, tests, bilan" },
-    { "recto": "Méthode de réponse à l'oral", "verso": "Fait → Règle → Conclusion" },
-    { "recto": "Je ne sais pas répondre au jury…", "verso": "Le dire honnêtement et expliquer comment je chercherais" }
+    {
+      "recto": "Date de l'épreuve de CGE 2027",
+      "verso": "11 mai 2027"
+    },
+    {
+      "recto": "6 étapes d'une fiche de réalisation",
+      "verso": "Contexte, objectifs, solution, mise en œuvre, tests, bilan"
+    },
+    {
+      "recto": "Méthode de réponse à l'oral",
+      "verso": "Fait → Règle → Conclusion"
+    },
+    {
+      "recto": "Je ne sais pas répondre au jury…",
+      "verso": "Le dire honnêtement et expliquer comment je chercherais"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Épreuves du BTS SIO (référentiel 2025) — H3 Hitema",
+      "url": "https://www.h3hitema.fr/wp-content/uploads/2025/09/les-epreuves-a-lexamen-bts-sio-1.pdf"
+    },
+    {
+      "titre": "Calendrier BTS 2027 — CNED",
+      "url": "https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027"
+    }
   ]
 }

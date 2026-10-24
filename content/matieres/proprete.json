@@ -2,7 +2,11 @@
   "nom": "Propreté & hygiène : les bases",
   "icone": "🧽",
   "groupe": "Propreté & hygiène",
-  "publics": ["d:proprete"],
+  "publics": [
+    "d:proprete",
+    "cap-aph",
+    "tp-aph"
+  ],
   "ordre": 13,
   "description": "Cercle de Sinner, produits et pH, bionettoyage, pictogrammes de danger, gestes sûrs.",
   "fiches": [
@@ -20,21 +24,163 @@
     }
   ],
   "quiz": [
-    { "q": "Les 4 facteurs du cercle de Sinner :", "choix": ["Temps, action mécanique, chimie, température", "Eau, savon, brosse, seau", "Haut, bas, propre, sale", "Gants, lunettes, blouse, chaussures"], "reponse": 0, "explication": "TACT : Temps, Action mécanique, Chimie, Température." },
-    { "q": "Pour enlever le tartre, on utilise un produit :", "choix": ["acide", "neutre", "alcalin", "désinfectant seulement"], "reponse": 0, "explication": "Le calcaire se dissout avec un acide." },
-    { "q": "Pour dégraisser une cuisine :", "choix": ["acide", "alcalin", "neutre", "eau froide seule"], "reponse": 1, "explication": "Les graisses s'enlèvent avec un produit alcalin." },
-    { "q": "En bionettoyage, on va :", "choix": ["du plus sale au plus propre", "du plus propre au plus sale", "au hasard", "de la sortie vers le fond"], "reponse": 1, "explication": "Du propre vers le sale, du haut vers le bas, du fond vers la sortie." },
-    { "q": "Mélanger javel et détartrant acide :", "choix": ["est plus efficace", "dégage un gaz toxique", "ne change rien", "est obligatoire"], "reponse": 1, "explication": "Le mélange dégage du chlore gazeux, très dangereux. Ne jamais mélanger." },
-    { "q": "Un désinfectant sert à :", "choix": ["enlever la saleté", "tuer les micro-organismes", "faire briller", "parfumer"], "reponse": 1, "explication": "Le détergent nettoie, le désinfectant détruit les micro-organismes." }
+    {
+      "q": "Les 4 facteurs du cercle de Sinner :",
+      "choix": [
+        "Temps, action mécanique, chimie, température",
+        "Eau, savon, brosse, seau",
+        "Haut, bas, propre, sale",
+        "Gants, lunettes, blouse, chaussures"
+      ],
+      "reponse": 0,
+      "explication": "TACT : Temps, Action mécanique, Chimie, Température."
+    },
+    {
+      "q": "Pour enlever le tartre, on utilise un produit :",
+      "choix": [
+        "acide",
+        "neutre",
+        "alcalin",
+        "désinfectant seulement"
+      ],
+      "reponse": 0,
+      "explication": "Le calcaire se dissout avec un acide."
+    },
+    {
+      "q": "Pour dégraisser une cuisine :",
+      "choix": [
+        "acide",
+        "alcalin",
+        "neutre",
+        "eau froide seule"
+      ],
+      "reponse": 1,
+      "explication": "Les graisses s'enlèvent avec un produit alcalin."
+    },
+    {
+      "q": "En bionettoyage, on va :",
+      "choix": [
+        "du plus sale au plus propre",
+        "du plus propre au plus sale",
+        "au hasard",
+        "de la sortie vers le fond"
+      ],
+      "reponse": 1,
+      "explication": "Du propre vers le sale, du haut vers le bas, du fond vers la sortie."
+    },
+    {
+      "q": "Mélanger javel et détartrant acide :",
+      "choix": [
+        "est plus efficace",
+        "dégage un gaz toxique",
+        "ne change rien",
+        "est obligatoire"
+      ],
+      "reponse": 1,
+      "explication": "Le mélange dégage du chlore gazeux, très dangereux. Ne jamais mélanger."
+    },
+    {
+      "q": "Un désinfectant sert à :",
+      "choix": [
+        "enlever la saleté",
+        "tuer les micro-organismes",
+        "faire briller",
+        "parfumer"
+      ],
+      "reponse": 1,
+      "explication": "Le détergent nettoie, le désinfectant détruit les micro-organismes."
+    },
+    {
+      "q": "Le pictogramme « corrosion » signale un produit qui :",
+      "choix": [
+        "Est inflammable",
+        "Brûle la peau et les yeux",
+        "Est sans danger",
+        "Est explosif"
+      ],
+      "reponse": 1,
+      "explication": "Port de gants et de lunettes obligatoire."
+    },
+    {
+      "q": "Dans le cercle de Sinner, si l'eau est froide, il faut :",
+      "choix": [
+        "Arrêter",
+        "Augmenter un autre facteur (temps, action mécanique, chimie)",
+        "Mélanger deux produits",
+        "Rien changer"
+      ],
+      "reponse": 1,
+      "explication": "Les 4 facteurs se compensent : on en augmente un autre."
+    },
+    {
+      "q": "Avant d'utiliser un produit inconnu, on lit :",
+      "choix": [
+        "Le prix",
+        "L'étiquette et la fiche de données de sécurité",
+        "Le code-barres",
+        "Rien"
+      ],
+      "reponse": 1,
+      "explication": "Dosage, précautions, EPI et premiers secours y sont indiqués."
+    },
+    {
+      "q": "Le panneau « sol glissant » se pose :",
+      "choix": [
+        "Après le séchage",
+        "Pendant le lavage et jusqu'au séchage",
+        "Le soir",
+        "Jamais"
+      ],
+      "reponse": 1,
+      "explication": "Il prévient les chutes, première cause d'accidents."
+    }
   ],
   "cartes": [
-    { "recto": "Cercle de Sinner (TACT)", "verso": "Temps, Action mécanique, Chimie, Température" },
-    { "recto": "pH acide", "verso": "0 à 6 : contre le tartre et le calcaire" },
-    { "recto": "pH alcalin", "verso": "8 à 14 : contre les graisses" },
-    { "recto": "pH neutre", "verso": "7 : entretien courant" },
-    { "recto": "Détergent vs désinfectant", "verso": "Enlève la saleté / tue les micro-organismes" },
-    { "recto": "Sens du bionettoyage", "verso": "Propre → sale, haut → bas, fond → sortie" },
-    { "recto": "FDS", "verso": "Fiche de données de sécurité du produit" },
-    { "recto": "Règle n°1 avec les produits", "verso": "Ne jamais mélanger, respecter le dosage" }
+    {
+      "recto": "Cercle de Sinner (TACT)",
+      "verso": "Temps, Action mécanique, Chimie, Température"
+    },
+    {
+      "recto": "pH acide",
+      "verso": "0 à 6 : contre le tartre et le calcaire"
+    },
+    {
+      "recto": "pH alcalin",
+      "verso": "8 à 14 : contre les graisses"
+    },
+    {
+      "recto": "pH neutre",
+      "verso": "7 : entretien courant"
+    },
+    {
+      "recto": "Détergent vs désinfectant",
+      "verso": "Enlève la saleté / tue les micro-organismes"
+    },
+    {
+      "recto": "Sens du bionettoyage",
+      "verso": "Propre → sale, haut → bas, fond → sortie"
+    },
+    {
+      "recto": "FDS",
+      "verso": "Fiche de données de sécurité du produit"
+    },
+    {
+      "recto": "Règle n°1 avec les produits",
+      "verso": "Ne jamais mélanger, respecter le dosage"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Mise en œuvre des épreuves du CAP APH — académie de Lille",
+      "url": "https://pedagogie.ac-lille.fr/sbssa/wp-content/uploads/sites/30/2022/06/CAP-APH-Mise-en-oeuvre-des-epreuves-en-CCF-17-juillet-2015-.pdf.pdf"
+    },
+    {
+      "titre": "Référentiel du CAP APH — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/10/referentiel-CAP-APH.pdf"
+    },
+    {
+      "titre": "INRS — produits chimiques et étiquetage",
+      "url": "https://www.inrs.fr"
+    }
   ]
 }

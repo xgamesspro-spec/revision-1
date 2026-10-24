@@ -1,0 +1,362 @@
+{
+  "nom": "Clôture, contrôle de gestion & analyse financière",
+  "icone": "📈",
+  "groupe": "Gestion & comptabilité",
+  "publics": [
+    "d:compta",
+    "bts-cg",
+    "bts-gpme",
+    "tp-ca",
+    "tp-gcf"
+  ],
+  "ordre": 11,
+  "description": "Amortissements, dépréciations, régularisations, coûts et seuil de rentabilité, SIG, CAF, fonds de roulement, BFR, trésorerie.",
+  "sources": [
+    {
+      "titre": "ANC — Plan comptable général (règlement ANC 2014-03)",
+      "url": "https://www.anc.gouv.fr"
+    },
+    {
+      "titre": "impots.gouv.fr — professionnels",
+      "url": "https://www.impots.gouv.fr/professionnel"
+    },
+    {
+      "titre": "Bpifrance Création — lire un bilan et un compte de résultat",
+      "url": "https://bpifrance-creation.fr"
+    },
+    {
+      "titre": "Référentiel du BTS CG (PDF du CFA)",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/bts_comptabilitegestion.pdf"
+    },
+    {
+      "titre": "Épreuves et coefficients du BTS CG (E5 contrôle de gestion, coef 5) — ADF Formation",
+      "url": "https://adfformation.fr/wp-content/uploads/2026/06/region_BTS_CG_2026.pdf"
+    },
+    {
+      "titre": "Référentiel du TP Gestionnaire comptable et fiscal — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-REAC-GCF_V08_30082018.pdf"
+    }
+  ],
+  "fiches": [
+    {
+      "titre": "Les amortissements",
+      "contenu": "## Pourquoi amortir ?\nUne **immobilisation** (machine, ordinateur, véhicule) s'use : on étale son coût sur sa **durée d'utilisation**. C'est une **charge** (compte 681 dotations) qui ne sort pas d'argent.\n\n## Amortissement linéaire\n- **Annuité = base amortissable × taux**, avec taux = 100 % ÷ durée.\n- La 1re année est calculée **au prorata temporis** à partir de la **date de mise en service**.\n\n**Exemple** : ordinateur acheté 1 800 € HT, mis en service le 1er avril N, durée 3 ans (taux 33,33 %).\n- N : 1 800 × 33,33 % × 9/12 = **450 €**\n- N+1 : **600 €**, N+2 : **600 €**, N+3 : **150 €**\n\n## Valeur nette comptable\n**VNC = valeur d'origine − cumul des amortissements.**\n\n## Écriture\nDébit **6811** Dotations aux amortissements / Crédit **28xx** Amortissements des immobilisations."
+    },
+    {
+      "titre": "Régularisations et dépréciations",
+      "contenu": "## Le principe d'indépendance des exercices\nChaque charge ou produit doit être rattaché à **l'exercice qu'il concerne**.\n\n## Charges et produits constatés d'avance\n- Payé en N mais concerne N+1 (ex. assurance payée le 1er octobre pour 12 mois) → **charge constatée d'avance** (compte 486) pour la part de N+1 (9 mois).\n- **Produit constaté d'avance** (487) : encaissé en N, concerne N+1.\n\n## Charges à payer / produits à recevoir\nFacture non reçue mais travail fait en N → **charge à payer** (ex. 408 fournisseurs, factures non parvenues).\n\n## Dépréciations\nPerte de valeur **probable** d'un actif :\n- **Créance douteuse** : client qui risque de ne pas payer → dépréciation sur le montant **HT**.\n- Stocks abîmés ou démodés.\nÉcriture : débit **681x** dotations aux dépréciations / crédit **49x** (créances) ou **39x** (stocks).\n\n## Provisions pour risques\nRisque d'une dépense future probable (procès, garantie) → compte **15x**."
+    },
+    {
+      "titre": "Coûts et seuil de rentabilité",
+      "contenu": "## Charges variables et fixes\n- **Variables** : changent avec l'activité (matières, commissions, transport sur ventes).\n- **Fixes** : ne changent pas à court terme (loyer, salaires administratifs, assurances).\n\n## Le compte de résultat différentiel\n- **Marge sur coût variable (MCV)** = chiffre d'affaires − charges variables.\n- **Taux de MCV** = MCV ÷ CA.\n- **Résultat** = MCV − charges fixes.\n\n## Seuil de rentabilité (SR)\n**SR = charges fixes ÷ taux de MCV** : chiffre d'affaires à partir duquel le résultat devient positif.\n- **Point mort** (en jours) = SR ÷ CA × 360.\n- **Marge de sécurité** = CA − SR.\n\n**Exemple** : CA 200 000 €, charges variables 120 000 €, charges fixes 60 000 €.\nMCV = 80 000 € ; taux = 40 % ; **SR = 60 000 ÷ 0,40 = 150 000 €** ; point mort = 150 000 ÷ 200 000 × 360 = **270 jours** (fin septembre)."
+    },
+    {
+      "titre": "Analyse financière : SIG, CAF, bilan fonctionnel",
+      "contenu": "## Soldes intermédiaires de gestion (SIG)\n1. **Marge commerciale** = ventes de marchandises − coût d'achat des marchandises vendues.\n2. **Valeur ajoutée** = production + marge commerciale − consommations externes.\n3. **Excédent brut d'exploitation (EBE)** = VA + subventions d'exploitation − impôts et taxes − charges de personnel.\n4. Résultat d'exploitation, résultat courant, résultat net.\n\n## CAF (capacité d'autofinancement)\nArgent généré par l'activité, disponible pour investir, rembourser ou distribuer. Méthode simple : **résultat net + dotations − reprises** (hors cessions).\n\n## Bilan fonctionnel\n- **FRNG** (fonds de roulement net global) = ressources stables − emplois stables.\n- **BFR** (besoin en fonds de roulement) = (stocks + créances d'exploitation) − dettes d'exploitation.\n- **Trésorerie nette = FRNG − BFR.**\n\nUn FRNG qui couvre le BFR = trésorerie positive : l'entreprise finance son cycle d'exploitation."
+    },
+    {
+      "titre": "Budgets et écarts",
+      "contenu": "## La démarche budgétaire\nPrévoir (budget des ventes → production → approvisionnements → charges → trésorerie), **réaliser**, puis **comparer** et **corriger**.\n\n## L'écart\n**Écart = réel − prévu.**\n- Sur un coût : écart **positif = défavorable** (on a dépensé plus que prévu).\n- Sur un chiffre d'affaires : écart **positif = favorable**.\n\nOn analyse l'écart en deux parties : écart sur **quantité** et écart sur **prix**, pour savoir **pourquoi** on s'est trompé.\n\n## Le tableau de bord\nPeu d'indicateurs, **en lien avec les objectifs**, mis à jour souvent, avec des alertes visuelles."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Ordinateur de 1 200 € HT, amorti en linéaire sur 3 ans, mis en service le 1er janvier : annuité ?",
+      "choix": [
+        "300 €",
+        "400 €",
+        "600 €",
+        "1 200 €"
+      ],
+      "reponse": 1,
+      "explication": "1 200 ÷ 3 = 400 € par an (pas de prorata car mise en service au 1er janvier)."
+    },
+    {
+      "q": "La 1re annuité d'amortissement linéaire se calcule à partir :",
+      "choix": [
+        "de la date de commande",
+        "de la date de mise en service",
+        "du 1er janvier",
+        "de la date de paiement"
+      ],
+      "reponse": 1,
+      "explication": "Prorata temporis à partir de la mise en service."
+    },
+    {
+      "q": "VNC = ?",
+      "choix": [
+        "Prix de vente − coût",
+        "Valeur d'origine − cumul des amortissements",
+        "Amortissement × durée",
+        "CA − charges"
+      ],
+      "reponse": 1,
+      "explication": "Valeur nette comptable."
+    },
+    {
+      "q": "Une assurance de 1 200 € payée le 1er octobre pour 12 mois : charge constatée d'avance au 31/12 ?",
+      "choix": [
+        "300 €",
+        "600 €",
+        "900 €",
+        "1 200 €"
+      ],
+      "reponse": 2,
+      "explication": "9 mois concernent l'exercice suivant : 1 200 × 9/12 = 900 €."
+    },
+    {
+      "q": "La dépréciation d'une créance douteuse se calcule sur le montant :",
+      "choix": [
+        "TTC",
+        "HT",
+        "TVA seule",
+        "de la facture suivante"
+      ],
+      "reponse": 1,
+      "explication": "La TVA pourra être récupérée si la créance devient définitivement irrécouvrable : on déprécie le HT."
+    },
+    {
+      "q": "Charges fixes 60 000 €, taux de MCV 30 % : seuil de rentabilité ?",
+      "choix": [
+        "18 000 €",
+        "90 000 €",
+        "200 000 €",
+        "600 000 €"
+      ],
+      "reponse": 2,
+      "explication": "60 000 ÷ 0,30 = 200 000 €."
+    },
+    {
+      "q": "Marge sur coût variable = ?",
+      "choix": [
+        "CA − charges fixes",
+        "CA − charges variables",
+        "Résultat + charges fixes − CA",
+        "Charges variables ÷ CA"
+      ],
+      "reponse": 1,
+      "explication": "MCV = CA − charges variables ; résultat = MCV − charges fixes."
+    },
+    {
+      "q": "Trésorerie nette = ?",
+      "choix": [
+        "FRNG − BFR",
+        "BFR − FRNG",
+        "CAF − dividendes",
+        "Actif − passif"
+      ],
+      "reponse": 0,
+      "explication": "Le fonds de roulement finance d'abord le besoin en fonds de roulement ; le reste, c'est la trésorerie."
+    },
+    {
+      "q": "L'EBE se calcule à partir de la valeur ajoutée en retirant notamment :",
+      "choix": [
+        "les amortissements",
+        "les charges de personnel et les impôts et taxes",
+        "les intérêts d'emprunt",
+        "les dividendes"
+      ],
+      "reponse": 1,
+      "explication": "EBE = VA + subventions d'exploitation − impôts et taxes − charges de personnel."
+    },
+    {
+      "q": "Une dotation aux amortissements est :",
+      "choix": [
+        "une sortie d'argent",
+        "une charge qui ne décaisse pas",
+        "un produit",
+        "une dette"
+      ],
+      "reponse": 1,
+      "explication": "C'est une charge calculée : c'est pourquoi on la rajoute au résultat pour trouver la CAF."
+    },
+    {
+      "q": "Point mort : SR 150 000 €, CA annuel 200 000 € (année de 360 jours) ?",
+      "choix": [
+        "90 jours",
+        "150 jours",
+        "270 jours",
+        "300 jours"
+      ],
+      "reponse": 2,
+      "explication": "150 000 ÷ 200 000 × 360 = 270 jours."
+    },
+    {
+      "q": "Le loyer d'un local est une charge :",
+      "choix": [
+        "Variable",
+        "Fixe",
+        "Directe toujours",
+        "Exceptionnelle"
+      ],
+      "reponse": 1,
+      "explication": "Il ne change pas avec le volume de ventes à court terme."
+    },
+    {
+      "q": "MCV = ?",
+      "choix": [
+        "CA − charges fixes",
+        "CA − charges variables",
+        "Résultat − charges fixes",
+        "Prix − TVA"
+      ],
+      "reponse": 1,
+      "explication": "Marge sur coût variable = chiffre d'affaires − charges variables."
+    },
+    {
+      "q": "CA 200 000 €, CV 120 000 €, CF 60 000 €. Seuil de rentabilité ?",
+      "choix": [
+        "60 000 €",
+        "120 000 €",
+        "150 000 €",
+        "180 000 €"
+      ],
+      "reponse": 2,
+      "explication": "Taux de MCV = 80 000 ÷ 200 000 = 40 % ; SR = 60 000 ÷ 0,40 = 150 000 €."
+    },
+    {
+      "q": "Même exemple : point mort (activité régulière) ?",
+      "choix": [
+        "6 mois",
+        "9 mois",
+        "10 mois",
+        "12 mois"
+      ],
+      "reponse": 1,
+      "explication": "150 000 ÷ 200 000 × 12 = 9 mois : atteint fin septembre."
+    },
+    {
+      "q": "Un coût réel de 11 000 € pour 10 000 € prévus donne un écart :",
+      "choix": [
+        "Favorable de 1 000 €",
+        "Défavorable de 1 000 €",
+        "Nul",
+        "De 10 %"
+      ],
+      "reponse": 1,
+      "explication": "Sur un coût, dépenser plus que prévu est défavorable."
+    },
+    {
+      "q": "L'EBE se calcule à partir de :",
+      "choix": [
+        "La valeur ajoutée",
+        "Le résultat net",
+        "Le bilan",
+        "La TVA"
+      ],
+      "reponse": 0,
+      "explication": "EBE = VA + subventions d'exploitation − impôts et taxes − charges de personnel."
+    },
+    {
+      "q": "BFR = ?",
+      "choix": [
+        "Ressources stables − emplois stables",
+        "Stocks + créances d'exploitation − dettes d'exploitation",
+        "Résultat + amortissements",
+        "Capital + réserves"
+      ],
+      "reponse": 1,
+      "explication": "C'est l'argent immobilisé par le cycle d'exploitation."
+    },
+    {
+      "q": "La marge commerciale concerne :",
+      "choix": [
+        "Les entreprises de négoce (marchandises)",
+        "Uniquement les banques",
+        "La production industrielle seule",
+        "Les salaires"
+      ],
+      "reponse": 0,
+      "explication": "Ventes de marchandises − coût d'achat des marchandises vendues."
+    },
+    {
+      "q": "Le coût marginal sert à décider :",
+      "choix": [
+        "D'accepter une commande supplémentaire",
+        "De la TVA",
+        "Du salaire",
+        "Du capital"
+      ],
+      "reponse": 0,
+      "explication": "Si le prix de la commande dépasse son coût marginal, elle améliore le résultat."
+    }
+  ],
+  "cartes": [
+    {
+      "recto": "Annuité linéaire",
+      "verso": "Base amortissable × taux (taux = 100 % ÷ durée), prorata la 1re année"
+    },
+    {
+      "recto": "VNC",
+      "verso": "Valeur d'origine − cumul des amortissements"
+    },
+    {
+      "recto": "Écriture d'amortissement",
+      "verso": "Débit 6811 / Crédit 28xx"
+    },
+    {
+      "recto": "Charge constatée d'avance",
+      "verso": "Compte 486 : payé en N, concerne N+1"
+    },
+    {
+      "recto": "Dépréciation des créances",
+      "verso": "Sur le montant HT ; débit 6817 / crédit 491"
+    },
+    {
+      "recto": "Seuil de rentabilité",
+      "verso": "Charges fixes ÷ taux de marge sur coût variable"
+    },
+    {
+      "recto": "Point mort",
+      "verso": "SR ÷ CA × 360 (en jours)"
+    },
+    {
+      "recto": "CAF (méthode additive simplifiée)",
+      "verso": "Résultat net + dotations − reprises (hors cessions)"
+    },
+    {
+      "recto": "BFR",
+      "verso": "Stocks + créances d'exploitation − dettes d'exploitation"
+    },
+    {
+      "recto": "Trésorerie nette",
+      "verso": "FRNG − BFR"
+    },
+    {
+      "recto": "Charges variables / fixes",
+      "verso": "Varient avec l'activité / ne varient pas à court terme"
+    },
+    {
+      "recto": "Coût de revient",
+      "verso": "Coût d'achat ou de production + coût de distribution"
+    },
+    {
+      "recto": "MCV",
+      "verso": "CA − charges variables"
+    },
+    {
+      "recto": "Marge de sécurité",
+      "verso": "CA − SR"
+    },
+    {
+      "recto": "Écart",
+      "verso": "Réel − prévu (sur un coût : positif = défavorable)"
+    },
+    {
+      "recto": "Valeur ajoutée",
+      "verso": "Marge + production − consommations de tiers"
+    },
+    {
+      "recto": "EBE",
+      "verso": "VA + subventions − impôts et taxes − charges de personnel"
+    },
+    {
+      "recto": "FRNG",
+      "verso": "Ressources stables − emplois stables"
+    },
+    {
+      "recto": "CAF",
+      "verso": "Capacité d'autofinancement : ce que l'activité dégage pour investir"
+    }
+  ]
+}

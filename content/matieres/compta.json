@@ -1,46 +1,254 @@
 {
-  "nom": "Compta, paie & gestion : les bases",
+  "nom": "Comptabilité, fiscalité & paie",
   "icone": "🧮",
-  "groupe": "Gestion & comptabilité",
-  "publics": ["d:compta", "d:gestion", "bp-agora", "bts-gpme"],
+  "groupe": "Comptabilité, paie, banque & assurance",
   "ordre": 10,
-  "description": "Plan comptable, débit/crédit, bilan, TVA (et le cas de la Guyane), du brut au net.",
+  "description": "BTS CG E41 (coef 9 !) et E42 (coef 4), TP Comptable assistant, Gestionnaire comptable et fiscal, Secrétaire comptable, Gestionnaire de paie : PCG, écritures, TVA (et la Guyane), clôture, paie.",
   "fiches": [
     {
-      "titre": "Le plan comptable général (PCG)",
-      "contenu": "## Les classes de comptes\n| Classe | Contenu | Où ? |\n|---|---|---|\n| 1 | Capitaux (capital, emprunts) | Bilan |\n| 2 | Immobilisations (matériel, locaux) | Bilan |\n| 3 | Stocks | Bilan |\n| 4 | Tiers (clients 411, fournisseurs 401, État, salariés) | Bilan |\n| 5 | Financiers (banque 512, caisse 53) | Bilan |\n| 6 | **Charges** | Compte de résultat |\n| 7 | **Produits** | Compte de résultat |\n\n## La partie double\nChaque opération touche au moins **2 comptes** : le total au **débit** = le total au **crédit**.\n\nExemple — vente à un client à crédit : débit **411 Clients**, crédit **706 Prestations de services** (ou 707 Ventes de marchandises)."
+      "titre": "Le plan comptable et la partie double",
+      "contenu": "## Les classes de comptes (PCG)\n| Classe | Contenu | Document |\n|---|---|---|\n| 1 | Capitaux (capital, résultat, emprunts) | Bilan |\n| 2 | Immobilisations (matériel, logiciels, locaux) | Bilan |\n| 3 | Stocks | Bilan |\n| 4 | Tiers : 401 fournisseurs, 411 clients, 421 personnel, 431 URSSAF, 445 TVA | Bilan |\n| 5 | Financiers : 512 banque, 53 caisse | Bilan |\n| 6 | **Charges** : 607 achats de marchandises, 613 locations, 641 salaires, 645 charges sociales | Compte de résultat |\n| 7 | **Produits** : 706 prestations de services, 707 ventes de marchandises | Compte de résultat |\n\n## La partie double\nChaque écriture touche au moins **2 comptes** : total **débit** = total **crédit**.\n- Ce que l'entreprise **reçoit** (un bien, de l'argent, une créance) → **débit**.\n- Ce qu'elle **donne** ou doit → **crédit**."
     },
     {
-      "titre": "Bilan et compte de résultat",
-      "contenu": "## Le bilan : une photo du patrimoine\n- **Actif** (ce que l'entreprise possède) : immobilisations, stocks, créances clients, trésorerie.\n- **Passif** (d'où vient l'argent) : capitaux propres, dettes (emprunts, fournisseurs).\n- Toujours : **Actif = Passif**.\n\n## Le compte de résultat : le film de l'année\n**Produits − Charges = Résultat** (bénéfice si positif, perte si négatif).\n\n## Quelques indicateurs\n- **Marge commerciale** = ventes de marchandises − coût d'achat des marchandises vendues.\n- **Seuil de rentabilité** = chiffre d'affaires à partir duquel l'entreprise ne perd plus d'argent."
+      "titre": "Les écritures courantes (exemples)",
+      "contenu": "## Vente à crédit à un client (métropole, TVA 20 %) — 1 000 € HT\n| Compte | Débit | Crédit |\n|---|---|---|\n| 411 Clients | 1 200 | |\n| 707 Ventes de marchandises | | 1 000 |\n| 44571 TVA collectée | | 200 |\n\n## Achat à crédit à un fournisseur — 500 € HT\n| Compte | Débit | Crédit |\n|---|---|---|\n| 607 Achats de marchandises | 500 | |\n| 44566 TVA déductible | 100 | |\n| 401 Fournisseurs | | 600 |\n\n## Règlement du client par virement\n| Compte | Débit | Crédit |\n|---|---|---|\n| 512 Banque | 1 200 | |\n| 411 Clients | | 1 200 |\n\n👉 Le **rapprochement bancaire** compare le compte 512 et le relevé de la banque pour trouver les écarts (frais bancaires, chèques pas encore encaissés…)."
     },
     {
       "titre": "La TVA… et le cas de la Guyane",
-      "contenu": "## En métropole\nLa TVA est collectée sur les ventes et déduite sur les achats. Taux : **20 %** (normal), **10 %**, **5,5 %**, **2,1 %**.\n\nTVA à payer = TVA collectée − TVA déductible.\n\n## En Guyane\nLa **TVA n'est pas applicable** en Guyane (comme à Mayotte), à titre provisoire selon le Code général des impôts (art. 294). En revanche, il existe l'**octroi de mer**, une taxe sur les marchandises importées et produites localement.\n\n👉 Dans tes exercices, vérifie toujours si on te parle d'une entreprise en Guyane ou ailleurs !\n\n## Calculs utiles\n- Prix TTC = HT × (1 + taux)\n- Prix HT = TTC ÷ (1 + taux)"
+      "contenu": "## En métropole\nLa TVA est **collectée** sur les ventes et **déduite** sur les achats.\n- Taux : **20 %** (normal), **10 %** (restauration, travaux…), **5,5 %** (produits de première nécessité), **2,1 %** (médicaments remboursés, presse).\n- **TVA à payer** = TVA collectée − TVA déductible (si négatif : **crédit de TVA**).\n- Déclaration mensuelle (CA3) ou annuelle selon le régime.\n\n## En Guyane\nLa **TVA n'est pas applicable** en Guyane (comme à Mayotte), à titre provisoire (article 294 du Code général des impôts). Il existe en revanche l'**octroi de mer** (et l'octroi de mer régional), une taxe sur les biens importés et sur certaines productions locales, au profit des collectivités.\n\n👉 Dans un sujet d'examen national, la TVA s'applique (entreprise de métropole) ; dans la vraie vie en Guyane, regarde l'octroi de mer.\n\n## Calculs\n- TTC = HT × (1 + taux) ; HT = TTC ÷ (1 + taux)\n- TVA = HT × taux"
     },
     {
-      "titre": "Du salaire brut au net",
-      "contenu": "## Le principe\n**Salaire brut** − **cotisations salariales** = **net à payer** (avant impôt), puis le **prélèvement à la source** de l'impôt sur le revenu donne le **net versé**.\n\n## Les cotisations\n- **Salariales** : retenues sur le brut (retraite, CSG/CRDS…).\n- **Patronales** : payées en plus par l'employeur → **coût total employeur** = brut + cotisations patronales.\n\n## La DSN\nLa **déclaration sociale nominative** est envoyée chaque mois par l'employeur : elle transmet les salaires et cotisations aux organismes sociaux.\n\n## Sur la fiche de paie d'un apprenti\nLe salaire est un % du SMIC selon l'âge et l'année ; les apprentis bénéficient d'exonérations de cotisations sur une partie de leur salaire."
+      "titre": "Les travaux de fin d'exercice",
+      "contenu": "À la clôture (souvent le 31 décembre), on ajuste pour avoir une image **fidèle** :\n- **Amortissements** : répartir le coût d'une immobilisation sur sa durée d'utilisation. Linéaire : **valeur d'origine × taux** (taux = 100 % ÷ durée). Ex. : ordinateur 1 500 € sur 3 ans → 500 € par an.\n- **Dépréciations** : perte de valeur probable (client douteux, stock abîmé).\n- **Provisions** pour risques (litige en cours).\n- **Charges constatées d'avance** / produits constatés d'avance : payé ou facturé cette année mais concernant l'an prochain.\n- **Charges à payer** / produits à recevoir : concerne cette année, pas encore facturé.\n- **Inventaire** des stocks : variation de stock.\n\nEnsuite : **balance**, **compte de résultat** (produits − charges = résultat), **bilan** (actif = passif), **liasse fiscale**, calcul de l'**impôt sur les sociétés**."
+    },
+    {
+      "titre": "La paie côté comptable",
+      "contenu": "## Le principe\n**Salaire brut** − cotisations salariales = **net avant impôt** − prélèvement à la source = **net payé**. L'employeur paie en plus les **cotisations patronales**.\n\n## L'écriture de paie (simplifiée)\n| Compte | Débit | Crédit |\n|---|---|---|\n| 641 Rémunérations du personnel | brut | |\n| 645 Charges de sécurité sociale | cotisations patronales | |\n| 431 Sécurité sociale (URSSAF) | | cotisations salariales + patronales |\n| 4421 Prélèvement à la source | | impôt retenu |\n| 421 Personnel – rémunérations dues | | net payé |\n\n## Déclarations\n- **DSN** chaque mois.\n- Paiement des cotisations à l'**URSSAF** (en Guyane : **CGSS**).\n- Le **SMIC** au 1er juin 2026 : 12,31 € brut de l'heure."
     }
   ],
   "quiz": [
-    { "q": "Le compte 411 correspond à :", "choix": ["Fournisseurs", "Clients", "Banque", "Capital"], "reponse": 1, "explication": "401 = fournisseurs, 411 = clients, 512 = banque." },
-    { "q": "Les charges sont dans la classe :", "choix": ["2", "4", "6", "7"], "reponse": 2, "explication": "Classe 6 = charges, classe 7 = produits." },
-    { "q": "Dans un bilan, toujours :", "choix": ["Actif > Passif", "Actif = Passif", "Actif < Passif", "Ça dépend"], "reponse": 1, "explication": "Le bilan est toujours équilibré." },
-    { "q": "En Guyane, la TVA :", "choix": ["est à 20 %", "est à 8,5 %", "n'est pas applicable (art. 294 du CGI)", "est à 2,1 %"], "reponse": 2, "explication": "La TVA ne s'applique pas en Guyane ; l'octroi de mer existe en revanche." },
-    { "q": "Un article à 120 € TTC avec 20 % de TVA vaut HT :", "choix": ["96 €", "100 €", "104 €", "144 €"], "reponse": 1, "explication": "120 ÷ 1,2 = 100 € HT." },
-    { "q": "Résultat = ?", "choix": ["Actif − Passif", "Produits − Charges", "Ventes − Achats", "Brut − Net"], "reponse": 1, "explication": "Produits − charges : bénéfice si positif, perte si négatif." },
-    { "q": "La DSN est :", "choix": ["un impôt", "la déclaration sociale nominative mensuelle", "un contrat", "un logiciel"], "reponse": 1, "explication": "Elle transmet chaque mois les salaires et cotisations." }
+    {
+      "q": "Le compte 411 correspond à :",
+      "choix": [
+        "Fournisseurs",
+        "Clients",
+        "Banque",
+        "Capital"
+      ],
+      "reponse": 1,
+      "explication": "401 = fournisseurs, 411 = clients, 512 = banque."
+    },
+    {
+      "q": "Les charges sont dans la classe :",
+      "choix": [
+        "2",
+        "4",
+        "6",
+        "7"
+      ],
+      "reponse": 2,
+      "explication": "Classe 6 = charges, classe 7 = produits (compte de résultat)."
+    },
+    {
+      "q": "Vente de 1 000 € HT à crédit (TVA 20 %) : on débite le 411 de :",
+      "choix": [
+        "1 000 €",
+        "200 €",
+        "1 200 €",
+        "800 €"
+      ],
+      "reponse": 2,
+      "explication": "Le client doit le TTC : 1 200 €. On crédite 707 (1 000) et 44571 TVA collectée (200)."
+    },
+    {
+      "q": "Lors d'un achat, la TVA va au compte :",
+      "choix": [
+        "44571 TVA collectée",
+        "44566 TVA déductible",
+        "607 Achats",
+        "512 Banque"
+      ],
+      "reponse": 1,
+      "explication": "La TVA payée sur les achats est déductible (44566)."
+    },
+    {
+      "q": "TVA collectée 5 000 €, TVA déductible 3 200 €. TVA à payer ?",
+      "choix": [
+        "8 200 €",
+        "1 800 €",
+        "3 200 €",
+        "Crédit de 1 800 €"
+      ],
+      "reponse": 1,
+      "explication": "5 000 − 3 200 = 1 800 € à verser à l'État."
+    },
+    {
+      "q": "En Guyane, la TVA :",
+      "choix": [
+        "Est à 20 %",
+        "Est à 8,5 %",
+        "N'est pas applicable (art. 294 du CGI)",
+        "Est à 2,1 %"
+      ],
+      "reponse": 2,
+      "explication": "La TVA ne s'applique pas en Guyane ni à Mayotte ; l'octroi de mer existe en revanche."
+    },
+    {
+      "q": "Un article à 120 € TTC (TVA 20 %) vaut HT :",
+      "choix": [
+        "96 €",
+        "100 €",
+        "104 €",
+        "144 €"
+      ],
+      "reponse": 1,
+      "explication": "120 ÷ 1,2 = 100 € HT."
+    },
+    {
+      "q": "Un ordinateur de 1 500 € amorti en linéaire sur 3 ans : dotation annuelle ?",
+      "choix": [
+        "300 €",
+        "500 €",
+        "750 €",
+        "1 500 €"
+      ],
+      "reponse": 1,
+      "explication": "1 500 × (100 % ÷ 3) = 500 € par an."
+    },
+    {
+      "q": "Une assurance payée en décembre pour janvier à juin de l'année suivante donne :",
+      "choix": [
+        "Une charge à payer",
+        "Une charge constatée d'avance",
+        "Un produit à recevoir",
+        "Rien"
+      ],
+      "reponse": 1,
+      "explication": "Payée cette année mais concernant l'an prochain : on la sort des charges de l'exercice."
+    },
+    {
+      "q": "Le rapprochement bancaire compare :",
+      "choix": [
+        "Clients et fournisseurs",
+        "Le compte 512 et le relevé bancaire",
+        "Le bilan et le compte de résultat",
+        "Brut et net"
+      ],
+      "reponse": 1,
+      "explication": "Il explique les écarts (frais, chèques non encaissés, erreurs)."
+    },
+    {
+      "q": "Dans l'écriture de paie, le net à payer au salarié est crédité au compte :",
+      "choix": [
+        "641",
+        "645",
+        "421",
+        "512"
+      ],
+      "reponse": 2,
+      "explication": "421 Personnel – rémunérations dues, soldé ensuite par le virement (512)."
+    },
+    {
+      "q": "Résultat = ?",
+      "choix": [
+        "Actif − Passif",
+        "Produits − Charges",
+        "Ventes − Achats",
+        "Brut − Net"
+      ],
+      "reponse": 1,
+      "explication": "Bénéfice si positif, perte si négatif. Il apparaît aussi au passif du bilan (classe 1)."
+    },
+    {
+      "q": "Dans une écriture, ce que l'entreprise reçoit va :",
+      "choix": [
+        "Au crédit",
+        "Au débit",
+        "Nulle part",
+        "Au résultat"
+      ],
+      "reponse": 1,
+      "explication": "Règle pratique : ce qui entre (bien, argent, créance) au débit ; ce qui sort ou est dû au crédit."
+    }
   ],
   "cartes": [
-    { "recto": "Classe 1 à 5 du PCG", "verso": "Comptes de bilan (capitaux, immobilisations, stocks, tiers, financiers)" },
-    { "recto": "Classe 6 / Classe 7", "verso": "Charges / Produits (compte de résultat)" },
-    { "recto": "401 / 411 / 512", "verso": "Fournisseurs / Clients / Banque" },
-    { "recto": "Partie double", "verso": "Total débit = total crédit pour chaque écriture" },
-    { "recto": "TVA en Guyane", "verso": "Non applicable (art. 294 CGI) ; il y a l'octroi de mer" },
-    { "recto": "HT → TTC à 20 %", "verso": "TTC = HT × 1,2" },
-    { "recto": "Net à payer", "verso": "Brut − cotisations salariales (avant prélèvement à la source)" },
-    { "recto": "Coût employeur", "verso": "Brut + cotisations patronales" },
-    { "recto": "Seuil de rentabilité", "verso": "CA à partir duquel l'entreprise couvre toutes ses charges" }
+    {
+      "recto": "Classes 1 à 5 du PCG",
+      "verso": "Comptes de bilan"
+    },
+    {
+      "recto": "Classes 6 et 7",
+      "verso": "Charges et produits (compte de résultat)"
+    },
+    {
+      "recto": "401 / 411 / 512",
+      "verso": "Fournisseurs / Clients / Banque"
+    },
+    {
+      "recto": "44566 / 44571",
+      "verso": "TVA déductible / TVA collectée"
+    },
+    {
+      "recto": "607 / 707",
+      "verso": "Achats de marchandises / Ventes de marchandises"
+    },
+    {
+      "recto": "641 / 645 / 421",
+      "verso": "Salaires / Charges sociales / Personnel – rémunérations dues"
+    },
+    {
+      "recto": "TVA à payer",
+      "verso": "TVA collectée − TVA déductible"
+    },
+    {
+      "recto": "Taux de TVA (métropole)",
+      "verso": "20 %, 10 %, 5,5 %, 2,1 %"
+    },
+    {
+      "recto": "TVA en Guyane",
+      "verso": "Non applicable (art. 294 CGI) ; octroi de mer"
+    },
+    {
+      "recto": "Amortissement linéaire",
+      "verso": "Valeur d'origine × (100 % ÷ durée)"
+    },
+    {
+      "recto": "Charge constatée d'avance",
+      "verso": "Payée cette année, concerne l'exercice suivant"
+    },
+    {
+      "recto": "Rapprochement bancaire",
+      "verso": "Compte 512 vs relevé de la banque"
+    },
+    {
+      "recto": "Partie double",
+      "verso": "Total débit = total crédit"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Épreuves et coefficients du BTS CG (session 2026) — ADF Formation",
+      "url": "https://adfformation.fr/wp-content/uploads/2026/06/region_BTS_CG_2026.pdf"
+    },
+    {
+      "titre": "Référentiel du TP Comptable assistant (REAC) — CFA CEVEDOM",
+      "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_CA_V08_13122017.pdf"
+    },
+    {
+      "titre": "Code général des impôts (art. 294 : TVA en Guyane) — Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006069577/"
+    },
+    {
+      "titre": "Plan comptable général — Autorité des normes comptables",
+      "url": "https://www.anc.gouv.fr"
+    }
+  ],
+  "publics": [
+    "bts-cg",
+    "bts-gpme",
+    "tp-ca",
+    "tp-gcf",
+    "tp-gp",
+    "tp-sc"
   ]
 }

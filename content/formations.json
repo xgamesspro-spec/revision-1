@@ -252,7 +252,41 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-agent-de-proprete-et-dhygiene",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37872/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 - Réaliser une prestation de nettoyage manuel (nettoyage manuel des surfaces, des sanitaires, bionettoyage en environnement spécifique)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "proprete"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 - Réaliser une prestation de nettoyage ou de remise en état mécanisés (nettoyage mécanisé, remise en état mécanisée)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "proprete"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-acom",
@@ -289,7 +323,45 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-assistante-commercial",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/35031/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Administrer les ventes et assurer le suivi de la supply chain (gérer l'administration des ventes; suivre les opérations de la supply chain; suivre la relation clientèle en français et en anglais; prévenir et gérer les impayés)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "vente",
+      "marketing-digital",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Contribuer au déploiement de la stratégie commerciale de l'entreprise (concevoir et publier des supports de communication commerciale; concevoir et actualiser les tableaux de bord commerciaux; organiser une action commerciale; assurer l'accueil d'une manifestation commerciale en français et en anglais)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "vente",
+      "marketing-digital",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-ad",
@@ -325,7 +397,59 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-assistante-de-direction",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38667/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP1 : aide quotidienne à la direction et outils de pilotage",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "gestion-pme",
+      "projet",
+      "rh",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP2 : gestion, organisation et partage de l'information (en français et en anglais)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "gestion-pme",
+      "projet",
+      "rh",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "CCP 3",
+     "nom": "CCP3 : gestion de projets, événements, communication et appui RH",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "gestion-pme",
+      "projet",
+      "rh",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-aie",
@@ -370,7 +494,56 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-assistante-import-export",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/36964/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Assurer l’administration des ventes ou des achats à l’international, y compris en anglais",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "logistique",
+      "transport-gestion",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Organiser, coordonner et suivre les opérations logistiques internationales, y compris en anglais",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "logistique",
+      "transport-gestion",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "CCP 3",
+     "nom": "CCP 3 : Assurer l’assistanat commercial à l’international, y compris en anglais",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "logistique",
+      "transport-gestion",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-arh",
@@ -410,7 +583,41 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-assistante-ressources-humaines",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/35030/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Assurer les missions opérationnelles de la gestion des ressources humaines (gestion administrative du personnel ; gestion des variables et paramètres de paie ; mise en place et suivi des indicateurs RH)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "rh"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Contribuer au développement des ressources humaines (opérations de gestion des emplois et carrières ; processus de recrutement et d'intégration ; élaboration et suivi du développement des compétences)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "rh"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-ca",
@@ -452,7 +659,53 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-comptable-assistante",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37121/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Assurer les travaux courants de comptabilité (documents commerciaux, documents bancaires et trésorerie, déclarations de TVA, contrôle et rectification des comptes)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Réaliser les travaux courants de paie (bulletins de paie, déclarations sociales)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "CCP 3",
+     "nom": "CCP 3 : Préparer la fin d'exercice comptable et fiscal et calculer des éléments de gestion (ajustements de clôture, résultat fiscal, déclarations fiscales annuelles, indicateurs de gestion)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-cda",
@@ -492,7 +745,50 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-concepteur-developpeur-dapplications",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37873/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Composants d'interface utilisateur sécurisés (maquettage, interfaces desktop et web, accès aux données, front-end et back-end)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "dev-web"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Persistance des données sécurisée (conception, mise en place et développement de composants de base de données)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "dev-web"
+     ]
+    },
+    {
+     "code": "CCP 3",
+     "nom": "CCP 3 : Application multicouche répartie sécurisée (gestion de projet, conception, composants métier, couches, application mobile, tests et déploiement)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "dev-web"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-cc",
@@ -529,7 +825,41 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-conseiller-commercial",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37717/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Prospecter un secteur de vente (veille, plan d'actions commerciales, prospection à distance et physique, analyse des performances)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "vente"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Vendre en face à face des produits et services référencés (représentation de l'entreprise, entretien de vente, suivi des ventes, fidélisation)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "vente"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-dwwm",
@@ -568,7 +898,41 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-developpeur-web-et-web-mobile",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37674/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Développer la partie front-end d'une application web ou web mobile",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "dev-web"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Développer la partie back-end d'une application web ou web mobile",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "dev-web"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-eaa",
@@ -606,7 +970,43 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-employe-administratif-et-daccueil",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/36803/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Réaliser les travaux administratifs courants d'une structure",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "gestion-pme",
+      "projet"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Assurer l'accueil d'une structure",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "gestion-pme",
+      "projet"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-etrm",
@@ -648,7 +1048,43 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-exploitant-en-transport-routier-de-marchandises",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/39132/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Concevoir et organiser une prestation de transport terrestre de marchandises y compris à l'international",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion",
+      "logistique"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Mettre en œuvre et piloter les opérations de transport jusqu'à la clôture du dossier",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion",
+      "logistique"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-ertrv",
@@ -691,7 +1127,41 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-tp-exploitant-regulateur-de-transport-routier-de-voyageurs",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/39792/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Piloter et réguler les opérations de transport routier de voyageurs",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Élaborer et mettre en œuvre les opérations de transport routier de voyageurs",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-gcf",
@@ -732,7 +1202,53 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-gestionnaire-comptable-et-fiscal",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37949/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Arrêter, contrôler et présenter les comptes annuels",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Etablir et contrôler les déclarations fiscales",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "CCP 3",
+     "nom": "CCP 3 : Mettre en œuvre des outils d'analyse et de prévisions de l'activité de l'entreprise",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-gp",
@@ -770,7 +1286,43 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-gestionnaire-de-paie",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37948/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Assurer la tenue et le suivi du dossier social de l'entreprise",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "rh"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Assurer la production de la paie et élaborer les données de synthèse",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "rh"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-gotrm",
@@ -818,7 +1370,53 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-gestionnaire-des-operations-de-transport-routier-de-marchandises",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/34881/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Élaborer et mettre en œuvre une offre globale de transport routier de marchandises, y compris à l'international",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion",
+      "logistique"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Piloter les trafics réguliers sous contrat de sous-traitance",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion",
+      "logistique"
+     ]
+    },
+    {
+     "code": "CCP 3",
+     "nom": "CCP 3 : Optimiser l'ensemble des moyens liés à l'activité de transport",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion",
+      "logistique"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-ntc",
@@ -854,7 +1452,43 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-negociateur-technico-commercial",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/39063/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : stratégie commerciale omnicanal pour un secteur géographique défini (veille, plan d'actions, fidélisation, bilan)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "vente",
+      "marketing-digital"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : prospection et négociation d'une proposition commerciale (prospection, conception de solution, négociation)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "vente",
+      "marketing-digital"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-otamm",
@@ -897,7 +1531,45 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-organisateur-de-transports-aeriens-ou-maritimes-de-marchandises",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/34882/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP1 : Construire, y compris en anglais, une offre de prestation de transport overseas (étude des solutions, cotation tarifaire, rentabilité des opérations)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion",
+      "logistique",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP2 : Mettre en œuvre une opération de transit overseas à l'export ou à l'import jusqu'à la clôture du dossier (transit aérien, transit maritime, coordination et suivi des phases)",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "transport-gestion",
+      "logistique",
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-sa",
@@ -936,7 +1608,45 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-secretaire-assistante-2",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/36804/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP1 : appui à la communication des informations et à l'organisation des activités d'équipe",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "gestion-pme",
+      "projet",
+      "rh"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP2 : administration des achats et ventes, suivi clientèle, tableaux de suivi commercial, suivi administratif du personnel",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "gestion-pme",
+      "projet",
+      "rh"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "tp-sc",
@@ -977,7 +1687,67 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-tp-secretaire-comptable",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37123/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "CCP 1",
+     "nom": "CCP 1 : Assister une équipe dans la communication des informations et l'organisation des activités",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "gestion-pme",
+      "projet"
+     ]
+    },
+    {
+     "code": "CCP 2",
+     "nom": "CCP 2 : Traiter les opérations administratives liées à la gestion commerciale et aux ressources humaines",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "gestion-pme",
+      "projet"
+     ]
+    },
+    {
+     "code": "CCP 3",
+     "nom": "CCP 3 : Assurer les travaux courants de comptabilité",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "gestion-pme",
+      "projet"
+     ]
+    },
+    {
+     "code": "CCP 4",
+     "nom": "CCP 4 : Préparer la paie et les déclarations sociales courantes",
+     "coef": null,
+     "forme": "jury : mise en situation + entretien",
+     "reviser": [
+      "compta",
+      "gestion-pme",
+      "projet"
+     ]
+    },
+    {
+     "code": "DP",
+     "nom": "Dossier professionnel (preuves de ta pratique en entreprise)",
+     "coef": null,
+     "forme": "présenté au jury",
+     "reviser": [
+      "titrepro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "DREETS — Les fondamentaux de la certification",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   "epreuves_note": "Pas de coefficients pour un titre professionnel : chaque bloc (CCP) est validé par le jury, et il faut tous les CCP pour avoir le titre."
   },
   {
    "id": "cap-aph",
@@ -1015,7 +1785,67 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-cap-agent-de-proprete-et-dhygiene",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/39938/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "EP1",
+     "nom": "Techniques d'entretien courant (dont PSE coef 1)",
+     "coef": 8,
+     "forme": "CCF / pratique 2 h + PSE 1 h",
+     "reviser": [
+      "proprete",
+      "pse"
+     ]
+    },
+    {
+     "code": "EP2",
+     "nom": "Techniques de remise en état",
+     "coef": 5,
+     "forme": "CCF / pratique 3 h 20",
+     "reviser": [
+      "proprete"
+     ]
+    },
+    {
+     "code": "EP3",
+     "nom": "Techniques de bionettoyage",
+     "coef": 5,
+     "forme": "CCF / pratique 2 h 20",
+     "reviser": [
+      "proprete"
+     ]
+    },
+    {
+     "code": "EG1",
+     "nom": "Français, histoire-géographie, EMC",
+     "coef": 3,
+     "forme": "CCF",
+     "reviser": [
+      "francais-pro"
+     ]
+    },
+    {
+     "code": "EG2",
+     "nom": "Mathématiques et physique-chimie",
+     "coef": 2,
+     "forme": "CCF",
+     "reviser": [
+      "maths-pro"
+     ]
+    },
+    {
+     "code": "EG3",
+     "nom": "Éducation physique et sportive",
+     "coef": 1,
+     "forme": "CCF",
+     "reviser": []
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Bulletin officiel n°4 du 23 janvier 2014 — CAP APH",
+    "url": "https://www.education.gouv.fr/bo/14/Hebdo4/MENE1331879A.htm"
+   },
+   "epreuves_note": "Règlement de 2014 : la nouvelle version du CAP (RNCP39938) garde les mêmes unités ; vérifie les coefficients dans ta circulaire."
   },
   {
    "id": "cap-epc",
@@ -1061,6 +1891,52 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-cap-equipier-polyvalent-du-commerce",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/34947/"
+   },
+   "epreuves": [
+    {
+     "code": "EP1",
+     "nom": "Recevoir et suivre les commandes",
+     "coef": 3,
+     "forme": "CCF",
+     "reviser": [
+      "vente",
+      "logistique"
+     ]
+    },
+    {
+     "code": "EP2",
+     "nom": "Mettre en valeur et approvisionner",
+     "coef": 5,
+     "forme": "CCF",
+     "reviser": [
+      "vente"
+     ]
+    },
+    {
+     "code": "EP3",
+     "nom": "Conseiller et accompagner le client dans son parcours d'achat",
+     "coef": 6,
+     "forme": "CCF",
+     "reviser": [
+      "vente"
+     ]
+    },
+    {
+     "code": "EG",
+     "nom": "Français-HG-EMC, maths-sciences, PSE, langue vivante, EPS",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "francais-pro",
+      "maths-pro",
+      "pse",
+      "anglais-pro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Cahier des charges CAP EPC EP1-EP2-EP3 (académie de Guyane)",
+    "url": "https://eco-gestion.dis.ac-guyane.fr/IMG/pdf/cahier_des_charges__epc_ep1-ep2-ep3_guyane.pdf"
    }
   },
   {
@@ -1106,7 +1982,53 @@
     "referentiels": [],
     "stats": "https://cfa.cevedom.com/stat-cap-operateur-logistique",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37672/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "EP1",
+     "nom": "Prise en charge des flux entrants et sortants",
+     "coef": null,
+     "forme": "en entrepôt",
+     "reviser": [
+      "logistique"
+     ]
+    },
+    {
+     "code": "EP2",
+     "nom": "Conduite de chariots en sécurité",
+     "coef": null,
+     "forme": "pratique",
+     "reviser": [
+      "logistique"
+     ]
+    },
+    {
+     "code": "EP3",
+     "nom": "Étude de situations professionnelles",
+     "coef": null,
+     "forme": "entretien sur 2 fiches d'analyse",
+     "reviser": [
+      "logistique",
+      "eco-droit"
+     ]
+    },
+    {
+     "code": "EG",
+     "nom": "Français-HG-EMC (coef 3), maths-sciences (coef 2), PSE, EPS",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "francais-pro",
+      "maths-pro",
+      "pse"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Notice CAP Opérateur logistique 2025 (académie de Nancy-Metz)",
+    "url": "https://ac-nancy-metz.fr/media/29775/download"
+   },
+   "epreuves_note": "Coefficients des épreuves pro : voir le règlement d'examen sur Éduscol (référentiels professionnels)."
   },
   {
    "id": "cap-si",
@@ -1142,7 +2064,43 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-cap-serigraphie-industrielle",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38411/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "EP1",
+     "nom": "Réalisation et mise en œuvre des procédés",
+     "coef": null,
+     "forme": "pratique",
+     "reviser": [
+      "graphisme"
+     ]
+    },
+    {
+     "code": "EP2",
+     "nom": "Analyse d'un dossier technique",
+     "coef": null,
+     "forme": "écrit",
+     "reviser": [
+      "graphisme"
+     ]
+    },
+    {
+     "code": "EG",
+     "nom": "Français-HG-EMC, maths-sciences, langue vivante, EPS",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "francais-pro",
+      "maths-pro",
+      "anglais-pro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Fiche RNCP du CAP Sérigraphie industrielle (France Compétences)",
+    "url": "https://www.francecompetences.fr/recherche/rncp/38411/"
+   },
+   "epreuves_note": "Coefficients : voir le référentiel du CFA. En CAP, l'épreuve pratique EP1 est toujours la plus lourde."
   },
   {
    "id": "cap-tf",
@@ -1180,6 +2138,80 @@
     "referentiels": [],
     "stats": "https://cfa.cevedom.com/stat-cap-transport-fluvial",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38571/"
+   },
+   "epreuves": [
+    {
+     "code": "EP1",
+     "nom": "Navigation et exploitation (radiotéléphonie, préparation d'un transport, conduite et manœuvres)",
+     "coef": 7,
+     "forme": "écrit + pratique",
+     "reviser": [
+      "logistique"
+     ]
+    },
+    {
+     "code": "EP2.1",
+     "nom": "Entretien et maintenance du bâtiment",
+     "coef": 3,
+     "forme": "pratique 3 h",
+     "reviser": []
+    },
+    {
+     "code": "EP2.2",
+     "nom": "Prise en charge de la marchandise et des passagers",
+     "coef": 4,
+     "forme": "écrit + pratique",
+     "reviser": [
+      "logistique"
+     ]
+    },
+    {
+     "code": "EG1",
+     "nom": "Français, histoire-géographie, EMC",
+     "coef": 3,
+     "forme": "écrit + oral",
+     "reviser": [
+      "francais-pro"
+     ]
+    },
+    {
+     "code": "EG2",
+     "nom": "Mathématiques et physique-chimie",
+     "coef": 2,
+     "forme": "écrit 1 h 30",
+     "reviser": [
+      "maths-pro"
+     ]
+    },
+    {
+     "code": "EG3",
+     "nom": "Éducation physique et sportive",
+     "coef": 1,
+     "forme": "",
+     "reviser": []
+    },
+    {
+     "code": "EG4",
+     "nom": "Prévention-santé-environnement",
+     "coef": 1,
+     "forme": "écrit 1 h",
+     "reviser": [
+      "pse"
+     ]
+    },
+    {
+     "code": "EG5",
+     "nom": "Langue vivante étrangère",
+     "coef": 1,
+     "forme": "écrit + oral",
+     "reviser": [
+      "anglais-pro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Annexes du CAP Transport fluvial (Éduscol)",
+    "url": "https://referentiels-professionnels.eduscol.education.fr/CAP_TF/Annexes_CAP_TF230718.pdf"
    }
   },
   {
@@ -1235,7 +2267,58 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bac-pro-assistance-a-la-gestion-des-organisations-et-leurs-activites",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/34606/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "E2",
+     "nom": "Analyse de situations professionnelles (organisation et suivi de l'activité de production)",
+     "coef": 4,
+     "forme": "écrit 3 h 30",
+     "reviser": [
+      "gestion-pme",
+      "projet"
+     ]
+    },
+    {
+     "code": "E31",
+     "nom": "Pratiques professionnelles d'assistance à la gestion des organisations",
+     "coef": 4,
+     "forme": "oral et pratique 45 min",
+     "reviser": [
+      "gestion-pme",
+      "projet",
+      "rh"
+     ]
+    },
+    {
+     "code": "E32",
+     "nom": "Pratiques professionnelles (relations clients, usagers, adhérents / administration du personnel)",
+     "coef": 3,
+     "forme": "oral 30 min",
+     "reviser": [
+      "rh",
+      "vente"
+     ]
+    },
+    {
+     "code": "—",
+     "nom": "Épreuves générales : économie-droit, maths, langues, français, HG-EMC, PSE, arts, EPS",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "eco-droit",
+      "maths-pro",
+      "francais-pro",
+      "anglais-pro",
+      "pse"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Circulaire nationale Bac pro AGOrA 2025 (académie de Guadeloupe)",
+    "url": "https://pedagogie.ac-guadeloupe.fr/sites/default/files/2025-04/circulaire_bcp_agora_2025.pdf"
+   },
+   "epreuves_note": "Épreuves générales du bac pro (français, histoire-géo-EMC, langues, maths, arts appliqués, EPS) : coefficients fixés par l'arrêté de la spécialité. Pour le Bac pro Métiers du commerce et de la vente, ils sont : économie-droit 2, maths 1, LV1 4, LV2 2, français 2,5, HG-EMC 2,5, arts appliqués 1, EPS 1."
   },
   {
    "id": "bp-log",
@@ -1288,7 +2371,62 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-bac-pro-logistique",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38302/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "E2",
+     "nom": "Étude de situations professionnelles",
+     "coef": null,
+     "forme": "écrit",
+     "reviser": [
+      "logistique"
+     ]
+    },
+    {
+     "code": "E31",
+     "nom": "Pratique de la logistique en milieu professionnel",
+     "coef": 7,
+     "forme": "entretien (CCF ou ponctuel 45 min)",
+     "reviser": [
+      "logistique"
+     ]
+    },
+    {
+     "code": "E32",
+     "nom": "Conduite d'engins de manutention",
+     "coef": 1,
+     "forme": "QCM + pratique",
+     "reviser": [
+      "logistique"
+     ]
+    },
+    {
+     "code": "E33",
+     "nom": "Prévention santé environnement",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "pse"
+     ]
+    },
+    {
+     "code": "—",
+     "nom": "Épreuves générales : économie-droit, maths, langues, français, HG-EMC, arts, EPS",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "eco-droit",
+      "maths-pro",
+      "francais-pro",
+      "anglais-pro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Circulaire Bac pro Logistique 2025 (académie de Bordeaux)",
+    "url": "https://ent2d.ac-bordeaux.fr/disciplines/logistique-transport/wp-content/uploads/sites/58/2025/02/Circulaire-BCP-logistique-2025.pdf"
+   },
+   "epreuves_note": "Épreuves générales du bac pro (français, histoire-géo-EMC, langues, maths, arts appliqués, EPS) : coefficients fixés par l'arrêté de la spécialité. Pour le Bac pro Métiers du commerce et de la vente, ils sont : économie-droit 2, maths 1, LV1 4, LV2 2, français 2,5, HG-EMC 2,5, arts appliqués 1, EPS 1."
   },
   {
    "id": "bp-mcv",
@@ -1347,7 +2485,127 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bac-pro-metiers-du-commerce-et-de-la-vente",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38399/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "E11",
+     "nom": "Économie-droit",
+     "coef": 2,
+     "forme": "écrit 2 h 30",
+     "reviser": [
+      "eco-droit"
+     ]
+    },
+    {
+     "code": "E12",
+     "nom": "Mathématiques",
+     "coef": 1,
+     "forme": "CCF",
+     "reviser": [
+      "maths-pro"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Analyse et résolution de situations professionnelles",
+     "coef": 4,
+     "forme": "écrit 3 h",
+     "reviser": [
+      "vente",
+      "marketing-digital"
+     ]
+    },
+    {
+     "code": "E31",
+     "nom": "Vente-conseil",
+     "coef": 3,
+     "forme": "CCF",
+     "reviser": [
+      "vente"
+     ]
+    },
+    {
+     "code": "E32",
+     "nom": "Suivi des ventes",
+     "coef": 2,
+     "forme": "CCF",
+     "reviser": [
+      "vente"
+     ]
+    },
+    {
+     "code": "E33",
+     "nom": "Fidélisation de la clientèle et développement de la relation client",
+     "coef": 3,
+     "forme": "CCF",
+     "reviser": [
+      "vente",
+      "marketing-digital"
+     ]
+    },
+    {
+     "code": "E34",
+     "nom": "Prévention santé environnement",
+     "coef": 1,
+     "forme": "écrit 2 h",
+     "reviser": [
+      "pse"
+     ]
+    },
+    {
+     "code": "E41",
+     "nom": "Langue vivante 1",
+     "coef": 4,
+     "forme": "CCF",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E42",
+     "nom": "Langue vivante 2",
+     "coef": 2,
+     "forme": "CCF",
+     "reviser": []
+    },
+    {
+     "code": "E51",
+     "nom": "Français",
+     "coef": 2.5,
+     "forme": "écrit 2 h 30",
+     "reviser": [
+      "francais-pro"
+     ]
+    },
+    {
+     "code": "E52",
+     "nom": "Histoire-géographie et EMC",
+     "coef": 2.5,
+     "forme": "écrit 2 h",
+     "reviser": [
+      "francais-pro"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Arts appliqués et cultures artistiques",
+     "coef": 1,
+     "forme": "CCF",
+     "reviser": []
+    },
+    {
+     "code": "E7",
+     "nom": "Éducation physique et sportive",
+     "coef": 1,
+     "forme": "CCF",
+     "reviser": []
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Modalités d'examen du Bac pro Métiers du commerce et de la vente",
+    "url": "https://www.ecoledesmetiers.fr/sites/default/files/ressources-cadrage-officiel/fichiers/2019-06/Modalit%C3%A9_d%27examen_BacPro_M%C3%A9tiers_du_commerce_et_de_la_vente.pdf"
+   },
+   "epreuves_note": "Depuis la réforme de la voie pro, le chef-d'œuvre est aussi évalué : vérifie la circulaire de ta session."
   },
   {
    "id": "bp-otm",
@@ -1396,7 +2654,55 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bac-pro-organisation-de-transport-de-marchandises",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/34954/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "E2",
+     "nom": "Analyse de situations professionnelles liées à la préparation d'opérations de transport",
+     "coef": null,
+     "forme": "écrit",
+     "reviser": [
+      "transport-gestion",
+      "logistique"
+     ]
+    },
+    {
+     "code": "E31",
+     "nom": "Mise en œuvre et suivi d'opérations de transport",
+     "coef": null,
+     "forme": "CCF ou ponctuel",
+     "reviser": [
+      "transport-gestion"
+     ]
+    },
+    {
+     "code": "E32",
+     "nom": "Contribution à l'amélioration de l'activité de transport",
+     "coef": null,
+     "forme": "CCF ou ponctuel",
+     "reviser": [
+      "transport-gestion"
+     ]
+    },
+    {
+     "code": "—",
+     "nom": "Épreuves générales : économie-droit, maths, langues, français, HG-EMC, PSE, arts, EPS",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "eco-droit",
+      "maths-pro",
+      "francais-pro",
+      "anglais-pro",
+      "pse"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Circulaire nationale Bac pro OTM 2025 (académie de Bordeaux)",
+    "url": "https://ent2d.ac-bordeaux.fr/disciplines/logistique-transport/wp-content/uploads/sites/58/2025/02/20250108_Circulaire-nationale-BCP-OTM-2025.pdf"
+   },
+   "epreuves_note": "Coefficients : voir l'arrêté du 28 février 2020 portant création du Bac pro OTM. Épreuves générales du bac pro (français, histoire-géo-EMC, langues, maths, arts appliqués, EPS) : coefficients fixés par l'arrêté de la spécialité. Pour le Bac pro Métiers du commerce et de la vente, ils sont : économie-droit 2, maths 1, LV1 4, LV2 2, français 2,5, HG-EMC 2,5, arts appliqués 1, EPS 1."
   },
   {
    "id": "bp-rpi",
@@ -1444,7 +2750,44 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bac-pro-realisation-de-produits-imprimes",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38567/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "E2",
+     "nom": "Étude du dossier de fabrication d'un produit de communication",
+     "coef": null,
+     "forme": "écrit",
+     "reviser": [
+      "graphisme"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Réalisation d'un produit de communication, imposition et forme imprimante, situations en entreprise",
+     "coef": null,
+     "forme": "pratique / CCF",
+     "reviser": [
+      "graphisme"
+     ]
+    },
+    {
+     "code": "—",
+     "nom": "Épreuves générales : maths, physique-chimie, économie-gestion, PSE, langue, français, HG-EMC, arts, EPS",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "maths-pro",
+      "francais-pro",
+      "pse",
+      "anglais-pro"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Fiche RNCP du Bac pro RPIP (France Compétences)",
+    "url": "https://www.francecompetences.fr/recherche/rncp/38567/"
+   },
+   "epreuves_note": "Coefficients : voir le règlement d'examen dans le référentiel du CFA. Les épreuves pratiques (E3) pèsent le plus lourd."
   },
   {
    "id": "bp-ciel",
@@ -1497,7 +2840,55 @@
     "stats": "https://cfa.cevedom.com/stat-bac-pro-systemes-numeriques",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37489/"
    },
-   "note": "Le programme affiché sur la page du CFA est celui de l'ancien Bac pro Systèmes numériques (remplacé par le Bac pro CIEL) : vérifie le référentiel à jour sur la fiche RNCP."
+   "note": "Le programme affiché sur la page du CFA est celui de l'ancien Bac pro Systèmes numériques (remplacé par le Bac pro CIEL) : vérifie le référentiel à jour sur la fiche RNCP.",
+   "epreuves": [
+    {
+     "code": "E2",
+     "nom": "Réalisation et maintenance des produits électroniques",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "reseau"
+     ]
+    },
+    {
+     "code": "E31",
+     "nom": "Mise en œuvre des réseaux informatiques",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "reseau",
+      "systemes"
+     ]
+    },
+    {
+     "code": "E32",
+     "nom": "Valorisation de la donnée et cybersécurité",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "cyber",
+      "dev-web"
+     ]
+    },
+    {
+     "code": "—",
+     "nom": "Épreuves générales : maths, physique-chimie, économie-gestion, PSE, langue, français, HG-EMC, arts, EPS",
+     "coef": null,
+     "forme": "",
+     "reviser": [
+      "maths-pro",
+      "francais-pro",
+      "pse",
+      "anglais"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Fiche Bac pro CIEL (Intercariforef)",
+    "url": "https://www.intercariforef.org/formations/certification-114740"
+   },
+   "epreuves_note": "Coefficients : voir l'arrêté de création du Bac pro CIEL (référencé sur la fiche)."
   },
   {
    "id": "bts-assurance",
@@ -1544,6 +2935,76 @@
     ],
     "stats": "",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38359/"
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Langue vivante étrangère",
+     "coef": 2,
+     "forme": "écrit + oral",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E31",
+     "nom": "Culture professionnelle et suivi du client",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "banque-assurance"
+     ]
+    },
+    {
+     "code": "E32",
+     "nom": "Développement commercial et conduite d'entretien",
+     "coef": 4,
+     "forme": "oral 40 min",
+     "reviser": [
+      "vente",
+      "banque-assurance"
+     ]
+    },
+    {
+     "code": "E41",
+     "nom": "Gestion des sinistres",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "banque-assurance"
+     ]
+    },
+    {
+     "code": "E42",
+     "nom": "Accueil en situation de sinistre",
+     "coef": 3,
+     "forme": "oral 20 min",
+     "reviser": [
+      "banque-assurance"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Communication digitale, système d'information et outils numériques",
+     "coef": 2,
+     "forme": "écrit 2 h",
+     "reviser": [
+      "marketing-digital"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Référentiel du BTS Assurance (PDF du CFA)",
+    "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTSAssurance.pdf"
    }
   },
   {
@@ -1596,6 +3057,69 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bts-banque",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38381/"
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Langue vivante étrangère",
+     "coef": 2,
+     "forme": "écrit + oral 2 h 20",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Gestion de la relation client",
+     "coef": 5,
+     "forme": "CCF / oral",
+     "reviser": [
+      "vente",
+      "banque-assurance"
+     ]
+    },
+    {
+     "code": "E41",
+     "nom": "Développement et suivi de l'activité commerciale — étude de cas",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "banque-assurance"
+     ]
+    },
+    {
+     "code": "E42",
+     "nom": "Analyse de situation commerciale",
+     "coef": 2,
+     "forme": "oral 30 min",
+     "reviser": [
+      "banque-assurance",
+      "vente"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Environnement économique, juridique et organisationnel de l'activité bancaire",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "banque-assurance",
+      "cejm"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Bulletin officiel n°16 du 17 avril 2014 — BTS Banque",
+    "url": "https://www.education.gouv.fr/bo/14/Hebdo16/ESRS1403534A.htm"
    }
   },
   {
@@ -1643,7 +3167,71 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bts-communication",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37198/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Cultures de la communication",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "com-strategie",
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Langue vivante étrangère",
+     "coef": 3,
+     "forme": "écrit 2 h + oral",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Culture économique, juridique et managériale",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "cejm"
+     ]
+    },
+    {
+     "code": "E4",
+     "nom": "Contribution à l'élaboration et au pilotage de la stratégie de communication",
+     "coef": 5,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "com-strategie"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Conception et mise en œuvre de solutions de communication",
+     "coef": 4,
+     "forme": "oral 40 min",
+     "reviser": [
+      "com-strategie",
+      "graphisme"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Accompagnement du développement de solutions media et digitales innovantes",
+     "coef": 3,
+     "forme": "écrit 3 h",
+     "reviser": [
+      "marketing-digital",
+      "com-strategie"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Fiche BTS Communication (ADF Formation, 2025)",
+    "url": "https://adfformation.fr/wp-content/uploads/2025/11/BTS-COMMUNICATION.pdf"
+   },
+   "epreuves_note": "Nouveau référentiel du BTS Communication : la numérotation peut varier selon les documents, vérifie dans la circulaire nationale."
   },
   {
    "id": "bts-cg",
@@ -1692,7 +3280,87 @@
     ],
     "stats": "",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/39159/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E12",
+     "nom": "Langue vivante (anglais)",
+     "coef": 3,
+     "forme": "oral",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Mathématiques appliquées",
+     "coef": 3,
+     "forme": "écrit 2 h",
+     "reviser": [
+      "maths-pro"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Culture économique, juridique et managériale",
+     "coef": 6,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "cejm"
+     ]
+    },
+    {
+     "code": "E41",
+     "nom": "Traitement et contrôle des opérations comptables, fiscales et sociales — étude de cas",
+     "coef": 9,
+     "forme": "écrit 4 h 30",
+     "reviser": [
+      "compta",
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "E42",
+     "nom": "Pratiques comptables, fiscales et sociales",
+     "coef": 4,
+     "forme": "oral sur logiciel 30 min",
+     "reviser": [
+      "compta"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Situations de contrôle de gestion et d'analyse financière",
+     "coef": 5,
+     "forme": "oral sur poste 30 min",
+     "reviser": [
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Parcours de professionnalisation",
+     "coef": 5,
+     "forme": "oral 30 min",
+     "reviser": [
+      "compta"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Épreuves du BTS CG (ENCG Formation, 2025)",
+    "url": "https://www.encg-formation.com/2025/04/16/epreuves-bts-cg/"
+   },
+   "epreuves_note": "Source non officielle : vérifie les coefficients (surtout E6) dans la circulaire nationale de ta session."
   },
   {
    "id": "bts-erpc",
@@ -1726,7 +3394,84 @@
     "stats": "https://cfa.cevedom.com/stat-bts-etude-de-realisation-dun-projet-de-communication",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38421/"
    },
-   "note": "La page du CFA affiche par erreur le programme et les débouchés du BTS SIO : fie-toi au référentiel PDF officiel ci-dessous."
+   "note": "La page du CFA affiche par erreur le programme et les débouchés du BTS SIO : fie-toi au référentiel PDF officiel ci-dessous.",
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Anglais",
+     "coef": 2,
+     "forme": "CCF",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E31",
+     "nom": "Mathématiques",
+     "coef": 2,
+     "forme": "CCF",
+     "reviser": [
+      "maths-pro"
+     ]
+    },
+    {
+     "code": "E32",
+     "nom": "Physique-chimie",
+     "coef": 2,
+     "forme": "CCF",
+     "reviser": []
+    },
+    {
+     "code": "E4",
+     "nom": "Étude d'un projet de communication",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "graphisme",
+      "com-strategie"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Projet de conception de processus graphiques",
+     "coef": 6,
+     "forme": "pratique et oral",
+     "reviser": [
+      "graphisme"
+     ]
+    },
+    {
+     "code": "E61",
+     "nom": "Définition collaborative de produits de communication",
+     "coef": 3,
+     "forme": "CCF",
+     "reviser": [
+      "graphisme"
+     ]
+    },
+    {
+     "code": "E62",
+     "nom": "Suivi de réalisation de produits de communication en entreprise",
+     "coef": 3,
+     "forme": "CCF",
+     "reviser": [
+      "graphisme"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Bulletin officiel n°28 du 14 juillet 2016 — BTS ERPC",
+    "url": "https://www.education.gouv.fr/bo/16/Hebdo28/MENS1614700A.htm"
+   }
   },
   {
    "id": "bts-gpme",
@@ -1770,6 +3515,79 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bts-gestion-de-la-pme",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38363/"
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Langue vivante étrangère",
+     "coef": 3,
+     "forme": "écrit 2 h + oral",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Culture économique, juridique et managériale",
+     "coef": 6,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "cejm"
+     ]
+    },
+    {
+     "code": "E4",
+     "nom": "Gérer la relation avec les clients et les fournisseurs",
+     "coef": 6,
+     "forme": "CCF (dossier + oral)",
+     "reviser": [
+      "gestion-pme",
+      "vente"
+     ]
+    },
+    {
+     "code": "E51",
+     "nom": "Participer à la gestion des risques de la PME",
+     "coef": 4,
+     "forme": "oral 30 min",
+     "reviser": [
+      "gestion-pme",
+      "compta-avancee"
+     ]
+    },
+    {
+     "code": "E52",
+     "nom": "Gérer le personnel et contribuer à la gestion des RH",
+     "coef": 4,
+     "forme": "écrit 2 h 30",
+     "reviser": [
+      "rh"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Soutenir le fonctionnement et le développement de la PME",
+     "coef": 6,
+     "forme": "écrit 4 h 30",
+     "reviser": [
+      "gestion-pme",
+      "compta-avancee",
+      "compta"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Épreuves et coefficients du BTS GPME (session 2026) — ADF Formation",
+    "url": "https://adfformation.fr/wp-content/uploads/2024/01/region_BTS_GPME_2026.pdf"
    }
   },
   {
@@ -1816,6 +3634,77 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-bts-gestion-des-transports-et-logistique-associee",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38365/"
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Langue vivante étrangère (écrit + oral)",
+     "coef": 3,
+     "forme": "écrit 2 h + oral 20 min",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Culture économique, juridique et managériale",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "cejm"
+     ]
+    },
+    {
+     "code": "E4",
+     "nom": "Mise en œuvre d'opérations de transport et de prestations logistiques",
+     "coef": 6,
+     "forme": "oral 50 min",
+     "reviser": [
+      "logistique",
+      "transport-gestion"
+     ]
+    },
+    {
+     "code": "E51",
+     "nom": "Conception d'opérations de transport et de prestations logistiques",
+     "coef": 6,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "transport-gestion",
+      "logistique"
+     ]
+    },
+    {
+     "code": "E52",
+     "nom": "Analyse de la performance d'une activité de transport et de prestations logistiques",
+     "coef": 4,
+     "forme": "écrit 3 h",
+     "reviser": [
+      "transport-gestion"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Pérennisation et développement de l'activité",
+     "coef": 4,
+     "forme": "oral 40 min",
+     "reviser": [
+      "transport-gestion"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Référentiel du BTS GTLA (PDF du CFA)",
+    "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-GTL-Gestion-Transport-Slogistique-Associee.pdf"
    }
   },
   {
@@ -1864,6 +3753,67 @@
     ],
     "stats": "https://cfa.cevedom.com/statistiques-bts-negociation-et-digitalisation-de-la-relation-client",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38368/"
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Communication en langue vivante étrangère",
+     "coef": 3,
+     "forme": "oral",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Culture économique, juridique et managériale",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "cejm"
+     ]
+    },
+    {
+     "code": "E4",
+     "nom": "Relation client et négociation-vente",
+     "coef": 5,
+     "forme": "oral 1 h (CCF possible)",
+     "reviser": [
+      "vente"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Relation client à distance et digitalisation",
+     "coef": 4,
+     "forme": "écrit 3 h + pratique 40 min",
+     "reviser": [
+      "marketing-digital"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Relation client et animation de réseaux",
+     "coef": 3,
+     "forme": "oral 40 min (CCF possible)",
+     "reviser": [
+      "marketing-digital",
+      "vente"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Référentiel du BTS NDRC (PDF du CFA)",
+    "url": "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-NDRC.pdf"
    }
   },
   {
@@ -1914,7 +3864,81 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bts-services-informatiques-aux-organisations",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/40792/"
-   }
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 2,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Expression et communication en langue anglaise",
+     "coef": 2,
+     "forme": "écrit 2 h + oral",
+     "reviser": [
+      "anglais"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Mathématiques pour l'informatique",
+     "coef": 3,
+     "forme": "écrit 2 h",
+     "reviser": [
+      "maths"
+     ]
+    },
+    {
+     "code": "E4",
+     "nom": "Culture économique, juridique et managériale pour l'informatique",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "droit",
+      "cejm"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Support et mise à disposition de services informatiques",
+     "coef": 4,
+     "forme": "oral 40 min",
+     "reviser": [
+      "systemes",
+      "reseau"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Administration des systèmes et réseaux (SISR) / Conception et développement d'applications (SLAM)",
+     "coef": 4,
+     "forme": "pratique + oral",
+     "reviser": [
+      "reseau",
+      "systemes",
+      "dev-web"
+     ]
+    },
+    {
+     "code": "E7",
+     "nom": "Cybersécurité des services informatiques",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "cyber"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Les épreuves du BTS SIO (document école H3 Hitema, 2025)",
+    "url": "https://www.h3hitema.fr/wp-content/uploads/2025/09/les-epreuves-a-lexamen-bts-sio-1.pdf"
+   },
+   "epreuves_note": "Référentiel 2025 : vérifie la numérotation exacte des épreuves dans la circulaire nationale de ta session."
   },
   {
    "id": "bts-sam",
@@ -1959,6 +3983,66 @@
     ],
     "stats": "https://cfa.cevedom.com/stat-bts-support-a-laction-manageriale",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/38364/"
+   },
+   "epreuves": [
+    {
+     "code": "E1",
+     "nom": "Culture générale et expression",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "francais"
+     ]
+    },
+    {
+     "code": "E2",
+     "nom": "Langues vivantes A et B",
+     "coef": 3,
+     "forme": "écrits 2 h + oraux (LVA coef 2, LVB coef 1)",
+     "reviser": [
+      "anglais-pro"
+     ]
+    },
+    {
+     "code": "E3",
+     "nom": "Culture économique, juridique et managériale",
+     "coef": 3,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "cejm"
+     ]
+    },
+    {
+     "code": "E4",
+     "nom": "Optimisation des processus administratifs",
+     "coef": 4,
+     "forme": "oral 55 min",
+     "reviser": [
+      "projet"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Gestion de projet",
+     "coef": 4,
+     "forme": "oral et pratique",
+     "reviser": [
+      "projet"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Collaboration à la gestion des ressources humaines",
+     "coef": 4,
+     "forme": "écrit 4 h",
+     "reviser": [
+      "rh"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Circulaire nationale BTS SAM (académie de Lyon) et coefficients ESARC",
+    "url": "https://ecogestion-legt.enseigne.ac-lyon.fr/legt/wp-content/uploads/2020/02/circulaire_BTS-SAM_2020.pdf"
    }
   },
   {
@@ -2005,7 +4089,43 @@
     "stats": "https://cfa.cevedom.com/stat-bts-systemes-numeriques",
     "rncp": "https://www.francecompetences.fr/recherche/rncp/37391/"
    },
-   "note": "Le BTS CIEL remplace l'ancien BTS Systèmes numériques : le référentiel lié par le CFA porte encore l'ancien nom."
+   "note": "Le BTS CIEL remplace l'ancien BTS Systèmes numériques : le référentiel lié par le CFA porte encore l'ancien nom.",
+   "epreuves": [
+    {
+     "code": "E4",
+     "nom": "Étude et conception de réseaux informatiques (option A) / de produits électroniques (option B)",
+     "coef": 4,
+     "forme": "écrit 6 h",
+     "reviser": [
+      "reseau"
+     ]
+    },
+    {
+     "code": "E5",
+     "nom": "Exploitation et maintenance de réseaux informatiques (A) / Mise en œuvre de réseaux (B)",
+     "coef": 3,
+     "forme": "CCF",
+     "reviser": [
+      "reseau",
+      "systemes"
+     ]
+    },
+    {
+     "code": "E6",
+     "nom": "Valorisation de la donnée et cybersécurité (A) / Réalisation et maintenance de produits électroniques (B)",
+     "coef": 7,
+     "forme": "CCF",
+     "reviser": [
+      "cyber",
+      "dev-web"
+     ]
+    }
+   ],
+   "epreuves_source": {
+    "titre": "Organisation du BTS CIEL (académie de Normandie)",
+    "url": "https://physique-chimie.ac-normandie.fr/IMG/pdf/bts_ciel_-_organisation.pdf"
+   },
+   "epreuves_note": "Épreuves générales (culture générale, anglais, maths) : voir le référentiel."
   }
  ]
 }

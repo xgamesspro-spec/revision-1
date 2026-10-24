@@ -438,6 +438,7 @@ app.get('/api/subjects', auth, (req, res) => {
   res.json(SUBJECTS.map(s => ({
     id: s.id, nom: s.nom, icone: s.icone, description: s.description, groupe: s.groupe,
     publics: s.publics || ['*'], pour_toi: formations.matches(req.user, s.publics), pertinence: formations.score(req.user, s.publics),
+    epreuve: formations.epreuveFor(req.user, s.id), sources: (s.sources || []).length,
     fiches: s.fiches.length + (cMap[s.id] || 0), quiz: s.quiz.length, cartes: s.cartes.length,
     maitrise: mastered.filter(k => k.startsWith(s.id + ':')).length,
     meilleur_quiz: bestMap[s.id] ?? null,
@@ -523,7 +524,9 @@ app.get('/api/dashboard', auth, (req, res) => {
 app.get('/api/news', auth, async (req, res) => {
   let live = { items: [], errors: [] };
   try { live = await getNews(req.query.refresh === '1' && req.user.role === 'admin'); } catch { /* hors ligne */ }
-  res.json({ alaune: readJson('alaune.json'), flux: live.items, indisponibles: live.errors });
+  // « Pour toi » : actus des domaines de la formation de l'élève (les formateurs voient tout)
+  const tag = x => ({ ...x, pour_toi: formations.matches(req.user, x.publics || ['*']), metier: !(x.publics || ['*']).includes('*') });
+  res.json({ alaune: readJson('alaune.json').map(tag), flux: live.items.map(tag), indisponibles: live.errors, formation: formations.nom(req.user.formation) });
 });
 app.get('/api/infos', auth, (req, res) => res.json(readJson('infos.json')));
 

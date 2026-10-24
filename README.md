@@ -40,6 +40,17 @@ Sources : [guide de l'espace professeurs Pronote (lycée Melkior-Garré, Guyane)
 
 ## Formations, examens et ciblage des contenus
 
+- **Épreuves et coefficients** des 41 formations, dans `content/formations.json` (champ `epreuves`). Ils viennent des règlements d'examen officiels : référentiels du CFA, BO, académies, CNED. Les titres pro n'ont pas de coefficient : on valide chaque CCP. Chaque épreuve indique les matières à réviser (`reviser`). La page « Ma formation » les classe par coefficient, avec leur poids dans la note finale.
+- **31 matières** avec fiches, cartes et quiz **expliqués** (au moins 10 questions par matière). Elles couvrent : CEJM, vente-négociation, marketing digital, gestion de la PME, RH, organisation et projet, compta-fiscalité-paie, contrôle de gestion, banque-assurance, transport-logistique, communication, graphisme, développement web, PSE, français, maths, anglais pro, droits de l'apprenti, titre pro, plus l'informatique SIO / CIEL. Chaque matière a ses **sources** en bas des fiches.
+- **Révisions « ⭐ Pour toi »** triées par coefficient. L'**entraînement mixte** propose 20 questions, avec plus de questions pour les gros coefficients. Le **récap des erreurs** s'affiche en fin de quiz.
+- **Actus par formation** : chaque flux de `config/feeds.json` et chaque article « à la une » a des `publics`. On y trouve :
+  - pour le numérique : CERT-FR, IT-Connect, CNIL… ;
+  - pour le commerce et le digital : Blog du Modérateur, EcommerceMag ;
+  - pour la communication : CB News ;
+  - pour la banque et la finance : La finance pour tous ;
+  - pour le transport et la logistique : Actu Transport Logistique, Supply Chain Info ;
+  - pour tous les apprentis : Service Public Entreprendre, Guyane la 1ère, L'Étudiant.
+
 - `content/formations.json` décrit les 41 formations, relevées sur [cfa.cevedom.com](https://cfa.cevedom.com/formations/) en octobre 2026. Pour chaque formation : RNCP, niveau, domaine, durée, stage, prérequis, objectif, programme, débouchés, poursuites et liens (fiche du CFA, dossier PDF, référentiels, statistiques, [fiche RNCP](https://www.francecompetences.fr/)). Le fichier contient aussi les **examens 2027 par filière** et la liste « où trouver l'info ». Quand le site du CFA reprenait par erreur le texte d'une autre formation (BTS ERPC, Bac pro CIEL), le fichier contient un correctif signalé.
 - Dates nationales : [calendrier 2027 CAP / bac pro (ministère)](https://www.education.gouv.fr/reussir-au-lycee/baccalaureat-brevet-cap-le-calendrier-2027-341384), [BTS 2027 (CNED)](https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027). Pour les titres pro, voir [les fondamentaux de la certification (DREETS)](https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf). Chaque filière est importée **une seule fois** dans le planning.
 - Chaque matière de révision a un champ `publics` : `"*"` (tout le monde), une filière (`"BTS"`), une formation (`"bts-sio"`) ou un domaine (`"d:transport"`). Les plus précises passent en premier dans « ⭐ Pour toi ».

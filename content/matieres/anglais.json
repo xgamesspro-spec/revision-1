@@ -2,7 +2,11 @@
   "nom": "Anglais professionnel (informatique)",
   "icone": "🇬🇧",
   "groupe": "Enseignement général",
-  "publics": ["d:numerique"],
+  "publics": [
+    "d:numerique",
+    "bp-ciel",
+    "bts-sio"
+  ],
   "ordre": 7,
   "description": "Vocabulaire IT, tickets, mails, phrases pour l'oral.",
   "fiches": [
@@ -20,20 +24,155 @@
     }
   ],
   "quiz": [
-    { "q": "« Outage » signifie…", "choix": ["Mise à jour", "Panne / coupure", "Sortie", "Stockage"], "reponse": 1, "explication": "An outage = interruption de service." },
-    { "q": "« Actually » se traduit par…", "choix": ["Actuellement", "En fait", "Activement", "Exactement"], "reponse": 1, "explication": "Faux ami : actuellement = currently." },
-    { "q": "Comment dire « le service est rétabli » ?", "choix": ["The service has been restored", "The service is restoring", "The service was restore", "The service restores"], "reponse": 0, "explication": "Present perfect passif : has been restored." },
-    { "q": "« Troubleshoot » veut dire…", "choix": ["Créer des problèmes", "Dépanner", "Supprimer", "Tirer"], "reponse": 1, "explication": "To troubleshoot = diagnostiquer et résoudre." },
-    { "q": "« Sensitive data » se traduit par…", "choix": ["Données raisonnables", "Données sensibles", "Données sensées", "Données sensorielles"], "reponse": 1, "explication": "Sensible en anglais = raisonnable ; sensitive = sensible." }
+    {
+      "q": "« Outage » signifie…",
+      "choix": [
+        "Mise à jour",
+        "Panne / coupure",
+        "Sortie",
+        "Stockage"
+      ],
+      "reponse": 1,
+      "explication": "An outage = interruption de service."
+    },
+    {
+      "q": "« Actually » se traduit par…",
+      "choix": [
+        "Actuellement",
+        "En fait",
+        "Activement",
+        "Exactement"
+      ],
+      "reponse": 1,
+      "explication": "Faux ami : actuellement = currently."
+    },
+    {
+      "q": "Comment dire « le service est rétabli » ?",
+      "choix": [
+        "The service has been restored",
+        "The service is restoring",
+        "The service was restore",
+        "The service restores"
+      ],
+      "reponse": 0,
+      "explication": "Present perfect passif : has been restored."
+    },
+    {
+      "q": "« Troubleshoot » veut dire…",
+      "choix": [
+        "Créer des problèmes",
+        "Dépanner",
+        "Supprimer",
+        "Tirer"
+      ],
+      "reponse": 1,
+      "explication": "To troubleshoot = diagnostiquer et résoudre."
+    },
+    {
+      "q": "« Sensitive data » se traduit par…",
+      "choix": [
+        "Données raisonnables",
+        "Données sensibles",
+        "Données sensées",
+        "Données sensorielles"
+      ],
+      "reponse": 1,
+      "explication": "Sensible en anglais = raisonnable ; sensitive = sensible."
+    },
+    {
+      "q": "« To escalate a ticket » signifie :",
+      "choix": [
+        "Fermer le ticket",
+        "Transmettre le ticket au niveau de support supérieur",
+        "Supprimer le ticket",
+        "Répondre au client"
+      ],
+      "reponse": 1,
+      "explication": "On « escalade » au niveau 2 ou 3 quand le niveau 1 ne peut pas résoudre."
+    },
+    {
+      "q": "« Please find attached… » s'utilise pour :",
+      "choix": [
+        "Saluer",
+        "Annoncer une pièce jointe",
+        "Conclure",
+        "S'excuser"
+      ],
+      "reponse": 1,
+      "explication": "« Veuillez trouver ci-joint… » : formule standard d'un e-mail professionnel."
+    },
+    {
+      "q": "« Backup » se traduit par :",
+      "choix": [
+        "Démarrage",
+        "Sauvegarde",
+        "Mise à jour",
+        "Panne"
+      ],
+      "reponse": 1,
+      "explication": "Backup = sauvegarde ; restore = restaurer."
+    },
+    {
+      "q": "Pour demander poliment de répéter :",
+      "choix": [
+        "Repeat!",
+        "Could you say that again, please?",
+        "What?",
+        "Again!"
+      ],
+      "reponse": 1,
+      "explication": "« Could you… please? » est la forme polie attendue à l'oral."
+    },
+    {
+      "q": "« Deadline » signifie :",
+      "choix": [
+        "Ligne de commande",
+        "Date limite",
+        "Panne totale",
+        "Réunion"
+      ],
+      "reponse": 1,
+      "explication": "La date à laquelle un travail doit être rendu."
+    }
   ],
   "cartes": [
-    { "recto": "panne (coupure de service)", "verso": "outage / downtime" },
-    { "recto": "pare-feu", "verso": "firewall" },
-    { "recto": "borne Wi-Fi", "verso": "wireless access point" },
-    { "recto": "bande passante", "verso": "bandwidth" },
-    { "recto": "identifiants", "verso": "credentials" },
-    { "recto": "« éventuellement »", "verso": "possibly (eventually = finalement)" },
-    { "recto": "Formule de fin de mail", "verso": "Kind regards, / Best regards," },
-    { "recto": "« Nous enquêtons sur le problème »", "verso": "We are currently investigating the issue." }
+    {
+      "recto": "panne (coupure de service)",
+      "verso": "outage / downtime"
+    },
+    {
+      "recto": "pare-feu",
+      "verso": "firewall"
+    },
+    {
+      "recto": "borne Wi-Fi",
+      "verso": "wireless access point"
+    },
+    {
+      "recto": "bande passante",
+      "verso": "bandwidth"
+    },
+    {
+      "recto": "identifiants",
+      "verso": "credentials"
+    },
+    {
+      "recto": "« éventuellement »",
+      "verso": "possibly (eventually = finalement)"
+    },
+    {
+      "recto": "Formule de fin de mail",
+      "verso": "Kind regards, / Best regards,"
+    },
+    {
+      "recto": "« Nous enquêtons sur le problème »",
+      "verso": "We are currently investigating the issue."
+    }
+  ],
+  "sources": [
+    {
+      "titre": "Épreuves du BTS SIO (E2 anglais) — H3 Hitema",
+      "url": "https://www.h3hitema.fr/wp-content/uploads/2025/09/les-epreuves-a-lexamen-bts-sio-1.pdf"
+    }
   ]
 }

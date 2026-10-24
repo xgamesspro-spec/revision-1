@@ -1,38 +1,127 @@
 [
   {
-    "date": "2026-10-12", "categorie": "Cybersécurité",
+    "date": "2026-10-12",
+    "categorie": "Cybersécurité",
     "titre": "ECSC 2026 : l'équipe de France au championnat européen de cybersécurité à Bochum",
     "resume": "La Team France participe au European Cybersecurity Challenge, la compétition de CTF entre pays européens. Bonne porte d'entrée pour découvrir les CTF.",
-    "url": "https://cyber.gouv.fr/actualites/ecsc-2026-la-team-france-a-bochum/", "source": "ANSSI"
+    "url": "https://cyber.gouv.fr/actualites/ecsc-2026-la-team-france-a-bochum/",
+    "source": "ANSSI",
+    "publics": [
+      "d:numerique"
+    ]
   },
   {
-    "date": "2026-09-29", "categorie": "Cybersécurité",
+    "date": "2026-09-29",
+    "categorie": "Cybersécurité",
     "titre": "L'ANSSI publie son rapport d'incident sur les cyberattaques contre la DGFiP",
     "resume": "Retour d'expérience officiel sur des attaques visant l'administration fiscale : utile pour comprendre une gestion d'incident réelle (détection, réponse, leçons).",
-    "url": "https://cyber.gouv.fr/actualites/lanssi-publie-le-rapport-dincident-sur-les-cyberattaques-ayant-touche-la-dgfip/", "source": "ANSSI"
+    "url": "https://cyber.gouv.fr/actualites/lanssi-publie-le-rapport-dincident-sur-les-cyberattaques-ayant-touche-la-dgfip/",
+    "source": "ANSSI",
+    "publics": [
+      "d:numerique"
+    ]
   },
   {
-    "date": "2026-09-23", "categorie": "Droit & conformité",
+    "date": "2026-09-23",
+    "categorie": "Droit & conformité",
     "titre": "Cyber Resilience Act : l'ANSSI, l'ANFR et la DGE accompagnent les fabricants",
     "resume": "Le règlement européen CRA impose des exigences de sécurité aux produits numériques. Les autorités françaises lancent un accompagnement pour la mise en conformité.",
-    "url": "https://cyber.gouv.fr/actualites/cra-lanssi-lanfr-et-la-dge-accompagnent-les-fabricants-dans-la-conformite-des-produits-numeriques/", "source": "ANSSI"
+    "url": "https://cyber.gouv.fr/actualites/cra-lanssi-lanfr-et-la-dge-accompagnent-les-fabricants-dans-la-conformite-des-produits-numeriques/",
+    "source": "ANSSI",
+    "publics": [
+      "d:numerique"
+    ]
   },
   {
-    "date": "2026-09-07", "categorie": "Cybersécurité",
+    "date": "2026-09-07",
+    "categorie": "Cybersécurité",
     "titre": "L'ANSSI crée une capacité de réaction renforcée pour les services de l'État",
     "resume": "Nouvelle organisation dédiée à la réponse aux cyberattaques visant les administrations.",
-    "url": "https://cyber.gouv.fr/actualites/cyberattaques-lanssi-met-en-place-une-capacite-renforcee-de-reaction-dediee-aux-services-de-letat/", "source": "ANSSI"
+    "url": "https://cyber.gouv.fr/actualites/cyberattaques-lanssi-met-en-place-une-capacite-renforcee-de-reaction-dediee-aux-services-de-letat/",
+    "source": "ANSSI",
+    "publics": [
+      "d:numerique"
+    ]
   },
   {
-    "date": "2026-09-03", "categorie": "Cybersécurité",
+    "date": "2026-09-03",
+    "categorie": "Cybersécurité",
     "titre": "Cryptographie post-quantique : appel à l'action de l'ANSSI et du G7",
     "resume": "Les ordinateurs quantiques menacent à terme RSA et les courbes elliptiques. Les États appellent à préparer la migration vers des algorithmes résistants.",
-    "url": "https://cyber.gouv.fr/actualites/transition-post-quantique-lanssi-et-ses-partenaires-du-g7-publient-un-appel-a-action/", "source": "ANSSI"
+    "url": "https://cyber.gouv.fr/actualites/transition-post-quantique-lanssi-et-ses-partenaires-du-g7-publient-un-appel-a-action/",
+    "source": "ANSSI",
+    "publics": [
+      "d:numerique"
+    ]
   },
   {
-    "date": null, "categorie": "Études & BTS",
+    "date": "2026-09-01",
+    "categorie": "Comptabilité & gestion",
+    "titre": "Facture électronique : réception obligatoire pour toutes les entreprises depuis le 1er septembre 2026",
+    "resume": "Toutes les entreprises doivent pouvoir recevoir des factures électroniques ; les PME et micro-entreprises devront aussi en émettre au plus tard le 1er septembre 2027. À connaître pour le BTS CG, la GPME et les titres pro compta.",
+    "url": "https://www.cegid.com/fr/facture-electronique-obligatoire/calendrier-facture-electronique/",
+    "source": "Cegid",
+    "publics": [
+      "d:compta",
+      "d:gestion",
+      "d:commerce"
+    ]
+  },
+  {
+    "date": "2026-05-26",
+    "categorie": "Droit du travail & entreprise",
+    "titre": "SMIC : 12,31 € brut de l'heure depuis le 1er juin 2026",
+    "resume": "Revalorisation automatique de 2,41 % : 1 867,02 € brut par mois pour 35 h. Ton salaire d'apprenti, calculé en % du SMIC, augmente aussi.",
+    "url": "https://www.editions-tissot.fr/actualite/droit-du-travail/smic-quels-impacts-sur-les-minima-de-votre-convention-collective",
+    "source": "Éditions Tissot",
+    "publics": [
+      "*"
+    ]
+  },
+  {
+    "date": "2026-04-08",
+    "categorie": "Transport & logistique",
+    "titre": "Port de Guyane : 961 361 tonnes en 2025, deux nouvelles grues",
+    "resume": "Le Grand port maritime de Guyane recule de 5,3 % en 2025 mais progresse de 50 % depuis 2015 ; 556 364 tonnes de marchandises conteneurisées et 11 M€ d'investissements prévus en 2026.",
+    "url": "https://outremers360.com/bassin-atlantique-appli/serie-ports-en-outre-mer-2-6-en-guyane-une-baisse-du-trafic-en-2025-mais-des-perspectives-prometteuses-sur-le-long-terme",
+    "source": "Outremers 360",
+    "publics": [
+      "d:transport",
+      "d:commerce"
+    ]
+  },
+  {
+    "date": "2026-03-16",
+    "categorie": "Études & alternance",
+    "titre": "Aide à l'embauche d'apprentis : nouveaux montants depuis le 8 mars 2026",
+    "resume": "Moins de 250 salariés : 5 000 € pour un CAP ou un bac, 4 500 € pour un Bac+2, 2 000 € pour Bac+3 à Bac+5. 6 000 € pour un apprenti en situation de handicap. Bon argument quand tu cherches une entreprise.",
+    "url": "https://www.sage.com/fr-fr/blog/aide-embauche-apprentis-2026/",
+    "source": "Sage",
+    "publics": [
+      "*"
+    ]
+  },
+  {
+    "date": "2025-10-24",
+    "categorie": "Droit du travail & entreprise",
+    "titre": "L'entretien professionnel devient l'entretien de parcours professionnel (tous les 4 ans)",
+    "resume": "Loi du 24 octobre 2025 : premier entretien dans l'année qui suit l'embauche, puis tous les 4 ans, et un bilan tous les 8 ans. Au programme RH du BTS SAM, de la GPME et du TP ARH.",
+    "url": "https://formation.lefebvre-dalloz.fr/actualite/lentretien-de-parcours-professionnel-en-6-questions",
+    "source": "Lefebvre Dalloz",
+    "publics": [
+      "d:gestion",
+      "d:compta"
+    ]
+  },
+  {
+    "date": null,
+    "categorie": "Études & BTS",
     "titre": "Calendrier BTS 2027 : écrits du 11 au 21 mai 2027",
     "resume": "Culture générale le 11 mai, CEJM le 12, langues le 13, maths le 14, épreuves pro les 20 et 21. Inscriptions jusqu'au 12 novembre 2026 selon le CNED.",
-    "url": "https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027", "source": "CNED"
+    "url": "https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027",
+    "source": "CNED",
+    "publics": [
+      "*"
+    ]
   }
 ]

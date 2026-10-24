@@ -567,12 +567,24 @@ async function renderTuteur(token) {
 async function viewFormation(r) {
   const id = r.id || state.user.formation;
   if (!id) return viewFormations({ q: { ...r.q, choisir: '1' } });
-  const f = await api('GET', `/api/formations/${id}`);
+  const [f, subs] = await Promise.all([api('GET', `/api/formations/${id}`), state.subjectsCache ? Promise.resolve(state.subjectsCache) : api('GET', '/api/subjects')]);
+  state.subjectsCache = subs;
+  const subName = Object.fromEntries(subs.map(x => [x.id, x]));
   const mine = id === state.user.formation;
+  const eps = [...(f.epreuves || [])].sort((a, b) => (b.coef ?? -1) - (a.coef ?? -1));
+  const totalCoef = eps.reduce((t, e) => t + (e.coef || 0), 0);
+  const epHtml = eps.length ? `<div class="card" style="margin-bottom:16px"><h3 style="margin-top:0">🎯 Tes épreuves${totalCoef ? ' et leurs coefficients' : ''} — par ordre d'importance</h3>
+    ${totalCoef ? `<p class="small muted">Plus le coefficient est gros, plus l'épreuve pèse dans ta note finale (total : ${String(totalCoef).replace('.', ',')}). Révise d'abord le haut du tableau.</p>` : `<p class="small muted">${f.filiere === 'TP' ? 'Pas de coefficient pour un titre pro : chaque CCP doit être validé devant le jury.' : 'Coefficients non publiés dans les documents trouvés : voir le référentiel.'}</p>`}
+    <table class="tbl"><thead><tr><th>Épreuve</th>${totalCoef ? '<th>Coef</th><th>Poids</th>' : ''}<th>Forme</th><th>Réviser avec</th></tr></thead><tbody>
+    ${eps.map(e => `<tr><td><b>${esc(e.code)}</b> ${esc(e.nom)}</td>${totalCoef ? `<td><span class="pill ${e.coef >= 5 ? 'gold' : ''}">${e.coef != null ? String(e.coef).replace('.', ',') : '—'}</span></td><td style="min-width:90px">${e.coef ? `<div class="progress" title="${Math.round(e.coef / totalCoef * 100)} %"><div style="width:${Math.round(e.coef / totalCoef * 100)}%"></div></div><span class="small muted">${Math.round(e.coef / totalCoef * 100)} %</span>` : ''}</td>` : ''}
+      <td class="small">${esc(e.forme || '')}</td><td class="small">${(e.reviser || []).filter(r => subName[r]).map(r => `<a href="#/revisions/${r}">${subName[r].icone} ${esc(subName[r].nom)}</a>`).join('<br>') || '—'}</td></tr>`).join('')}
+    </tbody></table>
+    ${f.epreuves_source ? `<p class="small muted">Source : <a href="${esc(f.epreuves_source.url)}" target="_blank" rel="noopener noreferrer">${esc(f.epreuves_source.titre)}</a>. Vérifie toujours ta convocation et ton référentiel.</p>` : ''}</div>` : '';
   const link = k => (k === 'referentiels' ? f.liens.referentiels : f.liens[k] ? [f.liens[k]] : []);
   setTitle(`🎓 ${esc(f.nom)}`, `${esc(f.niveau_nom)} · ${esc(f.domaine_nom)}${f.rncp ? ` · ${esc(f.rncp)}` : ''}`);
   setContent(`<div class="row" style="margin-bottom:12px"><a href="#/formations" class="small">← Toutes les formations du CFA</a>${mine ? '<span class="pill ok">Ta formation</span>' : ''}</div>
     ${f.note ? `<div class="card" style="border-color:var(--gold);margin-bottom:16px">⚠️ ${esc(f.note)}</div>` : ''}
+    ${epHtml}
     <div class="grid grid-3" style="margin-bottom:16px">
       <div class="card"><div class="muted small">Durée</div><b>${esc(f.duree || '—')}</b></div>
       <div class="card"><div class="muted small">Stage / période en entreprise</div><b>${esc(f.stage || '—')}</b></div>

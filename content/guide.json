@@ -68,6 +68,14 @@
             {
               "quoi": "Réviser en priorité ce qui concerne sa formation",
               "comment": "📖 Révisions : la partie « ⭐ Pour toi » est choisie selon ta formation ; les autres matières sont plus bas."
+            },
+            {
+              "quoi": "Voir ses épreuves et leurs coefficients",
+              "comment": "🎓 Ma formation → « Tes épreuves » : rangées par coefficient, avec le poids de chacune dans la note finale et les matières pour les réviser."
+            },
+            {
+              "quoi": "Lire les actus de son métier",
+              "comment": "📰 Actus → « Pour ta formation » : presse spécialisée de ton domaine + infos utiles à tous les apprentis."
             }
           ],
           "peutpas": [
@@ -284,6 +292,22 @@
             {
               "quoi": "Partager tes propres fiches",
               "comment": "Dans une matière → onglet « Fiches de la classe »."
+            },
+            {
+              "quoi": "Réviser d'abord ce qui compte le plus",
+              "comment": "📖 Révisions → « ⭐ Pour toi » : tes matières triées par coefficient (badge « E4 · coef 5 »)."
+            },
+            {
+              "quoi": "Faire un entraînement mixte",
+              "comment": "Révisions → « 🎯 Entraînement mixte » : 20 questions de toutes tes matières, plus nombreuses pour les gros coefficients."
+            },
+            {
+              "quoi": "Comprendre ses erreurs",
+              "comment": "Après chaque réponse de quiz, une explication ; à la fin, le récap de tes erreurs avec la bonne réponse."
+            },
+            {
+              "quoi": "Vérifier les sources d'une fiche",
+              "comment": "En bas de l'onglet Fiches : les référentiels et textes officiels utilisés."
             }
           ],
           "peutpas": [

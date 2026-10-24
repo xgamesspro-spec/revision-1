@@ -2,7 +2,11 @@
   "nom": "Droit, RGPD & CEJM",
   "icone": "⚖️",
   "groupe": "Droit & économie",
-  "publics": ["BTS", "d:numerique"],
+  "publics": [
+    "BTS",
+    "d:numerique",
+    "bts-sio"
+  ],
   "ordre": 4,
   "description": "RGPD, CNIL, AIPD, données de santé, contrat d'apprentissage, propriété intellectuelle.",
   "fiches": [
@@ -24,25 +28,145 @@
     }
   ],
   "quiz": [
-    { "q": "Depuis quand le RGPD s'applique-t-il ?", "choix": ["1er janvier 2016", "25 mai 2018", "14 avril 2020", "6 janvier 1978"], "reponse": 1, "explication": "Le RGPD s'applique depuis le 25 mai 2018. 1978 = loi Informatique et Libertés." },
-    { "q": "Délai de notification d'une violation à la CNIL ?", "choix": ["24 h", "48 h", "72 h", "1 mois"], "reponse": 2, "explication": "72 heures après en avoir pris connaissance." },
-    { "q": "Sanction maximale prévue par le RGPD ?", "choix": ["1 M€", "20 M€ ou 4 % du CA mondial", "10 % du CA", "Aucune"], "reponse": 1, "explication": "Le montant le plus élevé des deux s'applique." },
-    { "q": "Une adresse IP est-elle une donnée personnelle ?", "choix": ["Oui, elle peut identifier indirectement", "Non jamais", "Seulement en IPv6", "Seulement si publique"], "reponse": 0, "explication": "Une identification indirecte suffit." },
-    { "q": "Que signifie AIPD ?", "choix": ["Audit informatique de protection des domaines", "Analyse d'impact relative à la protection des données", "Accord interne de partage des données", "Agence internationale de protection des données"], "reponse": 1, "explication": "C'est l'équivalent français du PIA." },
-    { "q": "Héberger des données de santé pour un tiers nécessite la certification…", "choix": ["ISO 9001", "HDS", "PCI-DSS", "SecNumCloud uniquement"], "reponse": 1, "explication": "HDS = Hébergeur de Données de Santé." },
-    { "q": "La licence GPL est…", "choix": ["Propriétaire", "Libre avec copyleft", "Domaine public", "Réservée à l'État"], "reponse": 1, "explication": "Les œuvres dérivées redistribuées doivent rester sous GPL." },
-    { "q": "Le principe de minimisation signifie…", "choix": ["Collecter le moins de données possible, juste le nécessaire", "Réduire la taille des fichiers", "Supprimer toutes les données", "Chiffrer tout"], "reponse": 0, "explication": "Seules les données nécessaires à la finalité doivent être collectées." }
+    {
+      "q": "Depuis quand le RGPD s'applique-t-il ?",
+      "choix": [
+        "1er janvier 2016",
+        "25 mai 2018",
+        "14 avril 2020",
+        "6 janvier 1978"
+      ],
+      "reponse": 1,
+      "explication": "Le RGPD s'applique depuis le 25 mai 2018. 1978 = loi Informatique et Libertés."
+    },
+    {
+      "q": "Délai de notification d'une violation à la CNIL ?",
+      "choix": [
+        "24 h",
+        "48 h",
+        "72 h",
+        "1 mois"
+      ],
+      "reponse": 2,
+      "explication": "72 heures après en avoir pris connaissance."
+    },
+    {
+      "q": "Sanction maximale prévue par le RGPD ?",
+      "choix": [
+        "1 M€",
+        "20 M€ ou 4 % du CA mondial",
+        "10 % du CA",
+        "Aucune"
+      ],
+      "reponse": 1,
+      "explication": "Le montant le plus élevé des deux s'applique."
+    },
+    {
+      "q": "Une adresse IP est-elle une donnée personnelle ?",
+      "choix": [
+        "Oui, elle peut identifier indirectement",
+        "Non jamais",
+        "Seulement en IPv6",
+        "Seulement si publique"
+      ],
+      "reponse": 0,
+      "explication": "Une identification indirecte suffit."
+    },
+    {
+      "q": "Que signifie AIPD ?",
+      "choix": [
+        "Audit informatique de protection des domaines",
+        "Analyse d'impact relative à la protection des données",
+        "Accord interne de partage des données",
+        "Agence internationale de protection des données"
+      ],
+      "reponse": 1,
+      "explication": "C'est l'équivalent français du PIA."
+    },
+    {
+      "q": "Héberger des données de santé pour un tiers nécessite la certification…",
+      "choix": [
+        "ISO 9001",
+        "HDS",
+        "PCI-DSS",
+        "SecNumCloud uniquement"
+      ],
+      "reponse": 1,
+      "explication": "HDS = Hébergeur de Données de Santé."
+    },
+    {
+      "q": "La licence GPL est…",
+      "choix": [
+        "Propriétaire",
+        "Libre avec copyleft",
+        "Domaine public",
+        "Réservée à l'État"
+      ],
+      "reponse": 1,
+      "explication": "Les œuvres dérivées redistribuées doivent rester sous GPL."
+    },
+    {
+      "q": "Le principe de minimisation signifie…",
+      "choix": [
+        "Collecter le moins de données possible, juste le nécessaire",
+        "Réduire la taille des fichiers",
+        "Supprimer toutes les données",
+        "Chiffrer tout"
+      ],
+      "reponse": 0,
+      "explication": "Seules les données nécessaires à la finalité doivent être collectées."
+    }
   ],
   "cartes": [
-    { "recto": "Date d'application du RGPD", "verso": "25 mai 2018" },
-    { "recto": "Les 6 bases légales", "verso": "Consentement, contrat, obligation légale, intérêts vitaux, mission d'intérêt public, intérêt légitime" },
-    { "recto": "Délai de notification d'une violation", "verso": "72 h à la CNIL" },
-    { "recto": "Sanction max RGPD", "verso": "20 M€ ou 4 % du CA mondial" },
-    { "recto": "DPO", "verso": "Délégué à la protection des données" },
-    { "recto": "AIPD / PIA", "verso": "Analyse d'impact obligatoire en cas de risque élevé" },
-    { "recto": "Données de santé (RGPD)", "verso": "Catégorie particulière, article 9 : interdites sauf exceptions" },
-    { "recto": "HDS", "verso": "Certification Hébergeur de Données de Santé" },
-    { "recto": "Durée d'un contrat d'apprentissage", "verso": "6 mois à 3 ans" },
-    { "recto": "Protection juridique du logiciel en France", "verso": "Droit d'auteur" }
+    {
+      "recto": "Date d'application du RGPD",
+      "verso": "25 mai 2018"
+    },
+    {
+      "recto": "Les 6 bases légales",
+      "verso": "Consentement, contrat, obligation légale, intérêts vitaux, mission d'intérêt public, intérêt légitime"
+    },
+    {
+      "recto": "Délai de notification d'une violation",
+      "verso": "72 h à la CNIL"
+    },
+    {
+      "recto": "Sanction max RGPD",
+      "verso": "20 M€ ou 4 % du CA mondial"
+    },
+    {
+      "recto": "DPO",
+      "verso": "Délégué à la protection des données"
+    },
+    {
+      "recto": "AIPD / PIA",
+      "verso": "Analyse d'impact obligatoire en cas de risque élevé"
+    },
+    {
+      "recto": "Données de santé (RGPD)",
+      "verso": "Catégorie particulière, article 9 : interdites sauf exceptions"
+    },
+    {
+      "recto": "HDS",
+      "verso": "Certification Hébergeur de Données de Santé"
+    },
+    {
+      "recto": "Durée d'un contrat d'apprentissage",
+      "verso": "6 mois à 3 ans"
+    },
+    {
+      "recto": "Protection juridique du logiciel en France",
+      "verso": "Droit d'auteur"
+    }
+  ],
+  "sources": [
+    {
+      "titre": "CNIL — le RGPD",
+      "url": "https://www.cnil.fr/fr/reglement-europeen-protection-donnees"
+    },
+    {
+      "titre": "Code civil — Légifrance",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006070721/"
+    }
   ]
 }
