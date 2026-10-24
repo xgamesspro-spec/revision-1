@@ -1,7 +1,8 @@
 {
   "nom": "Systèmes & services",
   "icone": "🖥️",
-  "groupe": "Informatique SISR",
+  "groupe": "Informatique & réseaux",
+  "publics": ["bts-sio", "bts-ciel", "bp-ciel", "tp-cda", "tp-dwwm", "d:numerique"],
   "ordre": 2,
   "description": "Active Directory, DNS, DHCP, Linux, virtualisation, sauvegarde, supervision, ITIL.",
   "fiches": [

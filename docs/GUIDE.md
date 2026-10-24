@@ -1,6 +1,6 @@
-# Guide d'utilisation — Classe SIO
+# Guide d'utilisation — Classe CEVEDOM
 
-Classe SIO est l’espace en ligne des apprentis du CFA : réviser, s’entraider, se réunir, suivre son alternance et ses exercices. Ce guide explique, pour chaque profil, ce que tu peux faire, comment le faire, et ce qui n’est pas possible (et pourquoi).
+Classe CEVEDOM est l’espace en ligne des apprentis du CFA CEVEDOM (41 formations, du CAP au Bac+3/4) : cahier de textes, notes, vie scolaire, livret d’apprentissage avec le tuteur, messagerie, révisions, entraide, réunions et planning d’alternance. Ce guide explique, pour chaque profil, ce que tu peux faire, comment le faire, et ce qui n’est pas possible (et pourquoi).
 
 ## 🎓 Élève
 
@@ -19,6 +19,62 @@ Classe SIO est l’espace en ligne des apprentis du CFA : réviser, s’entraide
 - **S’inscrire sans code d’invitation** — Pourquoi : L’espace est réservé aux élèves du CFA : le code est donné par un modérateur.
 - **Garder son compte après la fin de sa formation** — Pourquoi : Il est supprimé automatiquement 60 jours après la fin (RGPD). Tu es prévenu 30 jours avant sur l’accueil.
 - **Récupérer seul un mot de passe oublié** — Pourquoi : Connecte-toi avec Google, ou demande à un modérateur un mot de passe provisoire.
+
+### 🎓 Ma formation
+
+**✅ Tu peux**
+
+- **Choisir sa formation exacte parmi les 41 du CFA** — Mon compte → Formation → « Changer de filière, de formation ou d’année ». Ex. : BTS NDRC, TP Gestionnaire de paie, CAP Opérateur logistique.
+- **Lire la fiche de sa formation** — 🎓 Ma formation : objectif, programme (unités ou CCP), durée, stage, débouchés, poursuites d’études, déroulement de l’examen.
+- **Trouver l’info officielle** — Ma formation → « Où trouver l’info officielle » : fiche RNCP, dossier du CFA, référentiel, statistiques de réussite, ONISEP, académie.
+- **Voir les autres formations du CFA** — 🏫 CFA & examens → « Voir les 41 formations », avec filtres par filière et domaine.
+- **Réviser en priorité ce qui concerne sa formation** — 📖 Révisions : la partie « ⭐ Pour toi » est choisie selon ta formation ; les autres matières sont plus bas.
+
+**🚫 Tu ne peux pas**
+
+- **Modifier les fiches formation** — Pourquoi : Elles viennent du site du CFA et des référentiels officiels ; signale une erreur dans la boîte à idées.
+
+### 📒 Cahier de textes, notes, vie scolaire
+
+**✅ Tu peux**
+
+- **Voir le travail à faire et le cocher** — 📒 Cahier de textes → « Travail à faire ». Coche quand c’est fait ; ça disparaît de ton accueil.
+- **Relire le contenu des séances** — Cahier de textes → « Séances », avec les documents du formateur.
+- **Voir ses notes et moyennes** — 📊 Mes notes : note, coefficient, moyenne par matière, moyenne générale et moyenne de la classe (à partir de 3 notes).
+- **Voir ses absences et retards** — 🗂️ Vie scolaire : tout ce qui a été relevé à l’appel.
+- **Justifier une absence en ligne** — Vie scolaire → coche les absences → motif + justificatif (photo ou PDF) → Envoyer. Tu es prévenu quand c’est accepté.
+
+**🚫 Tu ne peux pas**
+
+- **Voir les notes ou les absences des autres** — Pourquoi : Chacun ne voit que les siennes ; seule la moyenne de la classe est affichée.
+- **Modifier une note ou une absence** — Pourquoi : C’est le formateur qui les saisit ; écris-lui dans la messagerie en cas d’erreur.
+- **Mettre un détail médical dans un justificatif** — Pourquoi : Indique juste le motif (« raison de santé ») et joins le document officiel : pas besoin d’en dire plus.
+
+### 📘 Livret d’apprentissage et tuteur
+
+**✅ Tu peux**
+
+- **Décrire ses périodes en entreprise** — 📘 Livret → « Ajouter une période » : ce que tu as fait, appris, tes difficultés.
+- **Faire signer son livret par son tuteur** — Livret → « Créer le lien tuteur » → envoie le lien à ton maître d’apprentissage. Sans compte, il donne son avis et signe.
+- **Choisir ce que voit le tuteur** — Lors de la création du lien : absences oui/non, notes oui/non.
+- **Désactiver un lien tuteur** — Livret → « Désactiver » à côté du nom.
+
+**🚫 Tu ne peux pas**
+
+- **Modifier une période signée** — Pourquoi : La signature du tuteur la fige, comme un livret papier.
+- **Donner accès aux salons ou au forum à son tuteur** — Pourquoi : Le lien ne montre que ton livret : l’entraide reste entre élèves.
+
+### ✉️ Messagerie
+
+**✅ Tu peux**
+
+- **Écrire à un formateur ou à l’équipe du CFA** — ✉️ Messagerie → « Nouveau message ». Tu es prévenu quand on te répond.
+- **Répondre à un message de classe** — Ta réponse n’est lue que par les formateurs, pas par les autres élèves.
+
+**🚫 Tu ne peux pas**
+
+- **Écrire en privé à un autre élève** — Pourquoi : Pour parler entre élèves, il y a les salons ; la messagerie sert au lien avec l’équipe.
+- **Répondre à un message d’information** — Pourquoi : Le formateur a fermé les réponses (ex. annonce d’un changement de planning).
 
 ### 💬 Salons et forum
 
@@ -158,6 +214,45 @@ Classe SIO est l’espace en ligne des apprentis du CFA : réviser, s’entraide
 - **Modifier les exercices d’un autre formateur** — Pourquoi : Seuls son auteur et les modérateurs le peuvent.
 - **Rendre un travail** — Pourquoi : Le rendu est réservé aux élèves.
 
+### 📒 Cahier de textes
+
+**✅ Tu peux**
+
+- **Remplir le cahier de textes** — 📒 Cahier de textes → « Remplir » : date, matière, classe (CFA, filière ou formation), contenu, travail à faire + date, documents.
+- **Savoir qui a fait le travail** — Le compteur « x/y fait » sous chaque travail.
+
+### 📊 Notes et moyennes
+
+**✅ Tu peux**
+
+- **Créer une évaluation et saisir les notes** — 📊 Notes → titre, matière, barème, coefficient, classe → saisie (Entrée / ↑ ↓ pour passer d’un élève à l’autre). Codes Absent / Dispensé / Non noté.
+- **Publier les notes** — « Enregistrer et publier » : les élèves sont prévenus. Avant, c’est un brouillon invisible.
+- **Voir le relevé d’un élève** — Notes → « Relevé d’un élève » : moyennes par matière et générale.
+
+**🚫 Tu ne peux pas**
+
+- **Modifier les notes d’un collègue** — Pourquoi : Seul l’auteur de l’évaluation (ou un modérateur) peut la modifier.
+
+### 🗂️ Vie scolaire
+
+**✅ Tu peux**
+
+- **Faire l’appel** — 🗂️ Vie scolaire → classe, date, créneau → Présent / Absent / En retard (+ minutes). Les absents sont prévenus pour se justifier.
+- **Traiter les justificatifs** — Vie scolaire → « Justificatifs à traiter » → Accepter ou Refuser, avec une réponse.
+- **Voir la synthèse des absences** — Vie scolaire → « Synthèse par élève » : absences non justifiées en premier.
+
+### 📘 Livrets et messagerie
+
+**✅ Tu peux**
+
+- **Lire le livret d’un apprenti** — 📘 Livrets → choisis l’apprenti → périodes, avis du tuteur.
+- **Ajouter une remarque ou une visite en entreprise** — Sous chaque période : « Remarque du CFA » ; à droite : « Visites et points de suivi ».
+- **Écrire à un élève, plusieurs ou une classe entière** — ✉️ Messagerie → « Nouveau message » → classe et/ou personnes ; décoche « réponses » pour une simple info.
+
+**🚫 Tu ne peux pas**
+
+- **Lire les discussions dont on ne fait pas partie** — Pourquoi : La messagerie est privée, même pour les modérateurs.
+
 ### 📖 Révisions, actus, idées
 
 **✅ Tu peux**
@@ -236,7 +331,16 @@ Autorise la caméra dans le navigateur (cadenas à gauche de l’adresse). Le si
 Certains réseaux bloquent la visio. Préviens un modérateur : il peut activer un relais (TURN).
 
 **J’ai changé de filière**  
-Mon compte → Formation → « Changer de filière / d’année ». Tes salons et ton planning s’adaptent.
+Mon compte → Formation → « Changer de filière, de formation ou d’année ». Tes salons et ton planning s’adaptent.
 
 **Mon compte va être supprimé alors que je continue**  
 Mets à jour ta filière et ton année d’examen dans Mon compte, ou demande à un modérateur de prolonger la date.
+
+**Mon tuteur n’arrive pas à ouvrir le lien**  
+Vérifie qu’il a copié le lien en entier. S’il l’a perdu, désactive l’ancien et crée-en un nouveau dans ton livret.
+
+**Ma formation n’est pas dans la liste**  
+Choisis seulement ta filière et laisse « Je ne sais pas » : tu verras les contenus de ta filière. Préviens un modérateur.
+
+**Une note ou une absence est fausse**  
+Écris au formateur dans la ✉️ Messagerie : il peut la corriger.

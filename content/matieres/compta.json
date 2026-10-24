@@ -1,0 +1,46 @@
+{
+  "nom": "Compta, paie & gestion : les bases",
+  "icone": "🧮",
+  "groupe": "Gestion & comptabilité",
+  "publics": ["d:compta", "d:gestion", "bp-agora", "bts-gpme"],
+  "ordre": 10,
+  "description": "Plan comptable, débit/crédit, bilan, TVA (et le cas de la Guyane), du brut au net.",
+  "fiches": [
+    {
+      "titre": "Le plan comptable général (PCG)",
+      "contenu": "## Les classes de comptes\n| Classe | Contenu | Où ? |\n|---|---|---|\n| 1 | Capitaux (capital, emprunts) | Bilan |\n| 2 | Immobilisations (matériel, locaux) | Bilan |\n| 3 | Stocks | Bilan |\n| 4 | Tiers (clients 411, fournisseurs 401, État, salariés) | Bilan |\n| 5 | Financiers (banque 512, caisse 53) | Bilan |\n| 6 | **Charges** | Compte de résultat |\n| 7 | **Produits** | Compte de résultat |\n\n## La partie double\nChaque opération touche au moins **2 comptes** : le total au **débit** = le total au **crédit**.\n\nExemple — vente à un client à crédit : débit **411 Clients**, crédit **706 Prestations de services** (ou 707 Ventes de marchandises)."
+    },
+    {
+      "titre": "Bilan et compte de résultat",
+      "contenu": "## Le bilan : une photo du patrimoine\n- **Actif** (ce que l'entreprise possède) : immobilisations, stocks, créances clients, trésorerie.\n- **Passif** (d'où vient l'argent) : capitaux propres, dettes (emprunts, fournisseurs).\n- Toujours : **Actif = Passif**.\n\n## Le compte de résultat : le film de l'année\n**Produits − Charges = Résultat** (bénéfice si positif, perte si négatif).\n\n## Quelques indicateurs\n- **Marge commerciale** = ventes de marchandises − coût d'achat des marchandises vendues.\n- **Seuil de rentabilité** = chiffre d'affaires à partir duquel l'entreprise ne perd plus d'argent."
+    },
+    {
+      "titre": "La TVA… et le cas de la Guyane",
+      "contenu": "## En métropole\nLa TVA est collectée sur les ventes et déduite sur les achats. Taux : **20 %** (normal), **10 %**, **5,5 %**, **2,1 %**.\n\nTVA à payer = TVA collectée − TVA déductible.\n\n## En Guyane\nLa **TVA n'est pas applicable** en Guyane (comme à Mayotte), à titre provisoire selon le Code général des impôts (art. 294). En revanche, il existe l'**octroi de mer**, une taxe sur les marchandises importées et produites localement.\n\n👉 Dans tes exercices, vérifie toujours si on te parle d'une entreprise en Guyane ou ailleurs !\n\n## Calculs utiles\n- Prix TTC = HT × (1 + taux)\n- Prix HT = TTC ÷ (1 + taux)"
+    },
+    {
+      "titre": "Du salaire brut au net",
+      "contenu": "## Le principe\n**Salaire brut** − **cotisations salariales** = **net à payer** (avant impôt), puis le **prélèvement à la source** de l'impôt sur le revenu donne le **net versé**.\n\n## Les cotisations\n- **Salariales** : retenues sur le brut (retraite, CSG/CRDS…).\n- **Patronales** : payées en plus par l'employeur → **coût total employeur** = brut + cotisations patronales.\n\n## La DSN\nLa **déclaration sociale nominative** est envoyée chaque mois par l'employeur : elle transmet les salaires et cotisations aux organismes sociaux.\n\n## Sur la fiche de paie d'un apprenti\nLe salaire est un % du SMIC selon l'âge et l'année ; les apprentis bénéficient d'exonérations de cotisations sur une partie de leur salaire."
+    }
+  ],
+  "quiz": [
+    { "q": "Le compte 411 correspond à :", "choix": ["Fournisseurs", "Clients", "Banque", "Capital"], "reponse": 1, "explication": "401 = fournisseurs, 411 = clients, 512 = banque." },
+    { "q": "Les charges sont dans la classe :", "choix": ["2", "4", "6", "7"], "reponse": 2, "explication": "Classe 6 = charges, classe 7 = produits." },
+    { "q": "Dans un bilan, toujours :", "choix": ["Actif > Passif", "Actif = Passif", "Actif < Passif", "Ça dépend"], "reponse": 1, "explication": "Le bilan est toujours équilibré." },
+    { "q": "En Guyane, la TVA :", "choix": ["est à 20 %", "est à 8,5 %", "n'est pas applicable (art. 294 du CGI)", "est à 2,1 %"], "reponse": 2, "explication": "La TVA ne s'applique pas en Guyane ; l'octroi de mer existe en revanche." },
+    { "q": "Un article à 120 € TTC avec 20 % de TVA vaut HT :", "choix": ["96 €", "100 €", "104 €", "144 €"], "reponse": 1, "explication": "120 ÷ 1,2 = 100 € HT." },
+    { "q": "Résultat = ?", "choix": ["Actif − Passif", "Produits − Charges", "Ventes − Achats", "Brut − Net"], "reponse": 1, "explication": "Produits − charges : bénéfice si positif, perte si négatif." },
+    { "q": "La DSN est :", "choix": ["un impôt", "la déclaration sociale nominative mensuelle", "un contrat", "un logiciel"], "reponse": 1, "explication": "Elle transmet chaque mois les salaires et cotisations." }
+  ],
+  "cartes": [
+    { "recto": "Classe 1 à 5 du PCG", "verso": "Comptes de bilan (capitaux, immobilisations, stocks, tiers, financiers)" },
+    { "recto": "Classe 6 / Classe 7", "verso": "Charges / Produits (compte de résultat)" },
+    { "recto": "401 / 411 / 512", "verso": "Fournisseurs / Clients / Banque" },
+    { "recto": "Partie double", "verso": "Total débit = total crédit pour chaque écriture" },
+    { "recto": "TVA en Guyane", "verso": "Non applicable (art. 294 CGI) ; il y a l'octroi de mer" },
+    { "recto": "HT → TTC à 20 %", "verso": "TTC = HT × 1,2" },
+    { "recto": "Net à payer", "verso": "Brut − cotisations salariales (avant prélèvement à la source)" },
+    { "recto": "Coût employeur", "verso": "Brut + cotisations patronales" },
+    { "recto": "Seuil de rentabilité", "verso": "CA à partir duquel l'entreprise couvre toutes ses charges" }
+  ]
+}

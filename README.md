@@ -1,16 +1,49 @@
-# Classe SIO — révisions, salons et forum de classe
+# Classe CEVEDOM — l'espace en ligne des apprentis du CFA CEVEDOM
 
-Plateforme web pour une classe de BTS SIO, **réservée aux élèves** :
+Plateforme web auto-hébergée pour **les 41 formations en alternance du CFA CEVEDOM** (Cayenne, Guyane) : 5 CAP, 6 bacs pro, 11 BTS et 19 titres professionnels. Elle regroupe ce qu'apportent Pronote / Ypareo (vie de classe) et un Discord **réservé aux élèves** (entraide) :
 
-- 📖 **Révisions** : fiches de cours, cartes mémoire avec répétition espacée (1, 3, 7, 14, 30, 60 jours) et quiz corrigés, pour : réseaux, systèmes, cybersécurité, droit/RGPD, maths, culture générale (« Le vrai du faux »), anglais pro, sranan tongo & patwa, examens & portfolio. Les élèves peuvent aussi publier leurs propres fiches.
-- 💬 **Salons façon Discord** en temps réel (#general, #entraide-reseau, #cyber…) avec la liste des élèves en ligne.
-- 🗂️ **Forums** : sujets, réponses, « résolu », épinglage.
-- 🎥 **Réunions vidéo (type Teams)** : caméra, micro, **partage d'écran**, main levée, réactions, chat de réunion, indicateur « parle », plein écran. Lancement depuis la page Réunions ou en un clic depuis un salon (le lien est posté automatiquement).
-- 📰 **Actus** : une sélection « à la une » + les flux en direct du CERT-FR, IT-Connect, Le Monde Informatique, CNIL, Guyane la 1ère, L'Étudiant…
-- 🎓 **CFA & examens** : infos CFA CEVEDOM, droits de l'apprenti, calendrier BTS 2027 et compte à rebours.
-- 🛠️ **Modération** : codes d'invitation, suspension de comptes, nomination de modérateurs, gestion des salons.
+- 🎓 **Ma formation** : chaque apprenti choisit sa formation exacte. Il voit sa fiche (objectif, programme par unités ou CCP, durée, stage, débouchés, poursuites), le déroulement de son examen et **où trouver l'info officielle** (fiche RNCP France Compétences, dossier du CFA, référentiels, statistiques de réussite, ONISEP, académie, DEETS). Il y a aussi un catalogue des 41 formations, avec un filtre par filière et par domaine.
+- 📒 **Cahier de textes** : séances et travail à faire, par classe (tout le CFA, une filière ou une formation). L'élève coche ce qui est fait.
+- 📊 **Notes et moyennes** : évaluations avec barème et coefficient, codes Abs / Disp / NN, brouillon puis publication, moyenne par matière et générale. La moyenne de classe s'affiche à partir de 3 notes.
+- 🗂️ **Vie scolaire** : feuille d'appel (présent / absent / retard), l'élève prévenu justifie en ligne, l'équipe valide, synthèse des absences non justifiées.
+- 📘 **Livret d'apprentissage** : l'apprenti décrit ses périodes en entreprise. Le **tuteur** les commente, évalue (acquis / en cours / non acquis) et signe depuis un **lien personnel sans compte**. Le CFA ajoute ses remarques et ses visites en entreprise.
+- ✉️ **Messagerie formateurs ↔ élèves**, séparée des salons : pas de messages privés entre élèves, et dans un message de groupe, chaque élève ne lit que les formateurs.
+- 📖 **Révisions** : fiches, cartes mémoire avec répétition espacée et quiz. Les matières sont **ciblées par formation** : « ⭐ Pour toi » d'abord. Il y a des matières communes (droits de l'apprenti, PSE, réussir son titre pro) et par domaine (informatique, compta-paie-gestion, vente, transport-logistique, propreté-hygiène, communication-graphisme…).
+- 💬 **Salons et forums façon Discord**, 🎥 **réunions vidéo type Teams** (partage d'écran) : **réservés aux élèves**.
+- 🗓️ **Planning d'alternance**, 📝 exercices, 🏆 progression (XP, défi du jour, duels), 📰 actus, 💡 boîtes à idées, ❓ guide d'utilisation.
+- 🏫 **CFA & examens** : adresse, horaires, services, droits de l'apprenti, **examens 2027 par filière**. Les dates nationales CAP, bac pro et BTS sont ajoutées au planning. Pour les titres pro, la page explique le jury, la mise en situation, le Dossier professionnel et les ECF.
 
 **Accès réservé** : on ne peut s'inscrire qu'avec un code d'invitation. Le **premier compte créé devient modérateur**.
+
+## Comparaison avec Pronote et les logiciels du même type
+
+Outils les plus utilisés de **Pronote** (Index Éducation), **École Directe**, **Skolengo** et **Ypareo** (Ymag, très répandu dans les CFA), et ce que fait Classe CEVEDOM :
+
+| Outil | Pronote | École Directe / Skolengo | Ypareo (CFA) | Classe CEVEDOM |
+|---|---|---|---|---|
+| Cahier de textes / travail à faire | ✅ | ✅ | ✅ | ✅ séances + travail à cocher, pièces jointes |
+| Notes, moyennes, relevé | ✅ | ✅ | ✅ | ✅ barème, coef, codes, publication, relevé |
+| Appel, absences, retards | ✅ | ✅ | ✅ | ✅ feuille d'appel + notifications |
+| Justificatifs en ligne | ✅ (parents) | ✅ | ✅ | ✅ envoi par l'apprenti, validation par l'équipe |
+| Emploi du temps / planning | ✅ | ✅ | ✅ (alternance) | ✅ rythme CFA/entreprise, congés, iCal |
+| Messagerie / discussions | ✅ | ✅ | ✅ | ✅ formateurs ↔ élèves, messages de classe |
+| QCM / devoirs en ligne | ✅ | partiel | partiel | ✅ exercices avec rendus + quiz de révision |
+| Portail entreprise / tuteur | — | — | ✅ | ✅ lien tuteur : livret, avis, signature, absences |
+| Livret d'apprentissage, visites | — | — | ✅ | ✅ périodes, évaluations, visites |
+| Compétences / bulletins officiels | ✅ (LSU) | ✅ | ✅ | ➖ pas de bulletin officiel (le CFA garde son logiciel) |
+| Espace d'entraide entre élèves | — | — | — | ✅ salons, forum, réunions vidéo **sans les profs** |
+| Révisions, gamification | — | — | — | ✅ cartes, quiz, XP, défi du jour, duels |
+
+Sources : [guide de l'espace professeurs Pronote (lycée Melkior-Garré, Guyane)](https://lpo-melkior-garre.eta.ac-guyane.fr/IMG/pdf/guide-espace-professeurs-pronote.pdf), [fonctionnalités Ypareo (Dokeos)](https://www.dokeos.com/fr/partenaire/ypareo), [portail entreprise Ypareo (CFA d'Orléans Métropole)](https://cfa.orleans-metropole.fr/wp-content/uploads/portail-entreprise-2017.pdf), [note de version Skolengo 2025-2026](https://www.skolengo.com/note-de-version-skolengo-rentree-2025-2026).
+
+> Classe CEVEDOM ne remplace pas le logiciel officiel du CFA (inscriptions, contrats, OPCO, bulletins officiels). C'est un espace de classe en plus, simple et gratuit.
+
+## Formations, examens et ciblage des contenus
+
+- `content/formations.json` décrit les 41 formations, relevées sur [cfa.cevedom.com](https://cfa.cevedom.com/formations/) en octobre 2026. Pour chaque formation : RNCP, niveau, domaine, durée, stage, prérequis, objectif, programme, débouchés, poursuites et liens (fiche du CFA, dossier PDF, référentiels, statistiques, [fiche RNCP](https://www.francecompetences.fr/)). Le fichier contient aussi les **examens 2027 par filière** et la liste « où trouver l'info ». Quand le site du CFA reprenait par erreur le texte d'une autre formation (BTS ERPC, Bac pro CIEL), le fichier contient un correctif signalé.
+- Dates nationales : [calendrier 2027 CAP / bac pro (ministère)](https://www.education.gouv.fr/reussir-au-lycee/baccalaureat-brevet-cap-le-calendrier-2027-341384), [BTS 2027 (CNED)](https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027). Pour les titres pro, voir [les fondamentaux de la certification (DREETS)](https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf). Chaque filière est importée **une seule fois** dans le planning.
+- Chaque matière de révision a un champ `publics` : `"*"` (tout le monde), une filière (`"BTS"`), une formation (`"bts-sio"`) ou un domaine (`"d:transport"`). Les plus précises passent en premier dans « ⭐ Pour toi ».
+- Après une modification de `formations.json`, `POST /api/admin/reload-formations` (modérateur) recharge le fichier sans redémarrer.
 
 ## Interactivité
 
@@ -120,7 +153,7 @@ Le contenu est dans `content/guide.json`, modifiable sans toucher au code.
 
 Il faut créer un identifiant OAuth (gratuit) :
 
-1. Va sur [console.cloud.google.com](https://console.cloud.google.com/) → crée un projet (ex. « Classe SIO »).
+1. Va sur [console.cloud.google.com](https://console.cloud.google.com/) → crée un projet (ex. « Classe CEVEDOM »).
 2. **API et services → Écran de consentement OAuth** : type « Externe », nom de l'appli, ton email. Les scopes `openid`, `email` et `profile` suffisent (pas de validation Google nécessaire pour ceux-là). Passe l'appli « En production » pour que tous les élèves puissent se connecter.
 3. **Identifiants → Créer des identifiants → ID client OAuth** → « Application Web ».
    - URI de redirection autorisé : `https://TON-DOMAINE/auth/google/callback`
@@ -237,6 +270,14 @@ exercises.js     exercices des formateurs, rendus et corrections
 social.js        réactions, réponses, modification, « en train d'écrire »
 game.js          XP, niveaux, séries, badges, défi du jour, duels, classement
 ideas.js         boîtes à idées élèves / formateurs
+formations.js    catalogue des 41 formations, examens par filière, ciblage « pour ta formation »
+cible.js         classe visée : tout le CFA / une filière / une formation
+cahier.js        cahier de textes et travail à faire
+notes.js         évaluations, notes, moyennes, relevé
+viescolaire.js   appel, absences, retards, justificatifs
+messagerie.js    messagerie formateurs ↔ élèves
+livret.js        livret d'apprentissage, lien tuteur sans compte, visites
+content/formations.json  fiches des formations du CFA CEVEDOM
 content/guide.json  guide d'utilisation par rôle
 meetings.js      réunions vidéo : salles + signalisation WebRTC
 Caddyfile        HTTPS (reverse proxy Caddy)
@@ -248,5 +289,8 @@ config/          flux d'actualités
 ```
 
 ## Sécurité
+
+- **Lien tuteur** : jeton aléatoire de 192 bits, dont seule l'empreinte SHA-256 est stockée. Il est montré une seule fois, révocable et supprimé avec le compte de l'apprenti. Il est envoyé dans le corps de la requête, pas dans l'URL du serveur, et les essais de jetons invalides sont limités. Le tuteur ne voit que le livret de son apprenti, plus les absences et les notes seulement si l'apprenti l'a autorisé.
+- **Notes, absences, messagerie** : un élève ne voit que les siennes. Les statistiques de classe n'apparaissent qu'à partir de 3 notes. Les justificatifs ne sont lisibles que par l'élève et l'équipe. Un formateur ou un modérateur ne lit que les discussions dont il fait partie.
 
 Mots de passe hachés (scrypt), cookies `HttpOnly` + `SameSite=Strict`, en-têtes CSP, tout le contenu des élèves est échappé à l'affichage, limitation des tentatives de connexion. **Ne publie jamais de données réelles de ton entreprise** dans les salons (RGPD).

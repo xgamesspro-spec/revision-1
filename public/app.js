@@ -1,5 +1,5 @@
 'use strict';
-/* Classe SIO — application monopage (sans framework) */
+/* Classe CEVEDOM — application monopage (sans framework) */
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -177,6 +177,18 @@ function connectStream() {
     if (r?.name === 'exercices' && (!r.id || +r.id === d.id)) softRefresh(() => loadView(), 'Exercice mis à jour');
     else if (r?.name === 'accueil') softRefresh(() => viewHome());
   });
+  es.addEventListener('cahier', () => {
+    const n = state.route?.name;
+    if (n === 'cahier') softRefresh(() => viewCahier(state.route), 'Cahier de textes mis à jour');
+    else if (n === 'accueil') softRefresh(() => viewHome());
+  });
+  es.addEventListener('convs', e => {
+    const d = JSON.parse(e.data);
+    const r = state.route;
+    if (r?.name === 'messages' && r.id && +r.id === d.id) softRefresh(() => viewConversation(r), 'Nouveau message');
+    else if (r?.name === 'messages' && !r.id) softRefresh(() => viewMessages(r), 'Nouveau message');
+    else refreshMsgBadge();
+  });
   es.addEventListener('ideas', e => {
     const d = JSON.parse(e.data);
     if (state.route?.name === 'idees' && (!ideasState.box || ideasState.box === d.box)) softRefresh(() => viewIdeas({ q: {} }), 'Nouvelles idées');
@@ -205,12 +217,18 @@ function parseRoute() {
 }
 window.addEventListener('hashchange', () => {
   $('.shell')?.classList.remove('nav-open');
+  const tut = location.hash.match(/^#\/tuteur\/([A-Za-z0-9_-]{20,})/);
+  if (tut) { state.tuteurMode = true; return renderTuteur(tut[1]); }
+  if (state.tuteurMode) return location.reload();
   if (!state.user) return renderAuth();
   if (state.user.must_change || state.user.needs_profile) return;
   route();
 });
 
 async function boot() {
+  // Espace tuteur : page à part, sans compte
+  const tut = location.hash.match(/^#\/tuteur\/([A-Za-z0-9_-]{20,})/);
+  if (tut) { state.tuteurMode = true; return renderTuteur(tut[1]); }
   try { state.setup = await api('GET', '/api/setup'); } catch { state.setup = { filieres: [] }; }
   try {
     const { user } = await api('GET', '/api/me');
@@ -237,6 +255,7 @@ function render() {
   if (state.user.role !== 'prof') api('GET', '/api/meetings').then(m => { state.meetings = m; renderSidebar(); }).catch(() => {});
   if (state.user.role !== 'prof') api('GET', '/api/meetings/config').then(c => { state.meetConfig = c; }).catch(() => {});
   api('GET', '/api/notifications').then(d => setUnread(d.unread)).catch(() => {});
+  refreshMsgBadge();
   api('GET', '/api/reactions/emojis').then(e => { state.emojis = e; }).catch(() => {});
   if (state.user.role !== 'prof') loadProgress();
   swRegistration();
@@ -293,17 +312,25 @@ function renderSidebar() {
   const groups = {};
   others.forEach(c => (groups[c.filiere_nom] ||= []).push(c));
   sb.innerHTML = `
-    <div class="brand"><div class="logo">S</div><div>Classe SIO<small>CFA CEVEDOM</small></div></div>
+    <div class="brand"><div class="logo">C</div><div>Classe CEVEDOM<small>CFA CEVEDOM</small></div></div>
     <div class="side-scroll">
       ${link('#/', '🏠', 'Accueil', r.name === 'accueil')}
       ${link('#/planning', '🗓️', 'Planning', r.name === 'planning')}
+      <div class="side-title">${isAdmin || isProf ? 'Vie de classe' : 'Ma scolarité'}</div>
+      ${link('#/cahier', '📒', 'Cahier de textes', r.name === 'cahier', state.todoCount || '')}
       ${link('#/exercices', '📝', 'Exercices', r.name === 'exercices')}
+      ${link('#/notes', '📊', isAdmin || isProf ? 'Notes' : 'Mes notes', r.name === 'notes')}
+      ${link('#/viescolaire', '🗂️', 'Vie scolaire', r.name === 'viescolaire', state.aJustifier || '')}
+      ${link('#/livret', '📘', isAdmin || isProf ? 'Livrets d’apprentissage' : 'Livret d’apprentissage', r.name === 'livret')}
+      ${link('#/messages', '✉️', 'Messagerie', r.name === 'messages', state.unreadMsgs || '')}
+      ${isAdmin || isProf ? '' : link('#/formation', '🎓', 'Ma formation', r.name === 'formation')}
+      <div class="side-title">Réviser & progresser</div>
       ${link('#/revisions', '📖', 'Révisions', r.name === 'revisions')}
       ${link('#/progression', '🏆', 'Progression', r.name === 'progression', state.progress && !state.progress.daily_done && state.progress.plays ? '🎯' : (state.progress?.duels_todo || ''))}
       ${isProf ? '' : link('#/reunions', '🎥', 'Réunions', r.name === 'reunions' || r.name === 'reunion', (state.meetings || []).filter(m => m.count).length ? `<span class="live">● ${(state.meetings || []).filter(m => m.count).length}</span>` : '')}
       <a class="nav-link ${r.name === 'notifications' ? 'active' : ''}" href="#/notifications"><span class="ico">🔔</span><span>Notifications</span><span class="badge" id="notif-badge" ${state.unreadNotifs ? '' : 'hidden'}>${state.unreadNotifs > 99 ? '99+' : state.unreadNotifs || ''}</span></a>
       ${link('#/actus', '📰', 'Actus', r.name === 'actus')}
-      ${link('#/infos', '🎓', 'CFA & examens', r.name === 'infos')}
+      ${link('#/infos', '🏫', 'CFA & examens', r.name === 'infos' || r.name === 'formations')}
       ${link('#/idees', '💡', 'Boîte à idées', r.name === 'idees')}
       ${link('#/guide', '❓', 'Guide', r.name === 'guide')}
       ${isAdmin ? link('#/admin', '🛠️', 'Modération', r.name === 'admin') : ''}
@@ -343,7 +370,7 @@ const actions = {
 // ---------- Vues ----------
 async function loadView() {
   const r = state.route;
-  const views = { progression: viewProgression, idees: viewIdeas, guide: viewGuide, planning: viewPlanning, exercices: viewExercises, notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
+  const views = { progression: viewProgression, idees: viewIdeas, cahier: viewCahier, notes: viewNotes, viescolaire: viewVieScolaire, messages: viewMessages, livret: viewLivret, formation: viewFormation, formations: viewFormations, guide: viewGuide, planning: viewPlanning, exercices: viewExercises, notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
   const fn = views[r.name] || viewHome;
   state.loadingHash = location.hash;
   const seq = state.loadSeq = (state.loadSeq || 0) + 1;
@@ -359,8 +386,11 @@ async function loadView() {
 async function viewHome() {
   setTitle(`Salut ${esc(state.user.display_name)} 👋`, 'Ton tableau de bord');
   const d = await api('GET', '/api/dashboard');
-  const days = Math.ceil((new Date(d.infos.examens.debut + 'T00:00:00') - new Date()) / 864e5);
+  const ex = d.examen;
+  const days = ex?.date ? Math.ceil((new Date(ex.date + 'T00:00:00') - new Date()) / 864e5) : null;
   const u = state.user;
+  state.todoCount = d.travail.length; state.unreadMsgs = d.messages_non_lus; state.aJustifier = d.viescolaire?.a_justifier || 0;
+  renderSidebar();
   const prompt = await pushPromptHtml();
   const gameW = u.role !== 'prof' ? await homeGameWidget() : '';
   setContent(`
@@ -372,18 +402,24 @@ async function viewHome() {
       ${!d.alternance.configure ? '🔁 <b>Indique tes jours au CFA</b> pour voir ton alternance. <a href="#/planning">Régler mon rythme</a>'
         : d.alternance.aujourdhui === 'cfa' ? '🏫 Aujourd’hui : <b>au CFA</b>' : d.alternance.aujourdhui === 'entreprise' ? '🏢 Aujourd’hui : <b>en entreprise</b>' : '🛋️ <b>Week-end</b>'}
       ${d.alternance.configure ? `<span class="small muted"> · CFA le ${d.alternance.jours_cfa.map(n => DAYS_FR[n].toLowerCase()).join(', ')}</span>` : ''}</div>` : ''}
+    ${u.role === 'eleve' && !u.formation ? `<div class="card" style="border-color:var(--accent);margin-bottom:16px">🎓 <b>Indique ta formation exacte</b> (ex. BTS NDRC, TP Gestionnaire de paie…) pour avoir ta fiche formation, tes examens et les révisions qui te concernent. <a href="#/compte">Mon compte</a></div>` : ''}
+    ${d.viescolaire?.a_justifier ? `<a class="card alt-banner" href="#/viescolaire" style="display:block;margin-bottom:16px;text-decoration:none;color:inherit">🚩 <b>${d.viescolaire.a_justifier} absence(s) ou retard(s) à justifier</b> — envoie ton justificatif dans Vie scolaire.</a>` : ''}
+    ${d.messages_non_lus ? `<a class="card" href="#/messages" style="display:block;margin-bottom:16px;text-decoration:none;color:inherit;border-color:var(--accent)">✉️ <b>${d.messages_non_lus} message(s) non lu(s)</b> dans ta messagerie</a>` : ''}
     <div class="grid grid-2" style="margin-bottom:16px">
       <div class="card"><div class="row"><h3 style="margin:0">🗓️ À venir</h3><span class="spacer"></span><a class="small" href="#/planning">Planning</a></div>
         ${d.evenements.length ? d.evenements.map(e => `<a class="ev-row" href="#/planning?date=${e.occ_start}" style="--c:${TYPE_STYLE[e.type]?.c}"><span class="ev-time">${new Date(e.occ_start).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })}${e.all_day ? '' : ' ' + hhmm(e.occ_start)}</span><span class="ev-title">${evLabel(e)}</span></a>`).join('') : '<p class="muted small">Rien de prévu.</p>'}</div>
-      <div class="card"><div class="row"><h3 style="margin:0">📝 Exercices à faire</h3><span class="spacer"></span><a class="small" href="#/exercices">Tous</a></div>
-        ${d.exercices.length ? d.exercices.map(x => `<a class="ev-row" href="#/exercices/${x.id}" style="--c:#d99a1e"><span class="ev-time">${x.due_at ? new Date(x.due_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) : '—'}</span><span class="ev-title">${esc(x.title)}${x.subject ? ` <span class="pill">${esc(x.subject)}</span>` : ''}</span></a>`).join('') : `<p class="muted small">${u.role === 'eleve' ? 'Rien à rendre 🎉' : 'Voir la page Exercices pour publier et corriger.'}</p>`}</div>
+      <div class="card"><div class="row"><h3 style="margin:0">📝 Travail à faire</h3><span class="spacer"></span><a class="small" href="#/exercices">Tous</a></div>
+        ${d.travail.map(x => `<a class="ev-row" href="#/cahier" style="--c:#3b6fd4"><span class="ev-time">${frDay(x.pour_le)}</span><span class="ev-title">📒 ${esc(x.titre)}${x.matiere ? ` <span class="pill">${esc(x.matiere)}</span>` : ''}</span></a>`).join('')}
+        ${d.exercices.length ? d.exercices.map(x => `<a class="ev-row" href="#/exercices/${x.id}" style="--c:#d99a1e"><span class="ev-time">${x.due_at ? new Date(x.due_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) : '—'}</span><span class="ev-title">${esc(x.title)}${x.subject ? ` <span class="pill">${esc(x.subject)}</span>` : ''}</span></a>`).join('') : d.travail.length ? '' : `<p class="muted small">${u.role === 'eleve' ? 'Rien à rendre 🎉' : 'Publie un exercice ou remplis le cahier de textes.'}</p>`}</div>
     </div>
     <div class="grid grid-3">
-      <div class="card countdown">
-        <div class="small" style="opacity:.8">Premières épreuves écrites (${esc(d.infos.examens.session)})</div>
+      <a class="card countdown" href="#/infos" style="text-decoration:none">
+        ${ex?.date ? `<div class="small" style="opacity:.8">Prochaine épreuve ${esc(ex.filiere)} 2027</div>
         <div class="stat">${days > 0 ? `J-${days}` : 'C’est parti !'}</div>
-        <div class="small" style="opacity:.8">${new Date(d.infos.examens.debut + 'T12:00:00').toLocaleDateString('fr-FR', { dateStyle: 'long' })}</div>
-      </div>
+        <div class="small" style="opacity:.8">${esc(ex.titre)} · ${new Date(ex.date + 'T12:00:00').toLocaleDateString('fr-FR', { dateStyle: 'long' })}</div>`
+        : ex ? `<div class="small" style="opacity:.8">Ton examen (${esc(ex.filiere)})</div><div class="stat">🏅</div><div class="small" style="opacity:.8">${esc(ex.titre)}</div>`
+        : '<div class="small" style="opacity:.8">Examens</div><div class="stat">🎓</div><div class="small" style="opacity:.8">Dates et déroulement par filière</div>'}
+      </a>
       <a class="card subject-card" href="#/revisions">
         <div class="muted small">Cartes à réviser</div>
         <div class="stat">${d.cartes_a_revoir}</div>
@@ -392,7 +428,7 @@ async function viewHome() {
       <a class="card subject-card" href="#/actus">
         <div class="muted small">Veille</div>
         <div class="stat">📰</div>
-        <div class="small muted">Actus cyber, réseau, RGPD, Guyane, BTS</div>
+        <div class="small muted">Actus de la Guyane, de l'alternance et des métiers</div>
       </a>
     </div>
     <div class="grid grid-2" style="margin-top:16px">
@@ -414,12 +450,12 @@ async function viewHome() {
 // Liste des matières
 async function viewSubjects() {
   setTitle('Révisions', 'Fiches, cartes mémoire et quiz');
-  const subjects = await api('GET', '/api/subjects');
-  const groups = [...new Set(subjects.map(s => s.groupe))];
-  setContent(groups.map(g => `
-    <div class="section-title">${esc(g)}</div>
-    <div class="grid grid-3">
-      ${subjects.filter(s => s.groupe === g).map(s => `
+  const all = await api('GET', '/api/subjects');
+  const eleve = state.user.role === 'eleve';
+  // Élève : d'abord ce qui concerne sa formation (le plus précis en premier), le reste plus bas
+  const mine = eleve ? all.filter(s => s.pour_toi).sort((a, b) => b.pertinence - a.pertinence) : all;
+  const rest = eleve ? all.filter(s => !s.pour_toi) : [];
+  const card = s => `
         <a class="card subject-card" href="#/revisions/${s.id}">
           <div class="emoji">${s.icone}</div>
           <h3 style="margin-top:8px">${esc(s.nom)}</h3>
@@ -429,8 +465,13 @@ async function viewSubjects() {
             ${s.meilleur_quiz != null ? `<span class="spacer"></span><span class="pill ${s.meilleur_quiz >= .7 ? 'ok' : 'gold'}">Quiz ${Math.round(s.meilleur_quiz * 100)}%</span>` : ''}
           </div>
           <div class="progress" title="Cartes maîtrisées"><div style="width:${s.cartes ? Math.round(s.maitrise / s.cartes * 100) : 0}%"></div></div>
-        </a>`).join('')}
-    </div>`).join(''));
+        </a>`;
+  const byGroup = list => [...new Set(list.map(s => s.groupe))].map(g => `<div class="section-title">${esc(g)}</div>
+    <div class="grid grid-3">${list.filter(s => s.groupe === g).map(card).join('')}</div>`).join('');
+  setContent(`
+    ${eleve ? `<p class="muted small">${state.user.formation ? `Matières choisies pour <b>${esc(state.user.formation_nom)}</b>.` : `Matières pour les ${esc(state.user.filiere_nom || 'apprentis')}. <a href="#/compte">Indique ta formation exacte</a> pour un choix plus précis.`}</p>` : ''}
+    ${eleve ? `<div class="section-title">⭐ Pour toi</div><div class="grid grid-3">${mine.map(card).join('')}</div>` : byGroup(mine)}
+    ${rest.length ? `<details class="card" style="margin-top:20px"><summary style="cursor:pointer"><b>📚 Autres matières du CFA (${rest.length})</b> <span class="small muted">— pour aller plus loin</span></summary>${byGroup(rest)}</details>` : ''}`);
 }
 
 // Une matière
@@ -961,37 +1002,6 @@ async function viewNews(r) {
         </div>
       </a>`).join('')}</div>` : `<div class="card empty">Aucune actu récupérée pour le moment (le serveur doit avoir accès à Internet).</div>`}
     ${n.indisponibles.length ? `<p class="small muted">Sources injoignables : ${n.indisponibles.map(esc).join(', ')}</p>` : ''}`);
-}
-
-// ---------- CFA & examens ----------
-async function viewInfos() {
-  setTitle('CFA & examens', 'CFA CEVEDOM · BTS session 2027');
-  const { cfa, examens } = await api('GET', '/api/infos');
-  const today = new Date().toISOString().slice(0, 10);
-  setContent(`
-    <div class="grid grid-2">
-      <div class="card">
-        <h2>🎓 ${esc(cfa.nom)}</h2>
-        <p>${esc(cfa.description)}</p>
-        <p><b>Rythme :</b> ${esc(cfa.rythme)}</p>
-        <h3>Horaires d'accueil</h3>
-        <ul>${cfa.horaires.map(h => `<li>${esc(h)}</li>`).join('')}</ul>
-        <h3>Liens</h3>
-        <ul>${cfa.sites.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.titre)}</a></li>`).join('')}</ul>
-      </div>
-      <div class="card">
-        <h2>📅 ${esc(examens.session)}</h2>
-        <div class="timeline">
-          ${examens.dates.map(d => `<div class="ev ${d.date < today ? 'past' : ''}"><b>${new Date(d.date + 'T12:00:00').toLocaleDateString('fr-FR', { dateStyle: 'long' })}</b><div>${esc(d.titre)}</div></div>`).join('')}
-        </div>
-        <p class="small muted">${esc(examens.note)}<br>Source : <a href="${esc(examens.source.url)}" target="_blank" rel="noopener noreferrer">${esc(examens.source.titre)}</a></p>
-      </div>
-    </div>
-    <div class="card" style="margin-top:16px">
-      <h3>⚖️ Tes droits d'apprenti</h3>
-      <ul>${cfa.droits_apprenti.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
-      <p class="small muted">${esc(cfa.source)}</p>
-    </div>`);
 }
 
 boot();

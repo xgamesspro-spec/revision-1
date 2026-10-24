@@ -1,7 +1,8 @@
 {
-  "nom": "Anglais professionnel",
+  "nom": "Anglais professionnel (informatique)",
   "icone": "🇬🇧",
   "groupe": "Enseignement général",
+  "publics": ["d:numerique"],
   "ordre": 7,
   "description": "Vocabulaire IT, tickets, mails, phrases pour l'oral.",
   "fiches": [

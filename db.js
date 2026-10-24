@@ -94,14 +94,13 @@ const count = db.prepare('SELECT COUNT(*) AS n FROM channels').get().n;
 if (count === 0) {
   const ins = db.prepare('INSERT INTO channels (name, kind, description, position) VALUES (?, ?, ?, ?)');
   [
-    ['general', 'chat', 'Discussions libres de la classe', 1],
-    ['entraide-reseau', 'chat', 'Subnetting, VLAN, routage, Packet Tracer…', 2],
-    ['entraide-systemes', 'chat', 'Windows Server, AD, Linux, virtualisation', 3],
-    ['cyber', 'chat', 'Cybersécurité, veille, CTF', 4],
-    ['alternance', 'chat', 'Vie en entreprise, tuteurs, contrats', 5],
+    ['general', 'chat', 'Discussions libres entre apprentis du CFA', 1],
+    ['entraide', 'chat', 'Un exercice bloque ? On s’entraide, toutes formations confondues', 2],
+    ['alternance', 'chat', 'Vie en entreprise, tuteurs, contrats, salaire', 3],
+    ['bons-plans', 'chat', 'Logement, transport, offres d’alternance, événements en Guyane', 4],
     ['questions-cours', 'forum', 'Pose une question précise, la classe répond. Marque le sujet comme résolu.', 10],
     ['partage-ressources', 'forum', 'Liens, annales, tutos, fiches à partager', 11],
-    ['examens-2027', 'forum', 'Organisation des épreuves, portfolio, oraux blancs', 12],
+    ['examens-2027', 'forum', 'Organisation des épreuves, dossiers, oraux blancs, sessions de titre pro', 12],
   ].forEach(c => ins.run(...c));
 }
 

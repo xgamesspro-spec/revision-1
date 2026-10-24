@@ -1,0 +1,40 @@
+{
+  "nom": "Réussir ta session de titre pro",
+  "icone": "🏅",
+  "groupe": "Examens",
+  "publics": ["TP"],
+  "ordre": 0,
+  "description": "Jury, mise en situation, dossier professionnel (DP), ECF, CCP, REAC : tout pour ta certification.",
+  "fiches": [
+    {
+      "titre": "Comment se passe la session",
+      "contenu": "## Pas de date nationale\nC'est le **CFA** qui organise la session d'examen, à la fin de ta formation (ou à la fin d'un bloc). Ta date est sur ta convocation.\n\n## Devant qui ?\nUn **jury d'au moins 2 professionnels** du métier, habilités par l'État (au moins 3 ans d'expérience dans le métier).\n\n## Les épreuves\n1. **Mise en situation professionnelle (MSP)** : tu réalises un travail comme en entreprise (cas pratique, simulation, production).\n2. Selon le titre : **entretien technique**, **questionnaire professionnel** ou questions sur tes productions.\n3. **Entretien final** avec le jury : ton parcours, ta vision du métier, ton **Dossier professionnel**.\n\n## Ce que le jury regarde\nLes résultats des épreuves + ton **DP** + ton **livret d'ECF** (évaluations passées pendant la formation)."
+    },
+    {
+      "titre": "Le Dossier professionnel (DP)",
+      "contenu": "## C'est quoi ?\nUn document où tu **prouves ta pratique** : pour chaque activité type du titre, tu décris des exemples réels réalisés **en entreprise** (ou en formation).\n\n## Pour chaque exemple\n- le **contexte** (entreprise, service, demande) ;\n- **ce que tu as fait**, étape par étape, avec les outils utilisés ;\n- **avec qui** tu as travaillé ;\n- le **résultat** obtenu.\n\n## Astuces\n- Écris au fil de l'eau : note chaque semaine dans ton **livret d'apprentissage** ce que tu fais en entreprise, tu t'en serviras pour le DP.\n- Pas de données confidentielles de l'entreprise : anonymise (noms, chiffres, clients).\n- Fais relire par ton formateur et ton tuteur."
+    },
+    {
+      "titre": "CCP, REAC, RC : le vocabulaire",
+      "contenu": "## CCP — Certificat de compétences professionnelles\nUn titre est découpé en **blocs** (activités types). Chaque bloc validé donne un **CCP**, acquis **définitivement**.\n\n## Si tu ne valides pas tout\nTes CCP réussis restent acquis : tu repasses seulement ceux qui manquent, lors d'une autre session.\n\n## REAC — Référentiel emploi activités compétences\nDécrit le métier : activités types, compétences, savoirs. C'est **ce que tu dois savoir faire**.\n\n## RC — Référentiel de certification\nDécrit **comment tu es évalué** : épreuves, durées, critères. Lis-le avant l'examen !\n\n👉 Les deux sont dans la page *Ma formation*, rubrique *Référentiels*."
+    }
+  ],
+  "quiz": [
+    { "q": "Qui fixe la date de ta session de titre pro ?", "choix": ["Le ministère, au niveau national", "Le CFA (centre agréé)", "Ton entreprise", "Toi"], "reponse": 1, "explication": "Il n'y a pas de date nationale : le centre agréé organise la session." },
+    { "q": "Combien de membres au minimum dans le jury ?", "choix": ["1", "2", "3", "5"], "reponse": 1, "explication": "Un jury collégial d'au moins 2 professionnels habilités." },
+    { "q": "Dans le Dossier professionnel, tu mets :", "choix": ["ton CV", "des exemples réels de ta pratique", "tes notes du CFA", "une lettre de motivation"], "reponse": 1, "explication": "Le DP rassemble les preuves de ta pratique professionnelle." },
+    { "q": "Un CCP validé…", "choix": ["est perdu si tu rates le reste", "reste acquis définitivement", "est valable 1 an", "doit être repassé"], "reponse": 1, "explication": "Les CCP sont acquis définitivement : tu ne repasses que ceux qui manquent." },
+    { "q": "Le document qui explique comment tu seras évalué :", "choix": ["REAC", "RC (référentiel de certification)", "DP", "ECF"], "reponse": 1, "explication": "Le RC décrit les épreuves ; le REAC décrit le métier." },
+    { "q": "Les ECF, ce sont :", "choix": ["les épreuves finales", "les évaluations passées en cours de formation", "les fiches de paie", "les congés"], "reponse": 1, "explication": "Évaluations en cours de formation, rassemblées dans un livret présenté au jury." }
+  ],
+  "cartes": [
+    { "recto": "MSP", "verso": "Mise en situation professionnelle : l'épreuve pratique devant le jury" },
+    { "recto": "DP", "verso": "Dossier professionnel : preuves de ta pratique en entreprise" },
+    { "recto": "ECF", "verso": "Évaluations en cours de formation (livret présenté au jury)" },
+    { "recto": "CCP", "verso": "Certificat de compétences professionnelles : un bloc du titre, acquis définitivement" },
+    { "recto": "REAC", "verso": "Référentiel emploi activités compétences : ce que tu dois savoir faire" },
+    { "recto": "RC", "verso": "Référentiel de certification : comment tu es évalué" },
+    { "recto": "Jury de titre pro", "verso": "Au moins 2 professionnels du métier habilités" },
+    { "recto": "Qui valide les résultats ?", "verso": "Les services de l'État (DEETS en Guyane), qui te les notifient" }
+  ]
+}

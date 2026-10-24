@@ -1,0 +1,2011 @@
+{
+ "source": "Fiches formations relevées sur cfa.cevedom.com (catalogue de 41 formations), octobre 2026. En cas de doute, la fiche RNCP (France Compétences) et le référentiel officiel font foi.",
+ "domaines": {
+  "gestion": "Gestion, administration & RH",
+  "compta": "Comptabilité, paie, banque & assurance",
+  "commerce": "Commerce & relation client",
+  "transport": "Transport & logistique",
+  "numerique": "Numérique & informatique",
+  "communication": "Communication & industries graphiques",
+  "proprete": "Propreté & hygiène"
+ },
+ "niveaux": {
+  "3": "Niveau 3 (CAP)",
+  "4": "Niveau 4 (Bac)",
+  "5": "Niveau 5 (Bac+2)",
+  "6": "Niveau 6 (Bac+3/4)"
+ },
+ "commun": {
+  "cout": "Formation gratuite pour l'apprenti : financée par l'OPCO de l'employeur.",
+  "entree": "Test de positionnement obligatoire (prise de rendez-vous en ligne), puis entrée en formation au plus tôt 3 jours après l'accord de l'entreprise.",
+  "rythme": "Rythme indicatif : entreprise du lundi au mercredi, CFA le jeudi et le vendredi (à confirmer avec ton planning).",
+  "validation_blocs": "Toutes les formations peuvent se valider par blocs : unités (diplômes) ou CCP (titres professionnels)."
+ },
+ "examens": {
+  "CAP": {
+   "type": "Diplôme de l'Éducation nationale (académie de Guyane)",
+   "comment": [
+    "Épreuves générales écrites nationales + épreuves professionnelles organisées par l'académie.",
+    "En apprentissage, c'est le CFA qui t'inscrit à l'examen : vérifie ta convocation.",
+    "Les horaires en Guyane sont décalés par rapport à la métropole : fie-toi à ta convocation."
+   ],
+   "dates": [
+    {
+     "date": "2027-05-03",
+     "titre": "Langue vivante (oral) : à partir du 3 mai, dates fixées par l'académie"
+    },
+    {
+     "date": "2027-05-31",
+     "titre": "Langue vivante (écrit)"
+    },
+    {
+     "date": "2027-06-01",
+     "titre": "PSE + Français"
+    },
+    {
+     "date": "2027-06-02",
+     "titre": "Mathématiques – physique-chimie"
+    },
+    {
+     "date": "2027-09-13",
+     "titre": "Session de remplacement (13–14 septembre)"
+    }
+   ],
+   "source": {
+    "titre": "Ministère de l'Éducation nationale — calendrier 2027",
+    "url": "https://www.education.gouv.fr/reussir-au-lycee/baccalaureat-brevet-cap-le-calendrier-2027-341384"
+   }
+  },
+  "BACPRO": {
+   "type": "Diplôme de l'Éducation nationale (académie de Guyane)",
+   "comment": [
+    "Épreuves générales écrites nationales en juin + épreuves professionnelles (pratique, dossiers, oral) organisées par l'académie.",
+    "En apprentissage, c'est le CFA qui t'inscrit à l'examen : vérifie ta convocation.",
+    "Les horaires en Guyane sont décalés par rapport à la métropole : fie-toi à ta convocation."
+   ],
+   "dates": [
+    {
+     "date": "2027-05-24",
+     "titre": "Maths – physique-chimie (épreuves sur ordinateur, du 24 mai au 4 juin)"
+    },
+    {
+     "date": "2027-06-03",
+     "titre": "Langue vivante A"
+    },
+    {
+     "date": "2027-06-04",
+     "titre": "Langue vivante B"
+    },
+    {
+     "date": "2027-06-07",
+     "titre": "Arts appliqués et cultures artistiques"
+    },
+    {
+     "date": "2027-06-08",
+     "titre": "Français"
+    },
+    {
+     "date": "2027-06-09",
+     "titre": "Histoire-géographie – EMC"
+    },
+    {
+     "date": "2027-06-14",
+     "titre": "Prévention, santé, environnement (PSE)"
+    },
+    {
+     "date": "2027-06-15",
+     "titre": "Économie-droit / Économie-gestion"
+    },
+    {
+     "date": "2027-09-06",
+     "titre": "Épreuves de remplacement (6–17 septembre)"
+    }
+   ],
+   "source": {
+    "titre": "Ministère de l'Éducation nationale — calendrier 2027",
+    "url": "https://www.education.gouv.fr/reussir-au-lycee/baccalaureat-brevet-cap-le-calendrier-2027-341384"
+   }
+  },
+  "BTS": {
+   "type": "Diplôme national de l'Enseignement supérieur (académie de Guyane)",
+   "comment": [
+    "Épreuves communes nationales en mai (culture générale, langue, CEJM, maths selon le BTS) + épreuves professionnelles écrites et orales.",
+    "Inscription à l'examen par le CFA à l'automne : vérifie ton récapitulatif d'inscription.",
+    "Les dates des oraux sont fixées par l'académie au 1er trimestre 2027."
+   ],
+   "dates": [
+    {
+     "date": "2026-11-12",
+     "titre": "Fin des inscriptions à l'examen (vérifie la date de l'académie de Guyane)"
+    },
+    {
+     "date": "2027-05-11",
+     "titre": "Culture générale et expression (E1)"
+    },
+    {
+     "date": "2027-05-12",
+     "titre": "CEJM (selon le BTS)"
+    },
+    {
+     "date": "2027-05-13",
+     "titre": "Langue vivante"
+    },
+    {
+     "date": "2027-05-14",
+     "titre": "Mathématiques (selon le BTS)"
+    },
+    {
+     "date": "2027-05-20",
+     "titre": "Épreuves professionnelles écrites (20–21 mai, selon le BTS)"
+    }
+   ],
+   "source": {
+    "titre": "CNED — calendrier BTS session 2027",
+    "url": "https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027"
+   }
+  },
+  "TP": {
+   "type": "Titre professionnel du ministère du Travail",
+   "comment": [
+    "Pas de date nationale : le CFA organise une session d'examen à la fin de ta formation (ou à la fin d'un CCP).",
+    "Devant un jury d'au moins 2 professionnels du métier, tu passes une mise en situation professionnelle (avec parfois un entretien technique ou un questionnaire), puis un entretien final.",
+    "Le jury regarde aussi ton Dossier professionnel (DP), où tu mets les preuves de ta pratique en entreprise, et ton livret d'évaluations passées en cours de formation (ECF).",
+    "Si tu ne valides qu'une partie, tes CCP réussis restent acquis et tu peux repasser ceux qui manquent.",
+    "Les résultats sont validés par les services de l'État (DEETS en Guyane), qui te les envoient."
+   ],
+   "dates": [],
+   "source": {
+    "titre": "DREETS — Les fondamentaux de la certification (titres professionnels)",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   }
+  }
+ },
+ "ou_trouver": {
+  "tous": [
+   {
+    "titre": "Fiche officielle RNCP de ta formation (France Compétences)",
+    "quoi": "Compétences, blocs, débouchés, équivalences : la référence officielle",
+    "lien": "rncp"
+   },
+   {
+    "titre": "Dossier d'information du CFA (PDF)",
+    "quoi": "Programme, durée, rythme, modalités, contacts",
+    "lien": "dossier"
+   },
+   {
+    "titre": "Référentiel officiel (PDF)",
+    "quoi": "Tout ce qui peut tomber à l'examen",
+    "lien": "referentiels"
+   },
+   {
+    "titre": "Statistiques du CFA",
+    "quoi": "Taux de réussite, d'insertion, de satisfaction de ta formation",
+    "lien": "stats"
+   },
+   {
+    "titre": "Page de ta formation sur le site du CFA",
+    "quoi": "Infos à jour et inscription",
+    "lien": "cfa"
+   },
+   {
+    "titre": "ONISEP",
+    "quoi": "Fiches métiers et diplômes, poursuites d'études",
+    "url": "https://www.onisep.fr"
+   }
+  ],
+  "diplome": [
+   {
+    "titre": "Académie de Guyane",
+    "quoi": "Examens, convocations, résultats",
+    "url": "https://www.ac-guyane.fr"
+   },
+   {
+    "titre": "Calendrier national des examens 2027 (Éduscol)",
+    "quoi": "Dates officielles CAP / bac pro",
+    "url": "https://eduscol.education.gouv.fr/5697/dates-des-examens-2027"
+   }
+  ],
+  "tp": [
+   {
+    "titre": "Comment se passe la certification d'un titre pro (DREETS)",
+    "quoi": "Jury, mise en situation, dossier professionnel, ECF",
+    "url": "https://paca.dreets.gouv.fr/sites/paca.dreets.gouv.fr/IMG/pdf/1_2024_les_fondamentaux_de_la_certification.pdf"
+   },
+   {
+    "titre": "Interlocuteurs formation en Guyane (Centre Inffo)",
+    "quoi": "DEETS, CTG, OPCO… qui fait quoi",
+    "url": "https://www.centre-inffo.fr/site-regions-formation/donnees-regionales/interlocuteurs/guyane"
+   }
+  ]
+ },
+ "formations": [
+  {
+   "id": "tp-aph",
+   "nom": "TP Agent de propreté et d'hygiène",
+   "filiere": "TP",
+   "niveau": 3,
+   "domaine": "proprete",
+   "rncp": "RNCP37872",
+   "duree": "2 ans ou moins en fonction du profil",
+   "stage": "22 semaines",
+   "prerequis": "Fréquenter une classe de 3ème; bonne aisance à l'oral et à l'écrit",
+   "objectif": "Former un agent qui nettoie divers locaux (bureaux, hôpitaux, ateliers) par entretien courant, remise en état, bionettoyage et gestion des déchets, avec machines et produits adaptés. Il contrôle aussi la qualité de son travail et assure une maintenance de premier niveau.",
+   "programme": [
+    "CCP 1 - Réaliser une prestation de nettoyage manuel (nettoyage manuel des surfaces, des sanitaires, bionettoyage en environnement spécifique)",
+    "CCP 2 - Réaliser une prestation de nettoyage ou de remise en état mécanisés (nettoyage mécanisé, remise en état mécanisée)"
+   ],
+   "poursuites": [
+    "Mention Complémentaire Sécurité civile et d'entreprise",
+    "BAC PRO Hygiène, propreté, stérilisation"
+   ],
+   "debouches": [
+    "Valet de chambre",
+    "Agent de propreté et d'hygiène"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-agent-de-proprete-et-dhygiene",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-CAP-AGENT-DE-PROPRETE-ET-DHYGIENE-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REAC_APH_V05_23022018.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/RCV2_APH_V05_23022018.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-agent-de-proprete-et-dhygiene",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37872/"
+   }
+  },
+  {
+   "id": "tp-acom",
+   "nom": "TP Assistant commercial",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "commerce",
+   "rncp": "RNCP35031",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "8 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus; bonne pratique de l'anglais",
+   "objectif": "Former un assistant commercial, interface entre clients, structure et commerciaux, capable d'administrer les ventes, de suivre la supply chain et de contribuer à la stratégie commerciale.",
+   "programme": [
+    "CCP 1 : Administrer les ventes et assurer le suivi de la supply chain (gérer l'administration des ventes; suivre les opérations de la supply chain; suivre la relation clientèle en français et en anglais; prévenir et gérer les impayés)",
+    "CCP 2 : Contribuer au déploiement de la stratégie commerciale de l'entreprise (concevoir et publier des supports de communication commerciale; concevoir et actualiser les tableaux de bord commerciaux; organiser une action commerciale; assurer l'accueil d'une manifestation commerciale en français et en anglais)"
+   ],
+   "poursuites": [
+    "Poursuite d'étude envisageable, à discuter avec le CFA"
+   ],
+   "debouches": [
+    "Assistant commercial",
+    "Assistant administratif et commercial",
+    "Assistant ADV",
+    "Assistant commercial Supply chain",
+    "Assistant ADV et marketing"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/assistante-commerciale-niveau-iii-bac-2",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-TP-ASSISTANT-COMMERCIAL-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_ACOM_V03_31072020.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REV2_ACOM_V03_31072020.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-assistante-commercial",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/35031/"
+   }
+  },
+  {
+   "id": "tp-ad",
+   "nom": "TP Assistant de direction",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "gestion",
+   "rncp": "RNCP38667",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "6 semaines",
+   "prerequis": "Diplômés de niveau 4 (BAC) et plus; bonne pratique de l'anglais",
+   "objectif": "Assister la direction au quotidien, faciliter la prise de décisions, gérer le traitement et le partage de l'information, et soutenir la gestion de projets.",
+   "programme": [
+    "CCP1 : aide quotidienne à la direction et outils de pilotage",
+    "CCP2 : gestion, organisation et partage de l'information (en français et en anglais)",
+    "CCP3 : gestion de projets, événements, communication et appui RH"
+   ],
+   "poursuites": [
+    "Poursuite d'études envisageable, à discuter avec le CFA"
+   ],
+   "debouches": [
+    "Assistant de direction",
+    "Assistant de manager",
+    "Office manager"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-assistant-de-direction",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-TP-ASSISTANT-DE-DIRECTION-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_AD_V03_28052019.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REV2_AD_V03_28052019.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-assistante-de-direction",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38667/"
+   }
+  },
+  {
+   "id": "tp-aie",
+   "nom": "TP Assistant import-export",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "commerce",
+   "rncp": "RNCP36964",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "8 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus. Pratique de l’anglais à l’oral et à l’écrit.",
+   "objectif": "Assurer l’administration des ventes ou des achats à l’international, organiser et suivre les opérations logistiques internationales, et assurer l’assistanat commercial à l’international.",
+   "programme": [
+    "CCP 1 : Assurer l’administration des ventes ou des achats à l’international, y compris en anglais",
+    "CCP 2 : Organiser, coordonner et suivre les opérations logistiques internationales, y compris en anglais",
+    "CCP 3 : Assurer l’assistanat commercial à l’international, y compris en anglais"
+   ],
+   "poursuites": [
+    "Poursuite d’étude envisageable après ce parcours (contacter le CFA pour en discuter)"
+   ],
+   "debouches": [
+    "Assistant import-export",
+    "Assistant commerce international",
+    "Assistant commercial import-export",
+    "Gestionnaire/technicien administration des ventes export",
+    "Adjoint au responsable administration des ventes",
+    "Coordinateur commercial et administratif export",
+    "Coordinateur service client export",
+    "Adjoint au responsable export",
+    "Gestionnaire logistique",
+    "Assistant import",
+    "Assistant achat",
+    "Assistant négoce international"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-assistante-import-export",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-ASSISTANT-IMPORT-EXPORT-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_AIE_V04_30072020.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REV2_AIE_V04_30072020.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-assistante-import-export",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/36964/"
+   }
+  },
+  {
+   "id": "tp-arh",
+   "nom": "TP Assistant ressources humaines",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "gestion",
+   "rncp": "RNCP35030",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "6 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) ou plus",
+   "objectif": "Assurer une partie ou la totalité de la gestion administrative du personnel dans le cadre légal, et contribuer au recrutement et au développement des compétences.",
+   "programme": [
+    "CCP 1 : Assurer les missions opérationnelles de la gestion des ressources humaines (gestion administrative du personnel ; gestion des variables et paramètres de paie ; mise en place et suivi des indicateurs RH)",
+    "CCP 2 : Contribuer au développement des ressources humaines (opérations de gestion des emplois et carrières ; processus de recrutement et d'intégration ; élaboration et suivi du développement des compétences)"
+   ],
+   "poursuites": [
+    "Poursuite d'étude envisageable, à discuter avec le CFA",
+    "Passerelle : les CCP validés peuvent être reconnus pour d'autres titres professionnels de même niveau ou supérieur",
+    "Formations similaires : BTS gestion de la PME ; BTS support à l'action managériale"
+   ],
+   "debouches": [
+    "Assistant ressources humaines",
+    "Assistant formation",
+    "Assistant recrutement",
+    "Assistant RH et paie",
+    "Gestionnaire des emplois et carrières",
+    "Chargé des ressources humaines"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-assistant-ressources-humaines",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-TP-ASSISTANT-RESSOURCES-HUMAINES-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_ARH_V03_03082020.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REV2_ARH_V03_03082020.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-assistante-ressources-humaines",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/35030/"
+   }
+  },
+  {
+   "id": "tp-ca",
+   "nom": "TP Comptable assistant",
+   "filiere": "TP",
+   "niveau": 4,
+   "domaine": "compta",
+   "rncp": "RNCP37121",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "4 semaines",
+   "prerequis": "Diplômés de niveau 3 (CAP/Brevet des collèges) et plus; une première année de lycée fréquentée; aisance à l'écrit et à l'oral",
+   "objectif": "Former au métier de comptable assistant : travaux courants de comptabilité, paie et déclarations sociales, clôture d'exercice et indicateurs de gestion. Le titre se valide aussi par blocs de compétences (CCP).",
+   "programme": [
+    "CCP 1 : Assurer les travaux courants de comptabilité (documents commerciaux, documents bancaires et trésorerie, déclarations de TVA, contrôle et rectification des comptes)",
+    "CCP 2 : Réaliser les travaux courants de paie (bulletins de paie, déclarations sociales)",
+    "CCP 3 : Préparer la fin d'exercice comptable et fiscal et calculer des éléments de gestion (ajustements de clôture, résultat fiscal, déclarations fiscales annuelles, indicateurs de gestion)"
+   ],
+   "poursuites": [
+    "TP Gestionnaire comptable et fiscal"
+   ],
+   "debouches": [
+    "Comptable",
+    "Assistant comptable",
+    "Assistant de cabinet comptable",
+    "Collaborateur de cabinet comptable",
+    "Comptable clients",
+    "Comptable fournisseurs",
+    "Comptable trésorerie",
+    "Comptable spécialisé",
+    "Technicien comptable"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/comptable-assistant-niveau-iv-bac",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-COMPTABLE-ASSISTANT-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_CA_V08_13122017.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/RCV2_CA_V08_13122017.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-comptable-assistante",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37121/"
+   }
+  },
+  {
+   "id": "tp-cda",
+   "nom": "TP Concepteur développeur d'applications",
+   "filiere": "TP",
+   "niveau": 6,
+   "domaine": "numerique",
+   "rncp": "RNCP37873",
+   "duree": "1 an ou moins en fonction du profil",
+   "stage": "12 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 5 (BAC) et plus; pratique courante de l'informatique et des outils mobiles; anglais à l'oral et à l'écrit",
+   "objectif": "Former à la conception et au développement de composants d'interface utilisateur, de la persistance des données et d'applications multicouches réparties, en intégrant des recommandations de sécurité.",
+   "programme": [
+    "CCP 1 : Composants d'interface utilisateur sécurisés (maquettage, interfaces desktop et web, accès aux données, front-end et back-end)",
+    "CCP 2 : Persistance des données sécurisée (conception, mise en place et développement de composants de base de données)",
+    "CCP 3 : Application multicouche répartie sécurisée (gestion de projet, conception, composants métier, couches, application mobile, tests et déploiement)"
+   ],
+   "poursuites": [
+    "TP Concepteur développeur de solutions digitales",
+    "BTS Services Informatiques aux Organisations",
+    "Licence informatique"
+   ],
+   "debouches": [
+    "Concepteur développeur, concepteur d'applications informatiques",
+    "Développeur d'applications, développeur informatique",
+    "Développeur web, développeur back-end",
+    "Développeur d'applications mobiles, développeur web mobile",
+    "Ingénieur d'études et développement"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-concepteur-developpeur-dapplications",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-CONCEPTEUR-DEVELOPPEUR-DAPPLICATION-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_CDA_V03_03052018.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/RCV2_CDA_V03_03052018.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-concepteur-developpeur-dapplications",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37873/"
+   }
+  },
+  {
+   "id": "tp-cc",
+   "nom": "TP Conseiller commercial",
+   "filiere": "TP",
+   "niveau": 4,
+   "domaine": "commerce",
+   "rncp": "RNCP37717",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "8 semaines",
+   "prerequis": "Diplômés de niveau 3 (CAP/Brevet) et plus, avec une première année de lycée et une aisance à l'écrit et à l'oral",
+   "objectif": "Former à la prospection et à la vente en face à face de produits et services auprès d'entreprises et de particuliers. Le parcours couvre aussi la veille, le plan d'actions commerciales, le suivi des ventes et la fidélisation.",
+   "programme": [
+    "CCP 1 : Prospecter un secteur de vente (veille, plan d'actions commerciales, prospection à distance et physique, analyse des performances)",
+    "CCP 2 : Vendre en face à face des produits et services référencés (représentation de l'entreprise, entretien de vente, suivi des ventes, fidélisation)"
+   ],
+   "poursuites": [
+    "TP Négociateur technico-commercial"
+   ],
+   "debouches": [
+    "Conseiller commercial",
+    "Attaché commercial",
+    "Commercial",
+    "Prospecteur commercial",
+    "Délégué commercial"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-conseiller-commercial",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-TP-CONSEILLER-COMMERCIAL-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REAC_CC_V08_15012018.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/RCV2_CC_V08_15012018.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-conseiller-commercial",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37717/"
+   }
+  },
+  {
+   "id": "tp-dwwm",
+   "nom": "TP Développeur web et web mobile",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "numerique",
+   "rncp": "RNCP37674",
+   "duree": "1 an ou moins en fonction du profil",
+   "stage": "10 Semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus. Bonne pratique de l'anglais à l'oral et à l'écrit.",
+   "objectif": "Former à la création de la partie visuelle et de la partie serveur d'applications web ou web mobile, en intégrant les recommandations de sécurité.",
+   "programme": [
+    "CCP 1 : Développer la partie front-end d'une application web ou web mobile",
+    "CCP 2 : Développer la partie back-end d'une application web ou web mobile"
+   ],
+   "poursuites": [
+    "Bachelor en Digital Marketing Manager",
+    "Concepteur développeur d'application"
+   ],
+   "debouches": [
+    "Développeur web",
+    "Développeur web front-end",
+    "Développeur web back-end",
+    "Développeur web fullstack",
+    "Développeur web mobile",
+    "Informaticien de développement"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-developpeur-web-et-web-mobile",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-DEVELOPPEUR-WEB-ET-WEB-MOBILE-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_DWWM_V03_03052018.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/RCV2_DWWM_V03_03052018.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-developpeur-web-et-web-mobile",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37674/"
+   }
+  },
+  {
+   "id": "tp-eaa",
+   "nom": "TP Employé administratif et d'accueil",
+   "filiere": "TP",
+   "niveau": 3,
+   "domaine": "gestion",
+   "rncp": "RNCP36803",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "6 semaines",
+   "prerequis": "Diplômés de niveau 3 (CAP/Brevet des collèges) et plus, avec fréquentation d'une première année de lycée",
+   "objectif": "Réaliser les travaux administratifs courants d'une structure et assurer son accueil.",
+   "programme": [
+    "CCP 1 : Réaliser les travaux administratifs courants d'une structure",
+    "CCP 2 : Assurer l'accueil d'une structure"
+   ],
+   "poursuites": [
+    "TP Secrétaire assistante",
+    "TP Assistant manager d'unité marchande",
+    "TP Vendeur conseil en magasin"
+   ],
+   "debouches": [
+    "Agent administratif",
+    "Employé administratif",
+    "Employé de bureau",
+    "Agent d'accueil"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-employe-administratif-et-daccueil",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-TP-EMPLOYE-ADMINISTRATIF-ET-DACCUEIL-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_EAA_V02_18042018.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/RCV2_EAA_V02_18042018.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-employe-administratif-et-daccueil",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/36803/"
+   }
+  },
+  {
+   "id": "tp-etrm",
+   "nom": "TP Exploitant en transport routier de marchandises",
+   "filiere": "TP",
+   "niveau": 4,
+   "domaine": "transport",
+   "rncp": "RNCP39132",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "6 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 3 (CAP/Brevet des collèges) et plus, avec une première année de lycée fréquentée",
+   "objectif": "Former à l'encadrement des conducteurs ou sous-traitants et à la transmission des documents nécessaires aux opérations de transport, dans le respect des réglementations.",
+   "programme": [
+    "CCP 1 : Concevoir et organiser une prestation de transport terrestre de marchandises y compris à l'international",
+    "CCP 2 : Mettre en œuvre et piloter les opérations de transport jusqu'à la clôture du dossier"
+   ],
+   "poursuites": [
+    "TP Gestionnaire des opérations de transport routier de marchandises",
+    "BTS Gestion des transports et logistique associée"
+   ],
+   "debouches": [
+    "Agent d'exploitation transport routier de marchandises",
+    "Agent de planning",
+    "Affréteur",
+    "Assistant d'exploitation",
+    "Dispatcheur / Répartiteur transport routier de marchandises",
+    "Exploitant transport",
+    "Employé du service exploitation",
+    "Technicien d'exploitation",
+    "Employé du Service Après-Vente (SAV) du transport routier de marchandises"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-exploitant-en-transport-routier-de-marchandises",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-EXPLOITANT-EN-TRANSPORT-ROUTIER-DE-MARCHANDISES-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_ETRM_V07_01072019.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REV2_ETRM_V07_01072019.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-exploitant-en-transport-routier-de-marchandises",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/39132/"
+   }
+  },
+  {
+   "id": "tp-ertrv",
+   "nom": "TP Exploitant régulateur en transport routier de voyageurs",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "transport",
+   "rncp": "RNCP39792",
+   "duree": "1 an ou moins en fonction du profil",
+   "stage": "5 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus",
+   "objectif": "Former à concevoir et optimiser un réseau de lignes d'autobus et d'autocars, planifier conducteurs et véhicules, superviser les prestations et veiller à la qualité de service et à la rentabilité.",
+   "programme": [
+    "CCP 1 : Piloter et réguler les opérations de transport routier de voyageurs",
+    "CCP 2 : Élaborer et mettre en œuvre les opérations de transport routier de voyageurs"
+   ],
+   "poursuites": [
+    "TP Gestionnaire des opérations de transport routier de marchandises",
+    "BTS Gestion des transports et logistique associée"
+   ],
+   "debouches": [
+    "Technicien d'exploitation de lignes",
+    "Technicien d'exploitation transport routier de personnes",
+    "Agent d'exploitation",
+    "Coordinateur d'exploitation",
+    "Agent de planning",
+    "Responsable planification",
+    "Chargé méthodes",
+    "Technicien méthodes",
+    "Technicien études et méthodes",
+    "Régulateur réseau transport routier de personnes"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-exploitant-regulateur-en-transport-routier-de-voyageurs",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-EXPLOITANT-REGULATEUR-EN-TRANSPORT-ROUTIER-DE-VOYAGEURS-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_ERTRV_V07_30082019.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REV2_ERTRV_V07_30082019.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-tp-exploitant-regulateur-de-transport-routier-de-voyageurs",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/39792/"
+   }
+  },
+  {
+   "id": "tp-gcf",
+   "nom": "TP Gestionnaire comptable et fiscal",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "compta",
+   "rncp": "RNCP37949",
+   "duree": "1 an ou moins en fonction du profil",
+   "stage": "6 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) ou plus.",
+   "objectif": "Former à la tenue de la comptabilité et aux déclarations fiscales associées, avec l'élaboration de documents de gestion. Le diplôme vise à arrêter et présenter les comptes annuels, établir et contrôler les déclarations fiscales, et mettre en œuvre des outils d'analyse et de prévisions.",
+   "programme": [
+    "CCP 1 : Arrêter, contrôler et présenter les comptes annuels",
+    "CCP 2 : Etablir et contrôler les déclarations fiscales",
+    "CCP 3 : Mettre en œuvre des outils d'analyse et de prévisions de l'activité de l'entreprise"
+   ],
+   "poursuites": [
+    "Poursuite d'étude envisageable après ce parcours (prendre contact pour en discuter)"
+   ],
+   "debouches": [
+    "Comptable gestionnaire",
+    "Comptable",
+    "Comptable unique",
+    "Comptable général",
+    "Collaborateur de cabinet comptable",
+    "Chef comptable",
+    "Responsable comptable",
+    "Responsable comptable et financier"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/gestionnaire-comptable-et-fiscal",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-TP-GESTIONNAIRE-COMPTABLE-ET-FISCAL-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-REAC-GCF_V08_30082018.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-RCV2-GCF_V08_30082018.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-gestionnaire-comptable-et-fiscal",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37949/"
+   }
+  },
+  {
+   "id": "tp-gp",
+   "nom": "TP Gestionnaire de paie",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "compta",
+   "rncp": "RNCP37948",
+   "duree": "1 an ou moins en fonction du profil",
+   "stage": "6 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) ou plus",
+   "objectif": "Assurer le suivi et le contrôle des informations sociales pour réaliser une paie fiable, conforme à la législation, aux conventions collectives et aux contrats de travail.",
+   "programme": [
+    "CCP 1 : Assurer la tenue et le suivi du dossier social de l'entreprise",
+    "CCP 2 : Assurer la production de la paie et élaborer les données de synthèse"
+   ],
+   "poursuites": [
+    "Poursuite d'étude envisageable sur demande de contact auprès du centre",
+    "Passerelle : validation du titre ou de CCP donne accès à des CCP d'autres TP de même niveau ou supérieur",
+    "Formations similaires : TP Gestionnaire comptable et fiscal, BTS Comptabilité et gestion, BTS Support de l'action managériale, BTS Gestion de la PME"
+   ],
+   "debouches": [
+    "Gestionnaire de paie",
+    "Gestionnaire paie et administration du personnel",
+    "Collaborateur paie",
+    "Comptable spécialisé paie"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-gestionnaire-de-paie",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-GESTIONNAIRE-DE-PAIE-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_GP_V03_24062021.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REV2_GP_V03_24062021-1.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-gestionnaire-de-paie",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37948/"
+   }
+  },
+  {
+   "id": "tp-gotrm",
+   "nom": "TP Gestionnaire des opérations de transport routier de marchandises",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "transport",
+   "rncp": "RNCP34881",
+   "duree": "1 an ou moins en fonction du profil",
+   "stage": "9 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) ou plus.",
+   "objectif": "Former à étudier la faisabilité des transports selon les objectifs de l'entreprise et le volume d'activité, en proposant des solutions techniques et en recourant si besoin à la sous-traitance. Prendre en compte la rentabilité, la satisfaction client et le développement durable.",
+   "programme": [
+    "CCP 1 : Élaborer et mettre en œuvre une offre globale de transport routier de marchandises, y compris à l'international",
+    "CCP 2 : Piloter les trafics réguliers sous contrat de sous-traitance",
+    "CCP 3 : Optimiser l'ensemble des moyens liés à l'activité de transport"
+   ],
+   "poursuites": [
+    "Poursuite d'étude envisageable, à discuter avec le CFA",
+    "Formation similaire : BTS Gestion des transports et logistique associée"
+   ],
+   "debouches": [
+    "Exploitant transport",
+    "Technicien d'exploitation",
+    "Agent d'exploitation transport",
+    "Employé du Service Après-Vente (SAV) du transport routier de marchandises",
+    "Responsable du Service Après-Vente (SAV) du transport routier de marchandises",
+    "Affréteur",
+    "Dispatcheur",
+    "Responsable camionnage",
+    "Chef de service camionnage",
+    "Superviseur camionnage",
+    "Chef de trafic",
+    "Responsable opérationnel transport",
+    "Responsable d'exploitation transport",
+    "Gestionnaire de transport"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-gestionnaire-des-operations-de-transport-routier-de-marchandises",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-GESTIONNAIRE-DES-OPERATIONS-TRANSPORT-ROUTIER-DE-MARCHANDISES-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REAC_GOTRM_V02_09092020.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REV2_GOTRM_V02_09092020.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-gestionnaire-des-operations-de-transport-routier-de-marchandises",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/34881/"
+   }
+  },
+  {
+   "id": "tp-ntc",
+   "nom": "TP Négociateur technico-commercial",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "commerce",
+   "rncp": "RNCP39063",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "10 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) ou plus",
+   "objectif": "Former un négociateur qui exploite les ventes sur un secteur géographique défini, élabore une stratégie commerciale omnicanal, prospecte à distance et physiquement, et conçoit et négocie des solutions techniques ou de services.",
+   "programme": [
+    "CCP 1 : stratégie commerciale omnicanal pour un secteur géographique défini (veille, plan d'actions, fidélisation, bilan)",
+    "CCP 2 : prospection et négociation d'une proposition commerciale (prospection, conception de solution, négociation)"
+   ],
+   "poursuites": [
+    "TP Manager d'univers commercial",
+    "TP Responsable de petite ou moyenne structure"
+   ],
+   "debouches": [
+    "Technico-commercial",
+    "Chargé d'affaires",
+    "Attaché commercial"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-negociateur-technico-commercial",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-TP-NEGOCIATEUR-TECHNICO-COMMERCIAL-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REAC_NTC_V05.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/RC_NTC.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-negociateur-technico-commercial",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/39063/"
+   }
+  },
+  {
+   "id": "tp-otamm",
+   "nom": "TP Organisateur de transports aériens ou maritimes de marchandises",
+   "filiere": "TP",
+   "niveau": 5,
+   "domaine": "transport",
+   "rncp": "RNCP34882",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "6 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus, avec une bonne pratique de l'anglais",
+   "objectif": "Former des professionnels qui organisent et coordonnent le transport international de marchandises par voie aérienne ou maritime, en conseillant le client sur le mode et les solutions les plus adaptés.",
+   "programme": [
+    "CCP1 : Construire, y compris en anglais, une offre de prestation de transport overseas (étude des solutions, cotation tarifaire, rentabilité des opérations)",
+    "CCP2 : Mettre en œuvre une opération de transit overseas à l'export ou à l'import jusqu'à la clôture du dossier (transit aérien, transit maritime, coordination et suivi des phases)"
+   ],
+   "poursuites": [
+    "Poursuite d'étude envisageable, à discuter avec le centre de formation"
+   ],
+   "debouches": [
+    "Agent d'exploitation de transit maritime",
+    "Agent d'exploitation de transit aérien",
+    "Agent de transit maritime",
+    "Agent de transit export",
+    "Agent de transit import",
+    "Technicien de transit",
+    "Technicien d'opérations multimodales de transport international de marchandises",
+    "Employé de transit qualifié",
+    "Taxateur / Taxatrice",
+    "Coordinateur de transit import/export",
+    "Chef de service transit"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-organisateur-de-transports-aeriens-ou-maritimes-de-marchandises",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-ORGANISATEUR-DE-TRANSPORTS-AERIENS-OU-MARITIMES-DE-MARCHANDISES-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/ReferentielActivitesCompetencesEvaluationTPOTAMM.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REV2_OTAMM_V02_09092020.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-organisateur-de-transports-aeriens-ou-maritimes-de-marchandises",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/34882/"
+   }
+  },
+  {
+   "id": "tp-sa",
+   "nom": "TP Secrétaire assistant",
+   "filiere": "TP",
+   "niveau": 4,
+   "domaine": "gestion",
+   "rncp": "RNCP36804",
+   "duree": "1 an ou moins selon le profil",
+   "stage": "5 semaines",
+   "prerequis": "Diplômés de niveau 3 (CAP/Brevet) et plus, première année de lycée fréquentée, aisance à l'écrit et à l'oral",
+   "objectif": "Former à l'appui administratif d'une équipe (communication et organisation des activités) et au traitement des opérations commerciales et RH.",
+   "programme": [
+    "CCP1 : appui à la communication des informations et à l'organisation des activités d'équipe",
+    "CCP2 : administration des achats et ventes, suivi clientèle, tableaux de suivi commercial, suivi administratif du personnel"
+   ],
+   "poursuites": [
+    "Poursuite d'études envisageable, sur demande de contact",
+    "Passerelle : la validation du titre ou de CCP ouvre des CCP d'autres titres de même niveau ou supérieur"
+   ],
+   "debouches": [
+    "Secrétaire",
+    "Secrétaire administratif",
+    "Secrétaire polyvalent",
+    "Assistant administratif",
+    "Assistant d'équipe",
+    "Assistant d'entreprise"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/secretaire-assistant-niveau-iv-bac",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-TP-SECRETAIRE-ASSISTANT-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REAC_SA_V10_12122017.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/RCV2_SA_V10_12122017.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-secretaire-assistante-2",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/36804/"
+   }
+  },
+  {
+   "id": "tp-sc",
+   "nom": "TP Secrétaire comptable",
+   "filiere": "TP",
+   "niveau": 4,
+   "domaine": "compta",
+   "rncp": "RNCP37123",
+   "duree": "1 an ou moins en fonction du profil",
+   "stage": "4 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 3 (CAP/Brevet des collèges) et plus; fréquentation d'une première année de lycée; aisance dans l'expression écrite et orale",
+   "objectif": "Former au métier de secrétaire comptable : assistanat administratif auprès d'un responsable ou d'une équipe, et travaux courants de comptabilité et de paie. Maîtrise d'Excel et des logiciels de comptabilité et de bureautique.",
+   "programme": [
+    "CCP 1 : Assister une équipe dans la communication des informations et l'organisation des activités",
+    "CCP 2 : Traiter les opérations administratives liées à la gestion commerciale et aux ressources humaines",
+    "CCP 3 : Assurer les travaux courants de comptabilité",
+    "CCP 4 : Préparer la paie et les déclarations sociales courantes"
+   ],
+   "poursuites": [
+    "Poursuite d'étude envisageable après ce parcours (contact auprès du CFA)",
+    "Passerelle : les CCP validés donnent accès à des CCP d'autres TP de même niveau ou d'un niveau supérieur"
+   ],
+   "debouches": [
+    "Secrétaire comptable",
+    "Secrétaire",
+    "Secrétaire administratif",
+    "Secrétaire polyvalent",
+    "Assistant administratif",
+    "Secrétaire facturier"
+   ],
+   "certificateur": "Ministère du Travail",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/tp-secretaire-comptable",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-TP-SECRETAIRE-COMPTABLE-2025-01-1.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REAC_SC_V08_13122017.pdf",
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/RCV2_SC_V08_13122017.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-tp-secretaire-comptable",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37123/"
+   }
+  },
+  {
+   "id": "cap-aph",
+   "nom": "CAP Agent de propreté et d'hygiène",
+   "filiere": "CAP",
+   "niveau": 3,
+   "domaine": "proprete",
+   "rncp": "RNCP39938",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Fréquenter une classe de 3ème",
+   "objectif": "Former un professionnel qui nettoie des locaux (bureaux, grands magasins, hôpitaux, ateliers) : entretien courant, remise en état, bionettoyage et gestion des déchets, avec machines et produits spécifiques. Il contrôle aussi la qualité de son travail et réalise une maintenance de premier niveau.",
+   "programme": [
+    "UP1 - Techniques d'entretien courant",
+    "UP2 - Techniques de remise en état",
+    "UP3 - Techniques de bionettoyage",
+    "UG1 - Français, histoire-géographie et enseignement moral et civique",
+    "UG2 - Mathématiques, sciences physiques et chimiques",
+    "UG3 - Éducation physique et sportive"
+   ],
+   "poursuites": [
+    "Mention Complémentaire Sécurité civile et d'entreprise",
+    "BAC PRO Hygiène, propreté, stérilisation"
+   ],
+   "debouches": [
+    "Valet de chambre",
+    "Agent de propreté et d'hygiène"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/cap-agent-de-proprete-et-dhygiene",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2023/12/DOSSIER-DINFORMATION-POUR-LA-FORMATION-CFA-CAP-AGENT-DE-PROPRETE-ET-DHYGIENE-2023-09-26.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/referentiel-CAP-APH.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-cap-agent-de-proprete-et-dhygiene",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/39938/"
+   }
+  },
+  {
+   "id": "cap-epc",
+   "nom": "CAP Équipier polyvalent du commerce",
+   "filiere": "CAP",
+   "niveau": 3,
+   "domaine": "commerce",
+   "rncp": "RNCP34947",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Fréquenter une classe de 3ème",
+   "objectif": "Former des professionnels du commerce exerçant dans un cadre omnicanal au sein d'une unité commerciale. Permet aussi une poursuite d'études en bac professionnel du secteur commercial.",
+   "programme": [
+    "Unité 1 : Recevoir et suivre les commandes",
+    "Unité 2 : Mettre en valeur et approvisionner",
+    "Unité 3 : Conseiller et accompagner le client dans son parcours d'achat",
+    "Unité 4 : Prévention-santé-environnement",
+    "Unité 5 : Français, Histoire-géographie et Enseignement moral et civique",
+    "Unité 6 : Mathématiques-Sciences physiques et chimiques",
+    "Unité 7 : Éducation physique et sportive",
+    "Unité 8 : Langue vivante",
+    "Unité facultative : Langue vivante"
+   ],
+   "poursuites": [
+    "Bac pro Métiers du commerce et de la vente option A : animation et gestion de l'espace commercial",
+    "Bac pro Métiers du commerce et de la vente option B : prospection clientèle et valorisation de l'offre commerciale"
+   ],
+   "debouches": [
+    "Employé de libre-service, de grande surface, de rayon",
+    "Équipier de vente",
+    "Équipier polyvalent",
+    "Équipier de caisse",
+    "Équipier de commerce",
+    "Employé de libre-service caissier, caissier de libre-service, hôte / hôtesse de caisse",
+    "Employé de commerce"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/cap-equipier-polyvalent-du-commerce",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/07/DOSSIER-DINFORMATION-CFA-CAP-EQUIPIER-POLYVALENT-DU-COMMERCE-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REFERENTIEL-CAP-EQUIPIER-POLYVALENT-DU-COMMERCE.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-cap-equipier-polyvalent-du-commerce",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/34947/"
+   }
+  },
+  {
+   "id": "cap-ol",
+   "nom": "CAP Opérateur logistique",
+   "filiere": "CAP",
+   "niveau": 3,
+   "domaine": "transport",
+   "rncp": "RNCP37672",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Fréquenter une classe de 3ème",
+   "objectif": "Former un diplômé polyvalent, capable de travailler au contact des clients ou des fournisseurs, et pouvant conduire des chariots élévateurs pour charger ou décharger les marchandises.",
+   "programme": [
+    "UP1 - Prise en charge des flux entrants et sortants",
+    "UP2 - Conduite de chariots en sécurité",
+    "UP3 - Étude de situations professionnelles",
+    "UG1 - Français, Histoire-géographie et Enseignement moral et civique",
+    "UG2 - Mathématiques, Sciences physiques et chimiques",
+    "UG3 - Éducation physique et sportive"
+   ],
+   "poursuites": [
+    "BAC PRO Logistique",
+    "BAC PRO Organisation de transport de marchandises"
+   ],
+   "debouches": [
+    "agent de quai",
+    "manutentionnaire",
+    "employé/e d'un service logistique",
+    "préparateur/trice de commande",
+    "magasinier/ère",
+    "cariste",
+    "chargeur-déchargeur",
+    "conditionneur/euse",
+    "opérateur/opératrice logistique",
+    "agent de réception",
+    "agent d'expédition"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/cap-operateur-logistique",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-CAP-OPERATEUR-LOGISTIQUE-2025-01.pdf",
+    "referentiels": [],
+    "stats": "https://cfa.cevedom.com/stat-cap-operateur-logistique",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37672/"
+   }
+  },
+  {
+   "id": "cap-si",
+   "nom": "CAP Sérigraphie industrielle",
+   "filiere": "CAP",
+   "niveau": 3,
+   "domaine": "communication",
+   "rncp": "RNCP38411",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Fréquenter une classe de 3ème",
+   "objectif": "Le titulaire du CAP peut devenir conducteur de machines à impression. Il réalise des travaux d'impression conformes à un dossier de fabrication analysé au préalable.",
+   "programme": [
+    "Unité 1 — Réalisation et mise en œuvre des procédés",
+    "Unité 2 — Analyse d'un dossier technique",
+    "Unité G1 — Français, Histoire-géographie et Enseignement moral et civique",
+    "Unité G2 — Mathématiques-Sciences physiques et chimiques",
+    "Unité G3 — Éducation physique et sportive",
+    "Unité G4 — Langue vivante"
+   ],
+   "poursuites": [
+    "Bac pro Réalisation de produits imprimés et plurimédia option B productions imprimées"
+   ],
+   "debouches": [
+    "Sérigraphe"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/cap-serigraphie-industrielle",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-CAP-SERIGRAPHIE-INDUSTRIELLE-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/CAP-SERIGRAPHIE-INDUSTRIELLE.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-cap-serigraphie-industrielle",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38411/"
+   }
+  },
+  {
+   "id": "cap-tf",
+   "nom": "CAP Transport fluvial",
+   "filiere": "CAP",
+   "niveau": 3,
+   "domaine": "transport",
+   "rncp": "RNCP38571",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Fréquenter une classe de 3ème",
+   "objectif": "Former des matelots qualifiés pour la conduite, l’entretien et l’exploitation d’une embarcation de transport fluvial.",
+   "programme": [
+    "Unité Professionnel 1 : Analyse d’une situation professionnelle",
+    "Unité Professionnel 2 : Réalisation du transport fluvial",
+    "Unité G1 : Français, Histoire-géographie et Enseignement moral et civique",
+    "Unité G2 : Mathématiques-Sciences physiques et chimiques",
+    "Unité G3 : Éducation physique et sportive"
+   ],
+   "poursuites": [
+    "BAC PRO Opérateur logistique",
+    "BAC PRO Organisation de transport de marchandises",
+    "BAC PRO Transport fluvial"
+   ],
+   "debouches": [
+    "Batelier",
+    "Marin fluvial",
+    "Mécanicien de pêche",
+    "Marinier"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/cap-transport-fluvial",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-CAP-TRANSPORT-FLUVIAL-2025-01.pdf",
+    "referentiels": [],
+    "stats": "https://cfa.cevedom.com/stat-cap-transport-fluvial",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38571/"
+   }
+  },
+  {
+   "id": "bp-agora",
+   "nom": "Bac pro AGOrA (Assistance à la gestion des organisations et de leurs activités)",
+   "filiere": "BACPRO",
+   "niveau": 4,
+   "domaine": "gestion",
+   "rncp": "RNCP34606",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Diplôme de niveau 3 (DNB, CFG, CAP) et fréquenter une classe de 1re",
+   "objectif": "Apporter un appui à un dirigeant de petite structure, à un ou plusieurs cadres ou à une équipe, en assurant des missions d'interface, de coordination et d'organisation administrative.",
+   "programme": [
+    "Unité 11 - Économie-droit",
+    "Unité 12 - Mathématiques",
+    "Unité 2 - Organiser et suivre l'activité de production",
+    "Unité 31 - Gestion des relations avec les clients, usagers et adhérents",
+    "Unité 32 - Administration du personnel",
+    "Unité 33 - Préventions, santé, environnement",
+    "Unité 41 - Langue vivante étrangère 1",
+    "Unité 42 - Langue vivante étrangère 2",
+    "Unité 51 - Français",
+    "Unité 52 - Histoire-Géographie et enseignement moral et civique",
+    "Unité 6 - Arts appliqués et cultures artistiques",
+    "Unité 7 - Éducation physique et sportive",
+    "Unité facultative 2 - EPS",
+    "Unité facultative 3 - Mobilité"
+   ],
+   "poursuites": [
+    "BTS Comptabilité et gestion",
+    "BTS Gestion de la PME",
+    "BTS SAM",
+    "BTS NDRC",
+    "DUT GEA (différentes options)",
+    "DUT GACO"
+   ],
+   "debouches": [
+    "Assistant de gestion",
+    "Gestionnaire administratif",
+    "Employé administratif",
+    "Secrétaire",
+    "Assistant ressources humaines",
+    "Assistant comptable",
+    "Assistant commercial"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bac-pro-assistance-a-la-gestion-des-organisations-et-leurs-activites",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-BAC-PRO-ASSISTANCE-A-LA-GESTION-DES-ORGANISATIONS-ET-DE-LEURS-ACTIVITES-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2025/03/Referentiel-BCP-AGOrA-2025-03-18.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bac-pro-assistance-a-la-gestion-des-organisations-et-leurs-activites",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/34606/"
+   }
+  },
+  {
+   "id": "bp-log",
+   "nom": "Bac pro Logistique",
+   "filiere": "BACPRO",
+   "niveau": 4,
+   "domaine": "transport",
+   "rncp": "RNCP38302",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Diplôme de niveau 3 (DNB, CFG, CAP) et fréquentation d'une classe de 1ère",
+   "objectif": "Le titulaire prépare et réalise les opérations de réception, de mise en stock, de préparation et d'expédition des commandes, en utilisant des engins de manutention. Il respecte les procédures, les règles de sécurité et les normes qualité et environnementales.",
+   "programme": [
+    "Unité 2 : Étude de situations professionnelles",
+    "Unité 31 : Pratique de la logistique en milieu professionnel",
+    "Unité 32 : Conduite d'engins de manutention",
+    "Unité 33 : Prévention santé environnement",
+    "Unité 11 : Économie-droit",
+    "Unité 12 : Mathématiques",
+    "Unités 41 et 42 : Langues vivantes étrangères (niveau B1)",
+    "Unité 51 : Français",
+    "Unité 52 : Histoire-Géographie et enseignement moral et civique",
+    "Unité 6 : Arts appliqués et cultures artistiques",
+    "Unité 7 : Éducation physique et sportive",
+    "Unités facultatives : EPS (niveau 5) et Mobilité"
+   ],
+   "poursuites": [
+    "BTS Gestion des transports et logistique associée",
+    "DUT Gestion logistique et transport"
+   ],
+   "debouches": [
+    "Agent de transit",
+    "Magasinier cariste",
+    "Vendeur magasinier en fournitures automobiles",
+    "Réceptionnaire",
+    "Agent logisticien",
+    "Agent d'expédition",
+    "Gestionnaire de stocks",
+    "Préparateur de commandes",
+    "Technicien comptabilité et logistique",
+    "Affréteur",
+    "Assistant logistique"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bac-pro-logistique",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2026/01/DOSSIER-DINFORMATION-CFA-BAC-PRO-LOGISTIQUE-2026-01-13-ok.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BAC-PRO-LOGISTIQUE.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-bac-pro-logistique",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38302/"
+   }
+  },
+  {
+   "id": "bp-mcv",
+   "nom": "Bac pro Métiers du commerce et de la vente (option B)",
+   "filiere": "BACPRO",
+   "niveau": 4,
+   "domaine": "commerce",
+   "rncp": "RNCP38399",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Diplôme de niveau 3 (DNB, CFG, CAP) ; Fréquenter une classe de 1re ; Entretien ; Test",
+   "objectif": "Former à l'accueil, au conseil et à la vente de produits et services associés, au suivi des ventes et à la fidélisation de la clientèle. L'option B porte sur la prospection et la valorisation de l'offre commerciale.",
+   "programme": [
+    "Unité 11 - Économie-droit",
+    "Unité 12 - Mathématiques",
+    "Unité 2 - Option B : Prospecter et valoriser l'offre commerciale (Option A : Animer et gérer l'espace commercial)",
+    "Unité 31 - Conseiller et vendre",
+    "Unité 32 - Suivre les ventes",
+    "Unité 33 - Fidéliser la clientèle et développer la relation client",
+    "Unité 34 - Prévention santé environnement",
+    "Unité 41 - Langue vivante étrangère 1",
+    "Unité 42 - Langue vivante étrangère 2",
+    "Unité 51 - Français",
+    "Unité 52 - Histoire-Géographie et enseignement moral et civique",
+    "Unité 6 - Arts appliqués et cultures artistiques",
+    "Unité 7 - Éducation physique et sportive",
+    "Unité facultative 2 - Éducation physique et sportive",
+    "Unité facultative 3 - Mobilité"
+   ],
+   "poursuites": [
+    "BTS Négociation et Relation Client",
+    "BTS Management des unités commerciales",
+    "DUT Techniques de commercialisation",
+    "BTS Gestion PME/PMI",
+    "BTS Management commercial opérationnel",
+    "BTS Professions Immobilières",
+    "BTS Technico-Commercial",
+    "BTS Banques",
+    "BTS Assurance"
+   ],
+   "debouches": [
+    "Attaché commercial",
+    "Vendeur démonstrateur",
+    "Chargé de clientèle",
+    "Vendeur technique",
+    "Vendeur à distance",
+    "Chargé de prospection",
+    "Employé de commerce"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bac-pro-metiers-du-commerce-et-de-la-vente-option-b-prospection-clientele-et-valorisation-de-loffre-commerciale",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-BAC-PRO-METIERS-DU-COMMERCE-ET-DE-LA-VENTE-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/Annexes_BacPro_MetCoVe.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bac-pro-metiers-du-commerce-et-de-la-vente",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38399/"
+   }
+  },
+  {
+   "id": "bp-otm",
+   "nom": "Bac pro Organisation de transport de marchandises",
+   "filiere": "BACPRO",
+   "niveau": 4,
+   "domaine": "transport",
+   "rncp": "RNCP34954",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Diplôme de niveau 3 (DNB, CFG, CAP) ou CAP de spécialité proche ; fréquenter une classe de 1re",
+   "objectif": "Former à l'organisation, la mise en œuvre et le suivi des opérations de transport de marchandises, en tenant compte des modes terrestre, aérien et maritime.",
+   "programme": [
+    "Unité 11 - Économie-droit",
+    "Unité 12 - Mathématiques",
+    "Unité 2 - Préparation d'opérations de transport",
+    "Unité 31 - Mise en œuvre et suivi d'opérations de transport",
+    "Unité 32 - Contribution à l'amélioration de l'activité de transport",
+    "Unité 33 - Prévention santé environnement",
+    "Unité 41 - Langue vivante étrangère 1",
+    "Unité 42 - Langue vivante étrangère 2",
+    "Unité 51 - Français",
+    "Unité 52 - Histoire-géographie et enseignement moral et civique",
+    "Unité 6 - Arts appliqués et cultures artistiques",
+    "Unité 7 - Éducation physique et sportive",
+    "Unités facultatives - EPS (2) et Mobilité (3)"
+   ],
+   "poursuites": [
+    "BTS Gestion des transports et logistiques associée",
+    "BTS Gestion de la PME",
+    "BUT Gestion logistique et transport"
+   ],
+   "debouches": [
+    "Assistant d'agent d'exploitation transport",
+    "Assistant d'agent de transit",
+    "Aide déclarant en douane",
+    "Agent de planning",
+    "Transitaire"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bac-pro-organisation-de-transport-de-marchandises",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-BAC-PRO-ORGANISATION-DE-TRANSPORT-DE-MARCHANDISES-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REFERENTIEL-BAC-PRO-ORGANISATION-DE-TRANSPORT-DE-MARCHANDISES.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bac-pro-organisation-de-transport-de-marchandises",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/34954/"
+   }
+  },
+  {
+   "id": "bp-rpi",
+   "nom": "Bac pro Réalisation de produits imprimés et plurimédia",
+   "filiere": "BACPRO",
+   "niveau": 4,
+   "domaine": "communication",
+   "rncp": "RNCP38567",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Diplôme de niveau 3 (DNB, CFG, CAP). Fréquenter une classe de 1ere.",
+   "objectif": "Former à la réalisation d'un document avant impression, qu'il s'agisse de photogravure ou de composition.",
+   "programme": [
+    "Unité 11 - Mathématiques",
+    "Unité 12 - Sciences physiques et chimiques",
+    "Unité 2 - Étude du dossier de fabrication d'un produit de communication",
+    "Unité 31 - Situations de travail spécifiées et réalisées en milieu professionnel",
+    "Unité 32 - Réalisation d'un produit de communication",
+    "Unité 33 - Imposition, réalisation d'une forme imprimante",
+    "Unité 34 - Économie gestion",
+    "Unité 35 - Prévention, santé, environnement",
+    "Unité 4 - Langue vivante étrangère",
+    "Unité 51 - Français",
+    "Unité 52 - Histoire Géographie & enseignement moral et civique",
+    "Unité 6 - Arts appliqués et cultures artistiques",
+    "Unité 7 - Éducation physique et sportive",
+    "Unité facultative 2 - Éducation physique et sportive",
+    "Unité facultative 3 - Mobilité"
+   ],
+   "poursuites": [
+    "BTS Études de réalisation d'un projet de communication option B études de réalisation de produits imprimés"
+   ],
+   "debouches": [
+    "Coloriste (Papier / Carton)",
+    "Conducteur de machines à imprimer",
+    "Façonnier des industries graphiques",
+    "Sérigraphie"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bac-pro-realisation-de-produits-imprimes",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-BAC-PRO-REALISATION-DE-PRODUITS-IMPRIMES-ET-PLURIMEDIA-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/BAC-PRO-REALISATION-DE-PRODUIT-IMPRIMES-ET-PLURIMEDIA.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bac-pro-realisation-de-produits-imprimes",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38567/"
+   }
+  },
+  {
+   "id": "bp-ciel",
+   "nom": "Bac pro CIEL (Cybersécurité, informatique et réseaux, électronique)",
+   "filiere": "BACPRO",
+   "niveau": 4,
+   "domaine": "numerique",
+   "rncp": "RNCP37489",
+   "duree": "2 ans",
+   "stage": "22 semaines",
+   "prerequis": "Diplôme de niveau 3 (DNB, CFG, CAP) ; fréquenter une classe de 1re",
+   "objectif": "Installer, mettre en service, sécuriser et maintenir des réseaux, des systèmes informatiques et des équipements électroniques connectés (réseaux, cybersécurité, électronique).",
+   "programme": [
+    "Unité 11 - Mathématiques",
+    "Unité 12 - Sciences physiques et chimiques",
+    "Unité 2 - Analyse d'un système numérique",
+    "Unité 31 - Situations de travail en milieu professionnel",
+    "Unité 32 - Préparation, installation, mise en service, maintenance d'un système numérique",
+    "Unité 33 - Économie-gestion",
+    "Unité 34 - Prévention, santé, environnement",
+    "Unité 4 - Langue vivante étrangère",
+    "Unité 51 - Français",
+    "Unité 52 - Histoire-Géographie et enseignement moral et civique",
+    "Unité 6 - Arts appliqués et cultures artistiques",
+    "Unité 7 - Éducation physique et sportive",
+    "Unité facultative 2 - Éducation physique et sportive",
+    "Unité facultative 3 - Mobilité"
+   ],
+   "poursuites": [
+    "BTS Études de réalisation d'un projet de communication",
+    "BTS Design graphique",
+    "BUT Métiers du multimédia et de l'internet"
+   ],
+   "debouches": [
+    "Dépanneur en électroménager",
+    "Installateur en télécoms",
+    "Monteur-câbleur",
+    "Responsable du service après-vente",
+    "Technicien d'installation",
+    "Technicien de mise en service",
+    "Technicien de maintenance"
+   ],
+   "certificateur": "Ministère de l'Éducation nationale",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bac-pro-cybersecurite-informatique-et-reseaux-electronique",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/07/DOSSIER-DINFORMATION-CFA-BAC-PRO-CYBERSECURITE-INFORMATIQUE-ET-RESEAUX-ELECTRONIQUE-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/Referentiel_Bac_pro_SN_18_mars_2016.compressed.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bac-pro-systemes-numeriques",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37489/"
+   },
+   "note": "Le programme affiché sur la page du CFA est celui de l'ancien Bac pro Systèmes numériques (remplacé par le Bac pro CIEL) : vérifie le référentiel à jour sur la fiche RNCP."
+  },
+  {
+   "id": "bts-assurance",
+   "nom": "BTS Assurance",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "compta",
+   "rncp": "RNCP38359",
+   "duree": "2 ans",
+   "stage": "15 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus",
+   "objectif": "Former des techniciens supérieurs de l'assurance capables de concilier les objectifs économiques de l'entreprise, la qualité de la relation client et la rigueur de gestion, dans le respect du devoir de conseil et du cadre réglementaire.",
+   "programme": [
+    "Unité 1 – Culture générale et expression",
+    "Unité 2 – Langue vivante étrangère (niveau B2)",
+    "Unité 31 – Culture professionnelle et suivi du client",
+    "Unité 32 – Développement commercial et conduite d'entretien",
+    "Unité 41 – Gestion des sinistres",
+    "Unité 42 – Accueil en situation de sinistre",
+    "Unité 5 – Communication digitale, utilisation du système d'information et des outils numériques",
+    "Ateliers de professionnalisation",
+    "Accompagnement personnalisé"
+   ],
+   "poursuites": [
+    "Licence Economie",
+    "Licence Gestion",
+    "Licence Finance",
+    "Licence Banque"
+   ],
+   "debouches": [
+    "Agent / Agente général d'assurances",
+    "Courtier / Courtière en assurances",
+    "Rédacteur / Rédactrice en assurances",
+    "Chargé de clientèle",
+    "Téléconseiller",
+    "Souscripteur"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-assurance",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-BTS-ASSURANCE-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTSAssurance.pdf"
+    ],
+    "stats": "",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38359/"
+   }
+  },
+  {
+   "id": "bts-banque",
+   "nom": "BTS Banque, conseiller de clientèle (particuliers)",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "compta",
+   "rncp": "RNCP38381",
+   "duree": "2 ans",
+   "stage": "15 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus.",
+   "objectif": "Former des conseillers commerciaux pour la clientèle particulière, capables de gérer la relation client, de développer et suivre l'activité commerciale et d'analyser des situations commerciales.",
+   "programme": [
+    "Unité 1 – Culture générale et expression",
+    "Unité 2 – Langue vivante étrangère",
+    "Unité 3 – Gestion de la relation client",
+    "Unité 4 – Développement et suivi de l'activité commerciale",
+    "Unité 4 / Unité 5 – Environnement économique, juridique et organisationnel de l'activité bancaire (intitulé répété dans la page)"
+   ],
+   "poursuites": [
+    "DEES Banque",
+    "Licence Gestion",
+    "Licence Économie",
+    "Licence Comptabilité",
+    "Licence PRO Banque",
+    "Licence PRO Assurance",
+    "Licence PRO Finance",
+    "Licence PRO Chargé de clientèle",
+    "Licence PRO Conseiller gestionnaire de clientèle"
+   ],
+   "debouches": [
+    "Agent administratif",
+    "Assistant de gestion PME PMI",
+    "Assistant-manager",
+    "Chargé de clientèle banque",
+    "Conseiller de clientèle",
+    "Chargé d'affaires",
+    "Conseiller en gestion de patrimoine",
+    "Conseiller en assurance et épargne",
+    "Conseiller en placement de produits financiers ou bancaires",
+    "Collaborateur de notaire"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-banque-conseiller-de-clientele-particuliers",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-BTS-BANQUE-CONSEILLER-CLIENTELE-PARTICULIERS-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/bts_banqueconseillerclientele.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bts-banque",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38381/"
+   }
+  },
+  {
+   "id": "bts-com",
+   "nom": "BTS Communication",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "communication",
+   "rncp": "RNCP37198",
+   "duree": "2 ans",
+   "stage": "14 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus.",
+   "objectif": "Former à la conception et à l'organisation d'opérations de communication publicitaire, événementielle ou relationnelle, avec un rôle de conseil et de veille opérationnelle.",
+   "programme": [
+    "Unité 1 – Cultures de la Communication",
+    "Unité – Langue vivante étrangère (sous-unités U21 et U22, niveau B2)",
+    "Unité 3 – Economie, droit et management",
+    "Unité 4 – Relations commerciales",
+    "Unité 5 – Activités de communication",
+    "Unité 6 – Projet et pratiques de la communication"
+   ],
+   "poursuites": [
+    "Licence pro mention métiers de la communication : chargé de communication",
+    "Licence pro mention métiers de la communication : chef de projet communication",
+    "Licence pro mention métiers de la communication : événementiel",
+    "Licence pro mention métiers de la communication : publicité"
+   ],
+   "debouches": [
+    "Secrétaire",
+    "Concepteur-rédacteur",
+    "Acheteur / Vendeur d'espaces publicitaires",
+    "Assistant de communication",
+    "Chargé de communication",
+    "Attaché commercial",
+    "Responsable de clientèle",
+    "Assistant de publicité",
+    "Chef de projet"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-communication",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-BTS-COMMUNICATION-2025-01-1.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/7_bts-communication-referentiel.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bts-communication",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37198/"
+   }
+  },
+  {
+   "id": "bts-cg",
+   "nom": "BTS Comptabilité et gestion (CG)",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "compta",
+   "rncp": "RNCP39159",
+   "duree": "2 ans",
+   "stage": "10 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus.",
+   "objectif": "Maîtriser l'ensemble du processus comptable, y compris la comptabilité analytique selon les normes, et conseiller les dirigeants sur les aspects comptables.",
+   "programme": [
+    "Unité 11 - Culture générale et expression",
+    "Unité 12 - Langue vivante étrangère (anglais)",
+    "Unité 2 - Mathématiques appliquées",
+    "Unité 3 - Culture économique, juridique et managériale",
+    "Traitement et contrôle des opérations comptables, fiscales et sociales (U41, U42 : P1 à P4 et P7)",
+    "Unité 5 - Contrôle de gestion et analyse financière (P5, P6, P7)",
+    "Unité 6 - Parcours de professionnalisation",
+    "Unité facultative 2 - Approfondissement local"
+   ],
+   "poursuites": [
+    "Diplôme de comptabilité et de gestion",
+    "Licence mention gestion",
+    "Licence pro mention management et gestion des organisations",
+    "Licence pro mention métiers de la gestion et de la comptabilité"
+   ],
+   "debouches": [
+    "Assistant comptable",
+    "Comptable unique",
+    "Collaborateur comptable",
+    "Gestionnaire comptable",
+    "Comptable fournisseurs",
+    "Comptable clients",
+    "Gestionnaire de paie",
+    "Assistant contrôleur de gestion",
+    "Assistant en gestion financière et comptable"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-comptabilite-et-gestion",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-BTS-CG-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/bts_comptabilitegestion.pdf"
+    ],
+    "stats": "",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/39159/"
+   }
+  },
+  {
+   "id": "bts-erpc",
+   "nom": "BTS Études de réalisation d'un projet de communication (ERPC)",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "communication",
+   "rncp": "RNCP38421",
+   "duree": "2 ans ou moins en fonction du profil",
+   "stage": "10 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus.",
+   "objectif": "Étudier la faisabilité et suivre la réalisation de projets de communication : produits plurimédia (option A) ou produits imprimés (option B), du pré-presse à la fabrication.",
+   "programme": [],
+   "poursuites": [
+    "Licence pro métiers de l'édition / industries graphiques",
+    "Licence pro communication et valorisation de la création"
+   ],
+   "debouches": [
+    "Technicien de fabrication / pré-presse",
+    "Chef de fabrication",
+    "Assistant chef de projet communication",
+    "Technicien d'études en industries graphiques"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-etude-de-realisation-dun-projet-de-communication",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-BTS-ETUDE-DE-REALISATION-DUN-PROJET-DE-COMMUNISATION-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/BTS-ERPC.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bts-etude-de-realisation-dun-projet-de-communication",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38421/"
+   },
+   "note": "La page du CFA affiche par erreur le programme et les débouchés du BTS SIO : fie-toi au référentiel PDF officiel ci-dessous."
+  },
+  {
+   "id": "bts-gpme",
+   "nom": "BTS Gestion de la PME",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "gestion",
+   "rncp": "RNCP38363",
+   "duree": "2 ans",
+   "stage": "12 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus",
+   "objectif": "Former un collaborateur polyvalent, à dominante administrative, du dirigeant d'une PME. Les objectifs portent sur la gestion des relations clients et fournisseurs, la gestion des risques, la gestion du personnel et des RH, et le soutien au fonctionnement et au développement de l'entreprise.",
+   "programme": [
+    "Unité 1 - Culture générale et expression",
+    "Unité 21 - LV étrangère : compréhension de l'écrit, expression écrite, production orale en continu et interaction (B2)",
+    "Unité 22 - LV étrangère : compréhension de l'oral (B2)",
+    "Unité 3 - Culture économique, juridique et managériale",
+    "Unité 4 - Gérer la relation avec les clients et les fournisseurs",
+    "Unité 51 - Participer à la gestion des risques de la PME",
+    "Unité 52 - Gérer le personnel et contribuer à la gestion des RH",
+    "Unité 6 - Soutenir le fonctionnement et le développement de la PME"
+   ],
+   "poursuites": [
+    "Licence pro mention activités juridiques : assistant juridique",
+    "Licence pro mention management et gestion des organisations",
+    "Licence pro mention métiers de la gestion et de la comptabilité"
+   ],
+   "debouches": [
+    "Assistant(e) commercial(e)",
+    "Assistant(e) de gestion",
+    "Assistant(e) de direction",
+    "Assistant(e) des ressources humaines",
+    "Secrétaire"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-gestion-de-la-pme",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2026/01/DOSSIER-DINFORMATION-CFA-BTS-GESTION-DE-LA-PME-2026-01-13-ok.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/REFERENTIEL_GESTION_DE_LA_PME.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bts-gestion-de-la-pme",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38363/"
+   }
+  },
+  {
+   "id": "bts-gtla",
+   "nom": "BTS Gestion des transports et logistique associée (GTLA)",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "transport",
+   "rncp": "RNCP38365",
+   "duree": "2 ans ou moins en fonction du profil",
+   "stage": "12 à 14 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus",
+   "objectif": "Organiser les opérations de transport et les prestations logistiques à l'échelle locale, régionale, nationale, européenne et internationale.",
+   "programme": [
+    "Unité 1 - Culture générale et expression",
+    "Langue vivante étrangère (unités 21 et 22, niveau B2 du CECRL)",
+    "Unité 3 - Culture économique, juridique et managériale",
+    "Unité 4 - Mise en œuvre d'opérations de transport et de prestations logistiques",
+    "Unité 51 - Conception d'opérations de transport et de prestations logistiques",
+    "Unité 52 - Analyse de la performance d'une activité de transport et de prestations logistiques",
+    "Unité 6 - Pérennisation et développement de l'activité",
+    "Unité facultative 2 - Module d'approfondissement"
+   ],
+   "poursuites": [
+    "Licence pro mention logistique et pilotage des flux",
+    "Licence pro mention logistique et systèmes d'information",
+    "Licence pro mention logistique et transports internationaux",
+    "Licence pro mention management des processus logistiques",
+    "Licence pro mention management des transports et de la distribution",
+    "Licence pro mention métiers de l'industrie : logistique industrielle"
+   ],
+   "debouches": [
+    "Agent de transit",
+    "Consignataire de navire",
+    "Déclarant en douane",
+    "Technicien logistique"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-gestion-des-transports-et-logistique-associee-gtla",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/01/DOSSIER-DINFORMATION-CFA-BTS-GTLA-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-GTL-Gestion-Transport-Slogistique-Associee.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-bts-gestion-des-transports-et-logistique-associee",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38365/"
+   }
+  },
+  {
+   "id": "bts-ndrc",
+   "nom": "BTS Négociation et digitalisation de la relation client (NDRC)",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "commerce",
+   "rncp": "RNCP38368",
+   "duree": "2 ans ou moins en fonction du profil",
+   "stage": "16 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus",
+   "objectif": "Former un manager commercial capable de gérer toute la relation client, en présentiel comme à distance ou sur internet, de la prospection à la fidélisation. Il pilote l'activité commerciale, négocie les ventes, exploite l'information commerciale et prend part à la politique commerciale, avec un accent sur la digitalisation.",
+   "programme": [
+    "Unité 1 : Culture générale et expression",
+    "Unité 2 : Communication en langue vivante étrangère 1 (niveau B2)",
+    "Unité 3 : Culture économique, juridique et managériale",
+    "Unité 4 : Relation client et négociation-vente",
+    "Unité 5 : Relation client à distance et digitalisation",
+    "Unité 6 : Relation client et animation de réseaux"
+   ],
+   "poursuites": [
+    "Licence pro assurance, banque, finance : chargé de clientèle",
+    "Licence pro commercialisation de produits et services",
+    "Licence pro e-commerce et marketing numérique",
+    "Licence pro métiers du marketing opérationnel",
+    "Licence pro technico-commercial"
+   ],
+   "debouches": [
+    "Agent général d'assurances",
+    "Attaché commercial",
+    "Chargé d'affaires",
+    "Chargé de clientèle banque",
+    "Chef des ventes",
+    "Conseiller en assurances",
+    "Courtier",
+    "Télévendeur",
+    "Vendeur en magasin"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-negociation-et-digitalisation-de-la-relation-client-2",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2026/01/DOSSIER-DINFORMATION-CFA-BTS-NDRC-2026-01-13-ok.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-NDRC.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/statistiques-bts-negociation-et-digitalisation-de-la-relation-client",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38368/"
+   }
+  },
+  {
+   "id": "bts-sio",
+   "nom": "BTS Services informatiques aux organisations (SIO)",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "numerique",
+   "rncp": "RNCP40792",
+   "duree": "2 ans ou moins en fonction du profil",
+   "stage": "10 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus.",
+   "objectif": "Former des techniciens qui participent à la production et à la fourniture de services informatiques aux organisations, comme collaborateurs d'une organisation ou intervenants d'une société de conseil et de services. Le diplôme comprend deux parcours : infrastructure, systèmes et réseaux (SISR) et solutions logicielles et applications métiers (SLAM).",
+   "programme": [
+    "Unité 11 : Culture générale et expression",
+    "Unité 12 : Expression et communication en langue anglaise (niveau B2)",
+    "Unité 2 : Mathématiques pour l'informatique",
+    "Unité 3 : Culture économique, juridique et managériale pour l'informatique",
+    "Unité 4 : Support et mise à disposition de services informatiques",
+    "Unité 5 : Administration des systèmes et des réseaux (option A) ou Conception et développement d'applications (option B)",
+    "Unité 6 : Cybersécurité des services informatiques (option A ou B)",
+    "Unités facultatives 2 (Mathématiques approfondies) et 3 (Parcours de certification complémentaire)"
+   ],
+   "poursuites": [
+    "Licence Pro Développement d'applications réparties",
+    "Licence Pro Génie logiciel, système d'information",
+    "Licence Pro Nouvelles technologies de l'informatique",
+    "Licence Pro Technologies de l'information et de la communication"
+   ],
+   "debouches": [
+    "Administrateur systèmes et réseaux",
+    "Administrateur sécurité",
+    "Support systèmes et réseaux",
+    "Technicien avant-vente",
+    "Technicien d'infrastructure",
+    "Analyste d'études",
+    "Analyste programmeur",
+    "Chargé d'études informatiques",
+    "Développeur d'applications informatiques",
+    "Développeur d'applications mobiles"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-services-informatiques-aux-organisations",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2026/01/DOSSIER-DINFORMATION-CFA-BTS-SERVICES-INFORMATIQUES-AUX-ORGANISATIONS-2026-01-13-ok.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2025/12/Referentiel_BTS_SIO_ServicesInformatiquesOrganisations_2025_Version_2024_07_10.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bts-services-informatiques-aux-organisations",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/40792/"
+   }
+  },
+  {
+   "id": "bts-sam",
+   "nom": "BTS Support à l'action managériale (SAM)",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "gestion",
+   "rncp": "RNCP38364",
+   "duree": "2 ans ou moins selon le profil",
+   "stage": "6 semaines",
+   "prerequis": "Accessible aux titulaires du BAC (niveau 4) ou d'un diplôme supérieur",
+   "objectif": "Former des assistants capables d'optimiser les processus administratifs, de gérer des projets et de collaborer à la gestion des ressources humaines.",
+   "programme": [
+    "Unité 1 : Culture générale et expression",
+    "Unité 21 : LVE A (niveau B2)",
+    "Unité 22 : LVE B (niveau B1)",
+    "Unité 3 : Culture économique, juridique et managériale",
+    "Unité 4 : Optimisation des processus administratifs",
+    "Unité 5 : Gestion de projet",
+    "Unité 6 : Collaboration à la gestion des ressources humaines",
+    "Unité facultative 2 : Module de parcours individualisé"
+   ],
+   "poursuites": [
+    "Licence professionnelle mention activités juridiques : assistant juridique"
+   ],
+   "debouches": [
+    "Secrétaire juridique",
+    "Secrétaire",
+    "Secrétaire de direction",
+    "Office manager",
+    "Assistant (ressources humaines, logistique, commerciale, marketing, etc.)",
+    "Chargé de recrutement, formation, relations internationales",
+    "Technicien administratif",
+    "Adjoint administratif"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-support-a-laction-manageriale",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/02/DOSSIER-DINFORMATION-CFA-BTS-SAM-2025-01.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/09/REFERENTIEL-BTS-SAM-Support_action_manageriale.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bts-support-a-laction-manageriale",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/38364/"
+   }
+  },
+  {
+   "id": "bts-ciel",
+   "nom": "BTS CIEL (Cybersécurité, informatique et réseaux, électronique)",
+   "filiere": "BTS",
+   "niveau": 5,
+   "domaine": "numerique",
+   "rncp": "RNCP37391",
+   "duree": "2 ans ou moins en fonction du profil",
+   "stage": "14 semaines",
+   "prerequis": "Ouvert aux diplômés de niveau 4 (BAC) et plus",
+   "objectif": "Former un technicien supérieur qui développe des objets interconnectés pour l'industrie, l'habitat et le tertiaire. L'option A cible l'informatique et les réseaux, l'option B l'électronique et les communications.",
+   "programme": [
+    "Unité 1 – Culture générale et expression",
+    "Unité 2 – Langue vivante étrangère",
+    "Unité 3 – Mathématique",
+    "Unité 4 – Étude d'un système numérique et d'information",
+    "Unité 5 – Intervention sur un système numérique et d'information"
+   ],
+   "poursuites": [
+    "TP concepteur développeur d'application"
+   ],
+   "debouches": [
+    "Administrateur de réseaux",
+    "Informaticien industriel",
+    "Technicien télécoms et réseaux",
+    "Technicien supérieur en informatique",
+    "Technicien bureau d'études",
+    "Développeur d'applications",
+    "Responsable du service après-vente",
+    "Technicien de maintenance en informatique",
+    "Technicien d'essais",
+    "Technicien électronicien",
+    "Technicien en maintenance électronique"
+   ],
+   "certificateur": "Ministère de l'Enseignement supérieur",
+   "liens": {
+    "cfa": "https://cfa.cevedom.com/bts-cybersecurite-informatique-et-reseaux-electronique-option-a-informatique-reseaux-option-b-electronique-et-reseaux",
+    "dossier": "https://cfa.cevedom.com/wp-content/uploads/2025/07/DOSSIER-DINFORMATION-CFA-BTS-CYBERSECURITE-INFORMATIMATIQUE-ET-RESEAUX-ELECTRONIQUE-2025-01-1.pdf",
+    "referentiels": [
+     "https://cfa.cevedom.com/wp-content/uploads/2022/10/BTSsystemesNumeriques.pdf"
+    ],
+    "stats": "https://cfa.cevedom.com/stat-bts-systemes-numeriques",
+    "rncp": "https://www.francecompetences.fr/recherche/rncp/37391/"
+   },
+   "note": "Le BTS CIEL remplace l'ancien BTS Systèmes numériques : le référentiel lié par le CFA porte encore l'ancien nom."
+  }
+ ]
+}

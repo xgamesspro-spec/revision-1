@@ -14,6 +14,13 @@ const setupExercises = require('./exercises');
 const setupSocial = require('./social');
 const setupGame = require('./game');
 const setupIdeas = require('./ideas');
+const setupFormations = require('./formations');
+const cible = require('./cible');
+const setupCahier = require('./cahier');
+const setupNotes = require('./notes');
+const setupVieScolaire = require('./viescolaire');
+const setupMessagerie = require('./messagerie');
+const setupLivret = require('./livret');
 
 const PORT = process.env.PORT || 3000;
 const CLASS_CODE = process.env.CLASS_CODE || ''; // code d'inscription permanent (optionnel)
@@ -80,7 +87,7 @@ function clearSession(req, res) {
   if (req.sid) db.prepare('DELETE FROM sessions WHERE token = ?').run(req.sid);
   res.setHeader('Set-Cookie', 'sid=; Path=/; Max-Age=0');
 }
-const publicUser = u => u && ({ id: u.id, username: u.username, display_name: u.display_name, role: u.role, filiere: u.filiere });
+const publicUser = u => u && ({ id: u.id, username: u.username, display_name: u.display_name, role: u.role, filiere: u.filiere, formation: u.formation });
 const text = (v, max) => String(v ?? '').trim().slice(0, max);
 const bad = (res, msg, code = 400) => res.status(code).json({ error: msg });
 
@@ -113,6 +120,7 @@ const accounts = setupAccounts(app, {
 });
 app.use('/api', accounts.gate);
 app.locals.accounts = accounts;
+const formations = setupFormations(app, { auth, admin, bad });
 
 // ---------- Temps réel (Server-Sent Events) ----------
 // Chaque onglet ouvert = une connexion avec un identifiant (connId), utilisé aussi pour les réunions.
@@ -176,13 +184,15 @@ function broadcastChannel(ch, event, data) {
   const payload = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
   for (const c of conns.values()) if (canSee(c.user, ch)) c.res.write(payload);
 }
-let calendar, exercises; // créés plus bas
+let calendar, exercises, cahier, viescolaire; // créés plus bas
 function canAccessAttachment(user, a) {
   if (['message', 'topic', 'reply'].includes(a.target)) return canSeeChannelId(user, a.channel_id);
   if (a.target === 'event') {
     const ev = db.prepare('SELECT * FROM events WHERE id = ?').get(a.target_id);
     return !!ev && calendar.visibleTo(user, ev);
   }
+  if (a.target === 'cahier') return cahier.canAccessAttachment(user, a);
+  if (a.target === 'justif') return viescolaire.canAccessAttachment(user, a);
   return exercises.canAccessAttachment(user, a);
 }
 const uploads = setupUploads(app, { db, auth, bad, now, canAccess: canAccessAttachment });
@@ -200,6 +210,14 @@ exercises = setupExercises(app, { db, auth, bad, now, text, uploads, notifier, a
   onSubmit: uid => game.award(uid, 'exercice') });
 const social = setupSocial(app, { db, auth, bad, now, text, channelFor, broadcastChannel, conns, notifier });
 const ideas = setupIdeas(app, { db, auth, admin, bad, now, text, conns, notifier });
+// Outils « vie de classe » façon Pronote / Ypareo (formateurs ↔ élèves, jamais dans les salons)
+const ci = cible({ db, accounts, formations });
+cahier = setupCahier(app, { db, auth, bad, now, text, uploads, notifier, cible: ci,
+  onChange: e => liveTo(u => cahier.visible(u, e), 'cahier', { id: e.id }) });
+const notes = setupNotes(app, { db, auth, bad, now, text, notifier, cible: ci });
+viescolaire = setupVieScolaire(app, { db, auth, bad, now, text, uploads, notifier, cible: ci });
+const messagerie = setupMessagerie(app, { db, auth, bad, now, text, notifier, cible: ci, liveTo });
+const livret = setupLivret(app, { db, auth, bad, now, text, notifier, cible: ci, viescolaire, notes, formations, accounts });
 app.locals.calendar = calendar;
 app.locals.game = game;
 app.get('/api/guide', auth, (req, res) => res.json(readJson('guide.json')));
@@ -209,6 +227,7 @@ accounts.onDelete(uid => {
   game.forgetUser(uid);
   social.forgetUser(uid);
   ideas.forgetUser(uid);
+  for (const m of [cahier, notes, viescolaire, messagerie, livret]) m.forgetUser(uid);
   const evs = db.prepare("SELECT id FROM events WHERE created_by = ? AND visibility = 'perso'").all(uid).map(e => e.id);
   uploads.removeFor('event', evs);
   db.prepare("DELETE FROM events WHERE created_by = ? AND visibility = 'perso'").run(uid);
@@ -418,6 +437,7 @@ app.get('/api/subjects', auth, (req, res) => {
   const cMap = Object.fromEntries(community.map(c => [c.subject, c.n]));
   res.json(SUBJECTS.map(s => ({
     id: s.id, nom: s.nom, icone: s.icone, description: s.description, groupe: s.groupe,
+    publics: s.publics || ['*'], pour_toi: formations.matches(req.user, s.publics), pertinence: formations.score(req.user, s.publics),
     fiches: s.fiches.length + (cMap[s.id] || 0), quiz: s.quiz.length, cartes: s.cartes.length,
     maitrise: mastered.filter(k => k.startsWith(s.id + ':')).length,
     meilleur_quiz: bestMap[s.id] ?? null,
@@ -470,10 +490,18 @@ app.post('/api/quiz-results', auth, (req, res) => {
   const xp = game.award(req.user.id, 'quiz', score * 3 + (perfect ? 15 : 0), { perfectQuiz: perfect });
   res.json({ ok: true, xp, perfect });
 });
+// Compte à rebours de l'accueil : première épreuve à venir de la filière de l'élève
+function prochainExamen(u) {
+  const ex = formations.examens()[u.filiere];
+  if (!ex) return null;
+  const today = new Date().toISOString().slice(0, 10);
+  const d = ex.dates.find(x => x.date >= today && !x.titre.startsWith('Fin des inscriptions'));
+  return d ? { date: d.date, titre: d.titre, filiere: accounts.filiereNom(u.filiere) } : { date: null, titre: ex.comment[0], filiere: accounts.filiereNom(u.filiere) };
+}
 app.get('/api/dashboard', auth, (req, res) => {
   const due = db.prepare('SELECT COUNT(*) AS n FROM card_progress WHERE user_id = ? AND due <= ?').get(req.user.id, now()).n;
   const seen = db.prepare('SELECT COUNT(*) AS n FROM card_progress WHERE user_id = ?').get(req.user.id).n;
-  const total = SUBJECTS.reduce((a, s) => a + s.cartes.length, 0);
+  const total = SUBJECTS.filter(s => formations.matches(req.user, s.publics)).reduce((a, s) => a + s.cartes.length, 0);
   const quizzes = db.prepare('SELECT subject, score, total, created_at FROM quiz_results WHERE user_id = ? ORDER BY id DESC LIMIT 5').all(req.user.id);
   const topics = db.prepare(`SELECT t.id, t.title, t.solved, c.name AS channel FROM topics t JOIN channels c ON c.id = t.channel_id
     WHERE ? = 'admin' OR c.filiere IS NULL OR c.filiere = ? ORDER BY t.last_activity DESC LIMIT 5`).all(req.user.role, req.user.filiere || '');
@@ -481,9 +509,12 @@ app.get('/api/dashboard', auth, (req, res) => {
   const cfaDays = (r.effective || '').split(',').filter(Boolean).map(Number);
   const today = calendar.weekday(now());
   res.json({
-    cartes_a_revoir: due + (total - seen), cartes_total: total, quiz: quizzes,
-    sujets: req.user.role === 'prof' ? [] : topics, infos: readJson('infos.json'),
+    cartes_a_revoir: Math.max(due, due + total - seen), cartes_total: total, quiz: quizzes,
+    sujets: req.user.role === 'prof' ? [] : topics, examen: prochainExamen(req.user),
+    formation: req.user.formation ? { id: req.user.formation, nom: formations.nom(req.user.formation) } : null,
     evenements: calendar.upcoming(req.user, 5), exercices: exercises.pendingFor(req.user, 5),
+    travail: cahier.pendingFor(req.user, 5), messages_non_lus: messagerie.unreadTotal(req.user.id),
+    viescolaire: req.user.role === 'eleve' ? viescolaire.resume(req.user.id) : null,
     alternance: req.user.role === 'eleve' ? { configure: cfaDays.length > 0, aujourdhui: cfaDays.length ? (cfaDays.includes(today) ? 'cfa' : today >= 6 ? 'weekend' : 'entreprise') : null, jours_cfa: cfaDays } : null,
   });
 });

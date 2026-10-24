@@ -1,7 +1,8 @@
 {
-  "nom": "Examens & portfolio",
+  "nom": "Examens BTS SIO & portfolio",
   "icone": "🎯",
   "groupe": "Examens",
+  "publics": ["bts-sio"],
   "ordre": 0,
   "description": "Calendrier 2027, portfolio, réalisations professionnelles, préparation des oraux.",
   "fiches": [

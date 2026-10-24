@@ -1,7 +1,7 @@
 {
   "name": "revision-1",
   "version": "1.0.0",
-  "description": "Plateforme de classe : révisions BTS SIO, salons de discussion et forum réservés aux élèves, actualités.",
+  "description": "Plateforme des apprentis du CFA CEVEDOM (41 formations) : révisions, cahier de textes, notes, vie scolaire, livret d’apprentissage avec le tuteur, messagerie, planning d’alternance, salons et forum réservés aux élèves.",
   "main": "server.js",
   "scripts": {
     "start": "node --no-warnings server.js",

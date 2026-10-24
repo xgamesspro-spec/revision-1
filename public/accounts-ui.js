@@ -27,17 +27,24 @@ function filiereFields(cur = {}, required = true) {
       <option value="">— Choisir —</option>
       ${f.map(x => `<option value="${x.id}" ${cur.filiere === x.id ? 'selected' : ''}>${esc(x.nom)}</option>`).join('')}
     </select>
+    <div class="formation-wrap" data-cur="${esc(cur.formation || '')}"></div>
     <div class="fin-wrap"></div>
-    <label>Intitulé du diplôme <span class="muted small">(optionnel)</span></label>
-    <input type="text" name="intitule" maxlength="60" value="${esc(cur.intitule || '')}" placeholder="ex. SIO option SISR, Opérateur logistique, Commerce…">
+    <label>Option / spécialité <span class="muted small">(optionnel)</span></label>
+    <input type="text" name="intitule" maxlength="60" value="${esc(cur.intitule || '')}" placeholder="ex. option SISR, option B, groupe 2…">
     <p class="small muted fin-note"></p>`;
 }
 function bindFiliere(form, cur = {}) {
   const sel = form.querySelector('select[name=filiere]');
   const wrap = form.querySelector('.fin-wrap');
   const note = form.querySelector('.fin-note');
+  const fwrap = form.querySelector('.formation-wrap');
   const update = () => {
     const fil = (state.setup?.filieres || []).find(x => x.id === sel.value);
+    // Formation exacte parmi le catalogue du CFA (sert à afficher « Ma formation » et les révisions qui te concernent)
+    const list = (state.setup?.formations || []).filter(f => f.filiere === sel.value);
+    const keep = form.querySelector('select[name=formation]')?.value || fwrap?.dataset.cur || '';
+    if (fwrap) fwrap.innerHTML = fil && list.length ? `<label>Ta formation exacte</label><select name="formation">
+      <option value="">— Je ne sais pas / pas dans la liste —</option>${list.map(f => `<option value="${f.id}" ${keep === f.id ? 'selected' : ''}>${esc(f.nom)}</option>`).join('')}</select>` : '';
     if (!fil) { wrap.innerHTML = ''; note.textContent = ''; return; }
     if (fil.duree) {
       const Y = schoolYearEnd();
@@ -63,7 +70,7 @@ async function toggleFiliereForCode(form, code) {
   if (!sel || !code) return;
   const info = await api('GET', `/api/invite-info?code=${encodeURIComponent(code.trim())}`).catch(() => ({}));
   const prof = info.role === 'prof';
-  [sel.previousElementSibling, sel, form.querySelector('.fin-wrap'), form.querySelector('input[name=intitule]'), form.querySelector('input[name=intitule]')?.previousElementSibling, form.querySelector('.fin-note')]
+  [sel.previousElementSibling, sel, form.querySelector('.formation-wrap'), form.querySelector('.fin-wrap'), form.querySelector('input[name=intitule]'), form.querySelector('input[name=intitule]')?.previousElementSibling, form.querySelector('.fin-note')]
     .forEach(el => { if (el) el.hidden = prof; });
   sel.required = !prof;
   form.querySelectorAll('.fin-wrap select, .fin-wrap input').forEach(el => { el.required = !prof; });
@@ -72,7 +79,7 @@ async function toggleFiliereForCode(form, code) {
 
 function authShell(inner) {
   app.innerHTML = `<div class="auth"><div class="card">
-    <div class="brand" style="padding:0;color:var(--text)"><div class="logo" style="color:#fff">S</div></div>
+    <div class="brand" style="padding:0;color:var(--text)"><div class="logo" style="color:#fff">C</div></div>
     ${inner}
   </div></div>`;
 }
@@ -262,12 +269,12 @@ async function viewAccount(r) {
       </div>
       <div class="card">
         <h3>🎓 Formation</h3>
-        ${user.filiere ? `<p><b>${esc(user.filiere_nom)}</b>${user.intitule ? ` — ${esc(user.intitule)}` : ''}<br>
+        ${user.filiere ? `<p><b>${esc(user.formation_nom || user.filiere_nom)}</b>${user.intitule ? ` — ${esc(user.intitule)}` : ''}${user.formation ? ` · <a href="#/formation">voir ma formation</a>` : ''}<br>
           <span class="small muted">Fin de formation : ${fmtDay(user.end_date)}</span></p>` : '<p class="muted">Pas de filière renseignée.</p>'}
         ${isAdmin ? '<p class="small pill accent">Les comptes modérateurs ne sont pas supprimés automatiquement.</p>'
           : user.expires_at ? `<p class="small ${user.expire_bientot ? 'error' : 'muted'}">🗑️ Suppression automatique du compte le <b>${fmtDay(user.expires_at)}</b>.</p>`
           : '<p class="small muted">Compte sans date de suppression (réglé par un modérateur).</p>'}
-        <details><summary class="small" style="cursor:pointer">Changer de filière / d'année (passage en Bac pro, redoublement…)</summary>
+        <details><summary class="small" style="cursor:pointer">Changer de filière, de formation ou d'année (passage en Bac pro, redoublement…)</summary>
           <form id="profile-form">${filiereFields(user, !isAdmin)}<button class="btn primary" style="margin-top:8px">Enregistrer</button></form>
         </details>
       </div>
@@ -385,7 +392,7 @@ async function viewAdmin(r) {
             <div><b>${esc(u.display_name)}</b> <span class="small muted">${esc(u.email || '@' + u.username)}</span></div>
             <div class="row small" style="gap:6px;margin-top:3px">
               ${u.role === 'admin' ? '<span class="pill accent">modo</span>' : u.role === 'prof' ? '<span class="pill gold">formateur</span>' : ''}
-              ${u.filiere_nom ? `<span class="pill">${esc(u.filiere_nom)}${u.intitule ? ' · ' + esc(u.intitule) : ''}</span>` : ''}
+              ${u.filiere_nom ? `<span class="pill">${esc(u.formation_nom || u.filiere_nom)}${u.intitule ? ' · ' + esc(u.intitule) : ''}</span>` : ''}
               ${u.google ? '<span class="pill">Google</span>' : ''}
               ${u.banned ? '<span class="pill" style="color:var(--danger)">suspendu</span>' : ''}
               ${u.must_change ? '<span class="pill gold">mdp provisoire</span>' : ''}

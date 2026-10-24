@@ -1,7 +1,8 @@
 {
   "nom": "Droit, RGPD & CEJM",
   "icone": "⚖️",
-  "groupe": "Informatique SISR",
+  "groupe": "Droit & économie",
+  "publics": ["BTS", "d:numerique"],
   "ordre": 4,
   "description": "RGPD, CNIL, AIPD, données de santé, contrat d'apprentissage, propriété intellectuelle.",
   "fiches": [

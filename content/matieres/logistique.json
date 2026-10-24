@@ -1,0 +1,46 @@
+{
+  "nom": "Transport & logistique : l'essentiel",
+  "icone": "🚚",
+  "groupe": "Transport & logistique",
+  "publics": ["d:transport", "tp-aie"],
+  "ordre": 12,
+  "description": "Incoterms 2020, documents de transport, temps de conduite, gestion des stocks, sécurité en entrepôt.",
+  "fiches": [
+    {
+      "titre": "Les Incoterms 2020",
+      "contenu": "Les **Incoterms** (Chambre de commerce internationale) disent **qui paie quoi** et **où le risque passe** du vendeur à l'acheteur.\n\n## Tous modes de transport (7)\n- **EXW** : à l'usine — l'acheteur fait presque tout.\n- **FCA** : franco transporteur.\n- **CPT** / **CIP** : port payé (CIP = avec assurance).\n- **DAP** : rendu au lieu de destination, non déchargé.\n- **DPU** : rendu au lieu de destination, déchargé.\n- **DDP** : rendu droits acquittés — le vendeur fait presque tout.\n\n## Maritime et voies navigables (4)\n- **FAS** : franco le long du navire.\n- **FOB** : franco à bord.\n- **CFR** / **CIF** : coût et fret (CIF = avec assurance).\n\n👉 Toujours écrire l'Incoterm + le lieu + « Incoterms® 2020 » (ex. *FOB Le Havre Incoterms® 2020*)."
+    },
+    {
+      "titre": "Documents de transport",
+      "contenu": "| Mode | Document | Rôle |\n|---|---|---|\n| Route | **CMR** (lettre de voiture internationale) | Contrat de transport, preuve de prise en charge |\n| Aérien | **LTA** (lettre de transport aérien, *AWB*) | Contrat + reçu de la marchandise |\n| Maritime | **Connaissement** (*B/L*) | Contrat, reçu **et titre de propriété** de la marchandise |\n\n## Autres documents\n- **Facture commerciale** et **liste de colisage** (*packing list*).\n- **Déclaration en douane** (export / import) : en Guyane, attention aussi à l'**octroi de mer** à l'import.\n- **Certificat d'origine** si besoin."
+    },
+    {
+      "titre": "Temps de conduite (poids lourds, règles UE)",
+      "contenu": "## Conduite\n- **9 h par jour** maximum, **10 h** possible **2 fois par semaine**.\n- **56 h par semaine** maximum et **90 h sur 2 semaines** consécutives.\n\n## Pauses\n- **45 min** de pause après **4 h 30** de conduite (ou 15 min + 30 min).\n\n## Repos\n- Repos journalier normal : **11 h** (réductible à 9 h, 3 fois entre deux repos hebdomadaires).\n- Repos hebdomadaire normal : **45 h**.\n\nTout est enregistré par le **chronotachygraphe** : l'exploitant doit planifier les tournées en respectant ces règles."
+    },
+    {
+      "titre": "Stocks et entrepôt",
+      "contenu": "## Gestion des stocks\n- **FIFO / PEPS** : premier entré, premier sorti (indispensable pour les produits datés).\n- **Stock de sécurité** : quantité gardée pour éviter la rupture.\n- **Stock d'alerte** (point de commande) = stock de sécurité + consommation pendant le délai de livraison.\n- **Rotation des stocks** = consommation (ou sorties) ÷ stock moyen.\n- **Inventaire** : compter le stock réel pour le comparer au stock théorique.\n\n## Sécurité en entrepôt\n- Conduite des chariots : formation et **autorisation de conduite** délivrée par l'employeur (le **CACES® R489** est la référence).\n- Chaussures de sécurité, gilet haute visibilité, allées dégagées, charges stables, gestes et postures."
+    }
+  ],
+  "quiz": [
+    { "q": "Avec quel Incoterm le vendeur fait-il le moins ?", "choix": ["DDP", "EXW", "CIF", "DAP"], "reponse": 1, "explication": "EXW (à l'usine) : l'acheteur s'occupe de presque tout." },
+    { "q": "FOB et CIF sont réservés au transport :", "choix": ["routier", "aérien", "maritime / fluvial", "ferroviaire"], "reponse": 2, "explication": "FAS, FOB, CFR et CIF : maritime et voies navigables intérieures." },
+    { "q": "Le document de transport maritime qui vaut titre de propriété :", "choix": ["CMR", "LTA", "Connaissement (B/L)", "Packing list"], "reponse": 2, "explication": "Le connaissement représente la marchandise : il est négociable." },
+    { "q": "Pause obligatoire après 4 h 30 de conduite :", "choix": ["15 min", "30 min", "45 min", "1 h"], "reponse": 2, "explication": "45 minutes, éventuellement en 15 + 30." },
+    { "q": "Durée maximale de conduite sur une semaine :", "choix": ["45 h", "48 h", "56 h", "90 h"], "reponse": 2, "explication": "56 h par semaine, et 90 h sur deux semaines consécutives." },
+    { "q": "FIFO signifie :", "choix": ["Premier entré, premier sorti", "Dernier entré, premier sorti", "Stock de sécurité", "Inventaire tournant"], "reponse": 0, "explication": "First In, First Out = PEPS." },
+    { "q": "Le document de transport routier international :", "choix": ["CMR", "LTA", "B/L", "DAU"], "reponse": 0, "explication": "La lettre de voiture CMR." }
+  ],
+  "cartes": [
+    { "recto": "Incoterm EXW", "verso": "À l'usine : l'acheteur prend tout en charge (ou presque)" },
+    { "recto": "Incoterm DDP", "verso": "Rendu droits acquittés : le vendeur prend tout en charge (ou presque)" },
+    { "recto": "Incoterms maritimes", "verso": "FAS, FOB, CFR, CIF" },
+    { "recto": "CMR / LTA / B/L", "verso": "Route / aérien / maritime" },
+    { "recto": "Conduite journalière max", "verso": "9 h (10 h deux fois par semaine)" },
+    { "recto": "Pause de conduite", "verso": "45 min après 4 h 30 (ou 15 + 30 min)" },
+    { "recto": "Stock d'alerte", "verso": "Stock de sécurité + consommation pendant le délai de livraison" },
+    { "recto": "Rotation des stocks", "verso": "Sorties ÷ stock moyen" },
+    { "recto": "CACES® R489", "verso": "Référence pour conduire les chariots élévateurs" }
+  ]
+}

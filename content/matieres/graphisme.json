@@ -1,0 +1,40 @@
+{
+  "nom": "Communication & chaîne graphique",
+  "icone": "🎨",
+  "groupe": "Communication & graphisme",
+  "publics": ["d:communication"],
+  "ordre": 14,
+  "description": "RVB vs CMJN, résolution, fonds perdus, procédés d'impression, plan de communication.",
+  "fiches": [
+    {
+      "titre": "Préparer un fichier pour l'impression",
+      "contenu": "## Couleurs\n- **RVB** (rouge, vert, bleu) : pour les **écrans**.\n- **CMJN** (cyan, magenta, jaune, noir) : pour l'**impression** en quadrichromie.\n- **Pantone** : teintes « tons directs » précises (logos).\n\n## Résolution\n- **300 dpi** à taille réelle pour l'impression ; **72 dpi** suffit à l'écran.\n- Une image web agrandie sera **pixellisée** à l'impression.\n\n## Fonds perdus et marges\n- **Fonds perdus** : prolonger le fond de **3 mm** (souvent) au-delà du format, coupés au massicot.\n- **Zone de sécurité** : garder textes et logos à quelques mm à l'intérieur du trait de coupe.\n\n## Le BAT\nLe **bon à tirer** est signé par le client avant l'impression : il engage sur le contenu et les couleurs."
+    },
+    {
+      "titre": "Les procédés d'impression",
+      "contenu": "| Procédé | Principe | Pour quoi ? |\n|---|---|---|\n| **Offset** | Encre transférée d'une plaque à un blanchet puis au papier | Grands tirages, livres, magazines |\n| **Numérique** | Impression directe depuis le fichier | Petits tirages, personnalisation |\n| **Sérigraphie** | Encre passée à travers un écran (pochoir) avec une racle | Textile, objets, affiches, signalétique |\n| **Flexographie** | Plaque souple en relief | Emballages, étiquettes |\n| **Héliogravure** | Cylindre gravé en creux | Très grands tirages (catalogues, emballages) |\n\n## Formats papier\nA4 = 210 × 297 mm ; A3 = 2 × A4 ; A5 = A4 ÷ 2. Le **grammage** (g/m²) indique l'épaisseur : 80 g pour la copie, 300 g et plus pour une carte."
+    },
+    {
+      "titre": "Construire une action de communication",
+      "contenu": "## Les étapes\n1. **Analyse** : contexte, problème, concurrence.\n2. **Objectifs** : faire **connaître** (cognitif), faire **aimer** (affectif), faire **agir** (conatif).\n3. **Cible** : à qui on parle (cœur de cible, cible secondaire).\n4. **Message** et **ton**.\n5. **Moyens** : médias (presse, TV, radio, affichage, web) et hors-médias (événementiel, relations presse, réseaux sociaux…).\n6. **Budget** et **planning** (rétroplanning).\n7. **Évaluation** : indicateurs (portée, clics, ventes, notoriété).\n\n## Le brief\nDocument du client qui résume la demande : contexte, objectifs, cible, contraintes, budget, délais."
+    }
+  ],
+  "quiz": [
+    { "q": "Pour un fichier destiné à l'impression, on utilise :", "choix": ["RVB", "CMJN", "HTML", "72 dpi"], "reponse": 1, "explication": "CMJN pour l'impression, RVB pour les écrans." },
+    { "q": "Résolution conseillée pour l'impression :", "choix": ["72 dpi", "150 dpi", "300 dpi", "1 200 dpi toujours"], "reponse": 2, "explication": "300 dpi à taille réelle." },
+    { "q": "Les fonds perdus servent à :", "choix": ["économiser l'encre", "éviter un liseré blanc après la coupe", "agrandir le texte", "rien"], "reponse": 1, "explication": "On prolonge le fond au-delà du format pour une coupe nette." },
+    { "q": "Le procédé avec un écran et une racle :", "choix": ["offset", "sérigraphie", "numérique", "flexographie"], "reponse": 1, "explication": "La sérigraphie fait passer l'encre à travers un écran." },
+    { "q": "Faire agir la cible, c'est un objectif :", "choix": ["cognitif", "affectif", "conatif", "budgétaire"], "reponse": 2, "explication": "Cognitif = connaître, affectif = aimer, conatif = agir." },
+    { "q": "Le BAT est :", "choix": ["un logiciel", "le bon à tirer signé par le client", "un format de papier", "une encre"], "reponse": 1, "explication": "Le bon à tirer valide le document avant impression." }
+  ],
+  "cartes": [
+    { "recto": "RVB / CMJN", "verso": "Écran / impression (quadrichromie)" },
+    { "recto": "Résolution impression", "verso": "300 dpi à taille réelle" },
+    { "recto": "Fonds perdus", "verso": "Fond prolongé (souvent 3 mm) au-delà du format, coupé ensuite" },
+    { "recto": "BAT", "verso": "Bon à tirer, signé par le client avant impression" },
+    { "recto": "Sérigraphie", "verso": "Encre passée à travers un écran avec une racle (textile, objets)" },
+    { "recto": "Offset", "verso": "Plaque → blanchet → papier : grands tirages" },
+    { "recto": "Objectifs de communication", "verso": "Cognitif (connaître), affectif (aimer), conatif (agir)" },
+    { "recto": "Format A4", "verso": "210 × 297 mm" }
+  ]
+}

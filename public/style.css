@@ -351,7 +351,7 @@ form.dragging, #msg-form.dragging { outline: 2px dashed var(--accent); outline-o
 .notif-row:hover { background: var(--panel-2); }
 .notif-row.unread { background: var(--accent-soft); }
 .notif-ico { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--panel-2); font-weight: 700; color: var(--accent-2); flex: 0 0 32px; }
-.toast-notif { display: block; text-decoration: none; max-width: min(420px, calc(100% - 32px)); bottom: auto; top: 16px; left: auto; right: 16px; transform: none; box-shadow: 0 8px 24px #0004; }
+.toast-notif { transition: top .2s; display: block; text-decoration: none; max-width: min(420px, calc(100% - 32px)); bottom: auto; top: 16px; left: auto; right: 16px; transform: none; box-shadow: 0 8px 24px #0004; }
 .push-prompt { margin-bottom: 16px; border-color: var(--accent); }
 .sm-select { width: auto; padding: 3px 8px; font-size: 13px; }
 .composer form#msg-form { display: block; }
@@ -586,3 +586,32 @@ button.plan-month:hover { background: var(--panel-2); }
 
 @media (max-width: 900px) { .idea-layout { grid-template-columns: 1fr; } .idea-form { position: static; } }
 @media (max-width: 760px) { .podium { gap: 4px; } .big-score { font-size: 48px; } .badge-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- Vie de classe (cahier, notes, vie scolaire, messagerie, livret) ---------- */
+table.tbl { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+table.tbl th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+table.tbl td { padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+table.tbl tr:last-child td { border-bottom: 0; }
+table.tbl td .avatar { width: 26px; height: 26px; flex-basis: 26px; font-size: 12px; display: inline-grid; vertical-align: middle; margin-right: 6px; }
+table.tbl input, table.tbl select { margin: 0; }
+.cahier-todo.done { opacity: .65; }
+.cahier-todo .md p:first-child { margin-top: 6px; }
+.sub-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.sub-item:last-child { border-bottom: 0; }
+.conv-contacts { max-height: 190px; overflow-y: auto; border: 1px solid var(--border); border-radius: 9px; padding: 6px 10px; margin-top: 6px; }
+.conv-contacts label { padding: 3px 0; }
+.conv-thread { max-height: 60vh; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.conv-msg { max-width: 80%; padding: 8px 12px; border-radius: 12px; background: var(--panel-2); align-self: flex-start; }
+.conv-msg.mine { align-self: flex-end; background: var(--accent-soft); }
+.conv-msg .md p { margin: 4px 0; }
+.livret-periode h4 { margin: 12px 0 4px; font-size: 14px; }
+.livret-evals { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.appel-row .seg button { padding: 6px 10px; }
+.subject-card.mine { border-color: var(--accent); }
+.tuteur-page { min-height: 100vh; background: var(--bg); padding: 24px 16px; }
+.tuteur-page .wrap { max-width: 900px; margin: 0 auto; }
+@media (max-width: 640px) {
+  .appel-row { flex-wrap: wrap; }
+  .conv-msg { max-width: 95%; }
+  table.tbl { display: block; overflow-x: auto; }
+}

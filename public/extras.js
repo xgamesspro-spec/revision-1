@@ -168,7 +168,7 @@ function bindMentions(textarea) {
 // ============ Notifications ============
 function setUnread(n) {
   state.unreadNotifs = n;
-  const base = 'Classe SIO';
+  const base = 'Classe CEVEDOM';
   document.title = n ? `(${n}) ${base}` : base;
   const b = $('#notif-badge');
   if (b) { b.textContent = n > 99 ? '99+' : n; b.hidden = !n; }
@@ -186,9 +186,17 @@ function toastLink(n) {
   t.className = 'toast toast-notif';
   t.href = n.link || '#/notifications';
   t.innerHTML = `<b>🔔 ${esc(n.title)}</b>${n.body ? `<br><span>${esc(n.body)}</span>` : ''}`;
-  t.onclick = () => { api('POST', '/api/notifications/read', { ids: [n.id] }).then(d => setUnread(d.unread)).catch(() => {}); t.remove(); };
+  t.onclick = () => { api('POST', '/api/notifications/read', { ids: [n.id] }).then(d => setUnread(d.unread)).catch(() => {}); t.remove(); stackToasts(); };
+  // 3 notifications affichées au maximum, empilées (la plus récente en haut)
+  const old = $$('.toast-notif');
+  if (old.length >= 3) old[0].remove();
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 6000);
+  stackToasts();
+  setTimeout(() => { t.remove(); stackToasts(); }, 6000);
+}
+function stackToasts() {
+  let top = 16;
+  $$('.toast-notif').reverse().forEach(el => { el.style.top = `${top}px`; top += el.offsetHeight + 8; });
 }
 
 // ---- Push (Push API + service worker) ----
@@ -239,7 +247,7 @@ if ('serviceWorker' in navigator) {
 
 const PUSH_TEXT = {
   insecure: '⚠️ Le site n’est pas en HTTPS : les notifications sur l’appareil sont impossibles (voir README).',
-  'ios-install': '📱 Sur iPhone/iPad (iOS 16.4+) : touche <b>Partager → « Sur l’écran d’accueil »</b>, ouvre Classe SIO depuis l’écran d’accueil, puis reviens ici.',
+  'ios-install': '📱 Sur iPhone/iPad (iOS 16.4+) : touche <b>Partager → « Sur l’écran d’accueil »</b>, ouvre Classe CEVEDOM depuis l’écran d’accueil, puis reviens ici.',
   unsupported: 'Ce navigateur ne gère pas les notifications push.',
   denied: '🔕 Notifications bloquées. Pour les réactiver : clique sur le cadenas à gauche de l’adresse → Notifications → Autoriser, puis recharge la page.',
   off: 'Reçois une notification sur cet appareil quand on te mentionne ou qu’on répond à tes sujets, même appli fermée.',
@@ -288,6 +296,8 @@ async function viewNotifications() {
           <label class="toggle"><input type="checkbox" data-pref="mention" ${d.prefs.mention ? 'checked' : ''}> quelqu’un me mentionne (@${esc(state.user.username)})</label>
           <label class="toggle"><input type="checkbox" data-pref="reply" ${d.prefs.reply ? 'checked' : ''}> quelqu’un répond à un sujet que j’ai créé ou suivi</label>
           <label class="toggle"><input type="checkbox" data-pref="exercice" ${d.prefs.exercice ? 'checked' : ''}> un exercice est publié, rendu ou corrigé</label>
+          <label class="toggle"><input type="checkbox" data-pref="message" ${d.prefs.message ? 'checked' : ''}> je reçois un message d’un formateur ou d’un élève (messagerie)</label>
+          <label class="toggle"><input type="checkbox" data-pref="scolarite" ${d.prefs.scolarite ? 'checked' : ''}> nouvelle note, absence relevée, travail à faire, livret signé par le tuteur</label>
           <label class="toggle"><input type="checkbox" data-pref="rappel" ${d.prefs.rappel ? 'checked' : ''}> rappel la veille d’un examen, d’un rendu ou d’une réunion</label>
           <label class="toggle"><input type="checkbox" data-pref="duel" ${d.prefs.duel ? 'checked' : ''}> quelqu’un me défie en duel, ou un duel se termine</label>
           <label class="toggle"><input type="checkbox" data-pref="idee" ${d.prefs.idee ? 'checked' : ''}> l’équipe répond à une de mes idées</label>

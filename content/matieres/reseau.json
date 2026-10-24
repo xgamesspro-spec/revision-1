@@ -1,7 +1,8 @@
 {
   "nom": "Réseaux",
   "icone": "🌐",
-  "groupe": "Informatique SISR",
+  "groupe": "Informatique & réseaux",
+  "publics": ["bts-sio", "bts-ciel", "bp-ciel", "tp-cda", "tp-dwwm", "d:numerique"],
   "ordre": 1,
   "description": "Modèle OSI, adressage IP, subnetting, VLAN, routage, ports.",
   "fiches": [

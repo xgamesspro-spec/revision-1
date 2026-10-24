@@ -2,6 +2,7 @@
   "nom": "Sranan Tongo & Patwa",
   "icone": "🌴",
   "groupe": "Langues",
+  "publics": ["*"],
   "ordre": 8,
   "description": "Bases du sranan tongo (Suriname) et du patois jamaïcain.",
   "fiches": [

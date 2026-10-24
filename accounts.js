@@ -1,6 +1,7 @@
 // Comptes : inscription / connexion (Google ou identifiant + mot de passe), filières,
 // réinitialisation par un modérateur, suppression automatique en fin de formation.
 const crypto = require('crypto');
+const formations = require('./formations');
 
 const FILIERES = [
   { id: 'CAP', nom: 'CAP', duree: 2 },
@@ -28,6 +29,7 @@ function migrate(db) {
   add('google_sub', 'TEXT');
   add('filiere', 'TEXT');
   add('intitule', 'TEXT');
+  add('formation', 'TEXT'); // identifiant dans content/formations.json
   add('end_date', 'TEXT');
   add('expires_at', 'INTEGER');
   add('must_change', 'INTEGER NOT NULL DEFAULT 0');
@@ -78,6 +80,7 @@ module.exports = function setupAccounts(app, h) {
       id: u.id, username: u.username, display_name: u.display_name, role: u.role,
       email: u.email, google: !!u.google_sub,
       filiere: u.filiere, filiere_nom: filiereNom(u.filiere), intitule: u.intitule,
+      formation: u.formation, formation_nom: formations.nom(u.formation),
       end_date: u.end_date, expires_at: u.role === 'eleve' ? u.expires_at : null,
       expire_bientot: u.role === 'eleve' && u.expires_at && u.expires_at - now() < WARN_DAYS * 864e5,
       must_change: !!u.must_change, needs_profile: needsProfile,
@@ -110,7 +113,9 @@ module.exports = function setupAccounts(app, h) {
     const filiere = text(body.filiere, 10);
     if (!filiere && !required) return {};
     const end_date = computeEnd(filiere, text(body.fin, 7));
-    return { filiere, end_date, intitule: text(body.intitule, 60) || null, expires_at: expiryFrom(end_date) };
+    const formation = text(body.formation, 40) || null;
+    if (formation && !formations.valid(formation, filiere)) throw new Error('Cette formation ne correspond pas à ta filière');
+    return { filiere, end_date, formation, intitule: text(body.intitule, 60) || null, expires_at: expiryFrom(end_date) };
   }
   const checkNewPassword = pw => {
     if (String(pw || '').length < 8) throw new Error('Mot de passe : 8 caractères minimum');
@@ -120,7 +125,7 @@ module.exports = function setupAccounts(app, h) {
   function anonymize(id) {
     const tag = `supprime-${id}-${crypto.randomBytes(3).toString('hex')}`;
     db.prepare(`UPDATE users SET username = ?, display_name = 'Ancien élève', email = NULL, google_sub = NULL, pass_hash = '!',
-      banned = 1, deleted = 1, filiere = NULL, intitule = NULL, end_date = NULL, expires_at = NULL, must_change = 0 WHERE id = ?`).run(tag, id);
+      banned = 1, deleted = 1, filiere = NULL, formation = NULL, intitule = NULL, end_date = NULL, expires_at = NULL, must_change = 0 WHERE id = ?`).run(tag, id);
     for (const t of ['sessions', 'card_progress', 'quiz_results']) db.prepare(`DELETE FROM ${t} WHERE user_id = ?`).run(id);
     for (const fn of deleteHooks) { try { fn(id); } catch (e) { console.warn('[comptes] nettoyage', e.message); } }
   }
@@ -131,7 +136,7 @@ module.exports = function setupAccounts(app, h) {
     res.json({
       firstUser: first, needsCode: !first || !!CLASS_CODE,
       google: googleEnabled(), localSignup: localSignupAllowed() || first,
-      filieres: FILIERES, grace_days: GRACE_DAYS,
+      filieres: FILIERES, grace_days: GRACE_DAYS, formations: formations.light(),
     });
   });
 
@@ -155,9 +160,9 @@ module.exports = function setupAccounts(app, h) {
     try { checkNewPassword(password); profile = profileFields(req.body, inv.role === 'eleve'); } catch (e) { return bad(res, e.message); }
     if (!inv.ok) return bad(res, "Code d'invitation invalide. Demande-le à un modérateur de la classe.", 403);
     if (db.prepare('SELECT 1 FROM users WHERE username = ?').get(username)) return bad(res, 'Cet identifiant est déjà pris');
-    const r = db.prepare(`INSERT INTO users (username, display_name, pass_hash, role, created_at, filiere, intitule, end_date, expires_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(username, display, hashPassword(password), inv.role, now(),
-      profile.filiere || null, profile.intitule || null, profile.end_date || null, profile.expires_at || null);
+    const r = db.prepare(`INSERT INTO users (username, display_name, pass_hash, role, created_at, filiere, formation, intitule, end_date, expires_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(username, display, hashPassword(password), inv.role, now(),
+      profile.filiere || null, profile.formation || null, profile.intitule || null, profile.end_date || null, profile.expires_at || null);
     useInvite(inv.invite);
     setSession(res, r.lastInsertRowid);
     res.json({ user: me(db.prepare('SELECT * FROM users WHERE id = ?').get(r.lastInsertRowid)) });
@@ -199,8 +204,8 @@ module.exports = function setupAccounts(app, h) {
       try { p = profileFields(req.body, req.user.role === 'eleve'); } catch (e) { return bad(res, e.message); }
     }
     if (p.filiere) {
-      db.prepare('UPDATE users SET filiere = ?, intitule = ?, end_date = ?, expires_at = ? WHERE id = ?')
-        .run(p.filiere, p.intitule, p.end_date, p.expires_at, req.user.id);
+      db.prepare('UPDATE users SET filiere = ?, formation = ?, intitule = ?, end_date = ?, expires_at = ? WHERE id = ?')
+        .run(p.filiere, p.formation, p.intitule, p.end_date, p.expires_at, req.user.id);
     }
     if (display) db.prepare('UPDATE users SET display_name = ? WHERE id = ?').run(display, req.user.id);
     res.json({ user: me(db.prepare('SELECT * FROM users WHERE id = ?').get(req.user.id)) });
@@ -318,9 +323,9 @@ module.exports = function setupAccounts(app, h) {
     if (base.length < 3) base = base.padEnd(3, '0');
     let username = base, i = 1;
     while (db.prepare('SELECT 1 FROM users WHERE username = ?').get(username)) username = `${base}${++i}`;
-    const r = db.prepare(`INSERT INTO users (username, display_name, pass_hash, role, created_at, email, google_sub, filiere, intitule, end_date, expires_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(username, display, hashPassword(String(req.body.password)), inv.role, now(),
-      p.email, p.sub, profile.filiere || null, profile.intitule || null, profile.end_date || null, profile.expires_at || null);
+    const r = db.prepare(`INSERT INTO users (username, display_name, pass_hash, role, created_at, email, google_sub, filiere, formation, intitule, end_date, expires_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(username, display, hashPassword(String(req.body.password)), inv.role, now(),
+      p.email, p.sub, profile.filiere || null, profile.formation || null, profile.intitule || null, profile.end_date || null, profile.expires_at || null);
     useInvite(inv.invite);
     pending.delete(t);
     setSession(res, r.lastInsertRowid);
@@ -330,8 +335,8 @@ module.exports = function setupAccounts(app, h) {
   // ---------- Modération des comptes ----------
   app.get('/api/admin/users', auth, admin, (req, res) => {
     res.json(db.prepare(`SELECT id, username, display_name, role, banned, created_at, email, google_sub IS NOT NULL AS google,
-      filiere, intitule, end_date, expires_at, must_change FROM users WHERE deleted = 0 ORDER BY filiere, display_name`).all()
-      .map(u => ({ ...u, filiere_nom: filiereNom(u.filiere) })));
+      filiere, formation, intitule, end_date, expires_at, must_change FROM users WHERE deleted = 0 ORDER BY filiere, display_name`).all()
+      .map(u => ({ ...u, filiere_nom: filiereNom(u.filiere), formation_nom: formations.nom(u.formation) })));
   });
 
   app.post('/api/admin/users/:id', auth, admin, (req, res) => {
@@ -352,6 +357,11 @@ module.exports = function setupAccounts(app, h) {
       else return bad(res, 'Date invalide');
     }
     if (req.body.filiere && FILIERES.some(f => f.id === req.body.filiere)) db.prepare('UPDATE users SET filiere = ? WHERE id = ?').run(req.body.filiere, id);
+    if ('formation' in req.body) {
+      const fil = db.prepare('SELECT filiere FROM users WHERE id = ?').get(id).filiere;
+      if (req.body.formation && !formations.valid(req.body.formation, fil)) return bad(res, 'Formation incompatible avec la filière');
+      db.prepare('UPDATE users SET formation = ? WHERE id = ?').run(req.body.formation || null, id);
+    }
     res.json({ ok: true });
   });
 

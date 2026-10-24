@@ -1,0 +1,48 @@
+{
+  "nom": "Tes droits d'apprenti",
+  "icone": "🧑‍🏭",
+  "groupe": "Pour tous les apprentis",
+  "publics": ["*"],
+  "ordre": 1,
+  "description": "Contrat, salaire, temps de travail, congés, rupture, qui contacter en cas de souci.",
+  "fiches": [
+    {
+      "titre": "Le contrat d'apprentissage en bref",
+      "contenu": "## C'est un vrai contrat de travail\nTu es **salarié** de ton entreprise : tu as un salaire, une fiche de paie, des congés payés et les mêmes droits que les autres salariés.\n\n## Durée\nDe **6 mois à 3 ans**, selon le diplôme ou le titre préparé (souvent 1 an pour un titre pro, 2 ans pour un CAP ou un BTS).\n\n## Le temps au CFA\nLes heures passées au CFA **comptent comme du temps de travail** : elles sont payées et l'entreprise ne peut pas t'empêcher d'y aller.\n\n## Le maître d'apprentissage (tuteur)\nIl t'accueille, t'apprend le métier et fait le lien avec le CFA. Dans Classe CEVEDOM, il peut signer ton **livret d'apprentissage** avec le lien que tu lui envoies.\n\n## La période d'essai\nLes **45 premiers jours** (consécutifs ou non) passés **en entreprise** : pendant cette période, toi ou ton employeur pouvez arrêter le contrat librement, par écrit."
+    },
+    {
+      "titre": "Ton salaire",
+      "contenu": "## Un pourcentage du SMIC\nTon salaire minimum dépend de **ton âge** et de **ton année de contrat** (grille officielle, en % du SMIC) :\n\n| Âge | 1re année | 2e année | 3e année |\n|---|---|---|---|\n| 16–17 ans | 27 % | 39 % | 55 % |\n| 18–20 ans | 43 % | 51 % | 67 % |\n| 21–25 ans | 53 % | 61 % | 78 % |\n| 26 ans et + | 100 % | 100 % | 100 % |\n\nTon contrat ou ta convention collective peut prévoir **plus**, jamais moins.\n\n## À vérifier sur ta fiche de paie\n- le bon pourcentage (il change à ton anniversaire et à chaque nouvelle année de contrat) ;\n- tes heures au CFA payées comme les autres ;\n- tes congés payés.\n\n👉 Simulateur officiel : portail de l'alternance (alternance.emploi.gouv.fr)."
+    },
+    {
+      "titre": "Temps de travail, congés, absences",
+      "contenu": "## Temps de travail\n- **35 h par semaine** (formation au CFA comprise), comme les autres salariés.\n- Si tu as **moins de 18 ans** : 8 h par jour maximum, pas de travail de nuit, 2 jours de repos consécutifs par semaine en principe.\n\n## Congés payés\n**2,5 jours ouvrables par mois** de travail, soit 5 semaines par an. Tu les poses **pendant les périodes en entreprise**, pas pendant les cours au CFA.\n\n## Congé pour examen\n**5 jours ouvrables** payés pour préparer ton examen, dans le mois qui précède les épreuves.\n\n## Absences\nUne absence au CFA est une absence au travail : préviens **ton entreprise ET le CFA**, et envoie ton justificatif (dans Classe CEVEDOM : *Vie scolaire → Justifier*). Une absence non justifiée peut être retenue sur ton salaire."
+    },
+    {
+      "titre": "En cas de problème",
+      "contenu": "## Arrêter le contrat\n- Pendant les **45 premiers jours en entreprise** : librement, par écrit.\n- Après : d'un **commun accord** (écrit), ou par **démission** de l'apprenti après avoir saisi le **médiateur** de la chambre consulaire (CCI, CMA…), ou par licenciement dans les cas prévus par la loi.\n- Le CFA t'aide à retrouver une entreprise : tu peux rester en formation au CFA quelques mois le temps d'en trouver une nouvelle.\n\n## Qui contacter ?\n1. Ton **formateur référent** ou la direction du CFA ;\n2. Le **médiateur de l'apprentissage** de la chambre consulaire dont dépend ton entreprise ;\n3. L'inspection du travail (DEETS) pour un problème de droit du travail.\n\n## Le harcèlement, c'est interdit\nEn entreprise comme au CFA. Parles-en à un adulte de confiance ou au CFA, tu ne seras pas seul."
+    }
+  ],
+  "quiz": [
+    { "q": "Combien de temps dure la période d'essai d'un apprenti ?", "choix": ["15 jours", "45 jours en entreprise", "3 mois", "6 mois"], "reponse": 1, "explication": "45 jours, consécutifs ou non, de formation pratique en entreprise." },
+    { "q": "Tes heures au CFA…", "choix": ["ne sont pas payées", "sont payées comme du temps de travail", "sont payées à moitié", "sont à rattraper en entreprise"], "reponse": 1, "explication": "Le temps de formation au CFA est du temps de travail effectif : il est rémunéré." },
+    { "q": "Combien de jours de congés payés gagnes-tu par mois ?", "choix": ["1 jour", "2 jours", "2,5 jours ouvrables", "5 jours"], "reponse": 2, "explication": "2,5 jours ouvrables par mois, soit 30 jours (5 semaines) par an." },
+    { "q": "À 19 ans, en 1re année de contrat, ton salaire minimum est de :", "choix": ["27 % du SMIC", "43 % du SMIC", "53 % du SMIC", "100 % du SMIC"], "reponse": 1, "explication": "18–20 ans : 43 % du SMIC en 1re année, 51 % en 2e, 67 % en 3e." },
+    { "q": "Avant d'un examen, tu as droit à :", "choix": ["rien de spécial", "1 jour", "5 jours ouvrables de congé payé pour réviser", "2 semaines"], "reponse": 2, "explication": "5 jours ouvrables dans le mois qui précède les épreuves, payés." },
+    { "q": "Tu veux démissionner après la période d'essai. Que dois-tu faire d'abord ?", "choix": ["Rien, tu pars", "Saisir le médiateur de la chambre consulaire", "Prévenir seulement le CFA", "Envoyer un SMS au patron"], "reponse": 1, "explication": "L'apprenti doit d'abord saisir le médiateur consulaire, puis respecter un délai avant la rupture." },
+    { "q": "Tu es absent au CFA. Qui dois-tu prévenir ?", "choix": ["Personne", "Seulement le CFA", "Seulement l'entreprise", "Le CFA ET l'entreprise"], "reponse": 3, "explication": "L'absence au CFA est une absence au travail : les deux doivent être prévenus." },
+    { "q": "Combien d'heures par semaine maximum, formation comprise (cas général) ?", "choix": ["30 h", "35 h", "39 h", "48 h"], "reponse": 1, "explication": "35 h comme les autres salariés ; des heures sup sont possibles à partir de 18 ans dans les conditions légales." }
+  ],
+  "cartes": [
+    { "recto": "Durée d'un contrat d'apprentissage", "verso": "De 6 mois à 3 ans" },
+    { "recto": "Période d'essai de l'apprenti", "verso": "45 jours (consécutifs ou non) de présence en entreprise" },
+    { "recto": "Congés payés par mois", "verso": "2,5 jours ouvrables (5 semaines par an)" },
+    { "recto": "Congé pour préparer l'examen", "verso": "5 jours ouvrables payés, dans le mois avant les épreuves" },
+    { "recto": "Salaire à 26 ans et plus", "verso": "100 % du SMIC minimum (ou du salaire conventionnel s'il est plus élevé)" },
+    { "recto": "Salaire à 16–17 ans en 1re année", "verso": "27 % du SMIC minimum" },
+    { "recto": "Qui finance la formation ?", "verso": "L'OPCO de l'entreprise : c'est gratuit pour l'apprenti" },
+    { "recto": "Qui aide en cas de conflit avec l'employeur ?", "verso": "Le médiateur de la chambre consulaire (CCI, CMA…), et le CFA" },
+    { "recto": "Temps au CFA = ?", "verso": "Du temps de travail effectif, payé" },
+    { "recto": "Moins de 18 ans : durée maximale par jour", "verso": "8 heures" }
+  ]
+}

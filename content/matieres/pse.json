@@ -1,0 +1,45 @@
+{
+  "nom": "Prévention, santé, environnement (PSE)",
+  "icone": "🦺",
+  "groupe": "Enseignement général",
+  "publics": ["CAP", "BACPRO"],
+  "ordre": 9,
+  "description": "Démarche de prévention, risques au travail, premiers secours, santé au quotidien, environnement.",
+  "fiches": [
+    {
+      "titre": "La démarche d'approche par le risque",
+      "contenu": "## Le vocabulaire (à connaître par cœur)\n- **Danger** : ce qui peut causer un dommage (machine, produit, charge lourde…).\n- **Situation dangereuse** : une personne est **exposée** au danger.\n- **Événement dangereux** : ce qui déclenche le dommage (glissade, projection…).\n- **Dommage** : la blessure ou l'atteinte à la santé.\n\n## Les 3 niveaux de prévention\n1. **Intrinsèque** : supprimer le danger à la source (changer de produit, de machine).\n2. **Collective** (EPC) : protéger tout le monde (garde-corps, aspiration, carter).\n3. **Individuelle** (EPI) : en dernier recours (gants, lunettes, chaussures de sécurité, bouchons d'oreilles).\n\n👉 À l'examen : on cite toujours la prévention **intrinsèque** en premier."
+    },
+    {
+      "titre": "Les risques au travail",
+      "contenu": "## Les grands risques\n- **TMS** (troubles musculo-squelettiques) : gestes répétitifs, mauvaises postures, port de charges → tendinites, mal de dos.\n- **Risque chimique** : lis l'étiquette et ses **pictogrammes** (SGH) et la fiche de données de sécurité.\n- **Bruit** : au-delà de 80 dB(A) sur une journée, protection auditive à disposition ; à 85 dB(A), obligatoire.\n- **Chutes** de plain-pied ou de hauteur : première cause d'accidents du travail avec la manutention.\n- **Risques psychosociaux** : stress, harcèlement, épuisement.\n\n## Accident du travail\nPréviens ton employeur **dans les 24 h**, fais constater par un médecin, et préviens le CFA."
+    },
+    {
+      "titre": "Premiers secours : protéger, alerter, secourir",
+      "contenu": "## 1. Protéger\nSupprime le danger ou éloigne la victime **sans te mettre en danger**.\n\n## 2. Alerter\n- **15** : SAMU (urgence médicale)\n- **18** : pompiers\n- **17** : police / gendarmerie\n- **112** : numéro d'urgence européen\n- **114** : par SMS, pour les personnes sourdes ou qui ne peuvent pas parler\n\nDis : qui tu es, où tu es, ce qui s'est passé, combien de victimes, leur état. **Ne raccroche pas le premier.**\n\n## 3. Secourir\nSaignement abondant → **compression** ; victime inconsciente qui respire → **PLS** ; ne respire pas → **massage cardiaque** + défibrillateur (DAE)."
+    },
+    {
+      "titre": "Santé, budget, environnement",
+      "contenu": "## Santé au quotidien\n- **Sommeil** : 8 à 10 h à l'adolescence ; les écrans le soir retardent l'endormissement.\n- **Alimentation** : 3 repas, varier les groupes d'aliments, boire de l'eau.\n- **Addictions** : tabac, alcool, cannabis, jeux, écrans… En parler aide (médecin, infirmière, CFA).\n\n## Budget\nRevenus − dépenses fixes (loyer, transport, téléphone) − dépenses variables. Garde une épargne de précaution.\n\n## Environnement\n- Tri des déchets et des produits dangereux (piles, solvants) selon les règles de l'entreprise.\n- Économies d'énergie et d'eau.\n- Le **développement durable** = économique + social + environnemental."
+    }
+  ],
+  "quiz": [
+    { "q": "Une personne exposée à un danger, c'est :", "choix": ["un dommage", "une situation dangereuse", "un EPI", "un accident"], "reponse": 1, "explication": "Danger + personne exposée = situation dangereuse." },
+    { "q": "Quelle prévention passe en premier ?", "choix": ["Individuelle (EPI)", "Collective (EPC)", "Intrinsèque (supprimer le danger)", "La formation"], "reponse": 2, "explication": "On supprime d'abord le danger à la source, ensuite on protège collectivement, et les EPI en dernier recours." },
+    { "q": "Le numéro du SAMU est le :", "choix": ["15", "17", "18", "114"], "reponse": 0, "explication": "15 = SAMU, 18 = pompiers, 17 = police, 112 = urgence européen, 114 = par SMS." },
+    { "q": "Des gants et des lunettes de sécurité sont des :", "choix": ["EPC", "EPI", "TMS", "FDS"], "reponse": 1, "explication": "Équipements de protection individuelle." },
+    { "q": "Une victime inconsciente qui respire doit être mise :", "choix": ["assise", "debout", "en PLS", "sur le ventre"], "reponse": 2, "explication": "Position latérale de sécurité, puis alerte et surveillance." },
+    { "q": "Les TMS sont surtout causés par :", "choix": ["le bruit", "les gestes répétitifs et les mauvaises postures", "les produits chimiques", "le froid"], "reponse": 1, "explication": "Troubles musculo-squelettiques : gestes répétitifs, postures, efforts." },
+    { "q": "Après un accident du travail, tu préviens ton employeur :", "choix": ["dans les 24 h", "dans le mois", "seulement si c'est grave", "jamais"], "reponse": 0, "explication": "Dans les 24 heures, pour que l'accident soit déclaré." }
+  ],
+  "cartes": [
+    { "recto": "Danger", "verso": "Ce qui peut causer un dommage" },
+    { "recto": "Situation dangereuse", "verso": "Une personne exposée à un danger" },
+    { "recto": "EPC", "verso": "Équipement de protection collective (protège tout le monde)" },
+    { "recto": "EPI", "verso": "Équipement de protection individuelle (dernier recours)" },
+    { "recto": "15 / 17 / 18 / 112 / 114", "verso": "SAMU / police / pompiers / urgence européen / urgence par SMS" },
+    { "recto": "PAS", "verso": "Protéger, Alerter, Secourir" },
+    { "recto": "TMS", "verso": "Troubles musculo-squelettiques : gestes répétitifs, postures, charges" },
+    { "recto": "Développement durable : 3 piliers", "verso": "Économique, social, environnemental" }
+  ]
+}

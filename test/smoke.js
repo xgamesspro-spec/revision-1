@@ -638,6 +638,153 @@ const google = http.createServer((req, res) => {
   r = await call('p', 'GET', '/api/guide');
   assert.ok(r.data.roles.eleve.sections.length >= 5 && r.data.roles.prof && r.data.roles.admin);
 
+  // ================= Formations du CFA =================
+  r = await call('anon', 'GET', '/api/formations');
+  assert.equal(r.data.items.length, 41, 'les 41 formations du CFA');
+  assert.equal(new Set(r.data.items.map(f => f.filiere)).size, 4);
+  r = await call('b', 'POST', '/api/me/profile', { filiere: 'BTS', fin: String(thisSchoolYearEnd() + 1), formation: 'cap-ol' });
+  assert.equal(r.status, 400, 'formation hors filière refusée');
+  r = await call('b', 'POST', '/api/me/profile', { filiere: 'BTS', fin: String(thisSchoolYearEnd() + 1), formation: 'bts-sio', intitule: 'option SISR' });
+  assert.equal(r.data.user.formation, 'bts-sio'); assert.ok(r.data.user.formation_nom.includes('SIO'));
+  r = await call('b', 'GET', '/api/formations/bts-sio');
+  assert.equal(r.data.rncp, 'RNCP40792'); assert.ok(r.data.liens.rncp.includes('40792')); assert.ok(r.data.examen.dates.length >= 5);
+  assert.ok(r.data.ou_trouver.length >= 6);
+  r = await call('c', 'GET', '/api/formations/tp-gp');
+  assert.equal(r.data.examen.dates.length, 0, 'titre pro : pas de date nationale');
+  r = await call('b', 'GET', '/api/subjects');
+  const subj = id => r.data.find(x => x.id === id);
+  assert.equal(subj('reseau').pour_toi, true); assert.equal(subj('reseau').pertinence, 3);
+  assert.equal(subj('pse').pour_toi, false); assert.equal(subj('apprenti').pour_toi, true);
+  r = await call('c', 'GET', '/api/subjects');
+  assert.equal(r.data.find(x => x.id === 'titrepro').pour_toi, true);
+  assert.equal(r.data.find(x => x.id === 'reseau').pour_toi, false);
+  r = await call('b', 'GET', '/api/dashboard');
+  assert.ok(r.data.examen && r.data.examen.filiere === 'BTS');
+  r = await call('b', 'GET', `/api/events?from=${Date.now()}&to=${Date.now() + 300 * DAY}`);
+  assert.equal(r.data.events.filter(e => e.title.startsWith('Culture générale')).length, 1, 'dates BTS importées une seule fois');
+
+  // ================= Cahier de textes =================
+  const demain = new Date(Date.now() + 2 * DAY).toISOString().slice(0, 10);
+  r = await call('b', 'POST', '/api/cahier', { titre: 'x' });
+  assert.equal(r.status, 403, 'un élève ne remplit pas le cahier de textes');
+  r = await call('p', 'POST', '/api/cahier', { titre: 'VLAN et trunk', matiere: 'Réseaux', contenu: 'Cours sur 802.1Q', travail: 'Exercice 3', pour_le: demain, formation: 'bts-sio' });
+  assert.equal(r.status, 200, JSON.stringify(r.data));
+  const cid = r.data.id;
+  r = await call('b', 'GET', '/api/cahier');
+  assert.ok(r.data.travail.some(e => e.id === cid && !e.fait));
+  r = await call('c', 'GET', '/api/cahier');
+  assert.ok(!r.data.travail.some(e => e.id === cid), 'invisible pour une autre formation');
+  r = await call('b', 'GET', '/api/dashboard');
+  assert.equal(r.data.travail.length, 1);
+  await call('b', 'POST', `/api/cahier/${cid}/fait`, { done: true });
+  r = await call('b', 'GET', '/api/dashboard');
+  assert.equal(r.data.travail.length, 0, 'travail coché = plus à faire');
+  r = await call('p', 'GET', '/api/cahier');
+  assert.equal(r.data.travail.find(e => e.id === cid).nb_fait, 1);
+  r = await call('b', 'GET', '/api/notifications');
+  assert.ok(r.data.items.some(n => n.type === 'scolarite' && n.link === '#/cahier'));
+
+  // ================= Notes et moyennes =================
+  r = await call('p', 'POST', '/api/evaluations', { titre: 'Contrôle subnetting', matiere: 'Réseaux', bareme: 40, coef: 2, filiere: 'BTS' });
+  const evid = r.data.id;
+  r = await call('p', 'PUT', `/api/evaluations/${evid}/notes`, { notes: [{ user_id: tom.id, valeur: 10 }] });
+  assert.equal(r.status, 400, 'élève hors de la classe');
+  r = await call('p', 'PUT', `/api/evaluations/${evid}/notes`, { notes: [{ user_id: lea.id, valeur: '45' }] });
+  assert.equal(r.status, 400, 'note au-dessus du barème');
+  r = await call('p', 'PUT', `/api/evaluations/${evid}/notes`, { notes: [{ user_id: lea.id, valeur: '30,5', appreciation: 'Bien' }] });
+  assert.equal(r.status, 200);
+  r = await call('b', 'GET', '/api/evaluations');
+  assert.equal(r.data.items.length, 0, 'brouillon invisible pour les élèves');
+  r = await call('p', 'PUT', `/api/evaluations/${evid}/notes`, { notes: [], publier: true });
+  assert.equal(r.data.publiee, true);
+  r = await call('b', 'GET', '/api/evaluations');
+  assert.equal(r.data.items[0].ma_note.valeur, 30.5); assert.equal(r.data.items[0].stats.moyenne, undefined, 'pas de stats sous 3 notes');
+  r = await call('b', 'GET', '/api/releve');
+  assert.equal(r.data.generale, 15.25); assert.equal(r.data.matieres[0].moyenne, 15.25);
+  r = await call('c', 'GET', `/api/releve?user_id=${lea.id}`);
+  assert.equal(r.data.eleve.id, tom.id, 'un élève ne voit que son relevé');
+  r = await call('p', 'GET', `/api/releve?user_id=${lea.id}`);
+  assert.equal(r.data.generale, 15.25);
+
+  // ================= Vie scolaire =================
+  r = await call('c', 'GET', '/api/appels');
+  assert.equal(r.status, 403);
+  r = await call('p', 'POST', '/api/appels', { filiere: 'BTS', creneau: 'matin', matiere: 'Réseaux' });
+  const apid = r.data.id;
+  r = await call('p', 'POST', '/api/appels', { filiere: 'BTS', creneau: 'matin' });
+  assert.equal(r.data.existant, true);
+  r = await call('p', 'PUT', `/api/appels/${apid}`, { eleves: [{ id: lea.id, statut: 'absent' }, { id: tom.id, statut: 'absent' }] });
+  r = await call('c', 'GET', '/api/viescolaire');
+  assert.equal(r.data.resume.absences, 0, 'Tom n’est pas dans cette classe');
+  r = await call('b', 'GET', '/api/viescolaire');
+  assert.equal(r.data.resume.absences, 1); assert.equal(r.data.resume.a_justifier, 1);
+  r = await call('b', 'POST', '/api/justifs', { appels: [apid], motif: 'transport', commentaire: 'Bus en panne' });
+  assert.equal(r.status, 200, JSON.stringify(r.data));
+  const jid = r.data.id;
+  r = await call('b', 'POST', '/api/justifs', { appels: [apid], motif: 'autre' });
+  assert.equal(r.status, 400, 'déjà justifiée');
+  r = await call('p', 'GET', '/api/appels');
+  assert.equal(r.data.justifs.length, 1); assert.equal(r.data.appels[0].absents, 1);
+  r = await call('b', 'POST', `/api/justifs/${jid}`, { statut: 'acceptee' });
+  assert.equal(r.status, 403);
+  await call('p', 'POST', `/api/justifs/${jid}`, { statut: 'acceptee', reponse: 'OK' });
+  r = await call('b', 'GET', '/api/viescolaire');
+  assert.equal(r.data.evenements[0].justifiee, true); assert.equal(r.data.resume.a_justifier, 0);
+
+  // ================= Messagerie formateurs ↔ élèves =================
+  r = await call('b', 'GET', '/api/contacts');
+  assert.ok(r.data.length && r.data.every(c => c.role !== 'eleve'), 'un élève ne contacte que l’équipe');
+  r = await call('b', 'POST', '/api/convs', { sujet: 'x', message: 'y', to: [tom.id] });
+  assert.equal(r.status, 403, 'pas de messagerie privée entre élèves');
+  const profId = (await call('p', 'GET', '/api/me')).data.user.id;
+  r = await call('b', 'POST', '/api/convs', { sujet: 'Question VLAN', message: 'Bonjour, je bloque sur l’exercice 3', to: [profId] });
+  const conv1 = r.data.id;
+  r = await call('p', 'GET', '/api/convs');
+  assert.equal(r.data.find(c => c.id === conv1).unread, 1);
+  await call('p', 'POST', `/api/convs/${conv1}/messages`, { content: 'Regarde le trunk 802.1Q' });
+  r = await call('a', 'GET', `/api/convs/${conv1}`);
+  assert.equal(r.status, 404, 'même un modérateur ne lit pas une discussion dont il ne fait pas partie');
+  // Message à un groupe : les élèves ne lisent pas les réponses des autres
+  r = await call('p', 'POST', '/api/convs', { sujet: 'Sortie', message: 'Qui vient ?', to: [lea.id, tom.id] });
+  const conv2 = r.data.id;
+  await call('b', 'POST', `/api/convs/${conv2}/messages`, { content: 'Moi !' });
+  r = await call('c', 'GET', `/api/convs/${conv2}`);
+  assert.equal(r.data.messages.length, 1); assert.equal(r.data.autres_eleves, 1);
+  r = await call('p', 'GET', `/api/convs/${conv2}`);
+  assert.equal(r.data.messages.length, 2);
+  r = await call('p', 'POST', '/api/convs', { sujet: 'Info', message: 'Pas de cours lundi', classe: { filiere: 'BTS' }, reponses: false });
+  r = await call('b', 'POST', `/api/convs/${r.data.id}/messages`, { content: 'ok' });
+  assert.equal(r.status, 403, 'réponses fermées');
+
+  // ================= Livret d'apprentissage & tuteur =================
+  r = await call('b', 'POST', '/api/livret/periodes', { titre: 'Novembre', activites: 'Installation de postes', debut: '2026-11-02', fin: '2026-11-20' });
+  const perId = r.data.id;
+  r = await call('b', 'POST', '/api/livret/tuteurs', { nom: 'Mme Tuteur', entreprise: 'Entreprise fictive' });
+  const tok = r.data.token;
+  assert.ok(tok.length >= 30);
+  r = await call('anon', 'POST', '/api/tuteur/livret', { token: 'faux-jeton-faux-jeton-faux' });
+  assert.equal(r.status, 404);
+  r = await call('anon', 'POST', '/api/tuteur/livret', { token: tok });
+  assert.equal(r.status, 200); assert.equal(r.data.apprenti.display_name, 'Léa'); assert.equal(r.data.periodes.length, 1);
+  assert.equal(r.data.absences.absences, 1); assert.equal(r.data.releve, undefined, 'notes cachées au tuteur par défaut');
+  assert.ok(!('channels' in r.data) && !('tuteurs' in r.data));
+  r = await call('anon', 'POST', `/api/tuteur/periodes/${perId}`, { token: tok, appreciation: 'Très bon début', evals: { ponctualite: 'A', autonomie: 'EC', pirate: 'X' }, signer: true });
+  assert.equal(r.data.signee, true);
+  r = await call('b', 'PATCH', `/api/livret/periodes/${perId}`, { activites: 'modifié' });
+  assert.equal(r.status, 400, 'période signée non modifiable');
+  r = await call('b', 'GET', '/api/livret');
+  assert.deepEqual(r.data.periodes[0].tuteur_evals, { ponctualite: 'A', autonomie: 'EC' });
+  r = await call('p', 'PATCH', `/api/livret/periodes/${perId}`, { formateur_remarque: 'Continue' });
+  assert.equal(r.status, 200);
+  r = await call('p', 'POST', '/api/livret/visites', { user_id: lea.id, type: 'visite', compte_rendu: 'RAS' });
+  assert.equal(r.status, 200);
+  r = await call('c', 'GET', `/api/livret?user_id=${lea.id}`);
+  assert.equal(r.data.apprenti.id, tom.id, 'un élève ne lit que son livret');
+  r = await call('b', 'GET', '/api/livret');
+  await call('b', 'DELETE', `/api/livret/tuteurs/${r.data.tuteurs[0].id}`);
+  r = await call('anon', 'POST', '/api/tuteur/livret', { token: tok });
+  assert.equal(r.status, 404, 'lien désactivé');
+
   // --- Ancien compte sans filière : profil obligatoire ---
   const { DatabaseSync } = require('node:sqlite');
   const raw = new DatabaseSync(path.join(process.env.DATA_DIR, 'classe.db'));

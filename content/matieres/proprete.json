@@ -1,0 +1,40 @@
+{
+  "nom": "Propreté & hygiène : les bases",
+  "icone": "🧽",
+  "groupe": "Propreté & hygiène",
+  "publics": ["d:proprete"],
+  "ordre": 13,
+  "description": "Cercle de Sinner, produits et pH, bionettoyage, pictogrammes de danger, gestes sûrs.",
+  "fiches": [
+    {
+      "titre": "Le cercle de Sinner",
+      "contenu": "Un nettoyage efficace combine **4 facteurs** :\n1. **Temps** (de contact du produit) ;\n2. **Action mécanique** (frotter, brosser, machine) ;\n3. **Chimie** (le produit et sa concentration) ;\n4. **Température** (de l'eau).\n\nSi on diminue un facteur, il faut en **augmenter un autre** pour garder le même résultat. Exemple : eau froide → frotter plus longtemps ou laisser agir plus.\n\n👉 Toujours respecter le **dosage** indiqué : trop de produit n'est pas plus efficace, c'est plus dangereux et ça laisse des traces."
+    },
+    {
+      "titre": "Produits et pH",
+      "contenu": "| pH | Type | Contre quoi ? | Exemple |\n|---|---|---|---|\n| 0 à 6 | **Acide** | Tartre, calcaire, rouille | Détartrant sanitaires |\n| 7 | **Neutre** | Salissures légères, entretien courant | Détergent neutre sols |\n| 8 à 14 | **Alcalin (basique)** | Graisses, salissures organiques | Dégraissant cuisine |\n\n## Règles d'or\n- **Ne jamais mélanger** les produits (ex. javel + acide = gaz toxique).\n- **Détergent** = enlève la saleté ; **désinfectant** = tue les micro-organismes ; **détergent-désinfectant** = les deux.\n- Lire l'**étiquette** et la **fiche de données de sécurité (FDS)**."
+    },
+    {
+      "titre": "Bionettoyage et sécurité",
+      "contenu": "## Le bionettoyage (milieux sensibles : hôpitaux, cliniques…)\nRéduire la contamination des surfaces : **nettoyage + désinfection**. Principes :\n- du **plus propre vers le plus sale** ;\n- du **haut vers le bas** ;\n- du **fond de la pièce vers la sortie** ;\n- matériel dédié par zone, changé souvent ; **hygiène des mains** avant et après.\n\n## Pictogrammes de danger (SGH)\nFlamme (inflammable), tête de mort (toxique), corrosion (brûle la peau et les yeux), point d'exclamation (irritant), silhouette abîmée (danger grave pour la santé), environnement (dangereux pour les milieux aquatiques).\n\n## EPI\nGants adaptés, lunettes en cas de projection, chaussures antidérapantes ; panneau « sol glissant » pendant le lavage."
+    }
+  ],
+  "quiz": [
+    { "q": "Les 4 facteurs du cercle de Sinner :", "choix": ["Temps, action mécanique, chimie, température", "Eau, savon, brosse, seau", "Haut, bas, propre, sale", "Gants, lunettes, blouse, chaussures"], "reponse": 0, "explication": "TACT : Temps, Action mécanique, Chimie, Température." },
+    { "q": "Pour enlever le tartre, on utilise un produit :", "choix": ["acide", "neutre", "alcalin", "désinfectant seulement"], "reponse": 0, "explication": "Le calcaire se dissout avec un acide." },
+    { "q": "Pour dégraisser une cuisine :", "choix": ["acide", "alcalin", "neutre", "eau froide seule"], "reponse": 1, "explication": "Les graisses s'enlèvent avec un produit alcalin." },
+    { "q": "En bionettoyage, on va :", "choix": ["du plus sale au plus propre", "du plus propre au plus sale", "au hasard", "de la sortie vers le fond"], "reponse": 1, "explication": "Du propre vers le sale, du haut vers le bas, du fond vers la sortie." },
+    { "q": "Mélanger javel et détartrant acide :", "choix": ["est plus efficace", "dégage un gaz toxique", "ne change rien", "est obligatoire"], "reponse": 1, "explication": "Le mélange dégage du chlore gazeux, très dangereux. Ne jamais mélanger." },
+    { "q": "Un désinfectant sert à :", "choix": ["enlever la saleté", "tuer les micro-organismes", "faire briller", "parfumer"], "reponse": 1, "explication": "Le détergent nettoie, le désinfectant détruit les micro-organismes." }
+  ],
+  "cartes": [
+    { "recto": "Cercle de Sinner (TACT)", "verso": "Temps, Action mécanique, Chimie, Température" },
+    { "recto": "pH acide", "verso": "0 à 6 : contre le tartre et le calcaire" },
+    { "recto": "pH alcalin", "verso": "8 à 14 : contre les graisses" },
+    { "recto": "pH neutre", "verso": "7 : entretien courant" },
+    { "recto": "Détergent vs désinfectant", "verso": "Enlève la saleté / tue les micro-organismes" },
+    { "recto": "Sens du bionettoyage", "verso": "Propre → sale, haut → bas, fond → sortie" },
+    { "recto": "FDS", "verso": "Fiche de données de sécurité du produit" },
+    { "recto": "Règle n°1 avec les produits", "verso": "Ne jamais mélanger, respecter le dosage" }
+  ]
+}

@@ -1,7 +1,8 @@
 {
   "nom": "Cybersécurité",
   "icone": "🛡️",
-  "groupe": "Informatique SISR",
+  "groupe": "Informatique & réseaux",
+  "publics": ["bts-sio", "bts-ciel", "bp-ciel", "tp-cda", "tp-dwwm", "d:numerique"],
   "ordre": 3,
   "description": "DICP, chiffrement, PKI, pare-feu, VPN, attaques, bonnes pratiques ANSSI.",
   "fiches": [

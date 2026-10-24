@@ -2,6 +2,7 @@
   "nom": "Mathématiques",
   "icone": "🔢",
   "groupe": "Enseignement général",
+  "publics": ["d:numerique"],
   "ordre": 5,
   "description": "Binaire en douceur, hexadécimal, logique, ensembles, matrices, graphes.",
   "fiches": [

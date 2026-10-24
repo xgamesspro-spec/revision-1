@@ -11,7 +11,7 @@ const PUSH_HOSTS = [
   /(^|\.)notify\.windows\.com$/, /^android\.googleapis\.com$/,
   ...(process.env.PUSH_HOST_ALLOWLIST || '').split(',').filter(Boolean).map(h => new RegExp(`^${h.replace(/\./g, '\\.')}$`)),
 ];
-const DEFAULT_PREFS = { mention: true, reply: true, exercice: true, rappel: true, duel: true, idee: true, push: true };
+const DEFAULT_PREFS = { mention: true, reply: true, exercice: true, message: true, scolarite: true, rappel: true, duel: true, idee: true, push: true };
 
 function loadVapid() {
   if (process.env.VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {

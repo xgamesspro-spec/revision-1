@@ -121,7 +121,9 @@ window.addEventListener('hashchange', () => { document.getElementById('refresh-p
 async function paletteItems() {
   const r = state.user?.role;
   const items = [
-    ['🏠', 'Accueil', '#/'], ['🗓️', 'Planning', '#/planning'], ['📝', 'Exercices', '#/exercices'], ['📖', 'Révisions', '#/revisions'],
+    ['🏠', 'Accueil', '#/'], ['🗓️', 'Planning', '#/planning'], ['📒', 'Cahier de textes, travail à faire', '#/cahier'], ['📝', 'Exercices', '#/exercices'],
+    ['📊', 'Notes et moyennes', '#/notes'], ['🗂️', 'Vie scolaire : absences, appel, justificatifs', '#/viescolaire'], ['📘', 'Livret d’apprentissage, tuteur', '#/livret'],
+    ['✉️', 'Messagerie', '#/messages'], ['🎓', 'Ma formation', '#/formation'], ['🏫', 'Formations du CFA', '#/formations'], ['📖', 'Révisions', '#/revisions'],
     ['🏆', 'Progression, défi du jour, duels', '#/progression'], ['🔔', 'Notifications', '#/notifications'], ['📰', 'Actus', '#/actus'],
     ['🎓', 'CFA & examens', '#/infos'], ['💡', 'Boîte à idées', '#/idees'], ['❓', 'Guide d’utilisation', '#/guide'], ['⚙️', 'Mon compte', '#/compte'],
   ];
@@ -164,7 +166,7 @@ async function openPalette() {
 function openShortcuts() {
   showDialog(`<h3 style="margin-top:0">⌨️ Raccourcis clavier</h3><table class="keys">
     ${[['Ctrl + K', 'Recherche rapide'], ['?', 'Cette aide'], ['Entrée / Maj + Entrée', 'Envoyer / aller à la ligne'], ['↑ (zone vide)', 'Modifier ton dernier message'],
-      ['Échap', 'Annuler réponse / modification, fermer'], ['← / →', 'Mois précédent / suivant (planning)'], ['1 à 4', 'Choisir une réponse (quiz, défi, duel)'],
+      ['Échap', 'Annuler réponse / modification, fermer'], ['← / →', 'Mois précédent / suivant (planning)'], ['1 à 4', 'Choisir une réponse (quiz, défi, duel)'], ['Entrée / ↑ ↓', 'Note suivante / précédente (saisie des notes)'],
       ['M / V', 'Micro / caméra (réunion)']].map(([k, v]) => `<tr><td><kbd>${k}</kbd></td><td>${v}</td></tr>`).join('')}</table>`);
 }
 document.addEventListener('keydown', e => {

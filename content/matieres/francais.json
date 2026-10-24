@@ -1,7 +1,8 @@
 {
-  "nom": "Culture générale : « Le vrai du faux »",
+  "nom": "Culture générale BTS : « Le vrai du faux »",
   "icone": "📚",
   "groupe": "Enseignement général",
+  "publics": ["BTS"],
   "ordre": 6,
   "description": "Thème 2027, notions clés, méthode de l'épreuve, arguments et exemples.",
   "fiches": [

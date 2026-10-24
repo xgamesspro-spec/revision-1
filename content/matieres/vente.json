@@ -1,0 +1,40 @@
+{
+  "nom": "Vente & relation client",
+  "icone": "🤝",
+  "groupe": "Commerce",
+  "publics": ["d:commerce", "bts-banque", "bts-assurance"],
+  "ordre": 11,
+  "description": "Les étapes de la vente, SONCAS, CAP, objections, fidélisation et indicateurs commerciaux.",
+  "fiches": [
+    {
+      "titre": "Les étapes d'un entretien de vente",
+      "contenu": "1. **Prise de contact** : sourire, bonjour, se présenter (règle des 4×20 : 20 premières secondes, 20 premiers mots, 20 cm de visage, 20 premiers pas).\n2. **Découverte des besoins** : questions ouvertes, écoute active, reformulation.\n3. **Argumentation** : présenter la solution adaptée avec la méthode **CAP**.\n4. **Traitement des objections**.\n5. **Conclusion** : proposer, obtenir l'accord, vente additionnelle.\n6. **Prise de congé** : remercier, rassurer, fidéliser."
+    },
+    {
+      "titre": "SONCAS et CAP",
+      "contenu": "## SONCAS : les motivations d'achat\n- **S**écurité : peur du risque, besoin de garanties.\n- **O**rgueil : image, prestige.\n- **N**ouveauté : innovation, dernier modèle.\n- **C**onfort : facilité, praticité.\n- **A**rgent : prix, économies.\n- **S**ympathie : relation, confiance.\n\n## CAP : construire un argument\n- **C**aractéristique : ce qu'est le produit (« batterie de 20 h »).\n- **A**vantage : ce que ça apporte (« vous ne le rechargez qu'une fois par jour »).\n- **P**reuve : démonstration, avis, garantie (« testé par… »).\n\n👉 Adapte l'avantage au mobile SONCAS du client."
+    },
+    {
+      "titre": "Objections, fidélisation, indicateurs",
+      "contenu": "## Traiter une objection\n- **Accueillir** sans contredire (« Je comprends… »), **questionner** pour comprendre, **répondre** (reformulation, compensation, preuve), **vérifier** que c'est réglé.\n- Méthode **« oui, mais »**, **reformulation**, **boomerang** (transformer l'objection en argument).\n\n## Fidéliser\nCarte de fidélité, suivi après-vente, newsletter, traitement rapide des réclamations, programme de parrainage.\n\n## Indicateurs\n- **Panier moyen** = CA ÷ nombre de clients (ou de tickets).\n- **Taux de transformation** = nombre d'acheteurs ÷ nombre de visiteurs × 100.\n- **Taux de marge** = marge ÷ coût d'achat × 100 ; **taux de marque** = marge ÷ prix de vente HT × 100."
+    }
+  ],
+  "quiz": [
+    { "q": "Dans SONCAS, le A signifie :", "choix": ["Achat", "Argent", "Accueil", "Avantage"], "reponse": 1, "explication": "Sécurité, Orgueil, Nouveauté, Confort, Argent, Sympathie." },
+    { "q": "Dans la méthode CAP, le P signifie :", "choix": ["Prix", "Preuve", "Produit", "Promotion"], "reponse": 1, "explication": "Caractéristique, Avantage, Preuve." },
+    { "q": "200 visiteurs, 30 acheteurs : taux de transformation ?", "choix": ["6 %", "15 %", "30 %", "66 %"], "reponse": 1, "explication": "30 ÷ 200 × 100 = 15 %." },
+    { "q": "CA de 4 500 € pour 150 tickets : panier moyen ?", "choix": ["15 €", "30 €", "45 €", "300 €"], "reponse": 1, "explication": "4 500 ÷ 150 = 30 €." },
+    { "q": "Pour découvrir les besoins, on utilise surtout :", "choix": ["des questions fermées", "des questions ouvertes et la reformulation", "une remise", "l'argumentation"], "reponse": 1, "explication": "Questions ouvertes + écoute active + reformulation." },
+    { "q": "Un client dit « c'est trop cher ». Première chose à faire :", "choix": ["baisser le prix", "accueillir l'objection et questionner", "changer de produit", "insister"], "reponse": 1, "explication": "On accueille sans contredire, puis on cherche à comprendre (cher par rapport à quoi ?)." }
+  ],
+  "cartes": [
+    { "recto": "SONCAS", "verso": "Sécurité, Orgueil, Nouveauté, Confort, Argent, Sympathie" },
+    { "recto": "CAP", "verso": "Caractéristique, Avantage, Preuve" },
+    { "recto": "Règle des 4×20", "verso": "20 secondes, 20 mots, 20 cm, 20 pas : la première impression" },
+    { "recto": "Panier moyen", "verso": "Chiffre d'affaires ÷ nombre de clients (tickets)" },
+    { "recto": "Taux de transformation", "verso": "Acheteurs ÷ visiteurs × 100" },
+    { "recto": "Taux de marque", "verso": "Marge ÷ prix de vente HT × 100" },
+    { "recto": "Taux de marge", "verso": "Marge ÷ coût d'achat HT × 100" },
+    { "recto": "Méthode boomerang", "verso": "Transformer l'objection du client en argument" }
+  ]
+}

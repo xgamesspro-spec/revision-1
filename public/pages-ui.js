@@ -12,7 +12,7 @@ async function viewIdeas(r) {
   const d = await api('GET', `/api/ideas?${qs}`);
   ideasState.box = d.box;
   const boxName = d.box === 'profs' ? 'des formateurs' : 'des élèves';
-  setTitle('💡 Boîte à idées', isAdmin ? 'Les propositions des élèves et des formateurs' : `Ce que tu aimerais voir dans Classe SIO — boîte ${boxName}`);
+  setTitle('💡 Boîte à idées', isAdmin ? 'Les propositions des élèves et des formateurs' : `Ce que tu aimerais voir dans Classe CEVEDOM — boîte ${boxName}`);
   setContent(`
     ${isAdmin ? `<div class="tabs">${d.boxes.map(b => `<a class="tab ${b === d.box ? 'active' : ''}" href="#/idees?box=${b}">${b === 'profs' ? '👨‍🏫 Formateurs' : '🎓 Élèves'}</a>`).join('')}</div>` : ''}
     <div class="grid idea-layout">

@@ -1,8 +1,6 @@
 // Planning : événements (CFA / filière / perso), répétition hebdomadaire, rappels,
 // réunions planifiées et flux iCalendar (RFC 5545) pour Google Agenda, Outlook, iPhone…
 const crypto = require('crypto');
-const fs = require('fs');
-const path = require('path');
 
 const TZ = process.env.APP_TZ || 'America/Cayenne';
 const TYPES = {
@@ -65,7 +63,7 @@ function fold(line) {
 }
 function toIcs(events, calName) {
   const now = icsUtc(Date.now());
-  const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Classe SIO//Planning//FR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+  const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Classe CEVEDOM//Planning//FR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
     `NAME:${icsText(calName)}`, `X-WR-CALNAME:${icsText(calName)}`, `X-WR-TIMEZONE:${TZ}`, 'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H'];
   for (const ev of events) {
     L.push('BEGIN:VEVENT', `UID:event-${ev.id}@classe-sio`, `DTSTAMP:${now}`);
@@ -114,20 +112,29 @@ module.exports = function setupCalendar(app, { db, auth, bad, now, text, notifie
   if (!ucols.includes('rythme')) db.exec('ALTER TABLE users ADD COLUMN rythme TEXT'); // jours de CFA propres à l'élève
   if (!db.prepare('PRAGMA table_info(events)').all().some(c => c.name === 'detail')) db.exec('ALTER TABLE events ADD COLUMN detail TEXT');
 
-  // Premier lancement : dates nationales du BTS 2027 (épreuves communes)
-  if (!db.prepare('SELECT COUNT(*) AS n FROM events').get().n) {
-    try {
-      const infos = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'infos.json'), 'utf8'));
-      const ins = db.prepare(`INSERT INTO events (title, type, description, start_at, all_day, visibility, filiere, created_at)
-        VALUES (?, ?, ?, ?, 1, 'filiere', 'BTS', ?)`);
-      for (const d of infos.examens.dates) {
+  // Dates nationales d'examen par filière (CAP, bac pro, BTS), importées une seule fois chacune
+  db.exec('CREATE TABLE IF NOT EXISTS seeds (key TEXT PRIMARY KEY, at INTEGER NOT NULL)');
+  const seeded = k => !!db.prepare('SELECT 1 FROM seeds WHERE key = ?').get(k);
+  // Anciennes installations : le BTS avait déjà été importé au premier lancement
+  if (!seeded('examens-2027-BTS') && db.prepare("SELECT 1 FROM events WHERE type = 'examen' AND filiere = 'BTS' AND created_by IS NULL").get()) {
+    db.prepare('INSERT INTO seeds (key, at) VALUES (?, ?)').run('examens-2027-BTS', now());
+  }
+  try {
+    const exams = require('./formations').examens();
+    const ins = db.prepare(`INSERT INTO events (title, type, description, start_at, all_day, visibility, filiere, created_at)
+      VALUES (?, ?, ?, ?, 1, 'filiere', ?, ?)`);
+    for (const [fil, ex] of Object.entries(exams)) {
+      const key = `examens-2027-${fil}`;
+      if (!ex.dates?.length || seeded(key)) continue;
+      for (const d of ex.dates) {
         const [y, m, day] = d.date.split('-').map(Number);
         const midnight = Date.UTC(y, m - 1, day, 3); // minuit en Guyane (UTC-3)
         ins.run(d.titre.replace(/ \(.*\)$/, ''), d.titre.startsWith('Fin des inscriptions') ? 'rendu' : 'examen',
-          `${infos.examens.note}\nSource : ${infos.examens.source.url}`, midnight, now());
+          `${d.titre}\nDates nationales (horaires de métropole) : vérifie ta convocation.\nSource : ${ex.source.url}`, midnight, fil, now());
       }
-    } catch (e) { console.warn('[planning] dates d’examen non importées', e.message); }
-  }
+      db.prepare('INSERT INTO seeds (key, at) VALUES (?, ?)').run(key, now());
+    }
+  } catch (e) { console.warn('[planning] dates d’examen non importées', e.message); }
 
   // Les absences des élèves sont visibles par les formateurs et modérateurs, pas par les autres élèves
   const visibleTo = (u, ev) => ev.visibility === 'cfa'
@@ -328,7 +335,7 @@ module.exports = function setupCalendar(app, { db, auth, bad, now, text, notifie
     if (!u) return res.status(404).type('text/plain').send('Lien d’agenda invalide ou révoqué');
     const evs = visibleEvents(u).filter(ev => (ev.repeat_until || ev.end_at || ev.start_at) > now() - 60 * DAY);
     res.set({ 'Content-Type': 'text/calendar; charset=utf-8', 'Cache-Control': 'private, max-age=900', 'Content-Disposition': 'inline; filename="classe-sio.ics"' });
-    res.send(toIcs(evs, `Classe SIO — ${u.display_name}`));
+    res.send(toIcs(evs, `Classe CEVEDOM — ${u.display_name}`));
   });
 
   // ---------- Rappels (via les notifications) ----------

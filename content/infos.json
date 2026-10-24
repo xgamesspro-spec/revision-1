@@ -1,38 +1,48 @@
 {
   "cfa": {
     "nom": "CFA CEVEDOM",
-    "description": "Centre de formation d'apprentis rattaché à l'organisme de formation OF CEVEDOM, à Cayenne (Guyane). Domaines : comptabilité et gestion, commerce et vente, hygiène et propreté, numérique, transport et logistique, secrétariat et accueil.",
+    "description": "Centre de formation d'apprentis rattaché à l'organisme de formation OF CEVEDOM, à Cayenne (Guyane). 41 formations en alternance, du CAP au niveau Bac+3/4 : 5 CAP, 6 bacs pro, 11 BTS et 19 titres professionnels.",
+    "adresse": "33 rue Molé, 97300 Cayenne",
+    "telephone": "06 94 38 84 44",
     "sites": [
       { "titre": "Site du CFA", "url": "https://cfa.cevedom.com" },
+      { "titre": "Toutes les formations du CFA", "url": "https://cfa.cevedom.com/formations/" },
       { "titre": "Être apprenti(e) au CFA", "url": "https://cfa.cevedom.com/etre-apprenti" },
-      { "titre": "Organisme de formation (OF CEVEDOM)", "url": "https://of.cevedom.com" }
+      { "titre": "Prendre rendez-vous (test de positionnement)", "url": "https://cfa.cevedom.com/rendez-vous" },
+      { "titre": "Organisme de formation (OF CEVEDOM)", "url": "https://of.cevedom.com" },
+      { "titre": "ONISEP — fiches métiers et diplômes", "url": "https://www.onisep.fr" },
+      { "titre": "Académie de Guyane — examens", "url": "https://www.ac-guyane.fr" }
     ],
     "horaires": [
       "Lundi : 15h – 19h",
       "Mardi, jeudi, vendredi : 9h – 13h et 15h – 19h",
       "Mercredi et samedi : 9h – 13h"
     ],
-    "rythme": "Cours au CFA le jeudi et le vendredi, entreprise du lundi au mercredi.",
+    "rythme": "Rythme indicatif : cours au CFA le jeudi et le vendredi, entreprise du lundi au mercredi. Ton rythme exact est dans ton planning.",
+    "domaines": [
+      "Gestion, administration & ressources humaines",
+      "Comptabilité, paie, banque & assurance",
+      "Commerce & relation client",
+      "Transport & logistique",
+      "Numérique & informatique",
+      "Communication & industries graphiques",
+      "Propreté & hygiène"
+    ],
     "droits_apprenti": [
       "Tu es salarié : contrat de 6 mois à 3 ans, 35 h/semaine maximum formation comprise.",
-      "2,5 jours de congés payés par mois.",
+      "Tes heures au CFA comptent comme du temps de travail : elles sont payées.",
+      "2,5 jours ouvrables de congés payés par mois (5 semaines par an).",
       "Formation financée par l'OPCO de l'employeur : rien à payer pour l'apprenti.",
       "Le CFA peut aider pour le logement, le matériel ou le permis, et propose de l'aide CV / entretiens."
     ],
-    "source": "Infos relevées sur cfa.cevedom.com en octobre 2026 — vérifie auprès du CFA en cas de doute."
-  },
-  "examens": {
-    "session": "BTS 2027",
-    "debut": "2027-05-11",
-    "dates": [
-      { "date": "2026-11-12", "titre": "Fin des inscriptions à l'examen (vérifie la date exacte de l'académie de Guyane)" },
-      { "date": "2027-05-11", "titre": "Culture générale et expression (E1)" },
-      { "date": "2027-05-12", "titre": "CEJM" },
-      { "date": "2027-05-13", "titre": "Langue vivante (anglais)" },
-      { "date": "2027-05-14", "titre": "Mathématiques" },
-      { "date": "2027-05-20", "titre": "Épreuves professionnelles écrites (20–21 mai, selon le BTS)" }
+    "services": [
+      "Test de positionnement avant l'entrée en formation (sur rendez-vous)",
+      "Aide à la recherche d'entreprise, CV et entretiens",
+      "Référent handicap : aménagements de la formation et des examens",
+      "Référent mobilité : stages ou périodes à l'étranger / dans l'Hexagone",
+      "Bilan de compétences et VAE (validation des acquis de l'expérience) avec l'OF CEVEDOM",
+      "Réclamations et suggestions : par le site du CFA ou à l'accueil"
     ],
-    "note": "Dates nationales publiées pour la session 2027 (horaires de métropole). Les horaires en Guyane sont décalés : se référer à la convocation et au calendrier du rectorat. Les dates des oraux (portfolio, etc.) sont fixées par l'académie au 1er trimestre 2027.",
-    "source": { "titre": "CNED — calendrier BTS session 2027", "url": "https://www.cned.fr/l-actualite-de-la-formation/blog-formations-social/bts-le-calendrier-de-la-session-2027" }
+    "source": "Infos relevées sur cfa.cevedom.com (et ONISEP pour le téléphone) en octobre 2026 — vérifie auprès du CFA en cas de doute."
   }
 }
