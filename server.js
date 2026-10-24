@@ -11,6 +11,9 @@ const setupUploads = require('./uploads');
 const setupNotify = require('./notify');
 const setupCalendar = require('./calendar');
 const setupExercises = require('./exercises');
+const setupSocial = require('./social');
+const setupGame = require('./game');
+const setupIdeas = require('./ideas');
 
 const PORT = process.env.PORT || 3000;
 const CLASS_CODE = process.env.CLASS_CODE || ''; // code d'inscription permanent (optionnel)
@@ -184,12 +187,28 @@ function canAccessAttachment(user, a) {
 }
 const uploads = setupUploads(app, { db, auth, bad, now, canAccess: canAccessAttachment });
 const notifier = setupNotify(app, { db, auth, bad, now, conns, text });
-calendar = setupCalendar(app, { db, auth, bad, now, text, notifier, meetings, accounts, uploads });
-exercises = setupExercises(app, { db, auth, bad, now, text, uploads, notifier, accounts });
+// Envoi en direct aux personnes concernées (filtre = qui a le droit de voir)
+function liveTo(pred, event, data = {}) {
+  const payload = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
+  for (const c of conns.values()) { try { if (pred(c.user)) c.res.write(payload); } catch { /* ignoré */ } }
+}
+const game = setupGame(app, { db, auth, bad, now, conns, getSubjects: () => SUBJECTS, notifier, accounts });
+calendar = setupCalendar(app, { db, auth, bad, now, text, notifier, meetings, accounts, uploads,
+  onChange: ev => liveTo(u => calendar.visibleTo(u, ev), 'events', { id: ev.id }) });
+exercises = setupExercises(app, { db, auth, bad, now, text, uploads, notifier, accounts,
+  onChange: ex => liveTo(u => exercises.visible(u, ex), 'exercises', { id: ex.id }),
+  onSubmit: uid => game.award(uid, 'exercice') });
+const social = setupSocial(app, { db, auth, bad, now, text, channelFor, broadcastChannel, conns, notifier });
+const ideas = setupIdeas(app, { db, auth, admin, bad, now, text, conns, notifier });
 app.locals.calendar = calendar;
+app.locals.game = game;
+app.get('/api/guide', auth, (req, res) => res.json(readJson('guide.json')));
 // Suppression d'un compte (fin de formation, demande RGPD) : on efface aussi ses rendus et son planning perso
 accounts.onDelete(uid => {
   exercises.forgetUser(uid);
+  game.forgetUser(uid);
+  social.forgetUser(uid);
+  ideas.forgetUser(uid);
   const evs = db.prepare("SELECT id FROM events WHERE created_by = ? AND visibility = 'perso'").all(uid).map(e => e.id);
   uploads.removeFor('event', evs);
   db.prepare("DELETE FROM events WHERE created_by = ? AND visibility = 'perso'").run(uid);
@@ -243,7 +262,7 @@ app.delete('/api/channels/:id', auth, admin, (req, res) => {
   res.json({ ok: true });
 });
 
-const MSG_SELECT = `SELECT m.id, m.channel_id, m.content, m.created_at, m.user_id, u.display_name, u.username, u.role
+const MSG_SELECT = `SELECT m.id, m.channel_id, m.content, m.created_at, m.user_id, m.reply_to, m.edited_at, u.display_name, u.username, u.role
   FROM messages m JOIN users u ON u.id = m.user_id`;
 const withAtt = (rows, target) => {
   const map = uploads.forTargets(target, rows.map(r => r.id));
@@ -255,7 +274,7 @@ app.get('/api/channels/:id/messages', auth, (req, res) => {
   if (!ch) return bad(res, 'Salon introuvable', 404);
   const before = +req.query.before || 9e15;
   const rows = db.prepare(`${MSG_SELECT} WHERE m.channel_id = ? AND m.deleted = 0 AND m.id < ? ORDER BY m.id DESC LIMIT 50`).all(ch.id, before);
-  res.json(withAtt(rows.reverse(), 'message'));
+  res.json(social.decorate(withAtt(rows.reverse(), 'message')));
 });
 app.post('/api/channels/:id/messages', auth, (req, res) => {
   const ch = channelFor(req.user, req.params.id, 'chat');
@@ -264,11 +283,14 @@ app.post('/api/channels/:id/messages', auth, (req, res) => {
   let nAtt;
   try { nAtt = uploads.check(req.user, req.body.attachments); } catch (e) { return bad(res, e.message); }
   if (!content && !nAtt) return bad(res, 'Message vide');
-  const r = db.prepare('INSERT INTO messages (channel_id, user_id, content, created_at) VALUES (?, ?, ?, ?)').run(ch.id, req.user.id, content, now());
+  let original;
+  try { original = social.checkReplyTo(req.user, ch.id, req.body.reply_to); } catch (e) { return bad(res, e.message); }
+  const r = db.prepare('INSERT INTO messages (channel_id, user_id, content, created_at, reply_to) VALUES (?, ?, ?, ?, ?)').run(ch.id, req.user.id, content, now(), original?.id ?? null);
   uploads.link(req.user, req.body.attachments, 'message', r.lastInsertRowid, ch.id);
-  const msg = withAtt([db.prepare(`${MSG_SELECT} WHERE m.id = ?`).get(r.lastInsertRowid)], 'message')[0];
+  const msg = social.decorate(withAtt([db.prepare(`${MSG_SELECT} WHERE m.id = ?`).get(r.lastInsertRowid)], 'message'))[0];
   broadcastChannel(ch, 'message', msg);
-  notifyMentions(req.user, content, ch, `#/salon/${ch.id}`, `dans #${ch.name}`);
+  const mentioned = notifyMentions(req.user, content, ch, `#/salon/${ch.id}`, `dans #${ch.name}`);
+  if (original && !mentioned.has(original.user_id)) social.notifyReply(req.user, original, ch, content);
   res.json(msg);
 });
 app.delete('/api/messages/:id', auth, (req, res) => {
@@ -278,6 +300,7 @@ app.delete('/api/messages/:id', auth, (req, res) => {
   if (m.user_id !== req.user.id && req.user.role !== 'admin') return bad(res, 'Interdit', 403);
   db.prepare('UPDATE messages SET deleted = 1 WHERE id = ?').run(m.id);
   uploads.removeFor('message', [m.id]);
+  social.removeFor('message', [m.id]);
   broadcastChannel(ch, 'message_deleted', { id: m.id, channel_id: m.channel_id });
   res.json({ ok: true });
 });
@@ -301,6 +324,7 @@ app.post('/api/channels/:id/topics', auth, (req, res) => {
   const r = db.prepare('INSERT INTO topics (channel_id, user_id, title, content, created_at, last_activity) VALUES (?, ?, ?, ?, ?, ?)')
     .run(ch.id, req.user.id, title, content, now(), now());
   uploads.link(req.user, req.body.attachments, 'topic', r.lastInsertRowid, ch.id);
+  game.award(req.user.id, 'sujet');
   broadcastChannel(ch, 'topic', { channel_id: ch.id });
   notifyMentions(req.user, content, ch, `#/sujet/${r.lastInsertRowid}`, `dans « ${title} »`);
   res.json({ id: r.lastInsertRowid });
@@ -316,8 +340,9 @@ app.get('/api/topics/:id', auth, (req, res) => {
   const t = db.prepare(`SELECT t.*, u.display_name, u.username, c.name AS channel_name FROM topics t
     JOIN users u ON u.id = t.user_id JOIN channels c ON c.id = t.channel_id WHERE t.id = ?`).get(tc.t.id);
   t.attachments = withAtt([{ id: t.id }], 'topic')[0].attachments;
-  t.replies = withAtt(db.prepare(`SELECT r.id, r.content, r.created_at, r.user_id, u.display_name, u.username, u.role FROM replies r
-    JOIN users u ON u.id = r.user_id WHERE r.topic_id = ? ORDER BY r.id`).all(t.id), 'reply');
+  t.reactions = social.reactionsFor('topic', [t.id])[t.id] || [];
+  t.replies = social.decorate(withAtt(db.prepare(`SELECT r.id, r.content, r.created_at, r.edited_at, r.user_id, u.display_name, u.username, u.role FROM replies r
+    JOIN users u ON u.id = r.user_id WHERE r.topic_id = ? ORDER BY r.id`).all(t.id), 'reply'), 'reply');
   res.json(t);
 });
 app.post('/api/topics/:id/replies', auth, (req, res) => {
@@ -331,6 +356,7 @@ app.post('/api/topics/:id/replies', auth, (req, res) => {
   const r = db.prepare('INSERT INTO replies (topic_id, user_id, content, created_at) VALUES (?, ?, ?, ?)').run(t.id, req.user.id, content, now());
   uploads.link(req.user, req.body.attachments, 'reply', r.lastInsertRowid, ch.id);
   db.prepare('UPDATE topics SET last_activity = ? WHERE id = ?').run(now(), t.id);
+  if (t.user_id !== req.user.id) game.award(req.user.id, 'reponse');
   broadcastChannel(ch, 'topic', { channel_id: t.channel_id, topic_id: t.id });
   // Mentions d'abord, puis l'auteur du sujet et les personnes qui y ont déjà répondu
   const link = `#/sujet/${t.id}`;
@@ -366,6 +392,8 @@ app.delete('/api/topics/:id', auth, (req, res) => {
   if (t.user_id !== req.user.id && req.user.role !== 'admin') return bad(res, 'Interdit', 403);
   uploads.removeFor('reply', db.prepare('SELECT id FROM replies WHERE topic_id = ?').all(t.id).map(x => x.id));
   uploads.removeFor('topic', [t.id]);
+  social.removeFor('reply', db.prepare('SELECT id FROM replies WHERE topic_id = ?').all(t.id).map(x => x.id));
+  social.removeFor('topic', [t.id]);
   db.prepare('DELETE FROM topics WHERE id = ?').run(t.id);
   broadcastChannel(ch, 'topic', { channel_id: t.channel_id });
   res.json({ ok: true });
@@ -409,6 +437,7 @@ app.post('/api/fiches', auth, (req, res) => {
   const title = text(req.body.title, 120), content = text(req.body.content, 20000);
   if (!title || !content) return bad(res, 'Titre et contenu obligatoires');
   const r = db.prepare('INSERT INTO fiches (subject, title, content, user_id, created_at) VALUES (?, ?, ?, ?, ?)').run(subject, title, content, req.user.id, now());
+  game.award(req.user.id, 'fiche');
   res.json({ id: r.lastInsertRowid });
 });
 app.delete('/api/fiches/:id', auth, (req, res) => {
@@ -429,6 +458,7 @@ app.post('/api/cards/review', auth, (req, res) => {
   const due = now() + INTERVALS[box] * 864e5;
   db.prepare(`INSERT INTO card_progress (user_id, card_key, box, due) VALUES (?, ?, ?, ?)
     ON CONFLICT(user_id, card_key) DO UPDATE SET box = excluded.box, due = excluded.due`).run(req.user.id, key, box, due);
+  game.award(req.user.id, req.body.ok ? 'carte_ok' : 'carte_ko');
   res.json({ box, due });
 });
 app.post('/api/quiz-results', auth, (req, res) => {
@@ -436,7 +466,9 @@ app.post('/api/quiz-results', auth, (req, res) => {
   const score = Math.max(0, +req.body.score | 0), total = Math.max(1, +req.body.total | 0);
   if (!SUBJECTS.find(s => s.id === subject) || score > total) return bad(res, 'Résultat invalide');
   db.prepare('INSERT INTO quiz_results (user_id, subject, score, total, created_at) VALUES (?, ?, ?, ?, ?)').run(req.user.id, subject, score, total, now());
-  res.json({ ok: true });
+  const perfect = score === total && total >= 5;
+  const xp = game.award(req.user.id, 'quiz', score * 3 + (perfect ? 15 : 0), { perfectQuiz: perfect });
+  res.json({ ok: true, xp, perfect });
 });
 app.get('/api/dashboard', auth, (req, res) => {
   const due = db.prepare('SELECT COUNT(*) AS n FROM card_progress WHERE user_id = ? AND due <= ?').get(req.user.id, now()).n;

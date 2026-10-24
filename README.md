@@ -12,8 +12,26 @@ Plateforme web pour une classe de BTS SIO, **réservée aux élèves** :
 
 **Accès réservé** : on ne peut s'inscrire qu'avec un code d'invitation. Le **premier compte créé devient modérateur**.
 
+## Interactivité
+
+- **Discussions vivantes** : réactions emoji sur les messages et les posts du forum, **répondre à un message précis** (citation cliquable, l'auteur est prévenu), **modifier** ses messages (✏️ ou ↑ dans la zone vide), « **… est en train d'écrire** », nouveaux messages animés.
+- **Progression** (page 🏆) :
+  - **XP et niveaux**, gagnés avec les cartes, les quiz, le défi du jour, les duels, les réponses sur le forum, les exercices rendus et les fiches partagées. Il y a un plafond par jour et par activité.
+  - **Série 🔥** de jours de révision d'affilée, et **15 badges** à débloquer.
+  - **Défi du jour** : 5 questions, les mêmes pour toute la classe, une seule tentative, avec un chrono et un classement du jour.
+  - **Duels** entre élèves : mêmes 5 questions, chacun joue quand il veut (3 jours max). Le meilleur score gagne, le plus rapide en cas d'égalité.
+  - **Classement** par filière (semaine ou depuis le début), avec un podium. Chacun peut choisir de ne pas y apparaître.
+  - Le défi et les duels sont **corrigés côté serveur** : les bonnes réponses ne sont jamais envoyées au navigateur avant la fin.
+- **Interface animée** :
+  - transitions entre les pages, retours visuels au clic, confettis (quiz sans faute, niveau, badge), « +XP » flottant ;
+  - **thème clair / sombre / auto**, **sons** au choix et animations désactivables (Mon compte → Apparence) ;
+  - le réglage système « réduire les animations » est respecté.
+- **Raccourcis** : **Ctrl + K** (recherche rapide de pages, salons et matières), **?** (aide), **1-4** pour répondre aux quiz, **← →** dans le planning.
+- **En direct sans recharger** : forum, sujets, planning, exercices, boîte à idées, accueil, réactions et modifications. Si tu es en train d'écrire, rien n'est écrasé : un bouton « 🔄 Du nouveau — afficher » apparaît.
+
 ## Planning (alternance)
 
+- **Navigation** : flèches ‹ ›, clic sur le mois pour **sauter à n'importe quel mois ou année**, touches ← → / T (aujourd'hui), glisser sur mobile. Le mois choisi est dans l'adresse (`#/planning?m=2027-05`), donc le bouton retour et le rechargement fonctionnent, en vue mois comme en vue liste.
 - Vue **mois** et vue **liste**, avec des filtres par type : examen, rendu, réunion, cours, congés, absence, perso, autre.
 - **Rythme d'alternance** : les formateurs et modérateurs règlent les jours de CFA de chaque filière, et chaque élève peut ajuster les siens. Le planning marque chaque jour « CFA » ou « Entreprise », et l'accueil affiche « Aujourd'hui : au CFA / en entreprise ».
 - **Qui voit quoi** :
@@ -42,6 +60,21 @@ Plateforme web pour une classe de BTS SIO, **réservée aux élèves** :
   - l'élève rend son travail (texte + fichiers), modifiable tant qu'il n'est pas corrigé, ou coche « fait » si le rendu n'est pas en ligne ;
   - le formateur voit qui a rendu (en retard ou non) et qui n'a pas rendu, puis met une **note et un commentaire** : l'élève est notifié ;
   - un rendu n'est visible que par son auteur et par les formateurs.
+
+## Boîtes à idées
+
+- Deux boîtes **séparées** : celle des **élèves** (visible par les élèves et les modérateurs, pas par les formateurs) et celle des **formateurs** (visible par les formateurs et les modérateurs).
+- Chacun propose une idée (catégorie, explication, **anonyme** possible : seuls les modérateurs voient le nom), et vote ▲ pour celles des autres. Tri par popularité ou date.
+- Les modérateurs voient les deux boîtes. Ils **répondent** et changent le statut (🆕 Nouvelle, 🔍 À l'étude, 📅 Prévue, ✅ Faite, ❌ Pas retenue), et l'auteur est notifié.
+
+## Guide d'utilisation
+
+Page ❓ **Guide** dans l'appli, avec un onglet par profil (Élève, Formateur, Modérateur) :
+- ✅ ce qu'on **peut** faire, et comment ;
+- 🚫 ce qu'on **ne peut pas** faire, et pourquoi ;
+- recherche, raccourcis clavier et questions fréquentes.
+
+Le contenu est dans `content/guide.json`, modifiable sans toucher au code.
 
 ## Espaces par filière
 
@@ -201,6 +234,10 @@ notify.js        notifications + Web Push
 public/sw.js     service worker (réception des notifications push)
 calendar.js      planning : événements, alternance, congés/absences, rappels, iCalendar
 exercises.js     exercices des formateurs, rendus et corrections
+social.js        réactions, réponses, modification, « en train d'écrire »
+game.js          XP, niveaux, séries, badges, défi du jour, duels, classement
+ideas.js         boîtes à idées élèves / formateurs
+content/guide.json  guide d'utilisation par rôle
 meetings.js      réunions vidéo : salles + signalisation WebRTC
 Caddyfile        HTTPS (reverse proxy Caddy)
 db.js            base SQLite et salons par défaut

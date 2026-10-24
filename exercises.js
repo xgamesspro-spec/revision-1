@@ -1,6 +1,6 @@
 // Exercices publiés par les formateurs : consigne + fichiers + date limite (ajoutée au planning),
 // rendus des élèves (texte + fichiers), correction avec note et commentaire.
-module.exports = function setupExercises(app, { db, auth, bad, now, text, uploads, notifier, accounts }) {
+module.exports = function setupExercises(app, { db, auth, bad, now, text, uploads, notifier, accounts, onChange = () => {}, onSubmit = () => {} }) {
   db.exec(`CREATE TABLE IF NOT EXISTS exercises (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL, subject TEXT NOT NULL DEFAULT '', content TEXT NOT NULL DEFAULT '',
@@ -119,6 +119,7 @@ module.exports = function setupExercises(app, { db, auth, bad, now, text, upload
     const created = getEx(r.lastInsertRowid);
     uploads.link(req.user, req.body.attachments, 'exercise', created.id, null);
     syncEvent(created);
+    onChange(created);
     for (const s of studentsOf(created)) {
       notifier.notify(s.id, {
         type: 'exercice', link: `#/exercices/${created.id}`,
@@ -139,6 +140,7 @@ module.exports = function setupExercises(app, { db, auth, bad, now, text, upload
       .run(ex.title, ex.subject, ex.content, ex.filiere, ex.due_at ?? null, ex.allow_submit, now(), cur.id);
     uploads.link(req.user, req.body.attachments, 'exercise', cur.id, null);
     syncEvent(getEx(cur.id));
+    onChange(cur); onChange(getEx(cur.id));
     res.json({ ok: true });
   });
 
@@ -151,6 +153,7 @@ module.exports = function setupExercises(app, { db, auth, bad, now, text, upload
     uploads.removeFor('exercise', [ex.id]);
     if (ex.event_id) db.prepare('DELETE FROM events WHERE id = ?').run(ex.event_id);
     db.prepare('DELETE FROM exercises WHERE id = ?').run(ex.id);
+    onChange(ex);
     res.json({ ok: true });
   });
 
@@ -178,7 +181,9 @@ module.exports = function setupExercises(app, { db, auth, bad, now, text, upload
     if (cur) db.prepare('UPDATE submissions SET content = ?, updated_at = ? WHERE id = ?').run(content || cur.content, now(), cur.id);
     else id = db.prepare('INSERT INTO submissions (ex_id, user_id, content, created_at, updated_at) VALUES (?, ?, ?, ?, ?)').run(ex.id, req.user.id, content, now(), now()).lastInsertRowid;
     uploads.link(req.user, req.body.attachments, 'submission', id, null);
+    onChange(ex);
     if (!cur) {
+      onSubmit(req.user.id);
       notifier.notify(ex.author_id, {
         type: 'exercice', link: `#/exercices/${ex.id}`,
         title: `📥 Rendu reçu : ${ex.title}`,
@@ -196,6 +201,7 @@ module.exports = function setupExercises(app, { db, auth, bad, now, text, upload
     const feedback = text(req.body.feedback, 5000);
     if (!grade && !feedback) return bad(res, 'Mets une note ou un commentaire');
     db.prepare('UPDATE submissions SET grade = ?, feedback = ?, graded_at = ?, graded_by = ? WHERE id = ?').run(grade || '—', feedback, now(), req.user.id, s.id);
+    onChange(ex);
     notifier.notify(s.user_id, {
       type: 'exercice', link: `#/exercices/${ex.id}`,
       title: `✅ Exercice corrigé : ${ex.title}`,
@@ -221,5 +227,5 @@ module.exports = function setupExercises(app, { db, auth, bad, now, text, upload
       .slice(0, limit).map(ex => ({ id: ex.id, title: ex.title, subject: ex.subject, due_at: ex.due_at }));
   }
 
-  return { canAccessAttachment, forgetUser, pendingFor, isStaff };
+  return { canAccessAttachment, forgetUser, pendingFor, isStaff, visible };
 };

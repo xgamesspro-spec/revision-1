@@ -471,6 +471,173 @@ const google = http.createServer((req, res) => {
   r = await call('b', 'GET', `/api/events?from=${Date.now()}&to=${Date.now() + 10 * DAY}`);
   assert.ok(!r.data.events.some(e => e.title === 'À rendre : TP VLAN'), 'date limite retirée du planning');
 
+
+  // ================= Discussions vivantes =================
+  {
+    const gen = (await call('b', 'GET', '/api/channels')).data.find(c => c.name === 'general');
+    let m1 = (await call('a', 'POST', `/api/channels/${gen.id}/messages`, { content: 'Qui révise ce soir ?' })).data;
+    r = await call('b', 'POST', `/api/channels/${gen.id}/messages`, { content: 'Moi !', reply_to: m1.id });
+    assert.equal(r.status, 200);
+    assert.equal(r.data.reply.id, m1.id, 'aperçu du message cité');
+    const m2 = r.data;
+    r = await call('a', 'GET', '/api/notifications');
+    assert.ok(r.data.items.some(n => n.type === 'reply' && n.title.includes('répondu à ton message')), 'l’auteur est prévenu de la réponse');
+    r = await call('b', 'POST', `/api/channels/${gen.id}/messages`, { content: 'x', reply_to: 999999 });
+    assert.equal(r.status, 400);
+    r = await call('b', 'POST', '/api/react', { target: 'message', id: m1.id, emoji: '👍' });
+    assert.equal(r.data.added, true);
+    r = await call('a', 'POST', '/api/react', { target: 'message', id: m1.id, emoji: '👍' });
+    assert.equal(r.data.reactions[0].users.length, 2);
+    r = await call('a', 'POST', '/api/react', { target: 'message', id: m1.id, emoji: '👍' });
+    assert.equal(r.data.added, false, 'second clic = retirer');
+    r = await call('b', 'POST', '/api/react', { target: 'message', id: m1.id, emoji: '💩' });
+    assert.equal(r.status, 400, 'emoji hors liste refusé');
+    const btsGen2 = (await call('b', 'GET', '/api/channels')).data.find(c => c.name === 'bts-general');
+    const secret = (await call('b', 'POST', `/api/channels/${btsGen2.id}/messages`, { content: 'secret BTS' })).data;
+    r = await call('c', 'POST', '/api/react', { target: 'message', id: secret.id, emoji: '👍' });
+    assert.equal(r.status, 404, 'pas de réaction sur un salon d’une autre filière');
+    r = await call('a', 'PATCH', `/api/messages/${m2.id}`, { content: 'pirate' });
+    assert.equal(r.status, 403, 'on ne modifie pas le message d’un autre');
+    r = await call('b', 'PATCH', `/api/messages/${m2.id}`, { content: 'Moi ! (vers 20h)' });
+    assert.equal(r.status, 200);
+    r = await call('a', 'GET', `/api/channels/${gen.id}/messages`);
+    const edited = r.data.find(x => x.id === m2.id);
+    assert.ok(edited.edited_at && edited.content.includes('20h'));
+    assert.equal(r.data.find(x => x.id === m1.id).reactions[0].users.length, 1);
+    r = await call('b', 'POST', `/api/channels/${gen.id}/typing`);
+    assert.equal(r.status, 200);
+    r = await call('c', 'POST', `/api/channels/${btsGen2.id}/typing`);
+    assert.equal(r.status, 404);
+  }
+
+  // ================= Progression / XP =================
+  {
+    const game = app.locals.game;
+    r = await call('b', 'GET', '/api/progress');
+    const xp0 = r.data.xp;
+    assert.equal(r.data.plays, true);
+    r = await call('b', 'POST', '/api/quiz-results', { subject: 'reseau', score: 10, total: 10 });
+    assert.ok(r.data.xp > 0 && r.data.perfect, 'XP gagnée sur un quiz');
+    r = await call('b', 'GET', '/api/progress');
+    assert.ok(r.data.xp > xp0);
+    assert.ok(r.data.badges.find(b => b.id === 'quiz_parfait').got, 'badge Sans faute');
+    assert.equal(r.data.streak.current, 1);
+    // Plafond journalier
+    for (let i = 0; i < 6; i++) await call('b', 'POST', '/api/quiz-results', { subject: 'reseau', score: 10, total: 10 });
+    r = await call('b', 'GET', '/api/progress');
+    const { DatabaseSync } = require('node:sqlite');
+    const raw2 = new DatabaseSync(path.join(process.env.DATA_DIR, 'classe.db'));
+    const quizToday = raw2.prepare("SELECT SUM(amount) AS n FROM xp_log WHERE user_id = ? AND kind = 'quiz' AND day = ?").get(lea.id, game.dayKey()).n;
+    assert.equal(quizToday, 150, 'plafond de 150 XP/jour pour les quiz');
+    // Série : on simule une activité hier et avant-hier
+    raw2.prepare("INSERT INTO xp_log (user_id, amount, reason, kind, day, created_at) VALUES (?, 5, 'test', 'test', ?, ?)").run(lea.id, game.dayKey(Date.now() - 864e5), Date.now() - 864e5);
+    raw2.prepare("INSERT INTO xp_log (user_id, amount, reason, kind, day, created_at) VALUES (?, 5, 'test', 'test', ?, ?)").run(lea.id, game.dayKey(Date.now() - 2 * 864e5), Date.now() - 2 * 864e5);
+    assert.equal(game.streakOf(lea.id).current, 3, 'série de 3 jours');
+    // Formateur : pas de points
+    r = await call('p', 'GET', '/api/progress');
+    assert.equal(r.data.plays, false);
+    r = await call('p', 'GET', '/api/daily');
+    assert.equal(r.status, 403);
+
+    // Défi du jour : corrigé côté serveur, une seule tentative
+    r = await call('b', 'GET', '/api/daily');
+    assert.equal(r.data.started, false);
+    assert.equal(r.data.questions, null, 'questions cachées avant de commencer');
+    r = await call('b', 'GET', '/api/daily?start=1');
+    assert.equal(r.data.questions.length, 5);
+    assert.ok(r.data.questions.every(q => q.choix.every(c => !('reponse' in c)) && !('reponse' in q)), 'pas de réponse envoyée au navigateur');
+    const keys = r.data.questions.map(q => q.key);
+    r = await call('c', 'GET', '/api/daily?start=1');
+    assert.deepEqual(r.data.questions.map(q => q.key), keys, 'même défi pour tout le monde');
+    // Réponses correctes calculées depuis les fichiers de cours
+    const subjFiles = Object.fromEntries(fs.readdirSync(path.join(__dirname, '..', 'content', 'matieres')).map(f => [f.replace('.json', ''), JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'matieres', f), 'utf8'))]));
+    const good = keys.map(k => { const [sid, i] = k.split(':'); return subjFiles[sid].quiz[+i].reponse; });
+    r = await call('b', 'POST', '/api/daily', { answers: good });
+    assert.equal(r.data.score, 5);
+    assert.equal(r.data.xp, 70);
+    r = await call('b', 'POST', '/api/daily', { answers: good });
+    assert.equal(r.status, 400, 'une seule tentative');
+    r = await call('c', 'POST', '/api/daily', { answers: [9, 9, 9, 9, 9] });
+    assert.equal(r.data.score, 0);
+    r = await call('b', 'GET', '/api/daily');
+    assert.equal(r.data.done, true);
+    assert.ok(r.data.board.some(x => x.me && x.score === 5));
+    assert.ok(!r.data.board.some(x => x.name === 'Tom R'), 'classement limité à la filière');
+    r = await call('b', 'GET', '/api/progress');
+    assert.ok(r.data.badges.find(b => b.id === 'defi_parfait').got);
+
+    // Duel
+    const tomId = (await call('c', 'GET', '/api/me')).data.user.id;
+    r = await call('b', 'POST', '/api/duels', { opponent_id: tomId, subject: 'reseau' });
+    assert.equal(r.status, 200);
+    const duelId = r.data.id;
+    r = await call('c', 'GET', '/api/notifications');
+    assert.ok(r.data.items.some(n => n.type === 'duel'));
+    let g1 = (await call('b', 'GET', `/api/duels/${duelId}/play`)).data;
+    assert.equal(g1.questions.length, 5);
+    const dgood = g1.questions.map(q => subjFiles[q.key.split(':')[0]].quiz[+q.key.split(':')[1]].reponse);
+    r = await call('b', 'POST', `/api/duels/${duelId}/answers`, { answers: dgood });
+    assert.equal(r.data.score, 5);
+    assert.equal(r.data.duel.status, 'pending');
+    r = await call('b', 'POST', `/api/duels/${duelId}/answers`, { answers: dgood });
+    assert.equal(r.status, 400, 'on ne rejoue pas un duel');
+    await call('c', 'GET', `/api/duels/${duelId}/play`);
+    r = await call('c', 'POST', `/api/duels/${duelId}/answers`, { answers: [0, 0, 0, 0, 0] });
+    assert.equal(r.data.duel.status, 'done');
+    r = await call('b', 'GET', '/api/duels');
+    assert.equal(r.data[0].won, true, 'Léa gagne');
+    r = await call('b', 'GET', '/api/progress');
+    assert.ok(r.data.badges.find(b => b.id === 'duelliste').got);
+    r = await call('b', 'POST', '/api/duels', { opponent_id: (await call('p', 'GET', '/api/me')).data.user.id });
+    assert.equal(r.status, 400, 'pas de duel contre un formateur');
+
+    // Classement
+    r = await call('b', 'GET', '/api/leaderboard?period=week');
+    assert.equal(r.data.filiere, 'BTS');
+    assert.ok(r.data.list[0].me);
+    await call('b', 'POST', '/api/progress/prefs', { hide_rank: true });
+    r = await call('a', 'GET', '/api/leaderboard?period=all&filiere=BTS');
+    assert.ok(!r.data.list.some(x => x.name === 'Léa'), 'élève masqué du classement');
+    await call('b', 'POST', '/api/progress/prefs', { hide_rank: false });
+  }
+
+  // ================= Boîtes à idées =================
+  {
+    r = await call('b', 'POST', '/api/ideas', { title: 'Mode sombre pour le planning', content: 'Ce serait cool', category: 'Apparence', anonymous: true });
+    assert.equal(r.status, 200);
+    const ideaId = r.data.id;
+    r = await call('p', 'POST', '/api/ideas', { title: 'Exporter les notes en CSV', category: 'Exercices' });
+    const profIdea = r.data.id;
+    r = await call('c', 'GET', '/api/ideas');
+    assert.equal(r.data.box, 'eleves');
+    const it = r.data.items.find(i => i.id === ideaId);
+    assert.equal(it.author, 'Anonyme', 'anonyme pour les autres élèves');
+    assert.ok(!r.data.items.some(i => i.id === profIdea), 'boîte des profs invisible pour un élève');
+    r = await call('p', 'GET', '/api/ideas?box=eleves');
+    assert.equal(r.data.box, 'profs', 'un prof ne lit que la boîte des profs');
+    assert.ok(!r.data.items.some(i => i.id === ideaId));
+    r = await call('c', 'POST', `/api/ideas/${profIdea}/vote`);
+    assert.equal(r.status, 404, 'vote impossible dans l’autre boîte');
+    r = await call('c', 'POST', `/api/ideas/${ideaId}/vote`);
+    assert.equal(r.data.votes, 2);
+    r = await call('a', 'GET', '/api/ideas?box=eleves');
+    assert.equal(r.data.items.find(i => i.id === ideaId).author, 'Léa', 'le modo voit l’auteur');
+    r = await call('a', 'GET', '/api/ideas?box=profs');
+    assert.ok(r.data.items.some(i => i.id === profIdea), 'le modo voit les deux boîtes');
+    r = await call('c', 'PATCH', `/api/ideas/${ideaId}`, { status: 'faite' });
+    assert.equal(r.status, 403, 'un élève ne change pas le statut');
+    r = await call('a', 'PATCH', `/api/ideas/${ideaId}`, { status: 'prevue', admin_reply: 'Bonne idée, prévu pour décembre' });
+    assert.equal(r.data.status, 'prevue');
+    r = await call('b', 'GET', '/api/notifications');
+    assert.ok(r.data.items.some(n => n.type === 'idee' && n.title.includes('Prévue')));
+    r = await call('b', 'DELETE', `/api/ideas/${ideaId}`);
+    assert.equal(r.status, 403, 'plus supprimable par l’auteur une fois traitée');
+  }
+
+  // ================= Guide =================
+  r = await call('p', 'GET', '/api/guide');
+  assert.ok(r.data.roles.eleve.sections.length >= 5 && r.data.roles.prof && r.data.roles.admin);
+
   // --- Ancien compte sans filière : profil obligatoire ---
   const { DatabaseSync } = require('node:sqlite');
   const raw = new DatabaseSync(path.join(process.env.DATA_DIR, 'classe.db'));

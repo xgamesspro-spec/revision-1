@@ -92,7 +92,7 @@ function toIcs(events, calName) {
   return L.map(fold).join('\r\n') + '\r\n';
 }
 
-module.exports = function setupCalendar(app, { db, auth, bad, now, text, notifier, meetings, accounts, uploads }) {
+module.exports = function setupCalendar(app, { db, auth, bad, now, text, notifier, meetings, accounts, uploads, onChange = () => {} }) {
   db.exec(`CREATE TABLE IF NOT EXISTS events (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL, type TEXT NOT NULL DEFAULT 'autre',
@@ -268,6 +268,7 @@ module.exports = function setupCalendar(app, { db, auth, bad, now, text, notifie
       ev.all_day, ev.visibility, ev.filiere ?? null, req.user.id, ev.repeat_days ?? null, ev.repeat_until ?? null, now());
     db.prepare('UPDATE events SET detail = ? WHERE id = ?').run(ev.detail ?? null, r.lastInsertRowid);
     try { uploads.link(req.user, req.body.attachments, 'event', r.lastInsertRowid, null); } catch { /* pièces jointes facultatives */ }
+    onChange(db.prepare('SELECT * FROM events WHERE id = ?').get(r.lastInsertRowid));
     const warnings = [];
     const n = cfaOverlap(req.user, ev);
     if (n) warnings.push(`${n} jour(s) de CFA inclus dans ces congés : le temps au CFA est du temps de travail, vérifie avec ton employeur et le CFA.`);
@@ -284,6 +285,7 @@ module.exports = function setupCalendar(app, { db, auth, bad, now, text, notifie
       visibility = ?, filiere = ?, repeat_days = ?, repeat_until = ?, detail = ? WHERE id = ?`).run(ev.title, ev.type, ev.description, ev.location,
       ev.start_at, ev.end_at ?? null, ev.all_day, ev.visibility, ev.filiere ?? null, ev.repeat_days ?? null, ev.repeat_until ?? null, ev.detail ?? null, cur.id);
     db.prepare('DELETE FROM event_reminders WHERE event_id = ?').run(cur.id); // la date a pu changer : nouveau rappel
+    onChange(cur); onChange(db.prepare('SELECT * FROM events WHERE id = ?').get(cur.id));
     res.json({ ok: true });
   });
 
@@ -293,6 +295,7 @@ module.exports = function setupCalendar(app, { db, auth, bad, now, text, notifie
     if (!canEdit(req.user, cur)) return bad(res, 'Seul son auteur ou un modérateur peut le supprimer', 403);
     uploads.removeFor('event', [cur.id]);
     db.prepare('DELETE FROM events WHERE id = ?').run(cur.id);
+    onChange(cur);
     res.json({ ok: true });
   });
 

@@ -16,7 +16,43 @@ const wd = d => ((d.getDay() + 6) % 7) + 1; // 1 = lundi … 7 = dimanche
 const startOfDay = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
 const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
 
-const plan = { cursor: null, view: 'mois', hidden: new Set(), data: null, selected: null };
+const plan = { cursor: null, view: 'mois', hidden: new Set(), data: null, selected: null, seq: 0 };
+const monthKey = d => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}`;
+// Changer de mois : passe par l'adresse (#/planning?m=2027-05) pour que « retour » et le rechargement marchent
+function gotoMonth(y, m) {
+  const d = new Date(y, m, 1);
+  const hash = `#/planning?m=${monthKey(d)}`;
+  plan.selected = null;
+  if (location.hash === hash) { plan.cursor = d; viewPlanning({ q: {} }); } else location.hash = hash;
+}
+const shiftMonth = n => gotoMonth(plan.cursor.getFullYear(), plan.cursor.getMonth() + n);
+document.addEventListener('keydown', e => {
+  if (state.route?.name !== 'planning' || e.target.closest('input, textarea, select') || document.querySelector('dialog[open]') || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); shiftMonth(-1); }
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); shiftMonth(1); }
+  if (e.key === 't' || e.key === 'T') { const n = new Date(); gotoMonth(n.getFullYear(), n.getMonth()); }
+});
+
+// Sélecteur de mois : année ‹ › + 12 mois
+function openMonthPicker(anchor) {
+  $('.month-picker')?.remove();
+  let year = plan.cursor.getFullYear();
+  const p = document.createElement('div');
+  p.className = 'month-picker';
+  const draw = () => {
+    const now = new Date();
+    p.innerHTML = `<div class="row" style="justify-content:space-between"><button class="btn sm" data-y="-1">‹</button><b>${year}</b><button class="btn sm" data-y="1">›</button></div>
+      <div class="mp-grid">${MONTHS_FR.map((m, i) => `<button class="${i === plan.cursor.getMonth() && year === plan.cursor.getFullYear() ? 'on' : ''} ${i === now.getMonth() && year === now.getFullYear() ? 'today' : ''}" data-m="${i}">${m.slice(0, 4)}${m.length > 4 ? '.' : ''}</button>`).join('')}</div>`;
+    p.querySelectorAll('[data-y]').forEach(b => b.onclick = e => { e.stopPropagation(); year += +b.dataset.y; draw(); });
+    p.querySelectorAll('[data-m]').forEach(b => b.onclick = () => { p.remove(); gotoMonth(year, +b.dataset.m); });
+  };
+  draw();
+  document.body.appendChild(p);
+  const r = anchor.getBoundingClientRect();
+  p.style.top = `${r.bottom + 6 + scrollY}px`;
+  p.style.left = `${Math.max(8, Math.min(innerWidth - p.offsetWidth - 8, r.left + r.width / 2 - p.offsetWidth / 2))}px`;
+  setTimeout(() => document.addEventListener('click', function close(e) { if (!p.contains(e.target)) { p.remove(); document.removeEventListener('click', close); } }), 0);
+}
 
 function evDays(e) {
   const out = [];
@@ -35,12 +71,17 @@ const evLabel = e => `${TYPE_STYLE[e.type]?.ico || '📌'} ${e.author ? `${esc(e
 async function viewPlanning(r) {
   const staff = isStaffUser();
   if (r.q.date) { plan.cursor = new Date(+r.q.date); plan.selected = isoDay(new Date(+r.q.date)); }
-  if (!plan.cursor) plan.cursor = new Date();
+  const mq = /^(\d{4})-(\d{2})$/.exec(r.q.m || '');
+  if (mq) plan.cursor = new Date(+mq[1], +mq[2] - 1, 1);
+  if (!plan.cursor || isNaN(plan.cursor)) plan.cursor = new Date();
   const first = new Date(plan.cursor.getFullYear(), plan.cursor.getMonth(), 1);
   const gridStart = addDays(first, -(wd(first) - 1));
-  const from = plan.view === 'mois' ? gridStart : startOfDay(new Date());
-  const to = plan.view === 'mois' ? addDays(gridStart, 42) : addDays(from, 90);
+  // Vue mois : la grille de 6 semaines ; vue liste : tout le mois choisi
+  const from = plan.view === 'mois' ? gridStart : first;
+  const to = plan.view === 'mois' ? addDays(gridStart, 42) : new Date(first.getFullYear(), first.getMonth() + 1, 1);
+  const seq = ++plan.seq; // si on clique vite, on n'affiche que la dernière réponse
   const d = await api('GET', `/api/events?from=${from.getTime()}&to=${to.getTime()}`);
+  if (seq !== plan.seq) return;
   plan.data = d;
   const events = d.events.filter(e => !plan.hidden.has(e.type));
   const cfaDays = (d.rythme?.effective || '').split(',').filter(Boolean).map(Number);
@@ -78,10 +119,10 @@ async function viewPlanning(r) {
   const chips = Object.entries(d.types).map(([k, nom]) => `<button class="chip ${plan.hidden.has(k) ? 'off' : ''}" data-type="${k}" style="--c:${TYPE_STYLE[k]?.c}">${TYPE_STYLE[k]?.ico} ${esc(nom)}</button>`).join('');
   const head = `
     <div class="row plan-toolbar">
-      <button class="btn sm" id="pl-prev" ${plan.view === 'liste' ? 'hidden' : ''}>‹</button>
-      <b class="plan-month">${plan.view === 'mois' ? `${MONTHS_FR[plan.cursor.getMonth()]} ${plan.cursor.getFullYear()}` : 'Les 3 prochains mois'}</b>
-      <button class="btn sm" id="pl-next" ${plan.view === 'liste' ? 'hidden' : ''}>›</button>
-      <button class="btn sm" id="pl-today">Aujourd'hui</button>
+      <button class="btn nav-arrow" id="pl-prev" title="Mois précédent (←)">‹</button>
+      <button class="plan-month" id="pl-month" title="Choisir un mois">${MONTHS_FR[plan.cursor.getMonth()]} ${plan.cursor.getFullYear()} ▾</button>
+      <button class="btn nav-arrow" id="pl-next" title="Mois suivant (→)">›</button>
+      <button class="btn sm" id="pl-today" title="Revenir à aujourd’hui (T)">Aujourd'hui</button>
       <span class="spacer"></span>
       <div class="seg"><button class="${plan.view === 'mois' ? 'on' : ''}" data-view="mois">Mois</button><button class="${plan.view === 'liste' ? 'on' : ''}" data-view="liste">Liste</button></div>
       <button class="btn sm" id="pl-feed">📲 Dans mon agenda</button>
@@ -104,18 +145,23 @@ async function viewPlanning(r) {
     body = `<div class="cal-grid">${[1, 2, 3, 4, 5, 6, 7].map(n => `<div class="cal-head">${DAYS_FR[n]}</div>`).join('')}${cells.join('')}</div>
       <div id="day-panel"></div>`;
   } else {
-    const keys = Object.keys(byDay).filter(k => k >= todayKey).sort();
-    body = keys.length ? keys.map(k => `<div class="list-day"><div class="list-date">${new Date(k + 'T12:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</div>
-      ${byDay[k].map(e => evRow(e)).join('')}</div>`).join('') : '<div class="card empty">Rien de prévu.</div>';
+    const mk = monthKey(plan.cursor);
+    const keys = Object.keys(byDay).filter(k => k.startsWith(mk)).sort();
+    body = keys.length ? keys.map(k => `<div class="list-day ${k === todayKey ? 'today' : ''} ${k < todayKey ? 'past' : ''}"><div class="list-date">${new Date(k + 'T12:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}${k === todayKey ? ' · aujourd’hui' : ''}</div>
+      ${byDay[k].map(e => evRow(e)).join('')}</div>`).join('') : `<div class="card empty">Rien de prévu en ${MONTHS_FR[plan.cursor.getMonth()]}.</div>`;
   }
 
-  setContent(`<div class="plan-layout"><div class="plan-main">${head}${body}</div><div class="plan-aside">${alternance}</div></div>`);
+  setContent(`<div class="plan-layout"><div class="plan-main">${head}<div class="plan-body ${plan.anim || ''}">${body}</div></div><div class="plan-aside">${alternance}</div></div>`);
+  plan.anim = '';
   if (plan.view === 'mois' && plan.selected) renderDayPanel(plan.selected, byDay);
 
   $('#ev-add').onclick = () => openEventForm({ date: plan.selected || todayKey });
-  $('#pl-prev')?.addEventListener('click', () => { plan.cursor = new Date(plan.cursor.getFullYear(), plan.cursor.getMonth() - 1, 1); plan.selected = null; viewPlanning({ q: {} }); });
-  $('#pl-next')?.addEventListener('click', () => { plan.cursor = new Date(plan.cursor.getFullYear(), plan.cursor.getMonth() + 1, 1); plan.selected = null; viewPlanning({ q: {} }); });
-  $('#pl-today').onclick = () => { plan.cursor = new Date(); plan.selected = todayKey; viewPlanning({ q: {} }); };
+  $('#pl-prev').onclick = () => { plan.anim = 'slide-right'; shiftMonth(-1); };
+  $('#pl-next').onclick = () => { plan.anim = 'slide-left'; shiftMonth(1); };
+  $('#pl-month').onclick = e => { e.stopPropagation(); openMonthPicker(e.currentTarget); };
+  $('#pl-today').onclick = () => { const n = new Date(); gotoMonth(n.getFullYear(), n.getMonth()); plan.selected = todayKey; };
+  const pb = $('.plan-body');
+  if (pb) onSwipe(pb, () => { plan.anim = 'slide-left'; shiftMonth(1); }, () => { plan.anim = 'slide-right'; shiftMonth(-1); });
   $$('[data-view]').forEach(b => b.onclick = () => { plan.view = b.dataset.view; viewPlanning({ q: {} }); });
   $$('.chip[data-type]').forEach(b => b.onclick = () => { plan.hidden.has(b.dataset.type) ? plan.hidden.delete(b.dataset.type) : plan.hidden.add(b.dataset.type); viewPlanning({ q: {} }); });
   $$('.cal-cell').forEach(c => c.onclick = e => {

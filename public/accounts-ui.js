@@ -279,6 +279,14 @@ async function viewAccount(r) {
           <div class="row" style="margin-top:12px"><button class="btn primary">Enregistrer</button></div>
         </form>
       </div>
+      <div class="card">
+        <h3>🎨 Apparence & sons <span class="small muted">(sur cet appareil)</span></h3>
+        <label>Thème</label>
+        <div class="seg" id="theme-seg">${[['auto', '🖥️ Auto'], ['light', '☀️ Clair'], ['dark', '🌙 Sombre']].map(([k, n]) => `<button type="button" data-theme-set="${k}" class="${fxPrefs.theme === k ? 'on' : ''}">${n}</button>`).join('')}</div>
+        <label class="toggle" style="margin-top:12px"><input type="checkbox" id="fx-sound" ${fxPrefs.sound ? 'checked' : ''}> 🔊 Sons (messages, bonnes réponses, niveaux)</label>
+        <label class="toggle"><input type="checkbox" id="fx-motion" ${fxPrefs.motion ? 'checked' : ''}> ✨ Animations et confettis</label>
+        <p class="small muted">Astuce : <kbd>Ctrl</kbd> + <kbd>K</kbd> pour aller n’importe où, <kbd>?</kbd> pour voir tous les raccourcis.</p>
+      </div>
       <div class="card" style="border-color:#c2413b55">
         <h3>⚠️ Supprimer mon compte</h3>
         <p class="small muted">Ton compte et ta progression sont effacés. Tes messages restent visibles sous le nom « Ancien élève ».</p>
@@ -288,6 +296,9 @@ async function viewAccount(r) {
         </form>
       </div>
     </div>`);
+  $$('[data-theme-set]').forEach(b => b.onclick = () => { fxPrefs.theme = b.dataset.themeSet; saveFxPrefs(); $$('[data-theme-set]').forEach(x => x.classList.toggle('on', x === b)); });
+  $('#fx-sound').onchange = e => { fxPrefs.sound = e.target.checked; saveFxPrefs(); if (fxPrefs.sound) beep('ok'); };
+  $('#fx-motion').onchange = e => { fxPrefs.motion = e.target.checked; saveFxPrefs(); if (fxPrefs.motion) confetti(50); };
   const pf = $('#profile-form');
   bindFiliere(pf, user);
   const done = d => { state.user = d.user; renderSidebar(); viewAccount({}); toast('Enregistré'); };

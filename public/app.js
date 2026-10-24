@@ -138,11 +138,48 @@ function connectStream() {
   es.addEventListener('message', e => {
     const m = JSON.parse(e.data);
     if (state.route?.name === 'salon' && +state.route.id === m.channel_id && state.view.kind === 'chat') {
-      if (!state.view.messages.some(x => x.id === m.id)) { state.view.messages.push(m); renderMessages(true); }
+      if (state.view.typing) delete state.view.typing[m.user_id];
+      renderTyping();
+      if (!state.view.messages.some(x => x.id === m.id)) {
+        m._new = true; state.view.messages.push(m); renderMessages();
+        if (m.user_id !== state.user?.id) beep('message');
+      }
     } else if (m.user_id !== state.user?.id) {
       state.unread[m.channel_id] = (state.unread[m.channel_id] || 0) + 1;
       renderSidebar();
     }
+  });
+  es.addEventListener('message_edited', e => {
+    const d = JSON.parse(e.data);
+    const m = state.view.messages?.find(x => x.id === d.id);
+    if (m && state.view.editing !== d.id) { m.content = d.content; m.edited_at = d.edited_at; renderMessages(); }
+  });
+  es.addEventListener('reaction', e => {
+    const d = JSON.parse(e.data);
+    applyReactions(d.target, d.id, d.reactions);
+  });
+  es.addEventListener('typing', e => {
+    const d = JSON.parse(e.data);
+    if (state.route?.name === 'salon' && +state.route.id === d.channel_id && state.view.typing) {
+      state.view.typing[d.user_id] = { name: d.display_name, at: Date.now() };
+      renderTyping();
+    }
+  });
+  es.addEventListener('xp', e => onXp(JSON.parse(e.data)));
+  es.addEventListener('events', () => {
+    const n = state.route?.name;
+    if (n === 'planning') softRefresh(() => viewPlanning({ q: {} }), 'Le planning a changé');
+    else if (n === 'accueil') softRefresh(() => viewHome());
+  });
+  es.addEventListener('exercises', e => {
+    const d = JSON.parse(e.data);
+    const r = state.route;
+    if (r?.name === 'exercices' && (!r.id || +r.id === d.id)) softRefresh(() => loadView(), 'Exercice mis à jour');
+    else if (r?.name === 'accueil') softRefresh(() => viewHome());
+  });
+  es.addEventListener('ideas', e => {
+    const d = JSON.parse(e.data);
+    if (state.route?.name === 'idees' && (!ideasState.box || ideasState.box === d.box)) softRefresh(() => viewIdeas({ q: {} }), 'Nouvelles idées');
   });
   es.addEventListener('message_deleted', e => {
     const d = JSON.parse(e.data);
@@ -151,8 +188,8 @@ function connectStream() {
   es.addEventListener('topic', e => {
     const d = JSON.parse(e.data);
     const r = state.route;
-    if (r?.name === 'salon' && +r.id === d.channel_id && state.view.kind === 'forum') loadView();
-    if (r?.name === 'sujet' && +r.id === d.topic_id) loadView();
+    if (r?.name === 'salon' && +r.id === d.channel_id && state.view.kind === 'forum') softRefresh(() => loadView(), 'Nouveaux sujets');
+    if (r?.name === 'sujet' && +r.id === d.topic_id) softRefresh(() => loadView(), 'Nouvelle réponse');
   });
   es.addEventListener('channels', async () => { state.channels = await api('GET', '/api/channels'); renderSidebar(); });
 }
@@ -200,6 +237,8 @@ function render() {
   if (state.user.role !== 'prof') api('GET', '/api/meetings').then(m => { state.meetings = m; renderSidebar(); }).catch(() => {});
   if (state.user.role !== 'prof') api('GET', '/api/meetings/config').then(c => { state.meetConfig = c; }).catch(() => {});
   api('GET', '/api/notifications').then(d => setUnread(d.unread)).catch(() => {});
+  api('GET', '/api/reactions/emojis').then(e => { state.emojis = e; }).catch(() => {});
+  if (state.user.role !== 'prof') loadProgress();
   swRegistration();
   connectStream();
   route();
@@ -217,16 +256,22 @@ function route() {
   loadView();
 }
 
+// Si on a changé de page pendant un chargement, l'ancienne page ne doit pas s'afficher par-dessus
+class StaleView extends Error {}
+const isStale = () => state.loadingHash !== undefined && state.loadingHash !== location.hash;
 function setTitle(title, sub = '', actionsHtml = '') {
+  if (isStale()) throw new StaleView('page quittée');
   $('#topbar-title').innerHTML = `<h1>${title}</h1>${sub ? `<div class="sub">${sub}</div>` : ''}`;
   $('#topbar-actions')?.remove();
   if (actionsHtml) $('#topbar-title').insertAdjacentHTML('afterend', `<div id="topbar-actions" class="topbar-actions">${actionsHtml}</div>`);
 }
 function setContent(html, { full = false } = {}) {
+  if (isStale()) throw new StaleView('page quittée');
   const c = $('#content');
   c.style.padding = full ? '0' : '';
   c.style.overflow = full ? 'hidden' : '';
-  c.innerHTML = full ? html : `<div class="wrap">${html}</div>`;
+  c.innerHTML = full ? html : `<div class="wrap view-enter">${html}</div>`;
+  if (!full) c.scrollTop = 0;
 }
 
 // ---------- Sidebar ----------
@@ -254,10 +299,13 @@ function renderSidebar() {
       ${link('#/planning', '🗓️', 'Planning', r.name === 'planning')}
       ${link('#/exercices', '📝', 'Exercices', r.name === 'exercices')}
       ${link('#/revisions', '📖', 'Révisions', r.name === 'revisions')}
+      ${link('#/progression', '🏆', 'Progression', r.name === 'progression', state.progress && !state.progress.daily_done && state.progress.plays ? '🎯' : (state.progress?.duels_todo || ''))}
       ${isProf ? '' : link('#/reunions', '🎥', 'Réunions', r.name === 'reunions' || r.name === 'reunion', (state.meetings || []).filter(m => m.count).length ? `<span class="live">● ${(state.meetings || []).filter(m => m.count).length}</span>` : '')}
       <a class="nav-link ${r.name === 'notifications' ? 'active' : ''}" href="#/notifications"><span class="ico">🔔</span><span>Notifications</span><span class="badge" id="notif-badge" ${state.unreadNotifs ? '' : 'hidden'}>${state.unreadNotifs > 99 ? '99+' : state.unreadNotifs || ''}</span></a>
       ${link('#/actus', '📰', 'Actus', r.name === 'actus')}
       ${link('#/infos', '🎓', 'CFA & examens', r.name === 'infos')}
+      ${link('#/idees', '💡', 'Boîte à idées', r.name === 'idees')}
+      ${link('#/guide', '❓', 'Guide', r.name === 'guide')}
       ${isAdmin ? link('#/admin', '🛠️', 'Modération', r.name === 'admin') : ''}
       ${mine.length ? `<div class="side-title">Ma filière · ${esc(state.user.filiere_nom || '')}</div>${mine.map(chLink).join('')}` : ''}
       ${isProf ? '<div class="side-title">Espace formateur</div><p class="small" style="padding:0 10px;color:var(--side-muted)">Les salons et le forum sont réservés aux élèves.</p>' : `
@@ -267,12 +315,15 @@ function renderSidebar() {
       ${shared.filter(c => c.kind === 'forum').map(chLink).join('')}`}
       ${Object.entries(groups).map(([nom, list]) => `<div class="side-title">${esc(nom)} <span class="pill" style="font-size:10px">modo</span></div>${list.map(chLink).join('')}`).join('')}
     </div>
+    <div class="mini-xp" id="mini-xp" hidden></div>
     <div class="me-bar">
       ${avatar(state.user.display_name)}
       <div class="who"><b>${esc(state.user.display_name)}</b><span>${{ admin: 'Modérateur', prof: 'Formateur' }[state.user.role] || 'Élève'}</span></div>
+      <button class="icon-btn" data-action="palette" title="Recherche rapide (Ctrl+K)">🔎</button>
       <a class="icon-btn" href="#/compte" title="Mon compte">⚙️</a>
       <button class="icon-btn" data-action="logout" title="Se déconnecter">⏻</button>
     </div>`;
+  renderMiniXp();
 }
 
 // ---------- Délégation des clics ----------
@@ -285,15 +336,23 @@ document.addEventListener('click', async e => {
 });
 const actions = {
   menu: () => $('.shell').classList.toggle('nav-open'),
+  palette: () => openPalette(),
   logout: async () => { await leaveMeeting({ silent: true }); await api('POST', '/api/logout'); state.user = null; location.hash = ''; render(); },
 };
 
 // ---------- Vues ----------
 async function loadView() {
   const r = state.route;
-  const views = { planning: viewPlanning, exercices: viewExercises, notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
+  const views = { progression: viewProgression, idees: viewIdeas, guide: viewGuide, planning: viewPlanning, exercices: viewExercises, notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
   const fn = views[r.name] || viewHome;
-  try { await fn(r); } catch (err) { setContent(`<div class="empty">${esc(err.message)}</div>`); }
+  state.loadingHash = location.hash;
+  const seq = state.loadSeq = (state.loadSeq || 0) + 1;
+  try { await fn(r); } catch (err) {
+    if (!(err instanceof StaleView) && !isStale()) setContent(`<div class="empty">${esc(err.message)}</div>`);
+  }
+  // Une page plus récente a déjà fini de s'afficher : celle-ci (plus lente) vient de l'écraser → on réaffiche la bonne
+  if (seq < (state.loadDone || 0)) return loadView();
+  state.loadDone = Math.max(state.loadDone || 0, seq);
 }
 
 // Accueil
@@ -303,8 +362,10 @@ async function viewHome() {
   const days = Math.ceil((new Date(d.infos.examens.debut + 'T00:00:00') - new Date()) / 864e5);
   const u = state.user;
   const prompt = await pushPromptHtml();
+  const gameW = u.role !== 'prof' ? await homeGameWidget() : '';
   setContent(`
     ${prompt}
+    ${gameW}
     ${u.expire_bientot ? `<div class="card" style="border-color:var(--gold);margin-bottom:16px">⏳ <b>Ton compte sera supprimé le ${new Date(u.expires_at).toLocaleDateString('fr-FR', { dateStyle: 'long' })}</b> (fin de ta formation + ${state.setup?.grace_days ?? 60} jours).
       <div class="small muted">Tu continues tes études ? Mets à jour ta filière dans <a href="#/compte">Mon compte</a>. Pense à copier les fiches que tu veux garder.</div></div>` : ''}
     ${d.alternance ? `<div class="card alt-banner ${d.alternance.aujourdhui || ''}">
@@ -425,7 +486,7 @@ function tabCards(s) {
         <button class="btn primary" id="c-yes" disabled>👍 Je savais</button>
       </div>`;
     const flash = $('#flash');
-    flash.onclick = () => { flash.classList.toggle('flipped'); $('#c-no').disabled = $('#c-yes').disabled = false; };
+    flash.onclick = () => { flash.classList.toggle('flipped'); beep('pop'); $('#c-no').disabled = $('#c-yes').disabled = false; };
     const answer = async good => {
       try { await api('POST', '/api/cards/review', { key: c.key, ok: good }); } catch (e) { toast(e.message); }
       if (good) ok++;
@@ -444,8 +505,9 @@ function tabQuiz(s) {
   if (!qs.length) { body.innerHTML = '<div class="empty">Pas de quiz pour cette matière.</div>'; return; }
   const show = () => {
     if (idx >= qs.length) {
-      api('POST', '/api/quiz-results', { subject: s.id, score, total: qs.length }).catch(() => {});
+      api('POST', '/api/quiz-results', { subject: s.id, score, total: qs.length }).then(r => { if (r.perfect) confetti(160); }).catch(() => {});
       const pct = Math.round(score / qs.length * 100);
+      beep(pct >= 60 ? 'ok' : 'ko');
       body.innerHTML = `<div class="card empty"><div class="stat">${score}/${qs.length}</div>
         <p>${pct >= 80 ? 'Excellent 🔥' : pct >= 60 ? 'Pas mal, encore un effort 💪' : 'Relis les fiches et retente 📖'}</p>
         <div class="row" style="justify-content:center"><button class="btn primary" id="q-again">Recommencer</button><a class="btn" href="#/revisions/${s.id}?tab=fiches">Revoir les fiches</a></div></div>`;
@@ -459,13 +521,15 @@ function tabQuiz(s) {
         <div class="row small muted"><span>Question ${idx + 1} / ${qs.length}</span><span class="spacer"></span><span>Score : ${score}</span></div>
         <div class="progress"><div style="width:${idx / qs.length * 100}%"></div></div>
         <h3 style="margin:18px 0 10px">${esc(q.q)}</h3>
-        ${order.map(o => `<button class="quiz-choice" data-i="${o.i}">${esc(o.c)}</button>`).join('')}
+        ${order.map((o, k) => `<button class="quiz-choice" data-i="${o.i}"><kbd>${k + 1}</kbd> ${esc(o.c)}</button>`).join('')}
         <div id="q-after"></div>
       </div>`;
     $$('.quiz-choice', body).forEach(b => b.onclick = () => {
       const chosen = +b.dataset.i;
       const good = chosen === q.reponse;
       if (good) score++;
+      beep(good ? 'ok' : 'ko');
+      b.closest('.card').classList.add(good ? 'shake-ok' : 'shake-ko');
       $$('.quiz-choice', body).forEach(x => {
         x.disabled = true;
         if (+x.dataset.i === q.reponse) x.classList.add('good');
@@ -477,6 +541,16 @@ function tabQuiz(s) {
       $('#q-next').focus();
     });
   };
+  // Touches 1 à 4 pour répondre
+  const keyQuiz = e => {
+    if (!body.isConnected || !body.querySelector('.quiz-choice')) return document.removeEventListener('keydown', keyQuiz);
+    if (e.target.closest('input, textarea')) return;
+    const n = +e.key;
+    if (n >= 1 && n <= 9) body.querySelectorAll('.quiz-choice:not(:disabled)')[n - 1]?.click();
+  };
+  if (window._keyQuiz) document.removeEventListener('keydown', window._keyQuiz);
+  window._keyQuiz = keyQuiz;
+  document.addEventListener('keydown', keyQuiz);
   show();
 }
 
@@ -531,6 +605,9 @@ async function viewChat(ch) {
   };
   state.view.messages = await api('GET', `/api/channels/${ch.id}/messages`);
   state.view.hasMore = state.view.messages.length === 50;
+  state.view.replyTo = null;
+  state.view.editing = null;
+  state.view.typing = {};
   setContent(`
     <div class="chat">
       <div class="chat-body">
@@ -538,11 +615,13 @@ async function viewChat(ch) {
         <aside class="members" id="members"></aside>
       </div>
       <div class="composer">
+        <div class="typing" id="typing"></div>
+        <div class="reply-bar" id="reply-bar" hidden></div>
         <form id="msg-form">
           <div class="att-list" hidden></div>
           <div class="composer-row">
             <button type="button" class="btn att-btn" title="Joindre un fichier — tu peux aussi glisser-déposer ou coller une capture">📎</button>
-            <div class="composer-input"><textarea id="msg-input" placeholder="Écrire dans #${esc(ch.name)} — @ pour mentionner, Entrée pour envoyer" maxlength="2000"></textarea></div>
+            <div class="composer-input"><textarea id="msg-input" placeholder="Écrire dans #${esc(ch.name)} — @ pour mentionner, Entrée pour envoyer, ↑ pour modifier ton dernier message" maxlength="2000"></textarea></div>
             <button class="btn primary">Envoyer</button>
           </div>
         </form>
@@ -553,48 +632,157 @@ async function viewChat(ch) {
   const input = $('#msg-input');
   const box = bindAttach($('#msg-form'), input);
   bindMentions(input);
+  let lastTyping = 0;
+  input.addEventListener('input', () => {
+    if (input.value && Date.now() - lastTyping > 2500) { lastTyping = Date.now(); api('POST', `/api/channels/${ch.id}/typing`).catch(() => {}); }
+  });
   const send = async () => {
     const content = input.value.trim();
     if (box.busy()) return toast('Attends la fin de l’envoi des fichiers');
     const attachments = box.ids();
     if (!content && !attachments.length) return;
     input.value = '';
+    const reply_to = state.view.replyTo?.id || null;
+    setReplyTo(null);
     try {
-      const m = await api('POST', `/api/channels/${ch.id}/messages`, { content, attachments });
+      const m = await api('POST', `/api/channels/${ch.id}/messages`, { content, attachments, reply_to });
       box.clear();
+      beep('message');
       if (!state.view.messages.some(x => x.id === m.id)) { state.view.messages.push(m); renderMessages(true); }
     } catch (err) { toast(err.message); input.value = content; }
   };
   $('#msg-form').onsubmit = e => { e.preventDefault(); send(); };
-  input.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } };
+  input.onkeydown = e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+    else if (e.key === 'Escape' && state.view.replyTo) { setReplyTo(null); }
+    else if (e.key === 'ArrowUp' && !input.value) {
+      const mine = [...state.view.messages].reverse().find(m => m.user_id === state.user.id && m.content);
+      if (mine) { e.preventDefault(); startEdit(mine.id); }
+    }
+  };
   input.focus();
+}
+
+function setReplyTo(m) {
+  state.view.replyTo = m;
+  const bar = $('#reply-bar');
+  if (!bar) return;
+  bar.hidden = !m;
+  bar.innerHTML = m ? `↩️ Réponse à <b>${esc(m.display_name)}</b> : <span class="muted">${esc((m.content || '📎 pièce jointe').slice(0, 90))}</span><button type="button" class="btn sm" id="reply-cancel" title="Annuler (Échap)">✕</button>` : '';
+  $('#reply-cancel')?.addEventListener('click', () => setReplyTo(null));
+  if (m) $('#msg-input')?.focus();
+}
+
+function reactionPills(list, target, id) {
+  return `<div class="reacts">${(list || []).map(r => `<button class="react-pill ${r.users.includes(state.user.id) ? 'mine' : ''}" data-react="${target}:${id}" data-emoji="${r.emoji}" title="${esc(r.names.join(', '))}">${r.emoji} <b>${r.users.length}</b></button>`).join('')}</div>`;
+}
+function openReactPicker(anchor, target, id) {
+  $('.react-picker')?.remove();
+  const p = document.createElement('div');
+  p.className = 'react-picker';
+  p.innerHTML = (state.emojis || ['👍', '❤️', '😂', '😮', '😢', '🎉', '🔥', '✅', '🙏', '👀']).map(e => `<button data-emoji="${e}">${e}</button>`).join('');
+  document.body.appendChild(p);
+  const r = anchor.getBoundingClientRect();
+  p.style.top = `${Math.max(8, r.top - p.offsetHeight - 6) + scrollY}px`;
+  p.style.left = `${Math.min(innerWidth - p.offsetWidth - 8, Math.max(8, r.left - p.offsetWidth / 2))}px`;
+  p.querySelectorAll('button').forEach(b => b.onclick = () => { p.remove(); toggleReaction(target, id, b.dataset.emoji); });
+  setTimeout(() => document.addEventListener('click', function close(e) { if (!p.contains(e.target)) { p.remove(); document.removeEventListener('click', close); } }), 0);
+}
+async function toggleReaction(target, id, emoji) {
+  try {
+    const r = await api('POST', '/api/react', { target, id, emoji });
+    applyReactions(target, id, r.reactions);
+    if (r.added) beep('pop');
+  } catch (err) { toast(err.message); }
+}
+function applyReactions(target, id, reactions) {
+  if (target === 'message') {
+    const m = state.view.messages?.find(x => x.id === id);
+    if (m) m.reactions = reactions;
+  } else if (state.view.topic) {
+    if (target === 'topic' && state.view.topic.id === id) state.view.topic.reactions = reactions;
+    const rp = state.view.topic.replies?.find(x => x.id === id);
+    if (target === 'reply' && rp) rp.reactions = reactions;
+  }
+  const el = document.querySelector(`[data-reacts-for="${target}:${id}"]`);
+  if (el) {
+    el.innerHTML = reactionPills(reactions, target, id);
+    el.querySelectorAll('.react-pill').forEach(b => b.classList.add('pop-in'));
+  }
+}
+
+function startEdit(id) {
+  state.view.editing = id;
+  renderMessages();
+  const ta = document.querySelector(`.edit-box[data-edit="${id}"] textarea`);
+  if (ta) { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); }
 }
 
 function renderMessages(scrollBottom = false) {
   const box = $('#messages');
   if (!box) return;
+  const atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
   const msgs = state.view.messages || [];
   let prev = null;
+  const meRx = new RegExp(`(^|[^\\w@])@${state.user.username.replace(/[.]/g, '\\.')}(?![\\w-])`, 'i');
   const html = msgs.map(m => {
-    const cont = prev && prev.user_id === m.user_id && m.created_at - prev.created_at < 5 * 60e3;
+    const cont = prev && prev.user_id === m.user_id && m.created_at - prev.created_at < 5 * 60e3 && !m.reply;
     prev = m;
-    const canDel = m.user_id === state.user.id || state.user.role === 'admin';
-    const forMe = new RegExp(`(^|[^\\w@])@${state.user.username.replace(/[.]/g, '\\.')}(?![\\w-])`, 'i').test(m.content || '');
-    return `<div class="msg ${cont ? 'cont' : ''} ${forMe ? 'for-me' : ''}">
+    const mine = m.user_id === state.user.id;
+    const canDel = mine || state.user.role === 'admin';
+    const forMe = meRx.test(m.content || '') || (m.reply && state.view.messages.find(x => x.id === m.reply.id)?.user_id === state.user.id && !mine);
+    const editing = state.view.editing === m.id;
+    return `<div class="msg ${cont ? 'cont' : ''} ${forMe ? 'for-me' : ''} ${m._new ? 'msg-new' : ''}" id="msg-${m.id}">
       ${avatar(m.display_name)}
       <div style="flex:1;min-width:0">
+        ${m.reply ? `<a class="quote" href="#" data-jump="${m.reply.id}">↩️ <b>${esc(m.reply.display_name)}</b> ${m.reply.deleted ? '<i>message supprimé</i>' : esc(m.reply.content || '📎 pièce jointe')}</a>` : ''}
         ${cont ? '' : `<div class="meta"><b>${esc(m.display_name)}</b>${m.role === 'admin' ? '<span class="pill accent">modo</span> ' : ''}<span class="muted">${fmtDate(m.created_at)}</span></div>`}
-        ${m.content ? `<div class="text">${linkify(mentionify(esc(m.content)))}</div>` : ''}
+        ${editing ? `<form class="edit-box" data-edit="${m.id}"><textarea maxlength="2000">${esc(m.content)}</textarea>
+            <div class="small muted">Entrée pour enregistrer · Échap pour annuler</div></form>`
+          : m.content ? `<div class="text">${linkify(mentionify(esc(m.content)))}${m.edited_at ? ' <span class="edited" title="' + esc(fmtDate(m.edited_at)) + '">(modifié)</span>' : ''}</div>` : ''}
         ${renderAttachments(m.attachments)}
+        <div data-reacts-for="message:${m.id}">${reactionPills(m.reactions, 'message', m.id)}</div>
       </div>
-      ${canDel ? `<button class="btn sm danger del" data-del-msg="${m.id}" title="Supprimer">✕</button>` : ''}
+      <div class="msg-tools">
+        <button title="Réagir" data-pick="message:${m.id}">😀</button>
+        <button title="Répondre" data-reply="${m.id}">↩️</button>
+        ${mine && m.content ? `<button title="Modifier" data-edit-msg="${m.id}">✏️</button>` : ''}
+        ${canDel ? `<button title="Supprimer" data-del-msg="${m.id}" class="danger">🗑️</button>` : ''}
+      </div>
     </div>`;
   }).join('');
+  msgs.forEach(m => delete m._new);
   box.innerHTML = (state.view.hasMore ? `<div style="text-align:center;margin-bottom:10px"><button class="btn sm" id="more">Charger les messages précédents</button></div>` : '')
     + (msgs.length ? html : `<div class="empty">Aucun message. Dis bonjour à la classe 👋</div>`);
   $$('[data-del-msg]', box).forEach(b => b.onclick = async () => {
     if (!confirm('Supprimer ce message ?')) return;
     await api('DELETE', `/api/messages/${b.dataset.delMsg}`).catch(e => toast(e.message));
+  });
+  $$('[data-reply]', box).forEach(b => b.onclick = () => setReplyTo(msgs.find(m => m.id === +b.dataset.reply)));
+  $$('[data-edit-msg]', box).forEach(b => b.onclick = () => startEdit(+b.dataset.editMsg));
+  $$('[data-pick]', box).forEach(b => b.onclick = e => { e.stopPropagation(); const [t, id] = b.dataset.pick.split(':'); openReactPicker(b, t, +id); });
+  $$('[data-jump]', box).forEach(a => a.onclick = e => {
+    e.preventDefault();
+    const el = document.getElementById('msg-' + a.dataset.jump);
+    if (el) { el.scrollIntoView({ behavior: motionOk() ? 'smooth' : 'auto', block: 'center' }); el.classList.add('flash-hl'); setTimeout(() => el.classList.remove('flash-hl'), 1500); }
+    else toast('Message plus ancien : charge les messages précédents');
+  });
+  $$('.edit-box', box).forEach(f => {
+    const ta = f.querySelector('textarea');
+    const id = +f.dataset.edit;
+    const save = async () => {
+      const content = ta.value.trim();
+      if (!content) return toast('Message vide');
+      try {
+        await api('PATCH', `/api/messages/${id}`, { content });
+        const m = msgs.find(x => x.id === id); if (m) { m.content = content; m.edited_at = Date.now(); }
+      } catch (err) { toast(err.message); }
+      state.view.editing = null; renderMessages(); $('#msg-input')?.focus();
+    };
+    ta.onkeydown = e => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); save(); }
+      if (e.key === 'Escape') { state.view.editing = null; renderMessages(); $('#msg-input')?.focus(); }
+    };
   });
   $('#more')?.addEventListener('click', async () => {
     const older = await api('GET', `/api/channels/${state.view.channel.id}/messages?before=${msgs[0].id}`);
@@ -604,11 +792,20 @@ function renderMessages(scrollBottom = false) {
     renderMessages();
     box.scrollTop = box.scrollHeight - h;
   });
-  if (scrollBottom) {
+  if (scrollBottom || atBottom) {
     box.scrollTop = box.scrollHeight;
     $$('img', box).forEach(img => !img.complete && img.addEventListener('load', () => { box.scrollTop = box.scrollHeight; }, { once: true }));
   }
 }
+
+function renderTyping() {
+  const el = $('#typing');
+  if (!el) return;
+  const now = Date.now();
+  const names = Object.values(state.view.typing || {}).filter(t => now - t.at < 4500).map(t => t.name);
+  el.innerHTML = names.length ? `<span class="dots"><i></i><i></i><i></i></span> ${names.length === 1 ? `<b>${esc(names[0])}</b> est en train d’écrire…` : names.length === 2 ? `<b>${esc(names[0])}</b> et <b>${esc(names[1])}</b> écrivent…` : 'Plusieurs personnes écrivent…'}` : '';
+}
+setInterval(() => { if (state.view?.typing && Object.keys(state.view.typing).length) renderTyping(); }, 1000);
 
 async function renderMembers() {
   const box = $('#members');
@@ -667,11 +864,14 @@ async function viewTopic(r) {
   renderSidebar();
   const mine = t.user_id === state.user.id, isAdmin = state.user.role === 'admin';
   setTitle(`${t.pinned ? '📌 ' : ''}${esc(t.title)}`, `💬 ${esc(t.channel_name)}`);
-  const post = (name, role, date, content, del, atts) => `
-    <div class="post">${avatar(name)}<div class="body">
-      <div class="small"><b style="font-size:15px">${esc(name)}</b> ${role === 'admin' ? '<span class="pill accent">modo</span>' : ''} <span class="muted">${fmtDate(date)}</span> ${del || ''}</div>
-      ${content ? md(content) : ''}
+  const post = (name, role, date, content, del, atts, target, id, extra = {}) => `
+    <div class="post fade-in" id="${target}-${id}">${avatar(name)}<div class="body">
+      <div class="small"><b style="font-size:15px">${esc(name)}</b> ${role === 'admin' ? '<span class="pill accent">modo</span>' : ''} <span class="muted">${fmtDate(date)}</span>${extra.edited ? ' <span class="edited">(modifié)</span>' : ''} ${del || ''}</div>
+      <div class="post-content" data-content-for="${target}:${id}">${content ? md(content) : ''}</div>
       ${renderAttachments(atts)}
+      <div class="row post-actions"><div data-reacts-for="${target}:${id}">${reactionPills(extra.reactions, target, id)}</div>
+        <button class="btn sm ghost" data-pick="${target}:${id}" title="Réagir">😀＋</button>
+        ${extra.canEdit ? `<button class="btn sm ghost" data-edit-reply="${id}">✏️ Modifier</button>` : ''}</div>
     </div></div>`;
   setContent(`
     <div class="row" style="margin-bottom:12px">
@@ -682,9 +882,10 @@ async function viewTopic(r) {
       ${mine || isAdmin ? `<button class="btn sm danger" id="t-del">Supprimer</button>` : ''}
     </div>
     <div class="card">
-      ${post(t.display_name, null, t.created_at, t.content, '', t.attachments)}
+      ${post(t.display_name, null, t.created_at, t.content, '', t.attachments, 'topic', t.id, { reactions: t.reactions })}
       ${t.replies.map(rp => post(rp.display_name, rp.role, rp.created_at, rp.content,
-        rp.user_id === state.user.id || isAdmin ? `<button class="btn sm danger" data-del-reply="${rp.id}">✕</button>` : '', rp.attachments)).join('')}
+        rp.user_id === state.user.id || isAdmin ? `<button class="btn sm danger" data-del-reply="${rp.id}">✕</button>` : '', rp.attachments,
+        'reply', rp.id, { reactions: rp.reactions, edited: rp.edited_at, canEdit: rp.user_id === state.user.id })).join('')}
     </div>
     <form id="reply-form" class="card" style="margin-top:16px">
       <label style="margin-top:0">Ta réponse</label>
@@ -710,6 +911,21 @@ async function viewTopic(r) {
   $$('[data-del-reply]').forEach(b => b.onclick = async () => {
     if (!confirm('Supprimer cette réponse ?')) return;
     await api('DELETE', `/api/replies/${b.dataset.delReply}`); viewTopic(r);
+  });
+  $$('[data-pick]').forEach(b => b.onclick = e => { e.stopPropagation(); const [tg, id] = b.dataset.pick.split(':'); openReactPicker(b, tg, +id); });
+  $$('[data-edit-reply]').forEach(b => b.onclick = () => {
+    const id = +b.dataset.editReply;
+    const rp = t.replies.find(x => x.id === id);
+    const box = document.querySelector(`[data-content-for="reply:${id}"]`);
+    box.innerHTML = `<form class="edit-box"><textarea rows="5" maxlength="8000">${esc(rp.content)}</textarea>
+      <div class="row" style="margin-top:6px"><button class="btn sm primary">Enregistrer</button><button type="button" class="btn sm" data-cancel>Annuler</button></div></form>`;
+    const f = box.querySelector('form');
+    f.querySelector('textarea').focus();
+    f.querySelector('[data-cancel]').onclick = () => viewTopic(r);
+    f.onsubmit = async e => {
+      e.preventDefault();
+      try { await api('PATCH', `/api/replies/${id}`, { content: f.querySelector('textarea').value }); viewTopic(r); } catch (err) { toast(err.message); }
+    };
   });
 }
 

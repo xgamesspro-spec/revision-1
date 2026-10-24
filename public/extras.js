@@ -176,6 +176,7 @@ function setUnread(n) {
 }
 function onNotif({ notif, unread }) {
   setUnread(unread);
+  beep('notif');
   // Pas de toast si on est déjà sur la page concernée
   if (location.hash !== notif.link) toastLink(notif);
   if (state.route?.name === 'notifications') viewNotifications();
@@ -275,7 +276,7 @@ async function viewNotifications() {
           ${d.unread ? '<button class="btn sm" id="read-all">Tout marquer comme lu</button>' : ''}</div>
         ${d.items.length ? d.items.map(n => `
           <a class="notif-row ${n.read ? '' : 'unread'}" href="${esc(n.link || '#/notifications')}" data-id="${n.id}">
-            <span class="notif-ico">${{ mention: '@', reply: '💬', exercice: '📝', rappel: '🗓️' }[n.type] || '🔔'}</span>
+            <span class="notif-ico">${{ mention: '@', reply: '💬', exercice: '📝', rappel: '🗓️', duel: '⚔️', idee: '💡' }[n.type] || '🔔'}</span>
             <span style="flex:1;min-width:0"><b>${esc(n.title)}</b>${n.body ? `<br><span class="small muted">${esc(n.body)}</span>` : ''}
               <br><span class="small muted">${fmtDate(n.created_at)}</span></span>
           </a>`).join('') : '<div class="empty">Rien pour l’instant. Tu seras prévenu quand quelqu’un écrit <b>@' + esc(state.user.username) + '</b> ou répond à tes sujets.</div>'}
@@ -288,6 +289,8 @@ async function viewNotifications() {
           <label class="toggle"><input type="checkbox" data-pref="reply" ${d.prefs.reply ? 'checked' : ''}> quelqu’un répond à un sujet que j’ai créé ou suivi</label>
           <label class="toggle"><input type="checkbox" data-pref="exercice" ${d.prefs.exercice ? 'checked' : ''}> un exercice est publié, rendu ou corrigé</label>
           <label class="toggle"><input type="checkbox" data-pref="rappel" ${d.prefs.rappel ? 'checked' : ''}> rappel la veille d’un examen, d’un rendu ou d’une réunion</label>
+          <label class="toggle"><input type="checkbox" data-pref="duel" ${d.prefs.duel ? 'checked' : ''}> quelqu’un me défie en duel, ou un duel se termine</label>
+          <label class="toggle"><input type="checkbox" data-pref="idee" ${d.prefs.idee ? 'checked' : ''}> l’équipe répond à une de mes idées</label>
           <label class="toggle"><input type="checkbox" data-pref="push" ${d.prefs.push ? 'checked' : ''}> envoyer aussi sur mes appareils (si l’appli est fermée)</label>
           <p class="small muted">Pour mentionner quelqu’un, tape <b>@</b> dans un message : une liste s’affiche.</p>
         </div>

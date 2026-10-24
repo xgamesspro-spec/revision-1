@@ -1,0 +1,247 @@
+{
+  "intro": "Classe SIO est l’espace en ligne des apprentis du CFA : réviser, s’entraider, se réunir, suivre son alternance et ses exercices. Ce guide explique, pour chaque profil, ce que tu peux faire, comment le faire, et ce qui n’est pas possible (et pourquoi).",
+  "roles": {
+    "eleve": {
+      "nom": "Élève",
+      "ico": "🎓",
+      "sections": [
+        {
+          "titre": "Mon compte",
+          "ico": "👤",
+          "peut": [
+            { "quoi": "S’inscrire avec Google (Gmail) ou un identifiant", "comment": "« Créer mon compte » → entre le code de la classe → « Continuer avec Google ». Choisis ensuite ta filière et ton mot de passe." },
+            { "quoi": "Se connecter avec Google ou avec son email + mot de passe", "comment": "Page de connexion : bouton Google, ou ton adresse Gmail et ton mot de passe." },
+            { "quoi": "Changer son nom affiché, son mot de passe, sa filière", "comment": "⚙️ en bas à gauche → Mon compte. Change de filière si tu passes de CAP à Bac pro, ou si tu redoubles." },
+            { "quoi": "Choisir le thème (clair / sombre) et activer les sons", "comment": "Mon compte → Apparence." },
+            { "quoi": "Supprimer son compte à tout moment", "comment": "Mon compte → « Supprimer mon compte » → écris SUPPRIMER." }
+          ],
+          "peutpas": [
+            { "quoi": "S’inscrire sans code d’invitation", "pourquoi": "L’espace est réservé aux élèves du CFA : le code est donné par un modérateur." },
+            { "quoi": "Garder son compte après la fin de sa formation", "pourquoi": "Il est supprimé automatiquement 60 jours après la fin (RGPD). Tu es prévenu 30 jours avant sur l’accueil." },
+            { "quoi": "Récupérer seul un mot de passe oublié", "pourquoi": "Connecte-toi avec Google, ou demande à un modérateur un mot de passe provisoire." }
+          ]
+        },
+        {
+          "titre": "Salons et forum",
+          "ico": "💬",
+          "peut": [
+            { "quoi": "Discuter en direct dans les salons", "comment": "Choisis un salon à gauche. Entrée pour envoyer, Maj+Entrée pour aller à la ligne." },
+            { "quoi": "Mentionner quelqu’un", "comment": "Tape @ puis choisis la personne : elle reçoit une notification." },
+            { "quoi": "Réagir avec un emoji, répondre à un message précis", "comment": "Passe la souris sur un message (ou appuie dessus sur téléphone) : 😀 pour réagir, ↩️ pour répondre." },
+            { "quoi": "Modifier ou supprimer ses messages", "comment": "✏️ sur ton message, ou ↑ dans la zone de texte vide pour modifier le dernier." },
+            { "quoi": "Envoyer des fichiers", "comment": "📎, glisser-déposer, ou coller une capture (Ctrl+V). Images, PDF, Office, Packet Tracer, configs… 10 Mo max." },
+            { "quoi": "Poser une question sur le forum et la marquer « résolue »", "comment": "Forum → « Nouveau sujet ». Quand tu as ta réponse : « ✅ Marquer résolu »." },
+            { "quoi": "Lancer une réunion depuis un salon", "comment": "Bouton « 🎥 Lancer une réunion » en haut du salon : le lien est posté automatiquement." }
+          ],
+          "peutpas": [
+            { "quoi": "Voir les salons des autres filières", "pourquoi": "Chaque filière a son espace privé. Les salons « de tout le CFA » sont communs." },
+            { "quoi": "Modifier ou supprimer les messages des autres", "pourquoi": "Seuls l’auteur et les modérateurs le peuvent." },
+            { "quoi": "Envoyer des .exe, des scripts exécutables Windows, des SVG ou des fichiers de plus de 10 Mo", "pourquoi": "Pour la sécurité de tous (risque de virus). Les photos sont nettoyées : la position GPS est supprimée." },
+            { "quoi": "Partager des données réelles de ton entreprise", "pourquoi": "Confidentialité et RGPD : utilise des noms, IP et captures fictifs ou anonymisés." }
+          ]
+        },
+        {
+          "titre": "Réunions vidéo",
+          "ico": "🎥",
+          "peut": [
+            { "quoi": "Faire une visio avec caméra, micro et partage d’écran", "comment": "Réunions → « Lancer une réunion », ou rejoindre une réunion en cours. Raccourcis : M = micro, V = caméra." },
+            { "quoi": "Lever la main, réagir, discuter par écrit pendant la réunion", "comment": "Boutons ✋, 😀 et 💬 en bas de la réunion." }
+          ],
+          "peutpas": [
+            { "quoi": "Être plus de 10 dans une réunion", "pourquoi": "La vidéo passe directement entre les ordinateurs : au-delà, ça devient trop lourd." },
+            { "quoi": "Partager son écran depuis un téléphone", "pourquoi": "Les navigateurs mobiles ne le permettent pas. On peut regarder et parler." },
+            { "quoi": "Enregistrer la réunion", "pourquoi": "Pas prévu : rien n’est enregistré, ni la vidéo ni le chat de réunion." }
+          ]
+        },
+        {
+          "titre": "Révisions et progression",
+          "ico": "📖",
+          "peut": [
+            { "quoi": "Lire les fiches, réviser avec les cartes mémoire, faire des quiz", "comment": "Révisions → choisis une matière. Les cartes reviennent à 1, 3, 7, 14, 30 puis 60 jours." },
+            { "quoi": "Gagner de l’XP, monter de niveau, garder sa série 🔥", "comment": "Chaque carte, quiz, défi, réponse sur le forum ou exercice rendu rapporte des points. Révise chaque jour pour garder ta série." },
+            { "quoi": "Faire le défi du jour", "comment": "Progression → « Défi du jour » : 5 questions, les mêmes pour toute la classe, une seule tentative par jour." },
+            { "quoi": "Défier un camarade en duel", "comment": "Progression → « Lancer un duel » : mêmes 5 questions, chacun joue quand il veut (3 jours max)." },
+            { "quoi": "Débloquer des badges et voir le classement de ta filière", "comment": "Progression → Badges / Classement (de la semaine ou depuis le début)." },
+            { "quoi": "Ne pas apparaître dans le classement", "comment": "Progression → coche « Ne pas apparaître dans le classement »." },
+            { "quoi": "Partager tes propres fiches", "comment": "Dans une matière → onglet « Fiches de la classe »." }
+          ],
+          "peutpas": [
+            { "quoi": "Gagner des points sans limite", "pourquoi": "Il y a un plafond de points par jour et par activité, pour que ça reste équitable." },
+            { "quoi": "Refaire le défi du jour", "pourquoi": "Une seule tentative par jour, pour que le classement du jour soit juste." },
+            { "quoi": "Voir les points des élèves d’une autre filière", "pourquoi": "Le classement compare seulement les élèves de ta filière." }
+          ]
+        },
+        {
+          "titre": "Planning et alternance",
+          "ico": "🗓️",
+          "peut": [
+            { "quoi": "Voir ton planning du mois et changer de mois", "comment": "Planning → flèches ‹ ›, clic sur le nom du mois pour sauter à n’importe quel mois, ou ← → au clavier. Sur téléphone : glisse vers la gauche ou la droite." },
+            { "quoi": "Voir tes jours CFA / entreprise", "comment": "Ton rythme vient de ta filière ; tu peux l’ajuster : Planning → « Mon alternance » → Modifier." },
+            { "quoi": "Déclarer une absence (CFA, entreprise ou les deux), avec un justificatif", "comment": "Planning → ＋ Ajouter → Type « Absence ». Seuls toi et l’équipe du CFA la voyez." },
+            { "quoi": "Poser des congés et suivre ton compteur", "comment": "＋ Ajouter → Type « Congés » → Congés payés ou Congé révision examen (5 jours)." },
+            { "quoi": "Ajouter des événements perso ou pour ta filière", "comment": "＋ Ajouter → choisis « Moi seulement » ou « Ma filière ». Tu peux les répéter chaque semaine." },
+            { "quoi": "Recevoir ton planning dans Google Agenda / iPhone", "comment": "Planning → « 📲 Dans mon agenda » → copie ton lien personnel." }
+          ],
+          "peutpas": [
+            { "quoi": "Publier un événement pour tout le CFA", "pourquoi": "Réservé aux formateurs et modérateurs." },
+            { "quoi": "Voir les absences des autres élèves", "pourquoi": "Données personnelles : seuls l’élève et l’équipe du CFA les voient." },
+            { "quoi": "Valider tes congés", "pourquoi": "C’est ton employeur qui fixe les dates de congés. Le planning sert à les noter et à prévenir." }
+          ]
+        },
+        {
+          "titre": "Exercices",
+          "ico": "📝",
+          "peut": [
+            { "quoi": "Voir les exercices donnés par tes formateurs", "comment": "Exercices → « À faire ». La date limite apparaît aussi dans ton planning." },
+            { "quoi": "Rendre ton travail (texte + fichiers) et le compléter", "comment": "Ouvre l’exercice → « Rendre mon travail ». Tu peux le modifier tant qu’il n’est pas corrigé." },
+            { "quoi": "Voir ta note et le commentaire du formateur", "comment": "Tu reçois une notification quand c’est corrigé." }
+          ],
+          "peutpas": [
+            { "quoi": "Modifier un rendu déjà corrigé", "pourquoi": "Le formateur a noté cette version." },
+            { "quoi": "Voir les rendus des autres élèves", "pourquoi": "Seuls toi et les formateurs les voient." },
+            { "quoi": "Publier un exercice", "pourquoi": "Réservé aux formateurs. Pour partager une ressource, utilise le forum ou les fiches de la classe." }
+          ]
+        },
+        {
+          "titre": "Notifications, idées et aide",
+          "ico": "🔔",
+          "peut": [
+            { "quoi": "Être prévenu des mentions, réponses, exercices, duels et rappels", "comment": "🔔 Notifications → choisis ce que tu veux recevoir, et active les notifications sur ton téléphone." },
+            { "quoi": "Installer l’appli sur ton téléphone", "comment": "Android : menu ⋮ → « Installer l’application ». iPhone : Partager → « Sur l’écran d’accueil »." },
+            { "quoi": "Proposer une idée et voter pour celles des autres élèves", "comment": "💡 Boîte à idées → « Proposer une idée ». Tu peux la poster en anonyme." },
+            { "quoi": "Trouver vite une page ou un salon", "comment": "Ctrl + K (ou ⌘ + K) ouvre la recherche rapide. « ? » affiche tous les raccourcis." }
+          ],
+          "peutpas": [
+            { "quoi": "Voir la boîte à idées des formateurs", "pourquoi": "Les deux boîtes sont séparées pour que chacun s’exprime librement." },
+            { "quoi": "Recevoir des notifications sur le téléphone sans HTTPS", "pourquoi": "Les navigateurs l’exigent pour la sécurité." }
+          ]
+        }
+      ]
+    },
+    "prof": {
+      "nom": "Formateur",
+      "ico": "👨‍🏫",
+      "sections": [
+        {
+          "titre": "Mon compte",
+          "ico": "👤",
+          "peut": [
+            { "quoi": "S’inscrire avec un code formateur", "comment": "Le code est donné par un modérateur (il commence par P). Pas de filière à indiquer." },
+            { "quoi": "Se connecter avec Google ou email + mot de passe", "comment": "Comme les élèves." },
+            { "quoi": "Choisir le thème et les sons", "comment": "Mon compte → Apparence." }
+          ],
+          "peutpas": [
+            { "quoi": "Être supprimé automatiquement", "pourquoi": "Seuls les comptes élèves ont une date de fin de formation." }
+          ]
+        },
+        {
+          "titre": "Planning",
+          "ico": "🗓️",
+          "peut": [
+            { "quoi": "Naviguer de mois en mois ou sauter au mois voulu", "comment": "Flèches ‹ ›, clic sur le nom du mois (choix du mois et de l’année), ou ← → au clavier. La vue Liste suit le mois choisi." },
+            { "quoi": "Publier cours, examens, rendus, réunions pour une filière ou tout le CFA", "comment": "Planning → ＋ Ajouter → « Qui le voit ? » : une filière ou tout le CFA. Répétition chaque semaine possible." },
+            { "quoi": "Publier les vacances / fermetures du CFA", "comment": "＋ Ajouter → Type « Congés » → « Vacances / fermeture du CFA »." },
+            { "quoi": "Régler le rythme d’alternance de chaque filière", "comment": "Planning → « Rythmes d’alternance » → coche les jours de CFA." },
+            { "quoi": "Voir les absences déclarées par les élèves", "comment": "Elles apparaissent dans le planning avec le nom de l’élève (🚫)." }
+          ],
+          "peutpas": [
+            { "quoi": "Modifier ou supprimer l’absence d’un élève", "pourquoi": "Elle appartient à l’élève. Tu peux la consulter."},
+            { "quoi": "Voir les événements « perso » des élèves", "pourquoi": "Vie privée : seules les absences sont partagées avec l’équipe." }
+          ]
+        },
+        {
+          "titre": "Exercices",
+          "ico": "📝",
+          "peut": [
+            { "quoi": "Publier un exercice", "comment": "Exercices → « Publier un exercice » : titre, matière, filière, date limite, consigne, fichiers." },
+            { "quoi": "Voir qui a rendu, qui est en retard, qui n’a pas rendu", "comment": "Ouvre l’exercice : liste des rendus et des élèves en attente." },
+            { "quoi": "Noter et commenter", "comment": "Sous chaque rendu : note (ex. 15/20) + commentaire → « Corriger ». L’élève est prévenu." },
+            { "quoi": "Modifier ou supprimer ses exercices", "comment": "Boutons Modifier / Supprimer dans l’exercice." }
+          ],
+          "peutpas": [
+            { "quoi": "Modifier les exercices d’un autre formateur", "pourquoi": "Seuls son auteur et les modérateurs le peuvent." },
+            { "quoi": "Rendre un travail", "pourquoi": "Le rendu est réservé aux élèves." }
+          ]
+        },
+        {
+          "titre": "Révisions, actus, idées",
+          "ico": "📖",
+          "peut": [
+            { "quoi": "Consulter les fiches, cartes et quiz", "comment": "Révisions." },
+            { "quoi": "Voir le classement d’une filière", "comment": "Progression → Classement → choisis la filière." },
+            { "quoi": "Proposer des idées dans la boîte des formateurs", "comment": "💡 Boîte à idées : elle est séparée de celle des élèves." }
+          ],
+          "peutpas": [
+            { "quoi": "Gagner de l’XP ou faire le défi du jour", "pourquoi": "La progression est pensée pour les élèves." }
+          ]
+        },
+        {
+          "titre": "Ce qui reste entre élèves",
+          "ico": "🔒",
+          "peut": [],
+          "peutpas": [
+            { "quoi": "Accéder aux salons, au forum, aux réunions entre élèves et à la liste des élèves en ligne", "pourquoi": "C’est l’espace d’entraide des élèves, à leur demande. Les échanges avec l’équipe passent par le planning, les exercices et les commentaires de correction." }
+          ]
+        }
+      ]
+    },
+    "admin": {
+      "nom": "Modérateur",
+      "ico": "🛠️",
+      "sections": [
+        {
+          "titre": "Comptes",
+          "ico": "👥",
+          "peut": [
+            { "quoi": "Créer des codes d’invitation élèves ou formateurs", "comment": "Modération → Codes d’invitation → choisis « élèves » ou « formateurs » et le nombre d’utilisations." },
+            { "quoi": "Réinitialiser un mot de passe", "comment": "Modération → Comptes → 🔑 Réinitialiser : un mot de passe provisoire s’affiche une seule fois." },
+            { "quoi": "Changer la date de fin de formation, rendre un compte permanent", "comment": "📅 Fin → nouvelle date, ou vide = jamais supprimé." },
+            { "quoi": "Suspendre, supprimer, nommer modérateur ou formateur", "comment": "Boutons sur chaque compte." }
+          ],
+          "peutpas": [
+            { "quoi": "Voir les mots de passe", "pourquoi": "Ils sont chiffrés (hachés) : personne ne peut les lire, pas même le modérateur." },
+            { "quoi": "Se retirer soi-même les droits ou supprimer le dernier modérateur", "pourquoi": "Pour qu’il reste toujours quelqu’un pour gérer la plateforme." }
+          ]
+        },
+        {
+          "titre": "Salons et contenus",
+          "ico": "#️⃣",
+          "peut": [
+            { "quoi": "Créer des salons et forums, choisir qui les voit", "comment": "Modération → Salons et forums : « Tout le CFA » ou une seule filière." },
+            { "quoi": "Supprimer n’importe quel message, sujet, fichier ; épingler un sujet", "comment": "Boutons ✕ / 📌 sur les messages et sujets." },
+            { "quoi": "Modifier les cours, quiz et cartes", "comment": "Fichiers content/matieres/*.json sur le serveur, puis « Recharger les contenus de révision »." }
+          ],
+          "peutpas": [
+            { "quoi": "Modifier le message d’un autre", "pourquoi": "On peut le supprimer, pas le réécrire : chacun reste responsable de ce qu’il écrit." }
+          ]
+        },
+        {
+          "titre": "Boîtes à idées",
+          "ico": "💡",
+          "peut": [
+            { "quoi": "Lire les deux boîtes (élèves et formateurs)", "comment": "💡 Boîte à idées → onglets Élèves / Formateurs." },
+            { "quoi": "Répondre et changer le statut (à l’étude, prévue, faite, pas retenue)", "comment": "Sur chaque idée. L’auteur est prévenu." },
+            { "quoi": "Voir l’auteur d’une idée postée en anonyme", "comment": "Affiché pour les modérateurs uniquement : utilise-le avec discrétion." }
+          ],
+          "peutpas": []
+        }
+      ]
+    }
+  },
+  "raccourcis": [
+    ["Ctrl + K", "Recherche rapide (pages, salons, matières)"],
+    ["?", "Afficher les raccourcis"],
+    ["Entrée / Maj + Entrée", "Envoyer / aller à la ligne"],
+    ["↑ (zone de texte vide)", "Modifier ton dernier message"],
+    ["Échap", "Annuler une réponse ou une modification, fermer une fenêtre"],
+    ["← / →", "Mois précédent / suivant dans le planning"],
+    ["M / V", "Couper le micro / la caméra en réunion"]
+  ],
+  "faq": [
+    ["Je ne reçois pas les notifications sur mon téléphone", "Le site doit être en HTTPS. Sur iPhone, ajoute d’abord l’appli à l’écran d’accueil (iOS 16.4+). Puis 🔔 Notifications → « Activer sur cet appareil »."],
+    ["La caméra ne marche pas en réunion", "Autorise la caméra dans le navigateur (cadenas à gauche de l’adresse). Le site doit être en HTTPS."],
+    ["Je bloque sur « connexion… » en réunion", "Certains réseaux bloquent la visio. Préviens un modérateur : il peut activer un relais (TURN)."],
+    ["J’ai changé de filière", "Mon compte → Formation → « Changer de filière / d’année ». Tes salons et ton planning s’adaptent."],
+    ["Mon compte va être supprimé alors que je continue", "Mets à jour ta filière et ton année d’examen dans Mon compte, ou demande à un modérateur de prolonger la date."]
+  ]
+}
