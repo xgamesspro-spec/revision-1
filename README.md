@@ -188,7 +188,45 @@ docker compose up -d --build
 
 Puis ouvre `http://IP-DU-SERVEUR:3000`, crée ton compte (tu deviens modérateur), va dans **Modération** et génère un code d'invitation pour la classe.
 
-Mise à jour : `git pull && docker compose up -d --build` (les données dans `data/` sont conservées).
+Mise à jour : automatique chaque nuit (voir « Mise à jour automatique »), ou à la main `git pull && docker compose up -d --build` (les données dans `data/` sont conservées).
+
+## Mise à jour automatique (chaque nuit) et rapports d'erreurs
+
+Une fois installé, **tu n'as plus rien à taper** : chaque nuit, la VM récupère la dernière version publiée sur GitHub et relance le site.
+
+```bash
+cd revision-1 && git pull
+sudo bash scripts/install-auto-update.sh            # chaque nuit vers 3 h 30
+sudo bash scripts/install-auto-update.sh --heure 04:15   # autre heure
+sudo bash scripts/install-auto-update.sh --desinstaller
+```
+
+À chaque passage, `scripts/auto-update.sh` :
+1. regarde s'il y a du nouveau sur GitHub. Sinon, il vérifie juste que le site répond et le relance s'il est tombé ;
+2. récupère la nouvelle version **en gardant tes réglages locaux** (`docker-compose.yml` modifié, `data/`) ;
+3. reconstruit et redémarre le conteneur, avec les mêmes profils qu'avant (https, turn…) ;
+4. vérifie que le site répond (`/api/health`). **Si la nouvelle version ne démarre pas, il remet automatiquement l'ancienne** ;
+5. écrit le résultat dans `data/update-status.json`.
+
+Le résultat s'affiche dans **🛠️ Maintenance**, une page réservée aux modérateurs, et les modérateurs reçoivent une notification. La même page regroupe les **rapports d'erreurs** :
+- erreurs du serveur ;
+- erreurs survenues dans le navigateur des utilisateurs (envoyées automatiquement) ;
+- échecs de mise à jour.
+
+Les erreurs identiques sont regroupées. Le bouton « Tester les alertes » vérifie que les notifications arrivent.
+
+Conseil : mets tes réglages sensibles (identifiants Google, domaine, mots de passe TURN) dans un fichier `docker-compose.override.yml`. Docker Compose le lit automatiquement et git l'ignore, ce qui évite tout conflit avec les mises à jour. Exemple :
+
+```yaml
+services:
+  classe:
+    environment:
+      GOOGLE_CLIENT_ID: "…"
+      GOOGLE_CLIENT_SECRET: "…"
+      PUBLIC_URL: "https://ton-domaine"
+```
+
+Mise à jour à la main, à tout moment : `sudo bash scripts/auto-update.sh`. Prochain passage prévu : `systemctl list-timers classe-cevedom-update.timer`.
 
 ## HTTPS (obligatoire pour les réunions)
 
@@ -281,6 +319,8 @@ exercises.js     exercices des formateurs, rendus et corrections
 social.js        réactions, réponses, modification, « en train d'écrire »
 game.js          XP, niveaux, séries, badges, défi du jour, duels, classement
 ideas.js         boîtes à idées élèves / formateurs
+maintenance.js   santé, version, rapports d'erreurs, état des mises à jour
+scripts/         mise à jour automatique (auto-update.sh, install-auto-update.sh)
 formations.js    catalogue des 41 formations, examens par filière, ciblage « pour ta formation »
 cible.js         classe visée : tout le CFA / une filière / une formation
 cahier.js        cahier de textes et travail à faire

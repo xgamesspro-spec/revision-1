@@ -301,6 +301,7 @@ async function viewNotifications() {
           <label class="toggle"><input type="checkbox" data-pref="rappel" ${d.prefs.rappel ? 'checked' : ''}> rappel la veille d’un examen, d’un rendu ou d’une réunion</label>
           <label class="toggle"><input type="checkbox" data-pref="duel" ${d.prefs.duel ? 'checked' : ''}> quelqu’un me défie en duel, ou un duel se termine</label>
           <label class="toggle"><input type="checkbox" data-pref="idee" ${d.prefs.idee ? 'checked' : ''}> l’équipe répond à une de mes idées</label>
+          ${state.user.role === 'admin' ? `<label class="toggle"><input type="checkbox" data-pref="systeme" ${d.prefs.systeme ? 'checked' : ''}> 🛠️ une erreur sur le site ou une mise à jour automatique (modérateurs)</label>` : ''}
           <label class="toggle"><input type="checkbox" data-pref="push" ${d.prefs.push ? 'checked' : ''}> envoyer aussi sur mes appareils (si l’appli est fermée)</label>
           <p class="small muted">Pour mentionner quelqu’un, tape <b>@</b> dans un message : une liste s’affiche.</p>
         </div>

@@ -4,3 +4,5 @@ data/
 *.db-wal
 *.db-shm
 .env
+.auto-update.conf
+docker-compose.override.yml

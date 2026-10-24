@@ -128,7 +128,7 @@ async function paletteItems() {
     ['🎓', 'CFA & examens', '#/infos'], ['💡', 'Boîte à idées', '#/idees'], ['❓', 'Guide d’utilisation', '#/guide'], ['⚙️', 'Mon compte', '#/compte'],
   ];
   if (r !== 'prof') items.splice(4, 0, ['🎥', 'Réunions', '#/reunions']);
-  if (r === 'admin') items.push(['🛠️', 'Modération', '#/admin']);
+  if (r === 'admin') items.push(['🛡️', 'Modération', '#/admin'], ['🛠️', 'Maintenance : mises à jour et erreurs', '#/maintenance']);
   for (const c of state.channels || []) items.push([c.kind === 'forum' ? '💬' : '#', c.name, `#/salon/${c.id}`]);
   try {
     state.subjectsCache ||= await api('GET', '/api/subjects');
@@ -194,3 +194,29 @@ function onSwipe(el, left, right) {
     x0 = null;
   }, { passive: true });
 }
+
+// ---------- Rapport automatique des erreurs du navigateur (pour les modérateurs) ----------
+(() => {
+  const sent = new Set();
+  let n = 0;
+  function send(message, stack) {
+    message = String(message || '').slice(0, 300);
+    if (!message || sent.has(message) || n >= 10) return;
+    if (/StaleView|ResizeObserver loop|Script error\.?$/i.test(message)) return; // bruit sans intérêt
+    sent.add(message); n++;
+    try {
+      fetch('/api/client-error', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', keepalive: true,
+        body: JSON.stringify({ message, stack: String(stack || '').slice(0, 3000), url: location.hash || '/' }) }).catch(() => {});
+    } catch { /* ignoré */ }
+  }
+  window.addEventListener('error', e => {
+    if (e.filename && !e.filename.startsWith(location.origin)) return; // extensions du navigateur
+    send(e.message, e.error?.stack || `${e.filename}:${e.lineno}:${e.colno}`);
+  });
+  window.addEventListener('unhandledrejection', e => {
+    const r = e.reason;
+    if (r && r.constructor?.name === 'StaleView') return;
+    if (r instanceof Error && /^(Connexion requise|Erreur 40[134]|Failed to fetch|NetworkError|Load failed)/.test(r.message)) return;
+    send(r?.message || String(r), r?.stack);
+  });
+})();

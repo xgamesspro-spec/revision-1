@@ -728,6 +728,30 @@
             }
           ],
           "peutpas": []
+        },
+        {
+          "titre": "Maintenance",
+          "ico": "🛠️",
+          "peut": [
+            {
+              "quoi": "Voir la version en ligne et le résultat de la mise à jour de la nuit",
+              "comment": "🛠️ Maintenance : version, ce qui a changé, historique."
+            },
+            {
+              "quoi": "Être prévenu des erreurs du site",
+              "comment": "Notification 🔔 dès qu'une erreur du serveur, du navigateur d'un utilisateur ou une mise à jour échoue. Détail et journal dans 🛠️ Maintenance."
+            },
+            {
+              "quoi": "Tester que les alertes arrivent",
+              "comment": "🛠️ Maintenance → « Tester les alertes »."
+            }
+          ],
+          "peutpas": [
+            {
+              "quoi": "Lancer la mise à jour depuis le site",
+              "pourquoi": "Elle tourne sur la VM (chaque nuit, ou « sudo bash scripts/auto-update.sh ») : le site ne peut pas se reconstruire lui-même, par sécurité."
+            }
+          ]
         }
       ]
     }

@@ -127,3 +127,38 @@ async function viewGuide(r) {
   $$('[data-goto]').forEach(a => a.onclick = e => { e.preventDefault(); document.getElementById(a.dataset.goto)?.scrollIntoView({ behavior: motionOk() ? 'smooth' : 'auto' }); });
   if (term) $$('.guide-item').forEach(d => { d.open = true; });
 }
+
+// ---------- Maintenance : mises à jour automatiques et erreurs (modérateurs) ----------
+async function viewMaintenance() {
+  if (state.user.role !== 'admin') throw new Error('Réservé aux modérateurs');
+  const d = await api('GET', '/api/admin/maintenance');
+  setTitle('🛠️ Maintenance', 'Version en ligne, mises à jour automatiques et rapports d’erreurs');
+  const u = d.update;
+  const res = { ok: ['ok', '✅ Mise à jour installée'], a_jour: ['ok', '✅ Déjà à jour'], erreur: ['', '❌ Échec'], rollback: ['gold', '↩️ Échec : ancienne version remise'], en_cours: ['accent', '⏳ En cours'] };
+  const pill = r => `<span class="pill ${res[r]?.[0] ?? ''}" ${r === 'erreur' ? 'style="color:var(--danger)"' : ''}>${res[r]?.[1] || esc(r)}</span>`;
+  const src = { serveur: '🖥️ Serveur', navigateur: '🌐 Navigateur', 'mise-a-jour': '🔄 Mise à jour' };
+  setContent(`
+    <div class="grid grid-3" style="margin-bottom:16px">
+      <div class="card"><div class="muted small">Version en ligne</div><div class="stat" style="font-size:24px"><code>${esc(d.version)}</code></div><div class="small muted">démarrée ${fmtDate(d.started_at)} · Node ${esc(d.node)}</div></div>
+      <div class="card"><div class="muted small">Dernière mise à jour automatique</div>
+        ${u ? `<div style="margin:6px 0">${pill(u.result)}</div><div class="small muted">${fmtDate(Date.parse(u.at))}${u.to ? ` · version <code>${esc(u.to)}</code>` : ''}</div>` : '<p class="small">Pas encore installée sur ce serveur.</p>'}</div>
+      <div class="card"><div class="muted small">Erreurs non lues</div><div class="stat">${d.errors.filter(e => !e.seen).length}</div><div class="small muted">tu es prévenu par notification 🔔</div></div>
+    </div>
+    ${!d.auto_update ? `<div class="card" style="border-color:var(--gold);margin-bottom:16px"><h3 style="margin-top:0">🔄 Activer les mises à jour automatiques</h3>
+      <p class="small">Sur la VM, une seule fois, dans le dossier du site :</p><pre><code>cd revision-1 && git pull && sudo bash scripts/install-auto-update.sh</code></pre>
+      <p class="small muted">Ensuite, chaque nuit, la VM récupère la dernière version publiée sur GitHub, la reconstruit, vérifie qu’elle répond, et remet l’ancienne si ça casse. Le résultat s’affiche ici.</p></div>` : ''}
+    ${u?.result && u.result !== 'a_jour' && (u.commits || []).length ? `<div class="card" style="margin-bottom:16px"><h3 style="margin-top:0">🆕 Ce qui a changé (${esc(u.from || '?')} → ${esc(u.to || '?')})</h3><ul class="small">${u.commits.map(c => `<li>${esc(c)}</li>`).join('')}</ul></div>` : ''}
+    ${u?.message && u.result !== 'ok' && u.result !== 'a_jour' ? `<div class="card" style="border-color:var(--danger);margin-bottom:16px"><h3 style="margin-top:0">❌ ${esc(u.message)}</h3>${u.conseil ? `<p class="small">👉 ${esc(u.conseil)}</p>` : ''}
+      ${(u.log || []).length ? `<details><summary class="small">Voir le journal</summary><pre class="small" style="max-height:300px;overflow:auto">${esc(u.log.join('\n'))}</pre></details>` : ''}</div>` : ''}
+    <div class="card" style="margin-bottom:16px"><div class="row"><h3 style="margin:0">⚠️ Rapports d'erreurs</h3><span class="spacer"></span>
+      <button class="btn sm" id="err-test">🔔 Tester les alertes</button><button class="btn sm" id="err-clear">🧹 Effacer les erreurs lues</button></div>
+      ${d.errors.length ? d.errors.map(e => `<details class="sub-item" ${e.seen ? '' : 'open'}><summary class="row" style="cursor:pointer"><span class="pill">${src[e.source] || esc(e.source)}</span><b style="flex:1">${esc(e.message)}</b>
+          ${e.count > 1 ? `<span class="pill gold">×${e.count}</span>` : ''}<span class="small muted">${fmtDate(e.last_at)}</span>${e.seen ? '<span class="pill ok">lu</span>' : `<button class="btn sm" data-seen="${e.id}">Marquer lu</button>`}</summary>
+          ${e.url ? `<div class="small muted">Où : ${esc(e.url)}</div>` : ''}${e.detail ? `<pre class="small" style="max-height:220px;overflow:auto;white-space:pre-wrap">${esc(e.detail)}</pre>` : ''}</details>`).join('')
+        : '<p class="muted small">Aucune erreur enregistrée 🎉</p>'}</div>
+    <div class="card"><h3 style="margin-top:0">🗓️ Historique des mises à jour</h3>
+      ${d.history.length ? `<table class="tbl"><tbody>${d.history.map(h => `<tr><td class="small">${fmtDate(Date.parse(h.at))}</td><td>${pill(h.result)}</td><td class="small">${h.to ? `<code>${esc(h.from || '')}</code> → <code>${esc(h.to)}</code>` : ''} ${esc(h.message || '')}</td></tr>`).join('')}</tbody></table>` : '<p class="muted small">Aucun passage pour l’instant.</p>'}</div>`);
+  $$('[data-seen]').forEach(b => b.onclick = async ev => { ev.preventDefault(); await api('POST', `/api/admin/errors/${b.dataset.seen}/seen`); viewMaintenance(); });
+  $('#err-clear').onclick = async () => { await api('POST', '/api/admin/errors/clear'); viewMaintenance(); };
+  $('#err-test').onclick = async () => { await api('POST', '/api/admin/errors/test'); toast('Alerte de test envoyée 🔔'); viewMaintenance(); };
+}

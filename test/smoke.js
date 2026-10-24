@@ -795,6 +795,30 @@ const google = http.createServer((req, res) => {
   r = await call('anon', 'POST', '/api/tuteur/livret', { token: tok });
   assert.equal(r.status, 404, 'lien désactivé');
 
+  // ================= Maintenance : santé, rapports d'erreurs =================
+  r = await call('anon', 'GET', '/api/health');
+  assert.equal(r.data.ok, true);
+  r = await call('b', 'POST', '/api/client-error', { message: 'TypeError: x is undefined', stack: 'at viewTest (app.js:1:1)', url: '#/test' });
+  assert.equal(r.status, 204);
+  await call('b', 'POST', '/api/client-error', { message: 'TypeError: x is undefined', stack: 'at viewTest (app.js:1:1)', url: '#/test' });
+  r = await call('b', 'GET', '/api/admin/maintenance');
+  assert.equal(r.status, 403, 'réservé aux modérateurs');
+  r = await call('a', 'GET', '/api/admin/maintenance');
+  const ce = r.data.errors.find(e => e.source === 'navigateur');
+  assert.ok(ce && ce.count === 2, 'erreurs regroupées');
+  r = await call('a', 'GET', '/api/notifications');
+  assert.ok(r.data.items.some(n => n.type === 'systeme' && n.link === '#/maintenance'), 'modérateur prévenu');
+  r = await call('a', 'POST', `/api/admin/errors/${ce.id}/seen`);
+  r = await call('a', 'POST', '/api/admin/errors/clear');
+  r = await call('a', 'GET', '/api/admin/maintenance');
+  assert.ok(!r.data.errors.some(e => e.id === ce.id));
+  const badJson = await fetch(base + '/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{oups' });
+  assert.equal(badJson.status, 400, 'JSON invalide = 400 propre');
+  // Statut écrit par scripts/auto-update.sh → affiché et signalé
+  fs.writeFileSync(path.join(process.env.DATA_DIR, 'update-status.json'), JSON.stringify({ at: new Date().toISOString(), result: 'rollback', message: 'La nouvelle version ne démarrait pas', log: ['ligne 1'] }));
+  r = await call('a', 'GET', '/api/admin/maintenance');
+  assert.equal(r.data.update.result, 'rollback'); assert.equal(r.data.auto_update, true);
+
   // --- Ancien compte sans filière : profil obligatoire ---
   const { DatabaseSync } = require('node:sqlite');
   const raw = new DatabaseSync(path.join(process.env.DATA_DIR, 'classe.db'));

@@ -21,6 +21,7 @@ const setupNotes = require('./notes');
 const setupVieScolaire = require('./viescolaire');
 const setupMessagerie = require('./messagerie');
 const setupLivret = require('./livret');
+const setupMaintenance = require('./maintenance');
 
 const PORT = process.env.PORT || 3000;
 const CLASS_CODE = process.env.CLASS_CODE || ''; // code d'inscription permanent (optionnel)
@@ -197,6 +198,8 @@ function canAccessAttachment(user, a) {
 }
 const uploads = setupUploads(app, { db, auth, bad, now, canAccess: canAccessAttachment });
 const notifier = setupNotify(app, { db, auth, bad, now, conns, text });
+const maintenance = setupMaintenance(app, { db, auth, admin, bad, now, text, notifier });
+app.locals.maintenance = maintenance;
 // Envoi en direct aux personnes concernées (filtre = qui a le droit de voir)
 function liveTo(pred, event, data = {}) {
   const payload = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
@@ -552,9 +555,16 @@ app.post('/api/admin/reload-content', auth, admin, (req, res) => {
 
 app.use('/api', (req, res) => bad(res, 'Route inconnue', 404));
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.use(maintenance.errorHandler);
 
 // Nettoyage des sessions expirées
 setInterval(() => db.prepare('DELETE FROM sessions WHERE expires < ?').run(now()), 3600e3).unref();
+
+process.on('uncaughtException', err => {
+  console.error('[erreur fatale]', err);
+  try { maintenance.report('serveur', `Plantage : ${err.message}`, { detail: err.stack || '' }); } catch { /* ignoré */ }
+  process.exit(1); // Docker relance le conteneur (restart: unless-stopped)
+});
 
 if (require.main === module) {
   app.listen(PORT, () => console.log(`Plateforme lancée sur http://localhost:${PORT}`));

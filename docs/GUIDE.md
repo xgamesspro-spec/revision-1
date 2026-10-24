@@ -313,6 +313,18 @@ Classe CEVEDOM est l’espace en ligne des apprentis du CFA CEVEDOM (41 formatio
 - **Répondre et changer le statut (à l’étude, prévue, faite, pas retenue)** — Sur chaque idée. L’auteur est prévenu.
 - **Voir l’auteur d’une idée postée en anonyme** — Affiché pour les modérateurs uniquement : utilise-le avec discrétion.
 
+### 🛠️ Maintenance
+
+**✅ Tu peux**
+
+- **Voir la version en ligne et le résultat de la mise à jour de la nuit** — 🛠️ Maintenance : version, ce qui a changé, historique.
+- **Être prévenu des erreurs du site** — Notification 🔔 dès qu'une erreur du serveur, du navigateur d'un utilisateur ou une mise à jour échoue. Détail et journal dans 🛠️ Maintenance.
+- **Tester que les alertes arrivent** — 🛠️ Maintenance → « Tester les alertes ».
+
+**🚫 Tu ne peux pas**
+
+- **Lancer la mise à jour depuis le site** — Pourquoi : Elle tourne sur la VM (chaque nuit, ou « sudo bash scripts/auto-update.sh ») : le site ne peut pas se reconstruire lui-même, par sécurité.
+
 ## ⌨️ Raccourcis clavier
 
 | Touche | Action |

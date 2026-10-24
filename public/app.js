@@ -333,7 +333,7 @@ function renderSidebar() {
       ${link('#/infos', '🏫', 'CFA & examens', r.name === 'infos' || r.name === 'formations')}
       ${link('#/idees', '💡', 'Boîte à idées', r.name === 'idees')}
       ${link('#/guide', '❓', 'Guide', r.name === 'guide')}
-      ${isAdmin ? link('#/admin', '🛠️', 'Modération', r.name === 'admin') : ''}
+      ${isAdmin ? link('#/admin', '🛡️', 'Modération', r.name === 'admin') + link('#/maintenance', '🛠️', 'Maintenance', r.name === 'maintenance') : ''}
       ${mine.length ? `<div class="side-title">Ma filière · ${esc(state.user.filiere_nom || '')}</div>${mine.map(chLink).join('')}` : ''}
       ${isProf ? '<div class="side-title">Espace formateur</div><p class="small" style="padding:0 10px;color:var(--side-muted)">Les salons et le forum sont réservés aux élèves.</p>' : `
       <div class="side-title">Salons de tout le CFA</div>
@@ -370,7 +370,7 @@ const actions = {
 // ---------- Vues ----------
 async function loadView() {
   const r = state.route;
-  const views = { progression: viewProgression, idees: viewIdeas, cahier: viewCahier, notes: viewNotes, viescolaire: viewVieScolaire, messages: viewMessages, livret: viewLivret, formation: viewFormation, formations: viewFormations, guide: viewGuide, planning: viewPlanning, exercices: viewExercises, notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
+  const views = { maintenance: viewMaintenance, progression: viewProgression, idees: viewIdeas, cahier: viewCahier, notes: viewNotes, viescolaire: viewVieScolaire, messages: viewMessages, livret: viewLivret, formation: viewFormation, formations: viewFormations, guide: viewGuide, planning: viewPlanning, exercices: viewExercises, notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
   const fn = views[r.name] || viewHome;
   state.loadingHash = location.hash;
   const seq = state.loadSeq = (state.loadSeq || 0) + 1;
