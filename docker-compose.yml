@@ -17,6 +17,13 @@ services:
       GOOGLE_CLIENT_SECRET: ""
       # Délai (jours) entre la fin de formation et la suppression du compte
       ACCOUNT_GRACE_DAYS: "60"
+      # Pièces jointes : taille max d'un fichier et quota par élève et par jour (Mo)
+      UPLOAD_MAX_MB: "10"
+      UPLOAD_DAILY_MB: "100"
+      # Antivirus ClamAV optionnel : décommente et lance « docker compose --profile antivirus up -d »
+      # CLAMAV_HOST: "clamav"
+      # Notifications push : contact de l'administrateur (exigé par la norme VAPID, RFC 8292)
+      VAPID_SUBJECT: "mailto:ton.adresse@gmail.com"
       # Réunions : nombre max de participants par réunion (connexion directe entre navigateurs)
       MEETING_MAX: "10"
       # Serveur TURN optionnel pour les réseaux qui bloquent la visio (voir README)
@@ -40,6 +47,12 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
     depends_on: [classe]
+
+  # Antivirus des pièces jointes (optionnel, ~1 Go de RAM) : docker compose --profile antivirus up -d
+  clamav:
+    image: clamav/clamav:stable
+    profiles: ["antivirus"]
+    restart: unless-stopped
 
   # Relais TURN (optionnel) : docker compose --profile turn up -d
   turn:

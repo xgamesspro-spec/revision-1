@@ -12,6 +12,36 @@ Plateforme web pour une classe de BTS SIO, **réservée aux élèves** :
 
 **Accès réservé** : on ne peut s'inscrire qu'avec un code d'invitation. Le **premier compte créé devient modérateur**.
 
+## Espaces par filière
+
+- Chaque filière a ses propres salons (`cap-general`, `bac-pro-general`, `bts-general`, `titre-pro-general`) et forums (`…-questions`). Ils ne sont **visibles que par les élèves de la filière** et par les modérateurs. Les autres salons restent communs à tout le CFA.
+- Dans **Modération → Salons et forums**, un menu par salon permet de choisir qui le voit : tout le CFA, ou une seule filière. Même chose à la création.
+- Le contrôle est fait **côté serveur** sur chaque action : lecture, écriture, fichiers, temps réel et notifications. Un élève ne peut pas lire un salon d'une autre filière, même en trafiquant l'adresse.
+
+## Pièces jointes
+
+- Bouton 📎, **glisser-déposer**, ou **coller une capture d'écran** (Ctrl+V) dans les salons, les sujets et les réponses. Jusqu'à 5 fichiers par message, 10 Mo chacun, 100 Mo par élève et par jour (réglable).
+- Types acceptés : images (PNG, JPG, GIF, WebP), PDF, Word/Excel/PowerPoint, LibreOffice, Packet Tracer (`.pkt`, `.pka`), texte et configs (`.txt`, `.md`, `.csv`, `.log`, `.conf`, `.cfg`, `.ini`, `.json`, `.yml`, `.py`, `.sh`, `.ps1`).
+- Sécurité, d'après l'[OWASP File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) :
+  - liste blanche d'extensions et **vérification de la signature** du fichier (un `.exe` renommé en `.png` est refusé) ; SVG refusé (risque de script) ;
+  - fichiers stockés **hors du dossier web** sous un nom aléatoire, avec des droits restreints (600) ;
+  - téléchargement réservé aux personnes qui ont accès au salon ;
+  - les documents sont toujours **téléchargés, jamais affichés** dans le navigateur (`Content-Disposition: attachment`, `nosniff`, CSP `sandbox`) ; nom de fichier encodé selon la [RFC 6266](https://httpwg.org/specs/rfc6266.html) ;
+  - les **images sont décodées puis réencodées** avec [sharp](https://sharp.pixelplumbing.com/) : les métadonnées EXIF (position GPS, appareil, auteur) sont supprimées, conformément aux [conseils sur les données EXIF et la vie privée](https://ressources.forge.apps.education.fr/snt/Photo/a_telecharger/04/04.%20EXIF%20-%20PHOTOS%20NUMERIQUES.pdf) ;
+  - quotas par élève, fichiers non publiés effacés au bout de 24 h, fichiers supprimés avec leur message ;
+  - **antivirus ClamAV optionnel** (`docker compose --profile antivirus up -d` + `CLAMAV_HOST: "clamav"`). S'il est activé mais injoignable, l'envoi est refusé par prudence.
+
+## Notifications
+
+- **Mentions** : tape `@` dans un message, une liste des élèves s'affiche. La personne mentionnée est prévenue et le message est surligné pour elle.
+- **Réponses** : l'auteur d'un sujet et les personnes qui y ont déjà répondu sont prévenus des nouvelles réponses.
+- Page 🔔 **Notifications** : historique, compteur dans le menu et dans l'onglet du navigateur, alerte en direct. Chacun choisit ce qu'il veut recevoir.
+- **Notifications sur le téléphone ou l'ordinateur**, même appli fermée, via la [Push API du W3C](https://developer.mozilla.org/docs/Web/API/Push_API) et la librairie [web-push](https://github.com/web-push-libs/web-push) (normes [RFC 8030](https://www.rfc-editor.org/rfc/rfc8030), [RFC 8291](https://www.rfc-editor.org/rfc/rfc8291) pour le chiffrement de bout en bout, [RFC 8292 / VAPID](https://www.rfc-editor.org/rfc/rfc8292)). Les clés VAPID sont générées automatiquement au premier démarrage (`data/vapid.json`). Renseigne `VAPID_SUBJECT` avec ton email.
+  - La permission n'est **jamais demandée au chargement de la page**, seulement après un clic, comme le recommande [web.dev](https://web.dev/articles/push-notifications-permissions-ux). Le navigateur ne laisse refuser qu'une fois.
+  - **iPhone / iPad** : il faut iOS 16.4 ou plus, puis ajouter le site à l'écran d'accueil (Partager → « Sur l'écran d'accueil ») et l'ouvrir de là ([WebKit](https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/)). La plateforme est installable comme une appli (manifeste + icônes).
+  - Le push n'est envoyé que si l'élève n'a aucun onglet ouvert (pas de doublon). Les abonnements expirés (codes 404/410) sont supprimés. Seuls les vrais services push des navigateurs sont acceptés comme destination, pour éviter qu'on se serve du serveur pour attaquer le réseau interne (SSRF).
+  - HTTPS obligatoire, comme pour les réunions.
+
 ## Comptes élèves
 
 - **Inscription avec Google (Gmail)** : l'élève entre le code de la classe, clique sur « Continuer avec Google », puis choisit son nom, **sa filière** et **son propre mot de passe**. Ensuite il se connecte avec Google **ou** avec son adresse Gmail + mot de passe.
@@ -92,6 +122,10 @@ npm start
 | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | active la connexion Google | vide |
 | `ALLOW_LOCAL_SIGNUP` | `1` = autorise aussi l'inscription sans Google | `0` |
 | `ACCOUNT_GRACE_DAYS` | jours entre la fin de formation et la suppression du compte | `60` |
+| `UPLOAD_MAX_MB` / `UPLOAD_DAILY_MB` | taille max d'un fichier / quota par élève et par jour | `10` / `100` |
+| `CLAMAV_HOST`, `CLAMAV_PORT` | antivirus ClamAV (clamd) pour les pièces jointes | vide / `3310` |
+| `VAPID_SUBJECT` | contact de l'admin pour les notifications push (`mailto:…` ou `https://…`) | `PUBLIC_URL` |
+| `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` | clés push fixes (sinon générées dans `data/vapid.json`) | auto |
 | `MEETING_MAX` | participants max par réunion | `10` |
 | `STUN_URLS` | serveurs STUN (séparés par des virgules) | `stun:stun.l.google.com:19302` |
 | `TURN_URL`, `TURN_USER`, `TURN_PASS` | relais TURN optionnel | vide |
@@ -130,6 +164,9 @@ npm test
 ```
 server.js        API (comptes, salons, forum, révisions, actus, modération) + temps réel (SSE)
 accounts.js      comptes : Google, filières, réinitialisation, suppression automatique
+uploads.js       pièces jointes sécurisées (OWASP)
+notify.js        notifications + Web Push
+public/sw.js     service worker (réception des notifications push)
 meetings.js      réunions vidéo : salles + signalisation WebRTC
 Caddyfile        HTTPS (reverse proxy Caddy)
 db.js            base SQLite et salons par défaut

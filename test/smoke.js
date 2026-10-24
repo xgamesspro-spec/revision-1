@@ -31,6 +31,7 @@ const google = http.createServer((req, res) => {
   process.env.GOOGLE_CLIENT_ID = 'test-client';
   process.env.GOOGLE_CLIENT_SECRET = 'secret';
   process.env.GOOGLE_TOKEN_URL = `http://127.0.0.1:${google.address().port}/token`;
+  process.env.PUSH_HOST_ALLOWLIST = 'push.test.local';
   const app = require('../server');
   const server = app.listen(0);
   const base = `http://127.0.0.1:${server.address().port}`;
@@ -172,6 +173,140 @@ const google = http.createServer((req, res) => {
   assert.equal(r.status, 400);
   r = await call('a', 'DELETE', `/api/meetings/${mid}`);
   assert.equal(r.status, 200);
+
+  // ================= Espaces par filière =================
+  r = await call('b', 'GET', '/api/channels');
+  const leaCh = r.data.map(c => c.name);
+  assert.ok(leaCh.includes('bts-general') && leaCh.includes('general'), 'BTS voit son salon + les salons communs');
+  assert.ok(!leaCh.includes('cap-general') && !leaCh.includes('titre-pro-general'), 'BTS ne voit pas les autres filières');
+  const btsGen = r.data.find(c => c.name === 'bts-general');
+  const sharedForum = r.data.find(c => c.kind === 'forum' && !c.filiere);
+  r = await call('c', 'GET', '/api/channels');
+  assert.ok(r.data.some(c => c.name === 'titre-pro-general') && !r.data.some(c => c.name === 'bts-general'));
+  r = await call('c', 'POST', `/api/channels/${btsGen.id}/messages`, { content: 'intrusion' });
+  assert.equal(r.status, 404, 'impossible d’écrire dans le salon d’une autre filière');
+  r = await call('c', 'GET', `/api/channels/${btsGen.id}/messages`);
+  assert.equal(r.status, 404, 'impossible de lire le salon d’une autre filière');
+  r = await call('a', 'GET', '/api/channels');
+  assert.ok(r.data.some(c => c.name === 'cap-general'), 'le modérateur voit tout');
+  r = await call('a', 'POST', '/api/channels', { name: 'stage-bts', kind: 'chat', filiere: 'BTS' });
+  r = await call('c', 'GET', '/api/channels');
+  assert.ok(!r.data.some(c => c.name === 'stage-bts'));
+
+  // ================= Pièces jointes (OWASP) =================
+  const sharp = require('sharp');
+  async function upload(who, name, buf) {
+    const res = await fetch(base + '/api/uploads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/octet-stream', 'X-Filename': encodeURIComponent(name), Cookie: Object.entries(jar[who]).map(([k, v]) => `${k}=${v}`).join('; ') },
+      body: buf,
+    });
+    return { status: res.status, data: await res.json() };
+  }
+  // Photo de téléphone avec métadonnées EXIF (auteur, appareil) : elles doivent disparaître
+  const photo = await sharp({ create: { width: 400, height: 300, channels: 3, background: '#3a7' } })
+    .jpeg().withExif({ IFD0: { Artist: 'Lea Martin', Make: 'Phone', Model: 'X' } }).toBuffer();
+  assert.ok((await sharp(photo).metadata()).exif, 'la photo de test contient bien de l’EXIF');
+  let up = await upload('b', 'Schéma réseau.JPG', photo);
+  assert.equal(up.status, 200, JSON.stringify(up.data));
+  assert.equal(up.data.is_image, true);
+  const imgId = up.data.id;
+  up = await upload('b', 'virus.png', Buffer.from('MZ\x90\x00 programme Windows déguisé'));
+  assert.equal(up.status, 415, 'faux PNG refusé (signature)');
+  up = await upload('b', 'dessin.svg', Buffer.from('<svg onload="alert(1)"/>'));
+  assert.equal(up.status, 415, 'SVG refusé (risque XSS)');
+  up = await upload('b', 'setup.exe', Buffer.from('MZ'));
+  assert.equal(up.status, 415, 'extension hors liste blanche refusée');
+  up = await upload('b', 'cours.pdf', Buffer.from('%PDF-1.4\n% test\n'));
+  assert.equal(up.status, 200);
+  const pdfId = up.data.id;
+  up = await upload('b', '../../etc/passwd.txt', Buffer.from('root:x:0:0'));
+  assert.equal(up.status, 200);
+  assert.equal(up.data.name, 'passwd.txt', 'chemin retiré du nom');
+  const txtId = up.data.id;
+
+  // Fichier pas encore publié : visible seulement par son auteur
+  let fr = await call('c', 'GET', `/api/files/${imgId}`, null, true);
+  assert.equal(fr.status, 404);
+  // On ne peut pas publier le fichier de quelqu'un d'autre
+  r = await call('c', 'POST', `/api/channels/${sharedForum.id}/topics`, { title: 'vol', content: 'x', attachments: [imgId] });
+  assert.equal(r.status, 400);
+  // Publication dans le salon BTS
+  r = await call('b', 'POST', `/api/channels/${btsGen.id}/messages`, { content: '', attachments: [imgId, pdfId] });
+  assert.equal(r.status, 200, JSON.stringify(r.data));
+  assert.equal(r.data.attachments.length, 2);
+  fr = await call('b', 'GET', `/api/files/${imgId}`, null, true);
+  assert.equal(fr.status, 200);
+  assert.equal(fr.headers.get('content-type'), 'image/jpeg');
+  assert.equal(fr.headers.get('x-content-type-options'), 'nosniff');
+  const served = Buffer.from(await fr.arrayBuffer());
+  const meta = await sharp(served).metadata();
+  assert.ok(!meta.exif, 'métadonnées EXIF supprimées');
+  assert.ok(!served.includes('Lea Martin'), 'nom de l’auteur absent du fichier');
+  fr = await call('b', 'GET', `/api/files/${pdfId}`, null, true);
+  assert.equal(fr.headers.get('content-type'), 'application/octet-stream', 'les documents sont téléchargés, jamais affichés');
+  assert.ok(fr.headers.get('content-disposition').startsWith('attachment;'));
+  fr = await call('b', 'GET', `/api/files/${imgId}`, null, true);
+  assert.ok(/filename\*=UTF-8''Sch%C3%A9ma%20r%C3%A9seau\.JPG/.test(fr.headers.get('content-disposition')), 'nom UTF-8 (RFC 6266)');
+  fr = await call('c', 'GET', `/api/files/${imgId}`, null, true);
+  assert.equal(fr.status, 404, 'fichier d’un salon BTS invisible pour un Titre pro');
+  fr = await call('a', 'GET', `/api/files/${imgId}`, null, true);
+  assert.equal(fr.status, 200);
+  // Suppression du message = suppression des fichiers
+  await call('b', 'DELETE', `/api/messages/${r.data.id}`);
+  fr = await call('b', 'GET', `/api/files/${imgId}`, null, true);
+  assert.equal(fr.status, 404);
+  // Quota de 5 fichiers par message
+  r = await call('b', 'POST', `/api/channels/${btsGen.id}/messages`, { content: 'x', attachments: ['a', 'b', 'c', 'd', 'e', 'f'] });
+  assert.equal(r.status, 400);
+
+  // ================= Notifications =================
+  const pushed = [];
+  app.locals.notifier.setSender(async (sub, payload) => { pushed.push({ sub, payload: JSON.parse(payload) }); });
+  r = await call('c', 'GET', '/api/me');
+  const tomUser = r.data.user.username;
+  const sub = { endpoint: 'https://push.test.local/sub/123', keys: { p256dh: 'B'.repeat(87), auth: 'A'.repeat(22) } };
+  r = await call('c', 'POST', '/api/push/subscribe', { subscription: { ...sub, endpoint: 'https://192.168.1.1/x' } });
+  assert.equal(r.status, 400, 'adresse de push non reconnue refusée (SSRF)');
+  r = await call('c', 'POST', '/api/push/subscribe', { subscription: sub });
+  assert.equal(r.status, 200);
+  // Mention dans un salon commun → notification + push (Tom n'a pas d'onglet ouvert)
+  const general = (await call('b', 'GET', '/api/channels')).data.find(c => c.name === 'general');
+  r = await call('b', 'POST', `/api/channels/${general.id}/messages`, { content: `Salut @${tomUser} tu as fini le TP ?`, attachments: [txtId] });
+  assert.equal(r.status, 200);
+  r = await call('c', 'GET', '/api/notifications');
+  assert.equal(r.data.unread, 1);
+  assert.equal(r.data.items[0].type, 'mention');
+  assert.equal(r.data.items[0].link, `#/salon/${general.id}`);
+  assert.equal(pushed.length, 1);
+  assert.ok(pushed[0].payload.title.includes('mentionné'));
+  // Mention dans un salon qu'il ne voit pas → rien
+  await call('b', 'POST', `/api/channels/${btsGen.id}/messages`, { content: `@${tomUser} secret BTS` });
+  r = await call('c', 'GET', '/api/notifications');
+  assert.equal(r.data.unread, 1, 'pas de notification pour un salon invisible');
+  // Réponse à son sujet
+  r = await call('c', 'POST', `/api/channels/${sharedForum.id}/topics`, { title: 'Aide VLAN', content: 'Je bloque sur le trunk' });
+  const ttid = r.data.id;
+  await call('b', 'POST', `/api/topics/${ttid}/replies`, { content: 'Vérifie le port trunk 802.1Q' });
+  r = await call('c', 'GET', '/api/notifications');
+  assert.equal(r.data.unread, 2);
+  assert.equal(r.data.items[0].type, 'reply');
+  // Préférences : couper les réponses
+  await call('c', 'POST', '/api/notifications/prefs', { reply: false });
+  await call('a', 'POST', `/api/topics/${ttid}/replies`, { content: 'Et la commande port trunk permit vlan' });
+  r = await call('c', 'GET', '/api/notifications');
+  assert.equal(r.data.unread, 2, 'préférence respectée');
+  // Lea a répondu au sujet → elle suit la discussion
+  r = await call('b', 'GET', '/api/notifications');
+  assert.ok(r.data.items.some(n => n.type === 'reply' && n.link === `#/sujet/${ttid}`), 'les participants sont prévenus');
+  r = await call('c', 'POST', '/api/notifications/read', {});
+  assert.equal(r.data.unread, 0);
+  // Abonnement expiré (410) → supprimé
+  app.locals.notifier.setSender(async () => { const e = new Error('Gone'); e.statusCode = 410; throw e; });
+  await call('b', 'POST', `/api/channels/${general.id}/messages`, { content: `@${tomUser} encore` });
+  await new Promise(res => setTimeout(res, 50));
+  r = await call('c', 'POST', '/api/push/test');
+  assert.equal(r.status, 400, 'abonnement 410 supprimé');
 
   // --- Ancien compte sans filière : profil obligatoire ---
   const { DatabaseSync } = require('node:sqlite');

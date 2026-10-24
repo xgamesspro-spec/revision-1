@@ -65,6 +65,7 @@ function inline(s) {
   s = s.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
        .replace(/(^|[^*])\*(?!\s)([^*]+?)\*/g, '$1<i>$2</i>')
        .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  s = mentionify(s);
   return s.replace(/\u0000(\d+)\u0000/g, (_, i) => `<code>${codes[+i]}</code>`);
 }
 function md(src) {
@@ -122,6 +123,7 @@ function connectStream() {
     state.connId = connId;
     if (changed && meet.room) meetingReconnect();
   });
+  es.addEventListener('notif', e => onNotif(JSON.parse(e.data)));
   es.addEventListener('meetings', e => {
     state.meetings = JSON.parse(e.data);
     renderSidebar();
@@ -197,6 +199,8 @@ function render() {
   api('GET', '/api/channels').then(c => { state.channels = c; renderSidebar(); });
   api('GET', '/api/meetings').then(m => { state.meetings = m; renderSidebar(); }).catch(() => {});
   api('GET', '/api/meetings/config').then(c => { state.meetConfig = c; }).catch(() => {});
+  api('GET', '/api/notifications').then(d => setUnread(d.unread)).catch(() => {});
+  swRegistration();
   connectStream();
   route();
 }
@@ -232,22 +236,32 @@ function renderSidebar() {
   const r = state.route || {};
   const link = (href, ico, label, active, badge) =>
     `<a class="nav-link ${active ? 'active' : ''}" href="${href}"><span class="ico">${ico}</span><span>${esc(label)}</span>${badge ? `<span class="badge">${badge}</span>` : ''}</a>`;
-  const chats = state.channels.filter(c => c.kind === 'chat');
-  const forums = state.channels.filter(c => c.kind === 'forum');
   const isAdmin = state.user.role === 'admin';
+  // Salons de la filière de l'élève en premier ; un modérateur voit tout, regroupé par filière
+  const mine = state.channels.filter(c => c.filiere && c.filiere === state.user.filiere);
+  const others = state.channels.filter(c => c.filiere && c.filiere !== state.user.filiere);
+  const shared = state.channels.filter(c => !c.filiere);
+  const chLink = c => c.kind === 'forum'
+    ? link(`#/salon/${c.id}`, '💬', c.name, (r.name === 'salon' && +r.id === c.id) || (r.name === 'sujet' && state.view.topic?.channel_id === c.id))
+    : link(`#/salon/${c.id}`, '#', c.name, r.name === 'salon' && +r.id === c.id, state.unread[c.id]);
+  const groups = {};
+  others.forEach(c => (groups[c.filiere_nom] ||= []).push(c));
   sb.innerHTML = `
     <div class="brand"><div class="logo">S</div><div>Classe SIO<small>CFA CEVEDOM</small></div></div>
     <div class="side-scroll">
       ${link('#/', '🏠', 'Accueil', r.name === 'accueil')}
       ${link('#/revisions', '📖', 'Révisions', r.name === 'revisions')}
       ${link('#/reunions', '🎥', 'Réunions', r.name === 'reunions' || r.name === 'reunion', (state.meetings || []).filter(m => m.count).length ? `<span class="live">● ${(state.meetings || []).filter(m => m.count).length}</span>` : '')}
+      <a class="nav-link ${r.name === 'notifications' ? 'active' : ''}" href="#/notifications"><span class="ico">🔔</span><span>Notifications</span><span class="badge" id="notif-badge" ${state.unreadNotifs ? '' : 'hidden'}>${state.unreadNotifs > 99 ? '99+' : state.unreadNotifs || ''}</span></a>
       ${link('#/actus', '📰', 'Actus', r.name === 'actus')}
       ${link('#/infos', '🎓', 'CFA & examens', r.name === 'infos')}
       ${isAdmin ? link('#/admin', '🛠️', 'Modération', r.name === 'admin') : ''}
-      <div class="side-title">Salons</div>
-      ${chats.map(c => link(`#/salon/${c.id}`, '#', c.name, r.name === 'salon' && +r.id === c.id, state.unread[c.id])).join('')}
-      <div class="side-title">Forums</div>
-      ${forums.map(c => link(`#/salon/${c.id}`, '💬', c.name, (r.name === 'salon' && +r.id === c.id) || (r.name === 'sujet' && state.view.topic?.channel_id === c.id))).join('')}
+      ${mine.length ? `<div class="side-title">Ma filière · ${esc(state.user.filiere_nom || '')}</div>${mine.map(chLink).join('')}` : ''}
+      <div class="side-title">Salons de tout le CFA</div>
+      ${shared.filter(c => c.kind === 'chat').map(chLink).join('')}
+      <div class="side-title">Forums de tout le CFA</div>
+      ${shared.filter(c => c.kind === 'forum').map(chLink).join('')}
+      ${Object.entries(groups).map(([nom, list]) => `<div class="side-title">${esc(nom)} <span class="pill" style="font-size:10px">modo</span></div>${list.map(chLink).join('')}`).join('')}
     </div>
     <div class="me-bar">
       ${avatar(state.user.display_name)}
@@ -273,7 +287,7 @@ const actions = {
 // ---------- Vues ----------
 async function loadView() {
   const r = state.route;
-  const views = { accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
+  const views = { notifications: viewNotifications, accueil: viewHome, revisions: r.id ? viewSubject : viewSubjects, salon: viewChannel, sujet: viewTopic, reunions: viewMeetings, reunion: viewMeeting, actus: viewNews, infos: viewInfos, admin: viewAdmin, compte: viewAccount };
   const fn = views[r.name] || viewHome;
   try { await fn(r); } catch (err) { setContent(`<div class="empty">${esc(err.message)}</div>`); }
 }
@@ -284,7 +298,9 @@ async function viewHome() {
   const d = await api('GET', '/api/dashboard');
   const days = Math.ceil((new Date(d.infos.examens.debut + 'T00:00:00') - new Date()) / 864e5);
   const u = state.user;
+  const prompt = await pushPromptHtml();
   setContent(`
+    ${prompt}
     ${u.expire_bientot ? `<div class="card" style="border-color:var(--gold);margin-bottom:16px">⏳ <b>Ton compte sera supprimé le ${new Date(u.expires_at).toLocaleDateString('fr-FR', { dateStyle: 'long' })}</b> (fin de ta formation + ${state.setup?.grace_days ?? 60} jours).
       <div class="small muted">Tu continues tes études ? Mets à jour ta filière dans <a href="#/compte">Mon compte</a>. Pense à copier les fiches que tu veux garder.</div></div>` : ''}
     <div class="grid grid-3">
@@ -317,6 +333,7 @@ async function viewHome() {
             <span class="pill ${q.score / q.total >= .7 ? 'ok' : 'gold'}">${q.score}/${q.total}</span></div>`).join('') : '<p class="muted">Pas encore de quiz. <a href="#/revisions">Commencer</a></p>'}
       </div>
     </div>`);
+  bindPushPrompt();
 }
 
 // Liste des matières
@@ -508,20 +525,29 @@ async function viewChat(ch) {
       </div>
       <div class="composer">
         <form id="msg-form">
-          <textarea id="msg-input" placeholder="Écrire dans #${esc(ch.name)} — Entrée pour envoyer, Maj+Entrée pour aller à la ligne" maxlength="2000"></textarea>
-          <button class="btn primary">Envoyer</button>
+          <div class="att-list" hidden></div>
+          <div class="composer-row">
+            <button type="button" class="btn att-btn" title="Joindre un fichier — tu peux aussi glisser-déposer ou coller une capture">📎</button>
+            <div class="composer-input"><textarea id="msg-input" placeholder="Écrire dans #${esc(ch.name)} — @ pour mentionner, Entrée pour envoyer" maxlength="2000"></textarea></div>
+            <button class="btn primary">Envoyer</button>
+          </div>
         </form>
       </div>
     </div>`, { full: true });
   renderMessages(true);
   renderMembers();
   const input = $('#msg-input');
+  const box = bindAttach($('#msg-form'), input);
+  bindMentions(input);
   const send = async () => {
     const content = input.value.trim();
-    if (!content) return;
+    if (box.busy()) return toast('Attends la fin de l’envoi des fichiers');
+    const attachments = box.ids();
+    if (!content && !attachments.length) return;
     input.value = '';
     try {
-      const m = await api('POST', `/api/channels/${ch.id}/messages`, { content });
+      const m = await api('POST', `/api/channels/${ch.id}/messages`, { content, attachments });
+      box.clear();
       if (!state.view.messages.some(x => x.id === m.id)) { state.view.messages.push(m); renderMessages(true); }
     } catch (err) { toast(err.message); input.value = content; }
   };
@@ -539,11 +565,13 @@ function renderMessages(scrollBottom = false) {
     const cont = prev && prev.user_id === m.user_id && m.created_at - prev.created_at < 5 * 60e3;
     prev = m;
     const canDel = m.user_id === state.user.id || state.user.role === 'admin';
-    return `<div class="msg ${cont ? 'cont' : ''}">
+    const forMe = new RegExp(`(^|[^\\w@])@${state.user.username.replace(/[.]/g, '\\.')}(?![\\w-])`, 'i').test(m.content || '');
+    return `<div class="msg ${cont ? 'cont' : ''} ${forMe ? 'for-me' : ''}">
       ${avatar(m.display_name)}
       <div style="flex:1;min-width:0">
         ${cont ? '' : `<div class="meta"><b>${esc(m.display_name)}</b>${m.role === 'admin' ? '<span class="pill accent">modo</span> ' : ''}<span class="muted">${fmtDate(m.created_at)}</span></div>`}
-        <div class="text">${linkify(esc(m.content))}</div>
+        ${m.content ? `<div class="text">${linkify(mentionify(esc(m.content)))}</div>` : ''}
+        ${renderAttachments(m.attachments)}
       </div>
       ${canDel ? `<button class="btn sm danger del" data-del-msg="${m.id}" title="Supprimer">✕</button>` : ''}
     </div>`;
@@ -562,7 +590,10 @@ function renderMessages(scrollBottom = false) {
     renderMessages();
     box.scrollTop = box.scrollHeight - h;
   });
-  if (scrollBottom) box.scrollTop = box.scrollHeight;
+  if (scrollBottom) {
+    box.scrollTop = box.scrollHeight;
+    $$('img', box).forEach(img => !img.complete && img.addEventListener('load', () => { box.scrollTop = box.scrollHeight; }, { once: true }));
+  }
 }
 
 async function renderMembers() {
@@ -585,7 +616,8 @@ async function viewForum(ch) {
       <summary>➕ Nouveau sujet</summary>
       <form id="topic-form" class="body">
         <label>Titre</label><input type="text" name="title" maxlength="120" required placeholder="Ex. : Je ne comprends pas le calcul du broadcast en /27">
-        <label>Message</label><textarea name="content" rows="6" required placeholder="Explique ce que tu as essayé, colle ta config…"></textarea>
+        <label>Message</label><div class="composer-input"><textarea name="content" rows="6" required placeholder="Explique ce que tu as essayé, colle ta config… (@ pour mentionner quelqu’un)"></textarea></div>
+        ${attachUi()}
         <div class="row" style="margin-top:10px"><button class="btn primary">Publier</button></div>
       </form>
     </details>
@@ -598,13 +630,18 @@ async function viewForum(ch) {
             <div class="small muted">${esc(t.display_name)} · ${fmtDate(t.created_at, false)} · dernière activité ${fmtDate(t.last_activity)}</div>
           </div>
           ${t.solved ? '<span class="pill ok">Résolu</span>' : ''}
+          ${t.files ? `<span class="pill">📎 ${t.files}</span>` : ''}
           <span class="pill">💬 ${t.replies}</span>
         </a>`).join('') : '<div class="empty">Aucun sujet. Lance la discussion !</div>'}
     </div>`);
-  $('#topic-form').onsubmit = async e => {
+  const tf = $('#topic-form');
+  const tbox = bindAttach(tf, tf.content);
+  bindMentions(tf.content);
+  tf.onsubmit = async e => {
     e.preventDefault();
+    if (tbox.busy()) return toast('Attends la fin de l’envoi des fichiers');
     try {
-      const { id } = await api('POST', `/api/channels/${ch.id}/topics`, Object.fromEntries(new FormData(e.target)));
+      const { id } = await api('POST', `/api/channels/${ch.id}/topics`, { ...Object.fromEntries(new FormData(tf)), attachments: tbox.ids() });
       location.hash = `#/sujet/${id}`;
     } catch (err) { toast(err.message); }
   };
@@ -616,10 +653,11 @@ async function viewTopic(r) {
   renderSidebar();
   const mine = t.user_id === state.user.id, isAdmin = state.user.role === 'admin';
   setTitle(`${t.pinned ? '📌 ' : ''}${esc(t.title)}`, `💬 ${esc(t.channel_name)}`);
-  const post = (name, role, date, content, del) => `
+  const post = (name, role, date, content, del, atts) => `
     <div class="post">${avatar(name)}<div class="body">
       <div class="small"><b style="font-size:15px">${esc(name)}</b> ${role === 'admin' ? '<span class="pill accent">modo</span>' : ''} <span class="muted">${fmtDate(date)}</span> ${del || ''}</div>
-      ${md(content)}
+      ${content ? md(content) : ''}
+      ${renderAttachments(atts)}
     </div></div>`;
   setContent(`
     <div class="row" style="margin-bottom:12px">
@@ -630,18 +668,23 @@ async function viewTopic(r) {
       ${mine || isAdmin ? `<button class="btn sm danger" id="t-del">Supprimer</button>` : ''}
     </div>
     <div class="card">
-      ${post(t.display_name, null, t.created_at, t.content)}
+      ${post(t.display_name, null, t.created_at, t.content, '', t.attachments)}
       ${t.replies.map(rp => post(rp.display_name, rp.role, rp.created_at, rp.content,
-        rp.user_id === state.user.id || isAdmin ? `<button class="btn sm danger" data-del-reply="${rp.id}">✕</button>` : '')).join('')}
+        rp.user_id === state.user.id || isAdmin ? `<button class="btn sm danger" data-del-reply="${rp.id}">✕</button>` : '', rp.attachments)).join('')}
     </div>
     <form id="reply-form" class="card" style="margin-top:16px">
       <label style="margin-top:0">Ta réponse</label>
-      <textarea name="content" rows="5" required></textarea>
+      <div class="composer-input"><textarea name="content" rows="5" placeholder="@ pour mentionner quelqu’un"></textarea></div>
+      ${attachUi()}
       <div class="row" style="margin-top:10px"><button class="btn primary">Répondre</button></div>
     </form>`);
-  $('#reply-form').onsubmit = async e => {
+  const rf = $('#reply-form');
+  const rbox = bindAttach(rf, rf.content);
+  bindMentions(rf.content);
+  rf.onsubmit = async e => {
     e.preventDefault();
-    try { await api('POST', `/api/topics/${t.id}/replies`, Object.fromEntries(new FormData(e.target))); viewTopic(r); }
+    if (rbox.busy()) return toast('Attends la fin de l’envoi des fichiers');
+    try { await api('POST', `/api/topics/${t.id}/replies`, { content: rf.content.value, attachments: rbox.ids() }); viewTopic(r); }
     catch (err) { toast(err.message); }
   };
   $('#t-solve')?.addEventListener('click', async () => { await api('PATCH', `/api/topics/${t.id}`, { solved: !t.solved }); viewTopic(r); });

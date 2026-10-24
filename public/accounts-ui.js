@@ -304,6 +304,8 @@ function showDialog(html) {
   return d;
 }
 
+const visOpts = cur => `<option value="">👥 Tout le CFA</option>${(state.setup?.filieres || []).map(f => `<option value="${f.id}" ${cur === f.id ? 'selected' : ''}>🔒 ${esc(f.nom)} seulement</option>`).join('')}`;
+
 async function viewAdmin(r) {
   if (state.user.role !== 'admin') throw new Error('Réservé aux modérateurs');
   setTitle('Modération', 'Invitations, comptes et salons');
@@ -335,10 +337,13 @@ async function viewAdmin(r) {
           <div class="row"><input type="text" name="name" placeholder="nom-du-salon" required style="flex:1">
             <select name="kind" style="width:auto"><option value="chat">Salon (chat)</option><option value="forum">Forum</option></select></div>
           <input type="text" name="description" placeholder="Description" style="margin-top:8px">
-          <div class="row" style="margin-top:8px"><button class="btn primary">Créer</button></div>
+          <div class="row" style="margin-top:8px">
+            <select name="filiere" style="width:auto">${visOpts('')}</select>
+            <button class="btn primary">Créer</button></div>
         </form>
         <div style="margin-top:12px">${state.channels.map(c => `
           <div class="row" style="padding:5px 0"><span>${c.kind === 'forum' ? '💬' : '#'} ${esc(c.name)}</span><span class="spacer"></span>
+          <select class="sm-select" data-vis="${c.id}" title="Qui peut voir ce salon ?">${visOpts(c.filiere || '')}</select>
           <button class="btn sm danger" data-del-ch="${c.id}">Supprimer</button></div>`).join('')}</div>
         <button class="btn sm" id="reload" style="margin-top:12px">↻ Recharger les contenus de révision</button>
       </div>
@@ -371,6 +376,12 @@ async function viewAdmin(r) {
         </div>`).join('') || '<p class="muted">Aucun compte.</p>'}
     </div>`);
   const reload = () => viewAdmin(parseRoute());
+  $$('[data-vis]').forEach(sel => sel.onchange = async () => {
+    try {
+      await api('PATCH', `/api/channels/${sel.dataset.vis}`, { filiere: sel.value || null });
+      state.channels = await api('GET', '/api/channels'); renderSidebar(); toast('Visibilité mise à jour');
+    } catch (err) { toast(err.message); }
+  });
   let tmo;
   $('#user-search').oninput = e => { clearTimeout(tmo); tmo = setTimeout(() => { location.hash = `#/admin?f=${fil}&s=${encodeURIComponent(e.target.value)}`; }, 400); };
   $('#inv-form').onsubmit = async e => { e.preventDefault(); const { code } = await api('POST', '/api/admin/invites', { uses: +e.target.uses.value }); toast(`Code ${code} créé`); reload(); };
