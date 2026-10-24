@@ -6,6 +6,7 @@ const path = require('path');
 const db = require('./db');
 const { getNews } = require('./news');
 const setupMeetings = require('./meetings');
+const setupAccounts = require('./accounts');
 
 const PORT = process.env.PORT || 3000;
 const CLASS_CODE = process.env.CLASS_CODE || ''; // code d'inscription permanent (optionnel)
@@ -50,6 +51,7 @@ function hashPassword(pw) {
   return `${salt}:${hash}`;
 }
 function checkPassword(pw, stored) {
+  if (!stored || !stored.includes(':')) return false;
   const [salt, hash] = stored.split(':');
   const test = crypto.scryptSync(pw, salt, 64);
   return crypto.timingSafeEqual(test, Buffer.from(hash, 'hex'));
@@ -67,6 +69,10 @@ function setSession(res, userId) {
   db.prepare('INSERT INTO sessions (token, user_id, expires) VALUES (?, ?, ?)').run(token, userId, now() + SESSION_DAYS * 864e5);
   res.setHeader('Set-Cookie', `sid=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${SESSION_DAYS * 86400}${COOKIE_SECURE ? '; Secure' : ''}`);
 }
+function clearSession(req, res) {
+  if (req.sid) db.prepare('DELETE FROM sessions WHERE token = ?').run(req.sid);
+  res.setHeader('Set-Cookie', 'sid=; Path=/; Max-Age=0');
+}
 const publicUser = u => u && ({ id: u.id, username: u.username, display_name: u.display_name, role: u.role });
 const text = (v, max) => String(v ?? '').trim().slice(0, max);
 const bad = (res, msg, code = 400) => res.status(code).json({ error: msg });
@@ -76,7 +82,7 @@ app.use('/api', (req, res, next) => {
   const sid = parseCookies(req).sid;
   if (sid) {
     const row = db.prepare(`SELECT u.* FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token = ? AND s.expires > ?`).get(sid, now());
-    if (row && !row.banned) { req.user = row; req.sid = sid; }
+    if (row && !row.banned && !row.deleted) { req.user = row; req.sid = sid; }
   }
   next();
 });
@@ -91,6 +97,13 @@ function tooMany(ip) {
   a.n++; attempts.set(ip, a);
   return a.n > 20;
 }
+
+const accounts = setupAccounts(app, {
+  db, auth, admin, text, bad, tooMany, hashPassword, checkPassword, setSession, clearSession, parseCookies, now,
+  CLASS_CODE, COOKIE_SECURE,
+});
+app.use('/api', accounts.gate);
+app.locals.accounts = accounts;
 
 // ---------- Temps réel (Server-Sent Events) ----------
 // Chaque onglet ouvert = une connexion avec un identifiant (connId), utilisé aussi pour les réunions.
@@ -121,65 +134,11 @@ app.get('/api/stream', auth, (req, res) => {
   });
 });
 
-// ---------- Comptes ----------
-app.get('/api/setup', (req, res) => {
-  const n = db.prepare('SELECT COUNT(*) AS n FROM users').get().n;
-  res.json({ firstUser: n === 0, needsCode: n > 0 || !!CLASS_CODE });
-});
-
-app.post('/api/register', (req, res) => {
-  if (tooMany(req.ip)) return bad(res, 'Trop de tentatives, réessaie plus tard', 429);
-  const username = text(req.body.username, 24);
-  const display = text(req.body.display_name, 40) || username;
-  const password = String(req.body.password || '');
-  const code = text(req.body.invite, 64);
-  if (!/^[a-zA-Z0-9_.-]{3,24}$/.test(username)) return bad(res, 'Identifiant : 3 à 24 caractères (lettres, chiffres, . _ -)');
-  if (password.length < 8) return bad(res, 'Mot de passe : 8 caractères minimum');
-  const first = db.prepare('SELECT COUNT(*) AS n FROM users').get().n === 0;
-  let invite = null;
-  if (!(first && !CLASS_CODE)) {
-    const okClass = CLASS_CODE && code === CLASS_CODE;
-    if (!okClass) {
-      invite = db.prepare('SELECT * FROM invites WHERE code = ? AND uses_left > 0').get(code);
-      if (!invite) return bad(res, "Code d'invitation invalide. Demande-le à un modérateur de la classe.", 403);
-    }
-  }
-  if (db.prepare('SELECT 1 FROM users WHERE username = ?').get(username)) return bad(res, 'Cet identifiant est déjà pris');
-  const r = db.prepare('INSERT INTO users (username, display_name, pass_hash, role, created_at) VALUES (?, ?, ?, ?, ?)')
-    .run(username, display, hashPassword(password), first ? 'admin' : 'eleve', now());
-  if (invite) db.prepare('UPDATE invites SET uses_left = uses_left - 1 WHERE code = ?').run(invite.code);
-  setSession(res, r.lastInsertRowid);
-  res.json({ user: publicUser(db.prepare('SELECT * FROM users WHERE id = ?').get(r.lastInsertRowid)) });
-});
-
-app.post('/api/login', (req, res) => {
-  if (tooMany(req.ip)) return bad(res, 'Trop de tentatives, réessaie dans 15 minutes', 429);
-  const u = db.prepare('SELECT * FROM users WHERE username = ?').get(text(req.body.username, 24));
-  if (!u || !checkPassword(String(req.body.password || ''), u.pass_hash)) return bad(res, 'Identifiant ou mot de passe incorrect', 401);
-  if (u.banned) return bad(res, 'Compte suspendu', 403);
-  setSession(res, u.id);
-  res.json({ user: publicUser(u) });
-});
-
-app.post('/api/logout', (req, res) => {
-  if (req.sid) db.prepare('DELETE FROM sessions WHERE token = ?').run(req.sid);
-  res.setHeader('Set-Cookie', 'sid=; Path=/; Max-Age=0');
-  res.json({ ok: true });
-});
-
-app.get('/api/me', (req, res) => res.json({ user: publicUser(req.user) || null }));
-
-app.post('/api/me/password', auth, (req, res) => {
-  if (!checkPassword(String(req.body.old || ''), req.user.pass_hash)) return bad(res, 'Ancien mot de passe incorrect');
-  if (String(req.body.new || '').length < 8) return bad(res, 'Nouveau mot de passe : 8 caractères minimum');
-  db.prepare('UPDATE users SET pass_hash = ? WHERE id = ?').run(hashPassword(String(req.body.new)), req.user.id);
-  res.json({ ok: true });
-});
-
+// ---------- Comptes (voir accounts.js) ----------
 app.get('/api/members', auth, (req, res) => {
   const online = new Set(onlineIds());
-  const rows = db.prepare('SELECT id, username, display_name, role FROM users WHERE banned = 0 ORDER BY display_name').all();
-  res.json(rows.map(u => ({ ...u, online: online.has(u.id) })));
+  const rows = db.prepare('SELECT id, username, display_name, role, filiere FROM users WHERE banned = 0 AND deleted = 0 ORDER BY display_name').all();
+  res.json(rows.map(u => ({ ...u, filiere_nom: accounts.filiereNom(u.filiere), online: online.has(u.id) })));
 });
 
 // ---------- Salons ----------
@@ -364,19 +323,6 @@ app.get('/api/news', auth, async (req, res) => {
 app.get('/api/infos', auth, (req, res) => res.json(readJson('infos.json')));
 
 // ---------- Modération ----------
-app.get('/api/admin/users', auth, admin, (req, res) => {
-  res.json(db.prepare('SELECT id, username, display_name, role, banned, created_at FROM users ORDER BY id').all());
-});
-app.post('/api/admin/users/:id', auth, admin, (req, res) => {
-  const id = +req.params.id;
-  if (id === req.user.id) return bad(res, 'Tu ne peux pas te modifier toi-même');
-  if ('banned' in req.body) {
-    db.prepare('UPDATE users SET banned = ? WHERE id = ?').run(req.body.banned ? 1 : 0, id);
-    if (req.body.banned) db.prepare('DELETE FROM sessions WHERE user_id = ?').run(id);
-  }
-  if (req.body.role === 'admin' || req.body.role === 'eleve') db.prepare('UPDATE users SET role = ? WHERE id = ?').run(req.body.role, id);
-  res.json({ ok: true });
-});
 app.get('/api/admin/invites', auth, admin, (req, res) => {
   res.json(db.prepare('SELECT * FROM invites WHERE uses_left > 0 ORDER BY created_at DESC').all());
 });

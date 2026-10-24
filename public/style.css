@@ -284,3 +284,15 @@ label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 5px; }
   .ctl { min-width: 52px; padding: 6px; }
   .tile-full { opacity: 1; }
 }
+
+/* ---------- Comptes ---------- */
+.google-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; text-decoration: none; color: var(--text); background: var(--panel); padding: 10px 14px; }
+.or { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 13px; margin: 16px 0 4px; }
+.or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.auth .card { max-width: 440px; }
+.user-row { display: flex; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.user-info { flex: 1; min-width: 220px; }
+.user-actions { gap: 6px; }
+.dialog { border: 1px solid var(--border); max-width: 440px; width: calc(100% - 32px); color: var(--text); }
+.dialog::backdrop { background: #0008; }
+a.btn { text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }

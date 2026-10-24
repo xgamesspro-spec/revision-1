@@ -25,6 +25,10 @@ async function api(method, url, body) {
   });
   const data = await res.json().catch(() => ({}));
   if (res.status === 401 && state.user) { state.user = null; render(); }
+  if (res.status === 403 && data.gate && state.user && !state.gating) {
+    state.gating = true;
+    api('GET', '/api/me').then(d => { state.user = d.user; render(); }).finally(() => { state.gating = false; });
+  }
   if (!res.ok) throw new Error(data.error || 'Erreur ' + res.status);
   return data;
 }
@@ -160,9 +164,15 @@ function parseRoute() {
   const name = parts[0] || 'accueil';
   return { name, id: parts[1], q };
 }
-window.addEventListener('hashchange', () => { $('.shell')?.classList.remove('nav-open'); route(); });
+window.addEventListener('hashchange', () => {
+  $('.shell')?.classList.remove('nav-open');
+  if (!state.user) return renderAuth();
+  if (state.user.must_change || state.user.needs_profile) return;
+  route();
+});
 
 async function boot() {
+  try { state.setup = await api('GET', '/api/setup'); } catch { state.setup = { filieres: [] }; }
   try {
     const { user } = await api('GET', '/api/me');
     state.user = user;
@@ -171,7 +181,11 @@ async function boot() {
 }
 
 function render() {
-  if (!state.user) { if (state.es) { state.es.close(); state.es = null; } return renderAuth(); }
+  if (!state.user || state.user.must_change || state.user.needs_profile) {
+    if (state.es) { state.es.close(); state.es = null; }
+    if (meet.room) leaveMeeting({ silent: true });
+    return state.user ? renderGate() : renderAuth();
+  }
   app.innerHTML = `
     <div class="shell">
       <aside class="sidebar" id="sidebar"></aside>
@@ -222,7 +236,7 @@ function renderSidebar() {
   const forums = state.channels.filter(c => c.kind === 'forum');
   const isAdmin = state.user.role === 'admin';
   sb.innerHTML = `
-    <div class="brand"><div class="logo">S</div><div>Classe SIO<small>BTS SIO · CFA CEVEDOM</small></div></div>
+    <div class="brand"><div class="logo">S</div><div>Classe SIO<small>CFA CEVEDOM</small></div></div>
     <div class="side-scroll">
       ${link('#/', '🏠', 'Accueil', r.name === 'accueil')}
       ${link('#/revisions', '📖', 'Révisions', r.name === 'revisions')}
@@ -256,46 +270,6 @@ const actions = {
   logout: async () => { await leaveMeeting({ silent: true }); await api('POST', '/api/logout'); state.user = null; location.hash = ''; render(); },
 };
 
-// ---------- Authentification ----------
-async function renderAuth(mode = 'login') {
-  let setup = { firstUser: false, needsCode: true };
-  try { setup = await api('GET', '/api/setup'); } catch {}
-  if (setup.firstUser) mode = 'register';
-  app.innerHTML = `
-    <div class="auth"><div class="card">
-      <div class="brand" style="padding:0;color:var(--text)"><div class="logo" style="color:#fff">S</div></div>
-      <h1>${mode === 'login' ? 'Connexion' : 'Créer mon compte'}</h1>
-      <p class="muted small" style="margin-top:0">Espace réservé aux élèves de la classe.</p>
-      ${setup.firstUser ? `<p class="pill gold">Premier compte : il deviendra modérateur</p>` : ''}
-      <form id="auth-form">
-        <label for="f-user">Identifiant</label>
-        <input type="text" id="f-user" name="username" autocomplete="username" required>
-        ${mode === 'register' ? `
-          <label for="f-name">Nom affiché</label>
-          <input type="text" id="f-name" name="display_name" placeholder="Prénom N." maxlength="40">` : ''}
-        <label for="f-pass">Mot de passe</label>
-        <input type="password" id="f-pass" name="password" autocomplete="${mode === 'login' ? 'current-password' : 'new-password'}" required>
-        ${mode === 'register' && setup.needsCode ? `
-          <label for="f-code">Code d'invitation de la classe</label>
-          <input type="text" id="f-code" name="invite" required>` : ''}
-        <div class="error" id="auth-err"></div>
-        <button class="btn primary" style="width:100%;margin-top:8px">${mode === 'login' ? 'Se connecter' : "S'inscrire"}</button>
-      </form>
-      ${setup.firstUser ? '' : `<p class="small muted" style="text-align:center;margin-bottom:0">
-        ${mode === 'login' ? `Pas encore de compte ? <a href="#" id="switch">S'inscrire avec un code</a>` : `Déjà inscrit ? <a href="#" id="switch">Se connecter</a>`}</p>`}
-    </div></div>`;
-  $('#switch')?.addEventListener('click', e => { e.preventDefault(); renderAuth(mode === 'login' ? 'register' : 'login'); });
-  $('#auth-form').addEventListener('submit', async e => {
-    e.preventDefault();
-    const body = Object.fromEntries(new FormData(e.target));
-    try {
-      const { user } = await api('POST', mode === 'login' ? '/api/login' : '/api/register', body);
-      state.user = user;
-      render();
-    } catch (err) { $('#auth-err').textContent = err.message; }
-  });
-}
-
 // ---------- Vues ----------
 async function loadView() {
   const r = state.route;
@@ -309,7 +283,10 @@ async function viewHome() {
   setTitle(`Salut ${esc(state.user.display_name)} 👋`, 'Ton tableau de bord');
   const d = await api('GET', '/api/dashboard');
   const days = Math.ceil((new Date(d.infos.examens.debut + 'T00:00:00') - new Date()) / 864e5);
+  const u = state.user;
   setContent(`
+    ${u.expire_bientot ? `<div class="card" style="border-color:var(--gold);margin-bottom:16px">⏳ <b>Ton compte sera supprimé le ${new Date(u.expires_at).toLocaleDateString('fr-FR', { dateStyle: 'long' })}</b> (fin de ta formation + ${state.setup?.grace_days ?? 60} jours).
+      <div class="small muted">Tu continues tes études ? Mets à jour ta filière dans <a href="#/compte">Mon compte</a>. Pense à copier les fiches que tu veux garder.</div></div>` : ''}
     <div class="grid grid-3">
       <div class="card countdown">
         <div class="small" style="opacity:.8">Premières épreuves écrites (${esc(d.infos.examens.session)})</div>
@@ -596,7 +573,7 @@ async function renderMembers() {
   members.sort((a, b) => b.online - a.online || a.display_name.localeCompare(b.display_name));
   const on = members.filter(m => m.online).length;
   box.innerHTML = `<div class="side-title" style="color:var(--muted);margin:0 0 8px">En ligne — ${on}</div>` +
-    members.map(m => `<div class="member" style="${m.online ? '' : 'opacity:.55'}"><span class="dot ${m.online ? 'on' : ''}"></span>${esc(m.display_name)}${m.role === 'admin' ? ' <span class="pill accent">modo</span>' : ''}</div>`).join('');
+    members.map(m => `<div class="member" style="${m.online ? '' : 'opacity:.55'}"><span class="dot ${m.online ? 'on' : ''}"></span>${esc(m.display_name)}${m.role === 'admin' ? ' <span class="pill accent">modo</span>' : m.filiere_nom ? ` <span class="pill">${esc(m.filiere_nom)}</span>` : ''}</div>`).join('');
 }
 
 // ---------- Forum ----------
@@ -742,88 +719,6 @@ async function viewInfos() {
       <ul>${cfa.droits_apprenti.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
       <p class="small muted">${esc(cfa.source)}</p>
     </div>`);
-}
-
-// ---------- Compte ----------
-async function viewAccount() {
-  setTitle('Mon compte');
-  setContent(`
-    <div class="card" style="max-width:480px">
-      <h3>Changer de mot de passe</h3>
-      <form id="pw-form">
-        <label>Mot de passe actuel</label><input type="password" name="old" autocomplete="current-password" required>
-        <label>Nouveau mot de passe (8 caractères min.)</label><input type="password" name="new" autocomplete="new-password" required minlength="8">
-        <div class="row" style="margin-top:12px"><button class="btn primary">Enregistrer</button></div>
-      </form>
-    </div>`);
-  $('#pw-form').onsubmit = async e => {
-    e.preventDefault();
-    try { await api('POST', '/api/me/password', Object.fromEntries(new FormData(e.target))); toast('Mot de passe modifié'); e.target.reset(); }
-    catch (err) { toast(err.message); }
-  };
-}
-
-// ---------- Modération ----------
-async function viewAdmin() {
-  if (state.user.role !== 'admin') throw new Error('Réservé aux modérateurs');
-  setTitle('Modération', 'Invitations, élèves et salons');
-  const [users, invites] = await Promise.all([api('GET', '/api/admin/users'), api('GET', '/api/admin/invites')]);
-  setContent(`
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>🎟️ Codes d'invitation</h3>
-        <p class="small muted">Donne un code à chaque élève (ou un code à plusieurs usages pour toute la classe). Sans code, personne ne peut s'inscrire.</p>
-        <form id="inv-form" class="row"><input type="number" name="uses" value="30" min="1" max="100" style="width:110px"><span class="small muted">utilisations</span><button class="btn primary">Générer</button></form>
-        <div style="margin-top:12px">${invites.length ? invites.map(i => `
-          <div class="row" style="padding:6px 0;border-bottom:1px solid var(--border)">
-            <code style="font-size:16px;font-weight:700;letter-spacing:1px">${esc(i.code)}</code>
-            <span class="small muted">${i.uses_left} restant(s)</span><span class="spacer"></span>
-            <button class="btn sm" data-copy="${esc(i.code)}">Copier</button>
-            <button class="btn sm danger" data-del-inv="${esc(i.code)}">✕</button>
-          </div>`).join('') : '<p class="muted small">Aucun code actif.</p>'}</div>
-      </div>
-      <div class="card">
-        <h3>#️⃣ Salons et forums</h3>
-        <form id="ch-form">
-          <div class="row"><input type="text" name="name" placeholder="nom-du-salon" required style="flex:1">
-            <select name="kind" style="width:auto"><option value="chat">Salon (chat)</option><option value="forum">Forum</option></select></div>
-          <input type="text" name="description" placeholder="Description" style="margin-top:8px">
-          <div class="row" style="margin-top:8px"><button class="btn primary">Créer</button></div>
-        </form>
-        <div style="margin-top:12px">${state.channels.map(c => `
-          <div class="row" style="padding:5px 0"><span>${c.kind === 'forum' ? '💬' : '#'} ${esc(c.name)}</span><span class="spacer"></span>
-          <button class="btn sm danger" data-del-ch="${c.id}">Supprimer</button></div>`).join('')}</div>
-        <button class="btn sm" id="reload" style="margin-top:12px">↻ Recharger les contenus de révision</button>
-      </div>
-    </div>
-    <div class="card" style="margin-top:16px">
-      <h3>👥 Élèves (${users.length})</h3>
-      ${users.map(u => `
-        <div class="row" style="padding:8px 0;border-bottom:1px solid var(--border)">
-          ${avatar(u.display_name)}
-          <div style="flex:1;min-width:140px"><b>${esc(u.display_name)}</b> <span class="small muted">@${esc(u.username)}</span>
-            ${u.role === 'admin' ? '<span class="pill accent">modo</span>' : ''} ${u.banned ? '<span class="pill" style="color:var(--danger)">suspendu</span>' : ''}</div>
-          ${u.id !== state.user.id ? `
-            <button class="btn sm" data-role="${u.id}" data-to="${u.role === 'admin' ? 'eleve' : 'admin'}">${u.role === 'admin' ? 'Retirer modo' : 'Nommer modo'}</button>
-            <button class="btn sm ${u.banned ? '' : 'danger'}" data-ban="${u.id}" data-to="${u.banned ? 0 : 1}">${u.banned ? 'Réactiver' : 'Suspendre'}</button>` : '<span class="small muted">c’est toi</span>'}
-        </div>`).join('')}
-    </div>`);
-  const reload = () => viewAdmin();
-  $('#inv-form').onsubmit = async e => { e.preventDefault(); const { code } = await api('POST', '/api/admin/invites', { uses: +e.target.uses.value }); toast(`Code ${code} créé`); reload(); };
-  $('#ch-form').onsubmit = async e => {
-    e.preventDefault();
-    try { await api('POST', '/api/channels', Object.fromEntries(new FormData(e.target))); state.channels = await api('GET', '/api/channels'); renderSidebar(); reload(); }
-    catch (err) { toast(err.message); }
-  };
-  $('#reload').onclick = async () => { const r = await api('POST', '/api/admin/reload-content'); toast(`${r.matieres} matières rechargées`); };
-  $$('[data-copy]').forEach(b => b.onclick = () => { navigator.clipboard?.writeText(b.dataset.copy); toast('Copié'); });
-  $$('[data-del-inv]').forEach(b => b.onclick = async () => { await api('DELETE', `/api/admin/invites/${b.dataset.delInv}`); reload(); });
-  $$('[data-del-ch]').forEach(b => b.onclick = async () => {
-    if (!confirm('Supprimer ce salon et tous ses messages ?')) return;
-    await api('DELETE', `/api/channels/${b.dataset.delCh}`); state.channels = await api('GET', '/api/channels'); renderSidebar(); reload();
-  });
-  $$('[data-role]').forEach(b => b.onclick = async () => { await api('POST', `/api/admin/users/${b.dataset.role}`, { role: b.dataset.to }); reload(); });
-  $$('[data-ban]').forEach(b => b.onclick = async () => { await api('POST', `/api/admin/users/${b.dataset.ban}`, { banned: b.dataset.to === '1' }); reload(); });
 }
 
 boot();

@@ -11,6 +11,12 @@ services:
       # Mets "1" aux deux lignes suivantes quand tu passes par le HTTPS (Caddy ci-dessous)
       COOKIE_SECURE: "0"
       TRUST_PROXY: "0"
+      # Connexion avec Google (voir README « Connexion avec Google »)
+      PUBLIC_URL: ""            # ex. https://classe.mondomaine.fr
+      GOOGLE_CLIENT_ID: ""
+      GOOGLE_CLIENT_SECRET: ""
+      # Délai (jours) entre la fin de formation et la suppression du compte
+      ACCOUNT_GRACE_DAYS: "60"
       # Réunions : nombre max de participants par réunion (connexion directe entre navigateurs)
       MEETING_MAX: "10"
       # Serveur TURN optionnel pour les réseaux qui bloquent la visio (voir README)

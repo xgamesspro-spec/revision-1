@@ -12,6 +12,31 @@ Plateforme web pour une classe de BTS SIO, **réservée aux élèves** :
 
 **Accès réservé** : on ne peut s'inscrire qu'avec un code d'invitation. Le **premier compte créé devient modérateur**.
 
+## Comptes élèves
+
+- **Inscription avec Google (Gmail)** : l'élève entre le code de la classe, clique sur « Continuer avec Google », puis choisit son nom, **sa filière** et **son propre mot de passe**. Ensuite il se connecte avec Google **ou** avec son adresse Gmail + mot de passe.
+- **Filières** : CAP, Bac pro, BTS (on demande l'année de l'examen) ou Titre professionnel (on demande le mois de fin).
+- **Suppression automatique** : le compte est supprimé `ACCOUNT_GRACE_DAYS` jours (60 par défaut) après la fin de la formation. L'élève est prévenu 30 jours avant sur son tableau de bord, et peut mettre à jour sa filière s'il continue (CAP → Bac pro, redoublement…). Les comptes modérateurs ne sont jamais supprimés automatiquement.
+- **Suppression = anonymisation** : identité, email, mot de passe et progression sont effacés ; les messages restent sous le nom « Ancien élève » pour ne pas casser les discussions.
+- **Mot de passe oublié** : l'élève se connecte avec Google, ou un modérateur clique sur « Réinitialiser » (Modération → Comptes). Un mot de passe provisoire s'affiche une seule fois, et l'élève doit en choisir un nouveau à la connexion.
+- Les modérateurs peuvent aussi changer la date de fin d'un compte, le rendre permanent, le suspendre ou le supprimer tout de suite. Chaque élève peut supprimer son compte depuis « Mon compte ».
+- Les comptes créés avant cette version (sans filière) devront indiquer leur filière à la prochaine connexion. Un compte existant peut être lié à Google depuis « Mon compte ».
+
+## Connexion avec Google
+
+Il faut créer un identifiant OAuth (gratuit) :
+
+1. Va sur [console.cloud.google.com](https://console.cloud.google.com/) → crée un projet (ex. « Classe SIO »).
+2. **API et services → Écran de consentement OAuth** : type « Externe », nom de l'appli, ton email. Les scopes `openid`, `email` et `profile` suffisent (pas de validation Google nécessaire pour ceux-là). Passe l'appli « En production » pour que tous les élèves puissent se connecter.
+3. **Identifiants → Créer des identifiants → ID client OAuth** → « Application Web ».
+   - URI de redirection autorisé : `https://TON-DOMAINE/auth/google/callback`
+4. Copie l'ID client et le code secret dans `docker-compose.yml` (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`), et mets `PUBLIC_URL: "https://TON-DOMAINE"`.
+5. `docker compose --profile https up -d --build`
+
+⚠️ Google exige un **vrai nom de domaine en HTTPS** pour la redirection (pas une simple IP ; `localhost` est accepté pour tester). Un sous-domaine gratuit (DuckDNS, etc.) fait l'affaire.
+
+Quand Google est configuré, l'inscription sans Google est fermée aux élèves (pour que chaque compte corresponde à une vraie adresse Gmail). Pour la rouvrir : `ALLOW_LOCAL_SIGNUP=1`. Sans Google configuré, l'inscription se fait avec un identifiant + mot de passe + filière.
+
 ## Installation avec Docker (recommandé)
 
 Sur un serveur Linux (VM Debian/Ubuntu par exemple) avec Docker installé :
@@ -63,6 +88,10 @@ npm start
 | `CLASS_CODE` | code d'inscription permanent (en plus des codes générés) | vide |
 | `COOKIE_SECURE` | `1` si le site est servi en HTTPS | `0` |
 | `TRUST_PROXY` | `1` derrière un reverse proxy (Nginx, Caddy…) | `0` |
+| `PUBLIC_URL` | adresse publique du site (pour la redirection Google) | déduite de la requête |
+| `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | active la connexion Google | vide |
+| `ALLOW_LOCAL_SIGNUP` | `1` = autorise aussi l'inscription sans Google | `0` |
+| `ACCOUNT_GRACE_DAYS` | jours entre la fin de formation et la suppression du compte | `60` |
 | `MEETING_MAX` | participants max par réunion | `10` |
 | `STUN_URLS` | serveurs STUN (séparés par des virgules) | `stun:stun.l.google.com:19302` |
 | `TURN_URL`, `TURN_USER`, `TURN_PASS` | relais TURN optionnel | vide |
@@ -100,6 +129,7 @@ npm test
 
 ```
 server.js        API (comptes, salons, forum, révisions, actus, modération) + temps réel (SSE)
+accounts.js      comptes : Google, filières, réinitialisation, suppression automatique
 meetings.js      réunions vidéo : salles + signalisation WebRTC
 Caddyfile        HTTPS (reverse proxy Caddy)
 db.js            base SQLite et salons par défaut
